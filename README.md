@@ -1,7 +1,7 @@
 dotfiles
 ========
 
-*** @deniscostadsc's dotfiles
+### @deniscostadsc's dotfiles
 
 This project is a collections of dotfiles.
 
