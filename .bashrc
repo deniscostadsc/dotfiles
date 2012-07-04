@@ -106,7 +106,11 @@ fi
 
 # Virtualenv Wrapper
 export WORKON_HOME='~/Envs'
-. /usr/local/bin/virtualenvwrapper.sh
+if [ -f ~/usr/local/bin/virtualenvwrapper.sh ]; then
+    . /usr/local/bin/virtualenvwrapper.sh
+else
+    echo "Virtualenv Wrapper apparently is not installed." 
+fi
 
 # Django aliases
 alias rserver='python manage.py runserver'
