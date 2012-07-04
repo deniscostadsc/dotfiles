@@ -9,4 +9,8 @@ function install() {
         -av . ~
 }
 
-install
+read -p "Running this file, you'll override some config files. Do you want to continue? (y/n) "
+
+if [[ $REPLY =~ ^[yY] ]]; then
+	install	
+fi
