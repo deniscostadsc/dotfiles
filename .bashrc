@@ -120,4 +120,3 @@ fi
 alias rserver='python manage.py runserver'
 alias rtest='python manage.py test'
 alias rshell='python manage.py shell'
-
