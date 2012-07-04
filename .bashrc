@@ -117,6 +117,6 @@ else
 fi
 
 # Django aliases
-alias rserver='python manage.py runserver'
-alias rtest='python manage.py test'
-alias rshell='python manage.py shell'
+alias dserver='python manage.py runserver'
+alias dtest='python manage.py test'
+alias dshell='python manage.py shell'
