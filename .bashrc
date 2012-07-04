@@ -120,3 +120,5 @@ fi
 alias dserver='python manage.py runserver'
 alias dtest='python manage.py test'
 alias dshell='python manage.py shell'
+alias ddump='python manage.py dumpdata'
+alias dload='python manage.py loaddata'
