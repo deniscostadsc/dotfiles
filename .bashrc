@@ -13,7 +13,7 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
+HISTSIZE=5000
 HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
@@ -106,7 +106,7 @@ fi
 
 # Virtualenv Wrapper
 export WORKON_HOME='~/Envs'
-if [ -f ~/usr/local/bin/virtualenvwrapper.sh ]; then
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     . /usr/local/bin/virtualenvwrapper.sh
 else
     echo "Virtualenv Wrapper apparently is not installed." 
