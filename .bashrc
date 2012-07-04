@@ -15,7 +15,7 @@ shopt -s histappend
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=5000
 HISTFILESIZE=10000
-HISTIGNORE='ls'
+HISTIGNORE='ls:history'
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
