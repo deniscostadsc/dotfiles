@@ -11,4 +11,5 @@ to install:
 git clone https://github.com/deniscostadsc/dotfiles.git
 cd dotfiles
 ./install.sh
+source ~/.bashrc
 ```
