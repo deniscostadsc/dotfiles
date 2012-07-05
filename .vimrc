@@ -11,5 +11,6 @@ let g:mapleader = ","
 
 nmap <leader>t :CommandT<cr>
 nmap <leader>n :NERDTree<cr>
+nmap <leader>b :BufExplorer<cr>
 
 call pathogen#infect()
