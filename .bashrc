@@ -116,6 +116,21 @@ else
     echo "Virtualenv Wrapper apparently is not installed." 
 fi
 
+# Git aliases
+alias ga='git add'
+alias gb='git branch'
+alias gc='git checkout'
+alias gcl='git clone'
+alias gcm='git commit -m'
+alias gcma='git commit -am'
+alias gd='git diff'
+alias gl='git log'
+alias gp='git push'
+alias gpu='git pull'
+alias gra='git remote add'
+alias grr='git remote rm'
+alias gst='git status'
+
 # Python alises
 alias rmpyc='find . -name "*.pyc" | xargs rm -v'
 
