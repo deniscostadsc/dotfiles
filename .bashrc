@@ -117,11 +117,11 @@ else
 fi
 
 # Git aliases
-if [ -f ~/.git_aliases ]; then
-    . ~/.git_aliases
+if [ -f ~/.aliases/git_aliases ]; then
+    . ~/.aliases/git_aliases
 fi
 
 # Python alises
-if [ -f ~/.python_aliases ]; then
-    . ~/.python_aliases
+if [ -f ~/.aliases/python_aliases ]; then
+    . ~/.aliases/python_aliases
 fi
