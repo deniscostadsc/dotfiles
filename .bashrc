@@ -116,6 +116,9 @@ else
     echo "Virtualenv Wrapper apparently is not installed." 
 fi
 
+# Python alises
+alias rmpyc='find . -name "*.pyc" | xargs rm -v'
+
 # Django aliases
 alias dserver='python manage.py runserver'
 alias dtest='python manage.py test'
