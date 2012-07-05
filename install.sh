@@ -8,6 +8,7 @@ function install() {
         --exclude ".gitignore" \
         --exclude "install.sh" \
         --exclude "README.md" \
+        --exclude "prepare_environment.sh" \
         -av . ~
 }
 
