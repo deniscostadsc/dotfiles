@@ -117,26 +117,11 @@ else
 fi
 
 # Git aliases
-alias ga='git add'
-alias gb='git branch'
-alias gc='git checkout'
-alias gcl='git clone'
-alias gcm='git commit -m'
-alias gcma='git commit -am'
-alias gd='git diff'
-alias gl='git log'
-alias gp='git push'
-alias gpu='git pull'
-alias gra='git remote add'
-alias grr='git remote rm'
-alias gst='git status'
+if [ -f ~/.git_aliases ]; then
+    . ~/.git_aliases
+fi
 
 # Python alises
-alias rmpyc='find . -name "*.pyc" | xargs rm -v'
-
-# Django aliases
-alias dserver='python manage.py runserver'
-alias dtest='python manage.py test'
-alias dshell='python manage.py shell'
-alias ddump='python manage.py dumpdata'
-alias dload='python manage.py loaddata'
+if [ -f ~/.python_aliases ]; then
+    . ~/.python_aliases
+fi
