@@ -1,0 +1,18 @@
+[global_config]
+[keybindings]
+[profiles]
+  [[default]]
+    background_darkness = 0.73
+    palette = "#2e3436:#cc0000:#8bc058:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#9dcc6f:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
+    background_type = transparent
+    scrollback_infinite = True
+    foreground_color = "#00ff00"
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]
