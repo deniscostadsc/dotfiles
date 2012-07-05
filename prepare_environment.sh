@@ -15,9 +15,9 @@ function is_installed(){
 
 function install(){
     app=$1
-    ( echo "Installing $app" && \
-        apt-get install -y $app > /dev/null 2> /dev/null && \
-        echo "Installed $app" ) || \
+    ( echo -e "Installing $app\n\n" && \
+        apt-get install -y $app && \
+        echo -e "\n\nInstalled $app" ) || \
     echo "Error in $app instalation."
 }
 
