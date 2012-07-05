@@ -28,7 +28,7 @@ terminator
 vim-gnome
 '
 
-echo "This program will install these applications:"
+echo "This program will install these systems applications:"
 echo
 echo "$apps"
 
