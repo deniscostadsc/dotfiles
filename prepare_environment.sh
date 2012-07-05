@@ -27,6 +27,8 @@ apps='python-pip
 terminator
 vim-gnome
 virtualbox
+ruby
+rubygems
 '
 
 echo "This program will install these systems applications:"
