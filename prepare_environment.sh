@@ -26,6 +26,7 @@ function install(){
 apps='python-pip
 terminator
 vim-gnome
+virtualbox
 '
 
 echo "This program will install these systems applications:"
