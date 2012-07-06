@@ -17,3 +17,4 @@ nmap <C-left> :tabprevious<CR>
 nmap <C-right> :tabnext<CR>
 
 call pathogen#infect()
+call pathogen#helptags()
