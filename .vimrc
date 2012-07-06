@@ -18,4 +18,3 @@ nmap <C-right> :tabnext<CR>
 
 call pathogen#infect()
 call pathogen#helptags()
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
