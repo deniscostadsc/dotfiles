@@ -10,15 +10,52 @@ function is_installed(){
     app=$1
     dpkg -l $app > /dev/null 2> /dev/null && return 0
     which $app > /dev/null && return 0
+    grep $app <<< $(pip freeze 2> /dev/null) > /dev/null 2>&1 && return 0
     return 1
 }
 
-function install(){
-    app=$1
+function __install(){
+    app=$2
+    case $1 in
+        r|ruby)
+            ( gem install $app && return 0 ) || return 1
+        ;;
+        p|python)
+            ( pip install $app && return 0 ) || return 1
+        ;;
+        s|system)
+            ( apt-get install -y $app && return 0 ) || return 1
+        ;;
+    esac
+}
+
+function _install(){
+    app=$2
+    typeapp=$1
     ( echo -e "Installing $app\n\n" && \
-        apt-get install -y $app && \
+         __install $typeapp $app && \
         echo -e "\n\nInstalled $app" ) || \
     echo "Error in $app instalation."
+}
+
+function install(){
+    typeapp=$1
+    apps=$2
+    echo "This program will install these $typeapp applications:"
+    echo
+    echo "$apps"
+
+    read -p "Do you want to continue? (y/n) "
+
+    if [[ $REPLY =~ ^[yY] ]]; then
+        for app in $apps; do
+            if is_installed $app; then
+                echo "$app already installed."
+            else
+                _install $typeapp $app
+            fi
+        done
+    fi
 }
 
 [ "$USER" != root ] && exiting "You are not root!"
@@ -30,19 +67,12 @@ virtualbox
 ruby
 rubygems
 '
+typeapp="system"
 
-echo "This program will install these systems applications:"
-echo
-echo "$apps"
+install "$typeapp" "$apps"
 
-read -p "Do you want to continue? (y/n) "
+apps='virtualenvwrapper'
+typeapp='python'
 
-if [[ $REPLY =~ ^[yY] ]]; then
-    for app in $apps; do
-        if is_installed $app; then
-            echo "$app already installed."
-        else
-            install $app
-        fi
-    done
-fi
+install "$typeapp" "$apps"
+
