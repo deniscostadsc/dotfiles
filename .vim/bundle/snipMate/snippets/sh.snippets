@@ -26,9 +26,13 @@ snippet until
 		${2:#statements}
 	done
 snippet case
-	case ${1:word} in
+	case ${1:var} in
 		${2:pattern})
-			${3};;
+			${3}
+		;;
+		*)
+			${4}
+		;;
 	esac
 snippet function
 	function ${1:name}(){
