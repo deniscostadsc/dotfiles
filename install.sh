@@ -11,6 +11,13 @@ function install() {
         --exclude "prepare_environment.sh" \
         --exclude "*.swp" \
         -av . ~
+
+    # Compile C extension for Command-T
+    if [ -d ~/.vim/bundle/command-t/ruby/command-t ]; then
+        cd ~/.vim/bundle/command-t/ruby/command-t
+        ruby extconf.rb
+        make
+    fi
 }
 
 read -p "Running this file, you'll override some config files. Do you want to continue? (y/n) "
