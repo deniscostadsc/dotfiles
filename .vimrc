@@ -12,4 +12,8 @@ nmap <leader>t :CommandT<cr>
 nmap <leader>n :NERDTree<cr>
 nmap <leader>b :BufExplorer<cr>
 
+nmap <C-t> :tabnew<CR>
+nmap <C-left> :tabprevious<CR>
+nmap <C-right> :tabnext<CR>
+
 call pathogen#infect()
