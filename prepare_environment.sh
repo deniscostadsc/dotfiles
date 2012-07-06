@@ -62,6 +62,7 @@ function install(){
 
 apps='ack
 ack-grep
+git
 python-pip
 ruby
 rubygems
