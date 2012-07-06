@@ -13,7 +13,7 @@ function install() {
         -av . ~
 
     # Compile C extension for Command-T
-    if [ -d ~/.vim/bundle/command-t/ruby/command-t ]; then
+    if [ -d ~/.vim/bundle/command-t/ruby/command-t -a ! -f ~/.vim/bundle/command-t/ruby/command-t/ext.so ]; then
         cd ~/.vim/bundle/command-t/ruby/command-t
         ruby extconf.rb
         make
