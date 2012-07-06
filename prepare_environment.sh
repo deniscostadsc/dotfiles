@@ -60,12 +60,14 @@ function install(){
 
 [ "$USER" != root ] && exiting "You are not root!"
 
-apps='python-pip
+apps='ack
+ack-grep
+python-pip
+ruby
+rubygems
 terminator
 vim-gnome
 virtualbox
-ruby
-rubygems
 '
 typeapp="system"
 
