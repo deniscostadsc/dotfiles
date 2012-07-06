@@ -125,3 +125,8 @@ fi
 if [ -f ~/.aliases/python_aliases ]; then
     . ~/.aliases/python_aliases
 fi
+
+function calc(){
+    bc <<< $1
+}
+
