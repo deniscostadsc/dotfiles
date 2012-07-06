@@ -6,6 +6,8 @@ set tabstop=4
 set smartindent
 set shiftwidth=4
 
+set guifont=Courier\ Medium\ 10
+
 nmap <leader>t :CommandT<cr>
 nmap <leader>n :NERDTree<cr>
 nmap <leader>b :BufExplorer<cr>
