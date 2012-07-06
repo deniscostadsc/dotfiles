@@ -74,7 +74,8 @@ typeapp="system"
 
 install "$typeapp" "$apps"
 
-apps='virtualenvwrapper'
+apps='virtualenvwrapper
+ipython'
 typeapp='python'
 
 install "$typeapp" "$apps"
