@@ -11,12 +11,6 @@ to download the project:
 git clone https://github.com/deniscostadsc/dotfiles.git
 ```
 
-or
-
-```bash
-wget https://github.com/deniscostadsc/dotfiles/zipball/master
-```
-
 install system applications:
 
 ```bash
