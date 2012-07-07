@@ -16,7 +16,7 @@ apt-get install -y terminator
 apt-get install -y vim-gnome
 apt-get install -y virtualbox
 
-if [ which pip > /dev/null ]; then
+if which pip > /dev/null; then
     pip install virtualenvwrapper
     pip install ipython
 fi
