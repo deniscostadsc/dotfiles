@@ -16,6 +16,7 @@ shopt -s histappend
 HISTSIZE=5000
 HISTFILESIZE=5000
 HISTIGNORE='ls:history'
+HISTTIMEFORMAT="%d/%h/%y - %H:%M:%S "
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -71,51 +72,11 @@ xterm*|rxvt*)
     ;;
 esac
 
-alias rself='. ~/.bashrc'
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
-
-# Improving command history
-export HISTTIMEFORMAT="%d/%h/%y - %H:%M:%S "
-
-# Virtualenv Wrapper
-export WORKON_HOME='~/Envs'
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-    . /usr/local/bin/virtualenvwrapper.sh
-else
-    echo "Virtualenv Wrapper apparently is not installed." 
+#
+# Import of aliases
+#
+if [ -f ~/.aliases/bash_aliases ]; then
+    . ~/.aliases/bash_aliases
 fi
 
 # Git aliases
@@ -128,11 +89,24 @@ if [ -f ~/.aliases/python_aliases ]; then
     . ~/.aliases/python_aliases
 fi
 
-function calc(){
-    bc <<< $1
-}
 
-function is_in(){
-    grep $1 <<< $2 > /dev/null 2>&1 && return 0 || return 1
-}
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
+# Import of bash function
+if [ -f ~/.bash_funtions ]; then
+    . ~/.bash_functions
+fi
+
+# Virtualenv Wrapper
+export WORKON_HOME='~/Envs'
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    . /usr/local/bin/virtualenvwrapper.sh
+else
+    echo "Virtualenv Wrapper apparently is not installed." 
+fi
 
