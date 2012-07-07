@@ -103,7 +103,7 @@ if [ -f ~/.bash_functions ]; then
 fi
 
 # Virtualenv Wrapper
-export WORKON_HOME='~/Envs'
+WORKON_HOME='~/Envs'
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     . /usr/local/bin/virtualenvwrapper.sh
 else
