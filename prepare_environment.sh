@@ -8,7 +8,6 @@ function exiting(){
 
 [ "$USER" != root ] && exiting "You are not root!"
 
-apt-get install -y ack
 apt-get install -y ack-grep
 apt-get install -y git
 apt-get install -y python-pip
