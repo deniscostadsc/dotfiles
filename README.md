@@ -21,7 +21,7 @@ install system applications:
 
 ```bash
 cd dotfiles
-./prepare_environment.sh
+sudo ./prepare_environment.sh
 ```
 
 and then, install the dotfiles
