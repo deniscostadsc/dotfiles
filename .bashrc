@@ -98,7 +98,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # Import of bash function
-if [ -f ~/.bash_funtions ]; then
+if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
 
