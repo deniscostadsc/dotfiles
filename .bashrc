@@ -34,6 +34,30 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+# Import of aliases
+if [ -f ~/.aliases/bash_aliases ]; then
+    . ~/.aliases/bash_aliases
+fi
+
+if [ -f ~/.aliases/git_aliases ]; then
+    . ~/.aliases/git_aliases
+fi
+
+if [ -f ~/.aliases/python_aliases ]; then
+    . ~/.aliases/python_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
+# Import of bash function
+if [ -f ~/.bash_functions ]; then
+    . ~/.bash_functions
+fi
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color) color_prompt=yes;;
@@ -56,10 +80,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1='\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='\[\033[01;32m\]$(gitbranch)\[\033[01;35m\]\w\[\033[00m\]\n\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='$(gitbranch)\w\n\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -71,36 +94,6 @@ xterm*|rxvt*)
 *)
     ;;
 esac
-
-#
-# Import of aliases
-#
-if [ -f ~/.aliases/bash_aliases ]; then
-    . ~/.aliases/bash_aliases
-fi
-
-# Git aliases
-if [ -f ~/.aliases/git_aliases ]; then
-    . ~/.aliases/git_aliases
-fi
-
-# Python alises
-if [ -f ~/.aliases/python_aliases ]; then
-    . ~/.aliases/python_aliases
-fi
-
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
-
-# Import of bash function
-if [ -f ~/.bash_functions ]; then
-    . ~/.bash_functions
-fi
 
 # Virtualenv Wrapper
 WORKON_HOME='~/Envs'
