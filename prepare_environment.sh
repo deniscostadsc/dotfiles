@@ -22,3 +22,6 @@ if which pip > /dev/null; then
     pip install ipython
 fi
 
+if which gem > /dev/null; then
+    gem install mkrf
+fi
