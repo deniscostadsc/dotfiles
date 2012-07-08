@@ -2,6 +2,8 @@
 
 [ "$USER" != root ] && echo "You are not root!" && exit
 
+apt-get update
+
 apt-get install -y ack-grep
 apt-get install -y git
 apt-get install -y python-pip
