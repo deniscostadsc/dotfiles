@@ -1,12 +1,6 @@
 #!/bin/bash
 
-function exiting(){
-    echo "Finalizing program..."
-    echo $1
-    exit
-}
-
-[ "$USER" != root ] && exiting "You are not root!"
+[ "$USER" != root ] && echo "You are not root!" && exit
 
 apt-get install -y ack-grep
 apt-get install -y git
