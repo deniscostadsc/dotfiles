@@ -6,4 +6,4 @@
 [init]
 	templatedir = ~/.git_templates/
 [core]
-    editor = gvim
+	editor = gvim
