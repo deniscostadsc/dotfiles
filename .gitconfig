@@ -5,3 +5,5 @@
 	ui = true
 [init]
 	templatedir = ~/.git_templates/
+[core]
+	editor = gvim
