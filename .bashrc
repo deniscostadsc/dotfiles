@@ -29,11 +29,6 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
 # Import of aliases
 if [ -f ~/.aliases/bash_aliases ]; then
     . ~/.aliases/bash_aliases
@@ -79,15 +74,6 @@ else
     PS1='$(gitbranch)\w\n\$ '
 fi
 unset color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
 
 # Virtualenv Wrapper
 WORKON_HOME='~/Envs'
