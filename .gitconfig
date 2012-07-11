@@ -3,3 +3,5 @@
 	email = deniscostadsc@gmail.com
 [color]
 	ui = true
+[init]
+	templatedir = ~/.git_templates/
