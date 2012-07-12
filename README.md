@@ -74,14 +74,14 @@ gst = 'git status'
 
 #### Python Aliases
 ```
-alias rmpyc='find . -name "*.pyc" | xargs rm -v'
+rmpyc = 'find . -name "*.pyc" | xargs rm -v'
 ```
 
 #### Django aliases
 ```
-alias dserver='python manage.py runserver'
-alias dtest='python manage.py test'
-alias dshell='python manage.py shell'
-alias ddump='python manage.py dumpdata'
-alias dload='python manage.py loaddata'
+dserver = 'python manage.py runserver'
+dtest = 'python manage.py test'
+dshell = 'python manage.py shell'
+ddump = 'python manage.py dumpdata'
+dload = 'python manage.py loaddata'
 ```
