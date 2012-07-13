@@ -1,5 +1,5 @@
 function calc(){
-    bc <<< "$*"
+    python -c "print $*"
 }
 
 function is_in(){
