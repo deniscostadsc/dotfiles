@@ -85,3 +85,48 @@ dshell = 'python manage.py shell'
 ddump = 'python manage.py dumpdata'
 dload = 'python manage.py loaddata'
 ```
+
+### Bash Functions
+An map funtion, to execute a function over a list of parameters:
+```
+$ function square(){ echo $(($1 * $1)); }
+$ map square 1 2 3 4 5 6 7 8 9
+1
+4
+9
+16
+25
+36
+49
+64
+81
+```
+
+An reduce function, to accumulate a value from a list:
+```
+$ function sum(){ echo $(($1 + $2)); }
+$ reduce sum 1 2 3 4 5 6 7 8 9
+45
+```
+
+An gitbranch function to show current branch on a Git directory:
+```
+$ gitbranch 
+(master)
+```
+
+An calc function:
+```
+$ calc 2 + 2
+4
+```
+
+A is_in function to check if a text is in another text:
+```
+$ is_in 'hello' 'hello world'
+$ echo $?
+0
+$ is_in 'cat' 'hello world'
+$ echo $?
+1
+```
