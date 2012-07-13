@@ -88,7 +88,7 @@ dload = 'python manage.py loaddata'
 
 ### Bash Functions
 An map funtion, to execute a function over a list of parameters:
-```
+```bash
 $ function square(){ echo $(($1 * $1)); }
 $ map square 1 2 3 4 5 6 7 8 9
 1
@@ -103,26 +103,26 @@ $ map square 1 2 3 4 5 6 7 8 9
 ```
 
 An reduce function, to accumulate a value from a list:
-```
+```bash
 $ function sum(){ echo $(($1 + $2)); }
 $ reduce sum 1 2 3 4 5 6 7 8 9
 45
 ```
 
 An gitbranch function to show current branch on a Git directory:
-```
+```bash
 $ gitbranch 
 (master)
 ```
 
 An calc function:
-```
+```bash
 $ calc 2 + 2
 4
 ```
 
 A is_in function to check if a text is in another text:
-```
+```bash
 $ is_in 'hello' 'hello world'
 $ echo $?
 0
