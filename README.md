@@ -87,7 +87,7 @@ dload = 'python manage.py loaddata'
 ```
 
 ### Bash Functions
-An map funtion, to execute a function over a list of parameters:
+An map function, to execute a function over a list of parameters:
 ```bash
 $ function square(){ echo $(($1 * $1)); }
 $ map square 1 2 3 4 5 6 7 8 9
