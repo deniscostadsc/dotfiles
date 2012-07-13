@@ -132,7 +132,7 @@ $ echo $?
 ```
 
 ### PS1
-If you are in a git directory, the prompt (PS1 environment variable) will change to include the branch name.
+If you are in an git directory, the prompt (PS1 environment variable) will change to include the branch name.
 ```bash
 ~
 $ cd Projects/
