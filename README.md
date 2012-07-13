@@ -130,3 +130,13 @@ $ is_in 'cat' 'hello world'
 $ echo $?
 1
 ```
+
+### PS1
+
+If you are in a git directory, the prompt (PS1 environment variable) will change to include the branch name.
+```bash
+$ cd Projects/
+~/Projects
+$ cd dotfiles/
+(master)~/Projects/dotfiles
+```
