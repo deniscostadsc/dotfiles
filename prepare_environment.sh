@@ -16,12 +16,16 @@ apt-get install -y git
 apt-get install -y gitg
 apt-get install -y nodejs
 apt-get install -y python-dev
-apt-get install -y python-pip
+apt-get install -y python-setuptools
 apt-get install -y ruby
 apt-get install -y rubygems
 apt-get install -y terminator
 apt-get install -y vim-gnome
 apt-get install -y virtualbox
+
+if which easy_install > /dev/null; then
+    easy_install pip
+fi
 
 if which pip > /dev/null; then
     pip install ipython
