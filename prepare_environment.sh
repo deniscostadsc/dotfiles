@@ -3,17 +3,21 @@
 [ "$USER" != root ] && echo "You are not root!" && exit
 
 if ! grep "deadsnakes" /etc/apt/sources.list > /dev/null; then
-    echo "" >> /etc/apt/sources.list
-    echo "# A few versions of Python" >> /etc/apt/sources.list
-    echo "deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu $(grep 'DISTRIB_CODENAME' /etc/lsb-release | sed 's/^[^\=]\+=//') main" >> /etc/apt/sources.list
-    echo "deb-src http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu $(grep 'DISTRIB_CODENAME' /etc/lsb-release | sed 's/^[^\=]\+=//') main " >> /etc/apt/sources.list
+    (
+    echo ""
+    echo "# A few versions of Python"
+    echo "deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu $(grep 'DISTRIB_CODENAME' /etc/lsb-release | sed 's/^[^\=]\+=//') main"
+    echo "deb-src http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu $(grep 'DISTRIB_CODENAME' /etc/lsb-release | sed 's/^[^\=]\+=//') main"
+    ) >> /etc/apt/sources.list
 fi
 
 apt-get update
 
 apt-get install -y ack-grep
+apt-get install -y gimp
 apt-get install -y git
 apt-get install -y gitg
+apt-get install -y inkscape
 apt-get install -y nodejs
 apt-get install -y python-dev
 apt-get install -y python-setuptools
