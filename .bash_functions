@@ -25,6 +25,10 @@ function reduce(){
     echo $accumulator
 }
 
+function gvim(){
+    /usr/bin/gvim -f $* &
+}
+
 function gitbranch(){
     if git branch > /dev/null 2>&1; then
         echo -e "($(git branch 2> /dev/null | grep "^*" | sed "s/^* //"))"
