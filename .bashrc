@@ -53,10 +53,6 @@ fi
 if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color) color_prompt=yes;;
-esac
 
 # Checking for colors support
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
