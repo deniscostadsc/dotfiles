@@ -1,4 +1,4 @@
-colorscheme desert
+colorscheme zellner
 
 set number
 set expandtab
