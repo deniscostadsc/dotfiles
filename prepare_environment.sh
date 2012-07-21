@@ -3,10 +3,12 @@
 [ "$USER" != root ] && echo "You are not root!" && exit
 
 if ! grep "deadsnakes" /etc/apt/sources.list > /dev/null; then
-    echo "" >> /etc/apt/sources.list
-    echo "# A few versions of Python" >> /etc/apt/sources.list
-    echo "deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu $(grep 'DISTRIB_CODENAME' /etc/lsb-release | sed 's/^[^\=]\+=//') main" >> /etc/apt/sources.list
-    echo "deb-src http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu $(grep 'DISTRIB_CODENAME' /etc/lsb-release | sed 's/^[^\=]\+=//') main " >> /etc/apt/sources.list
+    (
+    echo ""
+    echo "# A few versions of Python"
+    echo "deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu $(grep 'DISTRIB_CODENAME' /etc/lsb-release | sed 's/^[^\=]\+=//') main"
+    echo "deb-src http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu $(grep 'DISTRIB_CODENAME' /etc/lsb-release | sed 's/^[^\=]\+=//') main"
+    ) >> /etc/apt/sources.list
 fi
 
 apt-get update
