@@ -35,3 +35,6 @@ function gitbranch(){
     fi
 }
 
+function name(){
+    echo "$(grep 'DISTRIB_CODENAME' /etc/lsb-release | sed 's/^[^=]\+=//')"
+}
