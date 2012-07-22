@@ -36,5 +36,12 @@ function gitbranch(){
 }
 
 function name(){
-    echo "$(grep 'DISTRIB_CODENAME' /etc/lsb-release | sed 's/^[^=]\+=//')"
+    codename="$(grep 'DISTRIB_CODENAME' /etc/lsb-release | sed 's/^[^=]\+=//')"
+    description="$(grep 'DISTRIB_DESCRIPTION' /etc/lsb-release | sed 's/^[^=]\+=//;s/"//g')"
+
+    if [[ $1 =~ ^-a|--all$ ]]; then
+        echo "$description $codename"
+    else
+        echo "$codename"
+    fi
 }
