@@ -46,5 +46,5 @@ if which pip > /dev/null; then
 fi
 
 if which gem > /dev/null; then
-    if ! is_in "mkrf" "$(gem list)"; then gem install mkrf; fi
+    gem install mkrf
 fi
