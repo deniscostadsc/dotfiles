@@ -18,6 +18,7 @@ function install() {
         cd ~/.vim/bundle/command-t/ruby/command-t
         ruby extconf.rb
         make
+        cd "$(dirname "$0")"
     fi
 }
 
