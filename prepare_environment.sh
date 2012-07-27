@@ -19,6 +19,7 @@ apt-get update
 
 apt-get install -y ack-grep
 apt-get install -y chromium-browser
+apt-get install -y curl
 apt-get install -y emma
 apt-get install -y gcolor2
 apt-get install -y gimp
