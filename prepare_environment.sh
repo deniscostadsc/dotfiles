@@ -15,19 +15,23 @@ if ! grep "deadsnakes" /etc/apt/sources.list > /dev/null; then
     ) >> /etc/apt/sources.list
 fi
 
-apt-get update
+apt-get update && apt-get -y upgrade
+
+# Databases
+apt-get install -y postgresql-9.1 postgresql-client-9.1 postgresql-server-dev-9.1
+apt-get install -y pgadmin3
+apt-get install -y mysql-server mysql-client
+apt-get install -y emma
 
 apt-get install -y ack-grep
 apt-get install -y chromium-browser
 apt-get install -y curl
-apt-get install -y emma
 apt-get install -y gcolor2
 apt-get install -y gimp
 apt-get install -y git
 apt-get install -y gitg
 apt-get install -y inkscape
 apt-get install -y nodejs
-apt-get install -y pgadmin3
 apt-get install -y python-dev
 apt-get install -y python-setuptools
 apt-get install -y ruby
@@ -50,3 +54,4 @@ fi
 if which gem > /dev/null; then
     gem install mkrf
 fi
+
