@@ -2,6 +2,10 @@ function calc(){
     python -c "print $*"
 }
 
+function rmpyc(){
+    find . -name "*.pyc" -exec rm -rfv {} \;
+}
+
 function is_in(){
     grep $1 <<< $2 > /dev/null 2>&1 && return 0 || return 1
 }
