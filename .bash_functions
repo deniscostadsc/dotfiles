@@ -21,7 +21,8 @@ function gitbranch(){
 }
 
 function stripy(){
-    find . -name '*.py' | xargs sed -i 's/[[:space:]]\+$//'
+    # Remove spaces from end of lines
+    (find . | xargs file | grep text | sed 's/:[^:]\+$//' | xargs sed -i 's/[[:space:]]\+$//') 2> /dev/null
 }
 
 function name(){
