@@ -25,7 +25,7 @@ function stripy(){
     (find . | xargs file | grep text | sed 's/:[^:]\+$//' | xargs sed -i 's/[[:space:]]\+$//') 2> /dev/null
 }
 
-function name(){
+function sysname(){
     codename="$(grep 'DISTRIB_CODENAME' /etc/lsb-release | sed 's/^[^=]\+=//')"
 
     if [[ $1 =~ ^(-a|--all)$ ]]; then
