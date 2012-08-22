@@ -26,9 +26,9 @@ function stripy(){
 
 function name(){
     codename="$(grep 'DISTRIB_CODENAME' /etc/lsb-release | sed 's/^[^=]\+=//')"
-    description="$(grep 'DISTRIB_DESCRIPTION' /etc/lsb-release | sed 's/^[^=]\+=//;s/"//g')"
 
     if [[ $1 =~ ^(-a|--all)$ ]]; then
+        description="$(grep 'DISTRIB_DESCRIPTION' /etc/lsb-release | sed 's/^[^=]\+=//;s/"//g')"
         echo "$description $codename"
     else
         echo "$codename"
