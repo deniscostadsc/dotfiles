@@ -20,6 +20,10 @@ function gitbranch(){
     fi
 }
 
+function stripy(){
+    find . -name '*.py' | xargs sed -i 's/[[:space:]]\+$//'
+}
+
 function name(){
     codename="$(grep 'DISTRIB_CODENAME' /etc/lsb-release | sed 's/^[^=]\+=//')"
     description="$(grep 'DISTRIB_DESCRIPTION' /etc/lsb-release | sed 's/^[^=]\+=//;s/"//g')"
