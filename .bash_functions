@@ -23,7 +23,18 @@ function gitbranch(){
 
 function stripy(){
     # Remove spaces from end of lines
-    (find . | xargs file | grep text | sed 's/:[^:]\+$//' | xargs sed -i 's/[[:space:]]\+$//') 2> /dev/null
+    if [ $# -gt 1 ]; then
+        files=$(find . -name "$1" | xargs file | grep text[^:]*$ | sed 's/:[^:]\+$//')
+        echo "1"
+    else
+        files=$(find . | xargs file | grep text[^:]*$ | sed 's/:[^:]\+$//')
+        echo "2"
+    fi
+
+    for file_ in $files; do
+        echo $file_
+        sed -i 's/[[:space:]]\+$//' $file_
+    done
 }
 
 function sysname(){
