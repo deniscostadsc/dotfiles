@@ -76,6 +76,6 @@ WORKON_HOME='~/Envs'
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     . /usr/local/bin/virtualenvwrapper.sh
 else
-    echo "Virtualenv Wrapper apparently is not installed." 
+    echo "Virtualenv Wrapper apparently is not installed."
 fi
 
