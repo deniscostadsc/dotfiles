@@ -23,12 +23,10 @@ function gitbranch(){
 
 function stripy(){
     # Remove spaces from end of lines
-    if [ $# -gt 1 ]; then
+    if [ $# -gt 0 ]; then
         files=$(find . -name "$1" | xargs file | grep text[^:]*$ | sed 's/:[^:]\+$//')
-        echo "1"
     else
         files=$(find . | xargs file | grep text[^:]*$ | sed 's/:[^:]\+$//')
-        echo "2"
     fi
 
     for file_ in $files; do
