@@ -32,6 +32,7 @@ apt-get install -y git
 apt-get install -y gitg
 apt-get install -y inkscape
 apt-get install -y nodejs
+apt-get install -y pyflakes
 apt-get install -y python-dev
 apt-get install -y python-setuptools
 apt-get install -y ruby
