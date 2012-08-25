@@ -1,6 +1,10 @@
 # Django aliases
-alias dserver='python manage.py runserver'
-alias dtest='python manage.py test'
-alias dshell='python manage.py shell'
 alias ddump='python manage.py dumpdata'
+alias dhelp='python manage.py help'
 alias dload='python manage.py loaddata'
+alias dmigrate='python manage.py migrate'
+alias dschema='python manage.py schemamigration'
+alias dserver='python manage.py runserver'
+alias dshell='python manage.py shell'
+alias dsyncdb='python manage.py syncdb'
+alias dtest='python manage.py test'
