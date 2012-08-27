@@ -30,8 +30,11 @@ function stripy(){
     fi
 
     for file_ in $files; do
-        echo $file_
-        sed -i 's/[[:space:]]\+$//' $file_
+        sed -i.bak 's/[[:space:]]\+$//' $file_
+        if ! diff $file_ $file_.bak > /dev/null; then
+            echo "$file_ was changed."
+        fi
+        rm $file_.bak
     done
 }
 
