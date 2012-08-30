@@ -1,3 +1,7 @@
+function mkd(){
+    mkdir -p $1 && cd $1
+}
+
 function calc(){
     python -c "print $*"
 }
