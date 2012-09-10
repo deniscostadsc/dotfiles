@@ -25,6 +25,10 @@ function gitbranch(){
     fi
 }
 
+function manopt(){
+    man $1 |sed 's/.\x08//g'|sed -n "/^\s\+-\+$2\b/,/^\s*$/p"
+}
+
 function stripy(){
     # Remove spaces from end of lines
     if [ $# -gt 0 ]; then
