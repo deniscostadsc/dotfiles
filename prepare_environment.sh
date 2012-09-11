@@ -48,7 +48,7 @@ fi
 
 if which pip > /dev/null; then
     pip install ipython
-    pip install pep8
+    pip install flake8
     pip install virtualenvwrapper
 fi
 
