@@ -17,3 +17,5 @@ alias gra='git remote add'
 alias grm='git rm'
 alias grr='git remote rm'
 alias gst='git status'
+
+alias gitg='gitg &'
