@@ -13,8 +13,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=5000
-HISTFILESIZE=5000
+HISTSIZE=10000
+HISTFILESIZE=10000
 HISTIGNORE='ls:history'
 HISTTIMEFORMAT="%d/%h/%y - %H:%M:%S "
 
