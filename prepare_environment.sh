@@ -31,6 +31,7 @@ apt-get install -y gimp
 apt-get install -y git
 apt-get install -y gitg
 apt-get install -y inkscape
+apt-get install -y lua5.1
 apt-get install -y nodejs
 apt-get install -y pyflakes
 apt-get install -y python-dev
