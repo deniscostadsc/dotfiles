@@ -23,15 +23,8 @@ CHECKS = [
         'print_filename': True,
     },
     {
-        'output': 'Running Pyflakes...',
-        'command': 'pyflakes %s',
-        'match_files': ['.*\.py$'],
-        'ignore_files': ['.*settings/.*', '.*manage.py', '.*migrations.*', '.*/terrain/.*'],
-        'print_filename': False,
-    },
-    {
-        'output': 'Running pep8...',
-        'command': 'pep8 -r --ignore=E501,W293 %s',
+        'output': 'Running flake8...',
+        'command': 'flake8 -r --ignore=E501,W293 %s',
         'match_files': ['.*\.py$'],
         'ignore_files': ['.*migrations.*'],
         'print_filename': False,
@@ -64,7 +57,7 @@ def check_files(files, check):
     return result
 
 
-def main(all_files):
+def main():
     files = []
 
     p = subprocess.Popen(['git', 'status', '--porcelain'], stdout=subprocess.PIPE)
@@ -82,7 +75,4 @@ def main(all_files):
     sys.exit(result)
 
 if __name__ == '__main__':
-    all_files = False
-    if len(sys.argv) > 1 and sys.argv[1] == '--all-files':
-        all_files = True
-    main(all_files)
+    main()

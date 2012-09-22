@@ -1,3 +1,7 @@
+function mkcd(){
+    mkdir -p $1 && cd $1
+}
+
 function calc(){
     python -c "print $*"
 }
@@ -19,6 +23,10 @@ function gitbranch(){
     if git branch > /dev/null 2>&1; then
         echo -e "($(git branch 2> /dev/null | grep "^*" | sed "s/^* //")) "
     fi
+}
+
+function manopt(){
+    man $1 |sed 's/.\x08//g'|sed -n "/^\s\+-\+$2\b/,/^\s*$/p"
 }
 
 function stripy(){

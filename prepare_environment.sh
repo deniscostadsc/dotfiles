@@ -31,6 +31,7 @@ apt-get install -y gimp
 apt-get install -y git
 apt-get install -y gitg
 apt-get install -y inkscape
+apt-get install -y lua5.1
 apt-get install -y nodejs
 apt-get install -y python-dev
 apt-get install -y python-setuptools
@@ -47,7 +48,7 @@ fi
 
 if which pip > /dev/null; then
     pip install ipython
-    pip install pep8
+    pip install flake8
     pip install virtualenvwrapper
 fi
 
