@@ -15,6 +15,8 @@ if ! grep "deadsnakes" /etc/apt/sources.list > /dev/null; then
     ) >> /etc/apt/sources.list
 fi
 
+apt-add-repository -y ppa:webupd8team/sublime-text-2
+
 apt-get update && apt-get -y upgrade
 
 # Databases
@@ -38,6 +40,7 @@ apt-get install -y python-setuptools
 apt-get install -y ruby
 apt-get install -y rubygems
 apt-get install -y siege
+apt-get install -y sublime-text
 apt-get install -y terminator
 apt-get install -y vim-gnome
 apt-get install -y virtualbox
