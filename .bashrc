@@ -79,3 +79,7 @@ else
     echo "Virtualenv Wrapper apparently is not installed."
 fi
 
+# Add to path Dart tools
+if [ -d /usr/bin/dart/dart-sdk/bin ]; then
+    PATH="$PATH:/usr/bin/dart/dart-sdk/bin" 
+fi
