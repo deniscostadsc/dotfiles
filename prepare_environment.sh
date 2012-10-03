@@ -2,18 +2,8 @@
 
 [ "$USER" != root ] && echo "You are not root!" && exit
 
-function sysname(){
-    echo "$(grep 'DISTRIB_CODENAME' /etc/lsb-release | sed 's/^[^=]\+=//')"
-}
-
-if ! grep "deadsnakes" /etc/apt/sources.list > /dev/null; then
-    (
-    echo ""
-    echo "# A few versions of Python"
-    echo "deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu $(sysname) main"
-    echo "deb-src http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu $(sysname) main"
-    ) >> /etc/apt/sources.list
-fi
+apt-add-repository -y ppa:fkrull/deadsnakes
+apt-add-repository -y ppa:webupd8team/sublime-text-2
 
 apt-get update && apt-get -y upgrade
 
@@ -33,13 +23,13 @@ apt-get install -y gitg
 apt-get install -y inkscape
 apt-get install -y lua5.1
 apt-get install -y nodejs
-apt-get install -y pyflakes
 apt-get install -y python-dev
 apt-get install -y python-setuptools
 apt-get install -y ruby
 apt-get install -y rubygems
 apt-get install -y siege
 apt-get install -y sqlitebrowser
+apt-get install -y sublime-text
 apt-get install -y terminator
 apt-get install -y vim-gnome
 apt-get install -y virtualbox
