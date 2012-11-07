@@ -4,6 +4,7 @@
 
 apt-add-repository -y ppa:fkrull/deadsnakes
 apt-add-repository -y ppa:webupd8team/sublime-text-2
+add-apt-repository -y ppa:stvs/tomate
 
 apt-get update && apt-get -y upgrade
 
@@ -32,6 +33,7 @@ apt-get install -y siege
 apt-get install -y sqlitebrowser
 apt-get install -y sublime-text
 apt-get install -y terminator
+apt-get install -y tomate
 apt-get install -y vim-gnome
 apt-get install -y virtualbox
 
