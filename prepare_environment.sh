@@ -2,17 +2,9 @@
 
 [ "$USER" != root ] && echo "You are not root!" && exit
 
-apt-add-repository -y ppa:fkrull/deadsnakes
 apt-add-repository -y ppa:webupd8team/sublime-text-2
-add-apt-repository -y ppa:stvs/tomate
 
 apt-get update && apt-get -y upgrade
-
-# Databases
-apt-get install -y postgresql-9.1 postgresql-client-9.1 postgresql-server-dev-9.1
-apt-get install -y pgadmin3
-apt-get install -y mysql-server mysql-client
-apt-get install -y emma
 
 apt-get install -y ack-grep
 apt-get install -y chromium-browser
@@ -33,7 +25,6 @@ apt-get install -y siege
 apt-get install -y sqlitebrowser
 apt-get install -y sublime-text
 apt-get install -y terminator
-apt-get install -y tomate
 apt-get install -y vim-gnome
 apt-get install -y virtualbox
 
