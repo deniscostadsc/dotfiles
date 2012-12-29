@@ -21,7 +21,7 @@ function gvim(){
 function gitbranch(){
     # Show current branch on a git directory
     if git branch > /dev/null 2>&1; then
-        echo -e "$(git branch 2> /dev/null | grep '^*' | sed 's/^* //')"
+        echo -e "$(git branch 2> /dev/null | grep '^*' | sed 's/^* //') "
     fi
 }
 
