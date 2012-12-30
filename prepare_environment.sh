@@ -25,6 +25,7 @@ apt-get install -y siege
 apt-get install -y sqlitebrowser
 apt-get install -y sublime-text
 apt-get install -y terminator
+apt-get install -y vagrant
 apt-get install -y vim-gnome
 apt-get install -y virtualbox
 
