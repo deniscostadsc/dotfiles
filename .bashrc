@@ -79,6 +79,11 @@ else
     echo "Virtualenv Wrapper apparently is not installed."
 fi
 
+# Add GAE SDK to PATH
+if [ -d /home/denis/bin/google_appengine ]; then
+    PATH="$PATH:/home/denis/bin/google_appengine"
+fi
+
 # Add to path Dart tools
 if [ -d /usr/bin/dart/dart-sdk/bin ]; then
     PATH="$PATH:/usr/bin/dart/dart-sdk/bin" 
