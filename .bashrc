@@ -82,6 +82,7 @@ fi
 # Add GAE SDK to PATH
 if [ -d /home/denis/bin/google_appengine ]; then
     PATH="$PATH:/home/denis/bin/google_appengine"
+    export GAE_SDK="/home/denis/bin/google_appengine"
 fi
 
 # Add to path Dart tools
