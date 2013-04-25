@@ -14,7 +14,7 @@ shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=10000
-HISTFILESIZE=10000
+HISTFILESIZE=100000
 HISTIGNORE='ls:history'
 HISTTIMEFORMAT="%d/%h/%y - %H:%M:%S "
 
@@ -83,9 +83,4 @@ fi
 if [ -d /home/denis/bin/google_appengine ]; then
     PATH="$PATH:/home/denis/bin/google_appengine"
     export GAE_SDK="/home/denis/bin/google_appengine"
-fi
-
-# Add to path Dart tools
-if [ -d /usr/bin/dart/dart-sdk/bin ]; then
-    PATH="$PATH:/usr/bin/dart/dart-sdk/bin" 
 fi
