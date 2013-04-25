@@ -24,7 +24,7 @@ CHECKS = [
     },
     {
         'output': 'Running flake8...',
-        'command': 'flake8 -r --ignore=E501,W293 %s',
+        'command': 'flake8 --ignore=E501 %s',
         'match_files': ['.*\.py$'],
         'ignore_files': ['.*migrations.*'],
         'print_filename': False,
