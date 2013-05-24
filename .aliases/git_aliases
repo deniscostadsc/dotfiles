@@ -19,5 +19,3 @@ alias grr='git remote rm'
 alias gst='git status'
 alias gpls='gpl origin master && gps origin $(gitbranch)'
 alias git-remove-branchs='git branch -D $(git branch | grep -v '*\|master')'
-
-alias gitg='gitg &'
