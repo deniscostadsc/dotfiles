@@ -3,15 +3,15 @@ dotfiles
 
 ### @deniscostadsc's dotfiles
 
-This project is a collections of dotfiles. I used just on Ubuntu.
+This project is a collections of my personal dotfiles used on my Ubuntu machine.
 
-to download the project:
+clone the project
 
 ```bash
 git clone https://github.com/deniscostadsc/dotfiles.git
 ```
 
-or, on Ubuntu:
+or download it:
 
 ```bash
 wget https://github.com/deniscostadsc/dotfiles/zipball/master
