@@ -30,16 +30,16 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # Import of aliases
-if [ -f ~/.aliases/bash_aliases ]; then
-    . ~/.aliases/bash_aliases
+if [ -f ~/.aliases/bash.sh ]; then
+    . ~/.aliases/bash.sh
 fi
 
-if [ -f ~/.aliases/git_aliases ]; then
-    . ~/.aliases/git_aliases
+if [ -f ~/.aliases/git.sh ]; then
+    . ~/.aliases/git.sh
 fi
 
-if [ -f ~/.aliases/python_aliases ]; then
-    . ~/.aliases/python_aliases
+if [ -f ~/.aliases/python.sh ]; then
+    . ~/.aliases/python.sh
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -50,8 +50,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # Import of bash function
-if [ -f ~/.bash_functions ]; then
-    . ~/.bash_functions
+if [ -f ~/.functions.sh ]; then
+    . ~/.functions.sh
 fi
 
 # Checking for colors support
