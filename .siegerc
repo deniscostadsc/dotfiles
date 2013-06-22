@@ -19,7 +19,7 @@
 # Signify verbose mode, true turns on verbose output
 # ex: verbose = true|false
 #
-verbose = true
+verbose = false
 
 #
 # CSV Verbose format: with this option, you can choose
