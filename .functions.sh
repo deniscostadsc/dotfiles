@@ -14,7 +14,7 @@ function gitbranch(){
 }
 
 function manopt(){
-    man $1 |sed 's/.\x08//g'|sed -n "/^\s\+-\+$2\b/,/^\s*$/p"
+    man $1 | sed 's/.\x08//g' | sed -n "/^\s\+-\+$2\b/,/^\s*$/p" | less
 }
 
 function stripy(){
