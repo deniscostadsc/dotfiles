@@ -2,7 +2,6 @@
 
 # Original at http://tech.yipit.com/2011/11/16/183772396/
 
-import os
 import re
 import subprocess
 import sys
@@ -24,7 +23,7 @@ CHECKS = [
     },
     {
         'output': 'Running flake8...',
-        'command': 'flake8 --ignore=E501 %s',
+        'command': 'flake8 --ignore=E501,E712 %s',
         'match_files': ['.*\.py$'],
         'print_filename': False,
     },
