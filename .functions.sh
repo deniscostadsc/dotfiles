@@ -39,7 +39,7 @@ function sysname(){
     codename="$(grep 'DISTRIB_CODENAME' /etc/lsb-release | sed 's/^[^=]\+=//')"
 
     if [[ $1 =~ ^(-a|--all)$ ]]; then
-        description="$(grep 'DISTRIB_DESCRIPTION' /etc/lsb-release | sed 's/^[^=]\+=//;s/"//g')"
+        description="$(grep 'DISTRIB_DESCRIPTION' /etc/lsb-release | sed 's/^[^=]\+=//;s/\"//g')"
         echo "$description $codename"
     else
         echo "$codename"
