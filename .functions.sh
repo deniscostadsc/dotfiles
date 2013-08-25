@@ -55,29 +55,45 @@ function compile-and-test(){
             find . -name 'out2.txt' -delete
     }
 
+    function _test(){
+        test -f out2.txt && echo "$1" && diff out.txt out2.txt && echo ' - OK'
+    }
+
     if [ -f 'in.txt' -a -f 'out.txt' ]; then
-        test -f *.c && gcc -Wall *.c -lm && ./a.out < in.txt > out2.txt
-        test -f out2.txt && echo 'C code: ' && diff out.txt out2.txt && echo ' - OK'
-        clean
+        if [ -f *.c ]; then
+            gcc -Wall *.c -lm && ./a.out < in.txt > out2.txt
+            _test 'C code: '
+            clean
+        fi
 
-        test -f *.cpp && g++ -Wall *.cpp -lm && ./a.out < in.txt > out2.txt
-        test -f out2.txt && echo 'C++ code: ' && diff out.txt out2.txt  && echo ' - OK'
-        clean
+        if [ -f *.cpp ]; then
+            g++ -Wall *.cpp -lm && ./a.out < in.txt > out2.txt
+            _test 'C++ code: '
+            clean
+        fi
 
-        test -f *.py && python *.py < in.txt > out2.txt
-        test -f out2.txt && echo 'Python code: ' && diff out.txt out2.txt && echo ' - OK'
-        clean
+        if [ -f *.py ]; then
+            python *.py < in.txt > out2.txt
+            _test 'Python code: '
+            clean
+        fi
     elif [ -f 'out.txt' ]; then
-        test -f *.c && gcc -Wall *.c -lm && ./a.out > out2.txt
-        test -f out2.txt && echo 'C code: ' && diff out.txt out2.txt && echo ' - OK'
-        clean
+        if [ -f *.c ]; then
+            gcc -Wall *.c -lm && ./a.out > out2.txt
+            _test 'C code: '
+            clean
+        fi
 
-        test -f *.cpp && g++ -Wall *.cpp -lm && ./a.out > out2.txt
-        test -f out2.txt && echo 'C++ code: ' && diff out.txt out2.txt && echo ' - OK'
-        clean
+        if [ -f *.cpp ]; then
+            g++ -Wall *.cpp -lm && ./a.out > out2.txt
+            _test 'C++ code: '
+            clean
+        fi
 
-        test -f *.py && python *.py > out2.txt
-        test -f out2.txt && echo 'Python code: ' && diff out.txt out2.txt && echo ' - OK'
-        clean
+        if [ -f *.py ]; then
+            python *.py > out2.txt
+            _test 'Python code: '
+            clean
+        fi
     fi
 }
