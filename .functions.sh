@@ -56,11 +56,11 @@ function compile-and-test(){
     }
 
     if [ -f 'in.txt' -a -f 'out.txt' ]; then
-        gcc -Wall *.c -lm 2> /dev/null && ./a.out < in.txt > out2.txt
+        test -f *.c && gcc -Wall *.c -lm && ./a.out < in.txt > out2.txt
         test -f out2.txt && echo 'C code: ' && diff out.txt out2.txt && echo ' - OK'
         clean
 
-        g++ -Wall *.cpp -lm 2> /dev/null && ./a.out < in.txt > out2.txt
+        test -f *.cpp && g++ -Wall *.cpp -lm && ./a.out < in.txt > out2.txt
         test -f out2.txt && echo 'C++ code: ' && diff out.txt out2.txt  && echo ' - OK'
         clean
 
@@ -68,11 +68,11 @@ function compile-and-test(){
         test -f out2.txt && echo 'Python code: ' && diff out.txt out2.txt && echo ' - OK'
         clean
     elif [ -f 'out.txt' ]; then
-        gcc -Wall *.c -lm 2> /dev/null && ./a.out > out2.txt
+        test -f *.c && gcc -Wall *.c -lm && ./a.out > out2.txt
         test -f out2.txt && echo 'C code: ' && diff out.txt out2.txt && echo ' - OK'
         clean
 
-        g++ -Wall *.cpp -lm 2> /dev/null && ./a.out > out2.txt
+        test -f *.cpp && g++ -Wall *.cpp -lm && ./a.out > out2.txt
         test -f out2.txt && echo 'C++ code: ' && diff out.txt out2.txt && echo ' - OK'
         clean
 
