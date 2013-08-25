@@ -45,3 +45,39 @@ function sysname(){
         echo "$codename"
     fi
 }
+
+function compile-and-test(){
+
+    # function to run tests in programming contest folders
+
+    function clean(){
+            find . -regex '.*\.\(py[co]\|out\)$' -delete
+            find . -name 'out2.txt' -delete
+    }
+
+    if [ -f 'in.txt' -a -f 'out.txt' ]; then
+        gcc -Wall *.c -lm 2> /dev/null && ./a.out < in.txt > out2.txt
+        test -f out2.txt && echo 'C code: ' && diff out.txt out2.txt && echo ' - OK'
+        clean
+
+        g++ -Wall *.cpp -lm 2> /dev/null && ./a.out < in.txt > out2.txt
+        test -f out2.txt && echo 'C++ code: ' && diff out.txt out2.txt  && echo ' - OK'
+        clean
+
+        test -f *.py && python *.py < in.txt > out2.txt
+        test -f out2.txt && echo 'Python code: ' && diff out.txt out2.txt && echo ' - OK'
+        clean
+    elif [ -f 'out.txt' ]; then
+        gcc -Wall *.c -lm 2> /dev/null && ./a.out > out2.txt
+        test -f out2.txt && echo 'C code: ' && diff out.txt out2.txt && echo ' - OK'
+        clean
+
+        g++ -Wall *.cpp -lm 2> /dev/null && ./a.out > out2.txt
+        test -f out2.txt && echo 'C++ code: ' && diff out.txt out2.txt && echo ' - OK'
+        clean
+
+        test -f *.py && python *.py > out2.txt
+        test -f out2.txt && echo 'Python code: ' && diff out.txt out2.txt && echo ' - OK'
+        clean
+    fi
+}
