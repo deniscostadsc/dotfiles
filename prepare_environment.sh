@@ -20,6 +20,7 @@ apt-get install -y npm
 apt-get install -y python-dev
 apt-get install -y python-setuptools
 apt-get install -y ruby
+apt-get install -y ruby-dev
 apt-get install -y rubygems
 apt-get install -y siege
 apt-get install -y sqlitebrowser
