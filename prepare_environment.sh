@@ -42,6 +42,5 @@ fi
 
 if which gem > /dev/null; then
     gem install mkrf
-    gem install heroku
 fi
 
