@@ -68,7 +68,8 @@ else
 fi
 
 # Add GAE SDK to PATH
-if [ -d /home/denis/bin/google_appengine ]; then
-    PATH="$PATH:/home/denis/bin/google_appengine"
-    export GAE_SDK="/home/denis/bin/google_appengine"
-fi
+PATH="$PATH:/home/denis/bin/google_appengine"
+export GAE_SDK="/home/denis/bin/google_appengine"
+
+# Add Eclipse to PATH
+PATH="$PATH:/home/denis/bin/eclipse"
