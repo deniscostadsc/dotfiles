@@ -13,6 +13,7 @@ apt-get install -y gcolor2
 apt-get install -y gimp
 apt-get install -y git
 apt-get install -y gitg
+apt-get install -y gummi
 apt-get install -y inkscape
 apt-get install -y lua5.1
 apt-get install -y nodejs
@@ -44,4 +45,3 @@ fi
 if which gem > /dev/null; then
     gem install mkrf
 fi
-
