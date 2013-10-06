@@ -1,23 +1,23 @@
-function mkcd(){
+function mkcd {
     mkdir -p $1 && cd $1
 }
 
-function rmpyc(){
+function rmpyc {
     find . -name "*.pyc" -exec rm -rfv {} \;
 }
 
-function gitbranch(){
+function gitbranch {
     # Show current branch on a git directory
     if git branch > /dev/null 2>&1; then
         echo -e "$(git branch 2> /dev/null | grep '^*' | sed 's/^* //') "
     fi
 }
 
-function manopt(){
+function manopt {
     man $1 | sed 's/.\x08//g' | sed -n "/^\s\+-\+$2\b/,/^\s*$/p" | less
 }
 
-function stripy(){
+function stripy {
     # Remove spaces from end of lines
     if [ $# -gt 0 ]; then
         files=$(find . -name "$1" | xargs file | grep text[^:]*$ | sed 's/:[^:]\+$//')
@@ -34,7 +34,7 @@ function stripy(){
     done
 }
 
-function sysname(){
+function sysname {
     # Show Ubuntu version
     codename="$(grep 'DISTRIB_CODENAME' /etc/lsb-release | sed 's/^[^=]\+=//')"
 
@@ -46,16 +46,16 @@ function sysname(){
     fi
 }
 
-function compile-and-test(){
+function marathon{
 
     # function to run tests in programming contest folders
 
-    function clean(){
+    function clean {
             find . -regex '.*\.\(py[co]\|out\)$' -delete
             find . -name 'out2.txt' -delete
     }
 
-    function _test(){
+    function _test {
         test -f out2.txt && echo "$1" && diff out.txt out2.txt && echo ' - OK'
     }
 
