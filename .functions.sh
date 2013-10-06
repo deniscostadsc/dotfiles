@@ -46,7 +46,23 @@ function sysname {
     fi
 }
 
-function marathon{
+function new-problem {
+    if [ -z $1 ]; then
+        echo "You should inform a problem ID."
+        return 1
+    fi
+
+    dir=$1
+    language=${2:=cpp}
+    mkcd $dir
+
+    touch in.txt
+    touch out.txt
+    touch problem.txt
+    touch $dir.$language
+}
+
+function marathon {
 
     # function to run tests in programming contest folders
 
