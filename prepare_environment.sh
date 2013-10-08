@@ -2,7 +2,7 @@
 
 [ "$USER" != root ] && echo "You are not root!" && exit
 
-add-apt-repository -y ppa:webupd8team/sublime-text-3
+apt-add-repository -y ppa:webupd8team/sublime-text-2
 
 apt-get update && apt-get -y upgrade
 
@@ -26,7 +26,7 @@ apt-get install -y ruby-dev
 apt-get install -y rubygems
 apt-get install -y siege
 apt-get install -y sqlitebrowser
-apt-get install -y sublime-text-installer
+apt-get install -y sublime-text
 apt-get install -y terminator
 apt-get install -y vagrant
 apt-get install -y vim-gnome
