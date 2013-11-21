@@ -52,9 +52,20 @@ function new-problem {
         return 1
     fi
 
+    if [ -z $2 ]; then
+        echo "You should inform a language."
+        return 1
+    fi
+
     dir=$1
-    language=${2:=cpp}
-    mkcd $dir
+    language=$2
+
+    if [ -d $dir ]; then
+        echo "Already there is a folder called $dir."
+        return 1
+    fi
+
+    mkcd $dir && echo "Created $dir."
 
     touch in.txt
     touch out.txt
@@ -93,6 +104,13 @@ function marathon {
             _test 'Python code: '
             clean
         fi
+
+        if [ -f *.js ]; then
+            node *.js < in.txt > out2.txt
+            _test 'Javascript code: '
+            clean
+        fi
+
     elif [ -f 'out.txt' ]; then
         if [ -f *.c ]; then
             gcc -Wall *.c -lm && ./a.out > out2.txt
@@ -109,6 +127,12 @@ function marathon {
         if [ -f *.py ]; then
             python *.py > out2.txt
             _test 'Python code: '
+            clean
+        fi
+
+        if [ -f *.js ]; then
+            node *.js > out2.txt
+            _test 'Javascript code: '
             clean
         fi
     fi
