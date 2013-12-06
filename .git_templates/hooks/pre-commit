@@ -23,7 +23,7 @@ CHECKS = [
     },
     {
         'output': 'Running flake8...',
-        'command': 'flake8 --ignore=E501,E712 %s',
+        'command': 'flake8 --ignore=E501,E712,F403 %s',
         'match_files': ['.*\.py$'],
         'print_filename': False,
     },
