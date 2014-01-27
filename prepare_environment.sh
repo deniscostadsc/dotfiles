@@ -21,27 +21,15 @@ apt-get install -y npm
 apt-get install -y openjdk-6-jdk
 apt-get install -y python-dev
 apt-get install -y python-setuptools
-apt-get install -y ruby
-apt-get install -y ruby-dev
-apt-get install -y rubygems
 apt-get install -y siege
 apt-get install -y sqlitebrowser
 apt-get install -y sublime-text
 apt-get install -y terminator
-apt-get install -y vagrant
 apt-get install -y vim-gnome
 apt-get install -y virtualbox
 
-if which easy_install > /dev/null; then
-    easy_install pip
-fi
+easy_install pip
 
-if which pip > /dev/null; then
-    pip install ipython
-    pip install flake8
-    pip install virtualenvwrapper
-fi
-
-if which gem > /dev/null; then
-    gem install mkrf
-fi
+pip install ipython
+pip install flake8
+pip install virtualenvwrapper
