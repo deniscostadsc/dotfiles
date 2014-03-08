@@ -70,8 +70,6 @@ def main():
     for check in CHECKS:
         result = check_files(files, check) or result
 
-    print result
-
     sys.exit(result)
 
 if __name__ == '__main__':
