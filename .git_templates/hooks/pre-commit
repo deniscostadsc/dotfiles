@@ -16,15 +16,15 @@ CHECKS = [
         'print_filename': True,
     },
     {
-        'output': 'Checking for ipdbs...',
-        'command': 'grep -n "import ipdb" %s',
+        'output': 'Running flake8...',
+        'command': 'flake8 --ignore=E712 --max-line-length=120 %s',
         'match_files': ['.*\.py$'],
-        'print_filename': True,
+        'print_filename': False,
     },
     {
-        'output': 'Running flake8...',
-        'command': 'flake8 --ignore=E501,E712,F403 %s',
-        'match_files': ['.*\.py$'],
+        'output': 'Running jshint...',
+        'command': 'jshint %s',
+        'match_files': ['.*\.js$'],
         'print_filename': False,
     },
 ]
@@ -69,6 +69,8 @@ def main():
     result = 0
     for check in CHECKS:
         result = check_files(files, check) or result
+
+    print result
 
     sys.exit(result)
 
