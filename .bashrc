@@ -53,7 +53,7 @@ else
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='\[\033[01;32m\]$(gitbranch)\[\033[01;35m\]\w\[\033[00m\]\n\$ '
+    PS1='\[\033[01;32m\]$(git rev-parse --abbrev-ref HEAD)\[\033[01;35m\]\w\[\033[00m\]\n\$ '
 else
     PS1='$(gitbranch)\w\n\$ '
 fi

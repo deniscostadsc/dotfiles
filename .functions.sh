@@ -6,13 +6,6 @@ function rmpyc {
     find . -name "*.pyc" -exec rm -rfv {} \;
 }
 
-function gitbranch {
-    # Show current branch on a git directory
-    if git branch > /dev/null 2>&1; then
-        echo -e "$(git branch 2> /dev/null | grep '^*' | sed 's/^* //') "
-    fi
-}
-
 function manopt {
     man $1 | sed 's/.\x08//g' | sed -n "/^\s\+-\+$2\b/,/^\s*$/p" | less
 }
