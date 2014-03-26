@@ -3,11 +3,7 @@ function mkcd {
 }
 
 function rmpyc {
-    find . -name "*.pyc" -exec rm -rfv {} \;
-}
-
-function manopt {
-    man $1 | sed 's/.\x08//g' | sed -n "/^\s\+-\+$2\b/,/^\s*$/p" | less
+    find . -name "*.pyc" -delete;
 }
 
 function stripy {
@@ -38,6 +34,8 @@ function sysname {
         echo "$codename"
     fi
 }
+
+# Programming contests traiining helpers
 
 function new-problem {
     if [ -z $1 ]; then

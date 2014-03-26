@@ -30,9 +30,7 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # Import of aliases
-. ~/.aliases/bash.sh
-. ~/.aliases/git.sh
-. ~/.aliases/python.sh
+. ~/.aliases.sh
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
