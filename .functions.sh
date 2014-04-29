@@ -23,6 +23,12 @@ function stripy {
     done
 }
 
+function update_fonts {
+    cd ~/Dropbox/fonts
+    find -regex '.*\.ttf\|.*\.otf' -exec cp '{}' ~/.local/share/fonts/ \;
+    cd -
+}
+
 function sysname {
     # Show Ubuntu version
     codename="$(grep 'DISTRIB_CODENAME' /etc/lsb-release | sed 's/^[^=]\+=//')"
