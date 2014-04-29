@@ -24,9 +24,7 @@ function stripy {
 }
 
 function update_fonts {
-    cd ~/Dropbox/fonts
-    find -regex '.*\.ttf\|.*\.otf' -exec cp '{}' ~/.local/share/fonts/ \;
-    cd -
+    find ~/Dropbox/fonts -regex '.*\.ttf\|.*\.otf' -exec cp '{}' ~/.local/share/fonts/ \;
 }
 
 function sysname {
