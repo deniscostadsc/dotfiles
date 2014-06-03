@@ -1,13 +1,14 @@
 [user]
-	name = Denis Costa
-	email = deniscostadsc@gmail.com
+    name = Denis Costa
+    email = deniscostadsc@gmail.com
 [color]
-	ui = true
+    ui = true
 [init]
-	templatedir = ~/.git_templates/
+    templatedir = ~/.git_templates/
 [core]
-	editor = gvim
-	autocrlf = input
+    editor = gvim
+    autocrlf = input
+    excludesfile = ~/.gitignore_global
 [merge]
     tool = meld
 [alias]
