@@ -1,4 +1,4 @@
-alias rself='. ~/.bashrc'
+alias reload_bashrc='. ~/.bashrc'
 
 # color
 alias ls='ls --color=auto'
