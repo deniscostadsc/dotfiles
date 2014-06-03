@@ -11,21 +11,9 @@ function screencast {
     ffmpeg -f x11grab -s 1366x768 -r 25 -i :0.0 -acodec pcm_s16le -sameq -f alsa -ac 2 -i pulse ~/screencast_$now.mkv
 }
 
-function stripy {
-    # Remove spaces from end of lines
-    if [ $# -gt 0 ]; then
-        files=$(find . -name "$1" | xargs file | grep text[^:]*$ | sed 's/:[^:]\+$//')
-    else
-        files=$(find . | xargs file | grep text[^:]*$ | sed 's/:[^:]\+$//')
-    fi
-
-    for file_ in $files; do
-        sed -i.bak 's/[[:space:]]\+$//' $file_
-        if ! diff $file_ $file_.bak > /dev/null; then
-            echo "$file_ was changed."
-        fi
-        rm $file_.bak
-    done
+function remove_trailing_spaces {
+    find . -regex '.*\.py\|.*\.php\|.*\.js\|.*\.c\|.*\.cpp\|\|.*\.sh.*\.html' |\
+        xargs sed -i 's/[[:space:]]\+$//'
 }
 
 function update_fonts {
