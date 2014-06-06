@@ -12,14 +12,6 @@ function install() {
         --exclude "*.swp" \
         --exclude "*~" \
         -av . ~
-
-    # Compile C extension for Command-T
-    if [ -d ~/.vim/bundle/command-t/ruby/command-t -a ! -f ~/.vim/bundle/command-t/ruby/command-t/ext.so ]; then
-        cd ~/.vim/bundle/command-t/ruby/command-t
-        ruby extconf.rb
-        make
-        cd "$(dirname "$0")"
-    fi
 }
 
 if [[ $1 =~ ^(-f|--force)$ ]]; then
