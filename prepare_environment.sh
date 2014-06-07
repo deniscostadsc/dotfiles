@@ -16,8 +16,6 @@ apt-get install -y gitg
 apt-get install -y gummi
 apt-get install -y inkscape
 apt-get install -y lua5.1
-apt-get install -y nodejs
-apt-get install -y npm
 apt-get install -y openjdk-6-jdk
 apt-get install -y python-dev
 apt-get install -y python-setuptools
