@@ -10,7 +10,7 @@ alias egrep='egrep --color=auto'
 alias ll='ls -alhF'
 
 # no more lost files 8D
-alias rm='trash --verbose'
+alias rm='git_rm'
 
 # remove git branchs
 alias git-remove-branchs='git branch -D $(git branch | grep -v "*\|master")'
