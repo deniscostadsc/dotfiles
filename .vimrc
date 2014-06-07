@@ -20,15 +20,19 @@ set rtp+=~/.vim/bundle/vundle/
 "
 " Installing plugins
 "
+call vundle#begin()
+
+Plugin 'gmarik/vundle'
+Plugin 'scrooloose/nerdtree'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
+
 if is_vundle_installed == 0
-    call vundle#begin()
-
-    Plugin 'scrooloose/nerdtree'
-
+    echo "Installing bundles...\n"
     :PluginInstall
-
-    call vundle#end()
 endif
+
+call vundle#end()
 
 
 "
@@ -47,6 +51,33 @@ set smartindent
 colorscheme zellner
 set guifont=Courier\ Medium\ 10
 set number
+syntax on
+
+
+"
+" General settings
+"
+set encoding=utf-8
+set colorcolumn=79
+map <tab> <c-w><c-w>  " alternating between windows with tab
+
+
+"
+" NERDTree settings
+"
+map <leader>n :NERDTreeToggle<cr>
+
+
+"
+" CtrlP settings
+"
+map <C-b> :CtrlPBuffer<cr>
+
+
+"
+" Ack settings
+"
+let g:ack_default_options = " -H --nocolor --nogroup --column"
 
 
 "
