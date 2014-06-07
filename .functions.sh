@@ -11,6 +11,10 @@ function screencast {
     ffmpeg -f x11grab -s 1366x768 -r 25 -i :0.0 -acodec pcm_s16le -sameq -f alsa -ac 2 -i pulse ~/screencast_$now.mkv
 }
 
+function git_rm {
+    git rm $* 2> /dev/null || trash $*
+}
+
 function remove_trailing_spaces {
     find . -regex '.*\.py\|.*\.php\|.*\.js\|.*\.c\|.*\.cpp\|\|.*\.sh.*\.html' |\
         xargs sed -i 's/[[:space:]]\+$//'

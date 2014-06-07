@@ -6,8 +6,11 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+# complete ls
 alias ll='ls -alhF'
 
-alias ack='ack-grep'
+# no more lost files 8D
+alias rm='trash --verbose'
 
+# remove git branchs
 alias git-remove-branchs='git branch -D $(git branch | grep -v "*\|master")'
