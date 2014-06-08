@@ -40,7 +40,7 @@ call vundle#end()
 "
 set expandtab
 set shiftwidth=4
-set softtabstop=0
+set softtabstop=4
 set tabstop=4
 set smartindent
 
@@ -48,17 +48,18 @@ set smartindent
 "
 " Visual settings
 "
-colorscheme zellner
-set guifont=Courier\ Medium\ 10
+colorscheme slate
+set guifont=Ubuntu\ Mono\ 10
 set number
 syntax on
+set colorcolumn=80
+highlight ColorColumn guibg=OrangeRed4
 
 
 "
 " General settings
 "
 set encoding=utf-8
-set colorcolumn=79
 map <tab> <c-w><c-w>  " alternating between windows with tab
 
 
@@ -71,7 +72,7 @@ map <leader>n :NERDTreeToggle<cr>
 "
 " CtrlP settings
 "
-map <C-b> :CtrlPBuffer<cr>
+map <leader>b :CtrlPBuffer<cr>
 
 
 "
