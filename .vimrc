@@ -6,8 +6,8 @@ set nocompatible
 " Installing vundle
 "
 let is_vundle_installed=1
-let vundle_readme=expand('~/.vim/bundle/vundle/autoload/vundle.vim')
-if !filereadable(vundle_readme)
+let vundle_file=expand('~/.vim/bundle/vundle/autoload/vundle.vim')
+if !filereadable(vundle_file)
     echo "Intalling vundle...\n"
     silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
     let is_vundle_installed=0
