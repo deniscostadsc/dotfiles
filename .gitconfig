@@ -7,7 +7,7 @@
     templatedir = ~/.git_templates/
 [core]
     editor = gvim
-    autocrlf = input
+    autocrlf = true
     excludesfile = ~/.gitignore_global
 [merge]
     tool = meld
