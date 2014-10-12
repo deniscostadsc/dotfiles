@@ -1,3 +1,5 @@
+alias ack='ack-grep'
+
 alias reload_bashrc='. ~/.bashrc'
 
 alias ls='ls --color=auto'
