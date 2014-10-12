@@ -3,5 +3,4 @@
 
 *.py[cod]
 
-*.sqlite
-*.appstore
+*.sqlite[3]
