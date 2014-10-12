@@ -10,23 +10,23 @@ modified = re.compile('^(?:M|A)(\s+)(?P<name>.*)')
 
 CHECKS = [
     {
-        'output': 'Checking for pdbs...',
-        'command': 'grep -n "import pdb" %s',
+        'output': 'Checking for [i]pdbs...',
+        'command': 'grep -n "import i\?pdb" %s',
         'match_files': ['.*\.py$'],
         'print_filename': True,
     },
     {
         'output': 'Running flake8...',
-        'command': 'flake8 --ignore=E712 --max-line-length=120 %s',
+        'command': 'flake8 --ignore=E712 --max-line-length=100 %s',
         'match_files': ['.*\.py$'],
         'print_filename': False,
     },
-    {
-        'output': 'Running jshint...',
-        'command': 'jshint %s',
-        'match_files': ['.*\.js$'],
-        'print_filename': False,
-    },
+    # {
+    #     'output': 'Running jshint...',
+    #     'command': 'jshint %s',
+    #     'match_files': ['.*\.js$'],
+    #     'print_filename': False,
+    # },
 ]
 
 
