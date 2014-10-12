@@ -11,11 +11,11 @@ function screencast {
     ffmpeg -f x11grab -s 1366x768 -r 25 -i :0.0 -acodec pcm_s16le -sameq -f alsa -ac 2 -i pulse ~/screencast_$now.mkv
 }
 
-function git_rm {
+function __git_rm {
     git rm $* 2> /dev/null || trash $*
 }
 
-function git_mv {
+function __git_mv {
     git mv $* 2> /dev/null || mv $*
 }
 
