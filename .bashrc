@@ -60,10 +60,3 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
 else
     echo "Virtualenv Wrapper apparently is not installed."
 fi
-
-# Add GAE SDK to PATH
-PATH="$PATH:/home/denis/bin/google_appengine"
-export GAE_SDK="/home/denis/bin/google_appengine"
-
-# Add Eclipse to PATH
-PATH="$PATH:/home/denis/bin/eclipse"
