@@ -13,9 +13,7 @@ apt-get install -y gcolor2
 apt-get install -y gimp
 apt-get install -y git
 apt-get install -y gitg
-apt-get install -y gummi
 apt-get install -y inkscape
-apt-get install -y lua5.1
 apt-get install -y openjdk-6-jdk
 apt-get install -y python-dev
 apt-get install -y python-setuptools
@@ -31,3 +29,27 @@ easy_install pip
 pip install ipython
 pip install flake8
 pip install virtualenvwrapper
+
+cd "$(dirname "$0")"
+
+function install() {
+    rsync \
+        --exclude ".git/" \
+        --exclude ".gitignore" \
+        --exclude "install.sh" \
+        --exclude "README.md" \
+        --exclude "prepare_environment.sh" \
+        --exclude "*.swp" \
+        --exclude "*~" \
+        -av . ~
+}
+
+if [[ $1 =~ ^(-f|--force)$ ]]; then
+    install
+else
+    read -p "Running this file, you'll override some config files. Do you want to continue? (y/n) "
+
+    if [[ $REPLY =~ ^[yY]$ ]]; then
+        install
+    fi
+fi
