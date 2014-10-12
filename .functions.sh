@@ -15,6 +15,10 @@ function git_rm {
     git rm $* 2> /dev/null || trash $*
 }
 
+function git_mv {
+    git mv $* 2> /dev/null || mv $*
+}
+
 function remove_trailing_spaces {
     find . -regex '.*\.py\|.*\.php\|.*\.js\|.*\.c\|.*\.cpp\|\|.*\.sh.*\.html' |\
         xargs sed -i 's/[[:space:]]\+$//'
