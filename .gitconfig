@@ -1,15 +1,41 @@
 [user]
     name = Denis Costa
     email = deniscostadsc@gmail.com
+
 [color]
-    ui = true
+    diff = auto
+    status = auto
+    branch = auto
+    ui = auto
+
 [init]
     templatedir = ~/.git_templates/
+
 [core]
     editor = gvim
-    autocrlf = true
+    autocrlf = input
     excludesfile = ~/.gitignore_global
+
 [merge]
     tool = meld
+
 [alias]
-    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+    a = add
+    b = branch
+    c = commit -m
+    co = checkout
+    d = diff
+    f = fetch
+    g = grep
+    l = log
+    m = merge
+    pl = pull
+    ps = push
+    r = remote
+    s = status
+    lg = log --color --graph \
+    --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' \
+    --abbrev-commit
+
+[push]
+    default = current
