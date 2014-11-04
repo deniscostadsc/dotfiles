@@ -29,6 +29,10 @@ function update_fonts {
     find ~/Dropbox/fonts -regex '.*\.ttf\|.*\.otf' -exec cp '{}' ~/.local/share/fonts/ \;
 }
 
+function add_hook_venv {
+    echo "cd $PWD" > $VIRTUAL_ENV/bin/postactivate
+}
+
 function sysname {
     # Show Ubuntu version
     codename="$(grep 'DISTRIB_CODENAME' /etc/lsb-release | sed 's/^[^=]\+=//')"
