@@ -16,7 +16,8 @@ function __git_rm {
 }
 
 function __git_mv {
-    git mv $* 2> /dev/null || mv $*
+    MV=$(which mv)
+    git mv $* 2> /dev/null || $MV $*
 }
 
 function remove_trailing_spaces {
