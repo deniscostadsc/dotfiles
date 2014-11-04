@@ -45,7 +45,7 @@ function sysname {
     fi
 }
 
-# Programming contests traiining helpers
+# Programming contests training helpers
 
 function new-problem {
     if [ -z $1 ]; then
