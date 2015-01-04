@@ -24,6 +24,7 @@
     a = add
     b = branch
     c = commit -m
+    cl = clone
     co = checkout
     d = diff
     f = fetch
@@ -33,6 +34,7 @@
     pl = pull
     ps = push
     r = remote
+    rb = rebase
     s = status
     lg = log --color --graph \
     --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' \
