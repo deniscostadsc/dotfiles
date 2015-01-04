@@ -60,3 +60,5 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
 else
     echo "Virtualenv Wrapper apparently is not installed."
 fi
+
+PATH=$PATH:~/bin/google_appengine
