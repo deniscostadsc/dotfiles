@@ -21,5 +21,5 @@ unzip and then install system applications and the dotfiles:
 
 ```bash
 cd *dotfiles*
-sudo ./prepare_environment.sh && ./install -f
+sudo ./prepare_environment.sh && ./install.sh -f
 ```
