@@ -6,7 +6,7 @@
     background_darkness = 0.73
     use_system_font = False
     foreground_color = "#dadada"
-    font = Ubuntu Mono 11
+    font = Ubuntu Mono 13
     background_color = "#282a36"
     scrollback_infinite = True
 [layouts]
