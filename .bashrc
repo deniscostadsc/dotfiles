@@ -54,7 +54,7 @@ fi
 unset color_prompt
 
 # Virtualenv Wrapper
-WORKON_HOME='~/Envs'
+WORKON_HOME='~/.envs'
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     . /usr/local/bin/virtualenvwrapper.sh
 else
