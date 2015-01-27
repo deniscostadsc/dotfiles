@@ -12,7 +12,7 @@
     templatedir = ~/.git_templates/
 
 [core]
-    editor = gvim
+    editor = vim
     autocrlf = input
     excludesfile = ~/.gitignore_global
 
@@ -25,7 +25,7 @@
     b = branch
     c = commit -m
     cl = clone
-    co = checkout
+    ck = checkout
     d = diff
     f = fetch
     g = grep
