@@ -18,6 +18,7 @@ apt-get install -y inkscape
 apt-get install -y openjdk-7-jdk
 apt-get install -y python-dev
 apt-get install -y python-setuptools
+apt-get install -y ruby2.0
 apt-get install -y sqlitebrowser
 apt-get install -y sublime-text
 apt-get install -y terminator
