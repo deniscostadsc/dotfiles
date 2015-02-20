@@ -33,7 +33,7 @@
     l = log
     m = merge
     pl = pull
-    plr = pull --rabase
+    plr = pull --rebase
     ps = push
     r = remote
     rb = rebase
