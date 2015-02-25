@@ -2,8 +2,6 @@
 
 [ "$USER" != root ] && echo "You are not root!" && exit
 
-apt-add-repository -y ppa:webupd8team/sublime-text-2
-
 apt-get update && apt-get -y upgrade
 
 apt-get install -y ack-grep
@@ -20,7 +18,6 @@ apt-get install -y python-dev
 apt-get install -y python-setuptools
 apt-get install -y ruby2.0
 apt-get install -y sqlitebrowser
-apt-get install -y sublime-text
 apt-get install -y terminator
 apt-get install -y vim-gnome
 apt-get install -y virtualbox
@@ -30,3 +27,6 @@ easy_install pip
 pip install ipython
 pip install flake8
 pip install virtualenvwrapper
+
+wget https://atom.io/download/deb
+dpkg -i deb
