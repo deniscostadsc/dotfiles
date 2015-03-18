@@ -4,13 +4,13 @@ cd "$(dirname "$0")"
 
 function install() {
     rsync \
+        --exclude "*.swp" \
+        --exclude "*~" \
         --exclude ".git/" \
         --exclude ".gitignore" \
         --exclude "README.md" \
-        --exclude "prepare_environment.sh" \
         --exclude "install.sh" \
-        --exclude "*.swp" \
-        --exclude "*~" \
+        --exclude "prepare_environment.sh" \
         -av . ~
 }
 
