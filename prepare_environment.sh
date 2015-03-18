@@ -2,7 +2,7 @@
 
 [ "$USER" != root ] && echo "You are not root!" && exit
 
-apt-get update && apt-get -y upgrade
+apt-get update && apt-get -y upgrade && apt-get dist-upgrade
 
 apt-get install -y ack-grep
 apt-get install -y chromium-browser
@@ -31,3 +31,6 @@ pip install virtualenvwrapper
 
 wget https://atom.io/download/deb
 dpkg -i deb
+rm deb
+
+apt-get autoclean && apt-get autoremove
