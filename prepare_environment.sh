@@ -13,6 +13,7 @@ apt-get install -y git
 apt-get install -y gitg
 apt-get install -y gummi
 apt-get install -y inkscape
+apt-get install -y meld
 apt-get install -y openjdk-7-jdk
 apt-get install -y python-dev
 apt-get install -y python-setuptools
