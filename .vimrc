@@ -23,9 +23,10 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#begin()
 
 Plugin 'gmarik/vundle'
-Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
+Plugin 'nvie/vim-flake8'
+Plugin 'scrooloose/nerdtree'
 
 if is_vundle_installed == 0
     echo "Installing bundles...\n"
