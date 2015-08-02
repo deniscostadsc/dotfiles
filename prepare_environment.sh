@@ -2,7 +2,9 @@
 
 [ "$USER" != root ] && echo "You are not root!" && exit
 
-apt-get update && apt-get -y upgrade && apt-get dist-upgrade
+sudo add-apt-repository ppa:git-core/ppa
+
+apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade
 
 apt-get install -y ack-grep
 apt-get install -y chromium-browser
@@ -33,4 +35,4 @@ wget https://atom.io/download/deb
 dpkg -i deb
 rm deb
 
-apt-get autoclean && apt-get autoremove
+apt-get -y autoclean && apt-get -y autoremove
