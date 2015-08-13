@@ -22,6 +22,7 @@ apt-get install -y python-setuptools
 apt-get install -y ruby2.0
 apt-get install -y sqlitebrowser
 apt-get install -y terminator
+apt-get install -y tree
 apt-get install -y vim-gnome
 apt-get install -y virtualbox
 
