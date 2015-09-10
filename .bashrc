@@ -63,5 +63,5 @@ fi
 
 PATH=$PATH:~/.bin/
 
-export NVM_DIR="~/.nvm"
+export NVM_DIR="/home/denis/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
