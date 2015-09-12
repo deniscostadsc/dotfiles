@@ -3,6 +3,7 @@
 [profiles]
   [[default]]
     palette = "#2e3436:#cc0000:#8bc058:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#9dcc6f:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
+    login_shell = True
     background_darkness = 0.73
     use_system_font = False
     foreground_color = "#dadada"
