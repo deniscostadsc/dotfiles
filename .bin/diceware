@@ -1,0 +1,14 @@
+#!/bin/bash
+
+min_length=4
+max_lenght=6
+password_length=5
+
+elegible_words=$(egrep "^[a-z]{${min_length},${max_lenght}}$" /usr/share/dict/words)
+word_count=$(wc -w <<< $elegible_words)
+
+for ((i = 0; i < $password_length; i++)); do
+    echo -n "$(cut -d ' ' -f $(($RANDOM % $word_count + 1)) <<< $elegible_words) "
+done
+
+echo
