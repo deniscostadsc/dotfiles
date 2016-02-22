@@ -53,15 +53,4 @@ else
 fi
 unset color_prompt
 
-# Virtualenv Wrapper
-WORKON_HOME='~/.envs'
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-    . /usr/local/bin/virtualenvwrapper.sh
-else
-    echo "Virtualenv Wrapper apparently is not installed."
-fi
-
 PATH=$PATH:~/.bin/
-
-export NVM_DIR="/home/denis/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
