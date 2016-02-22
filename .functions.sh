@@ -1,3 +1,17 @@
+function is_mac {
+    if [ $(uname) == "Darwin" ]; then
+        return 0
+    fi
+    return 1
+}
+
+function is_linux {
+    if ! is_mac; then
+        return 0
+    fi
+    return 1
+}
+
 function mkcd {
     mkdir -p $1 && cd $1
 }

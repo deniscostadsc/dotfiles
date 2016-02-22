@@ -1,6 +1,9 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# Import of bash function
+. ~/.functions.sh
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -25,16 +28,17 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# Import of aliases
-. ~/.aliases.sh
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-. /etc/bash_completion
+if is_mac; then
+    . $(brew --prefix)/etc/bash_completion
+else
+    . /etc/bash_completion
+fi
 
-# Import of bash function
-. ~/.functions.sh
+# Import of aliases
+. ~/.aliases.sh
 
 # Checking for colors support
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
