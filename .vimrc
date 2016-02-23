@@ -1,6 +1,9 @@
 " no vi-compatibility
 set nocompatible
 
+" Leader settings
+let mapleader = ","
+
 
 "
 " Installing vundle
@@ -51,6 +54,7 @@ set smartindent
 " General settings
 "
 set encoding=utf-8
+set list
 map <tab> <c-w><c-w>  " alternating between windows with tab
 set listchars=tab:▸\ ,eol:¬,trail:•
 map <leader>l :set list!<cr>  " toggle show invisible characters
