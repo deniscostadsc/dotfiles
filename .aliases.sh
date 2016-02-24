@@ -6,8 +6,6 @@ alias egrep='egrep --color=auto'
 
 alias ll='ls -alhF'
 
-alias rm='__git_rm'
-alias mv='__git_mv'
 alias git-remove-branchs='git branch -D $(git branch | grep -v "*\|master")'
 
 if is_linux; then
