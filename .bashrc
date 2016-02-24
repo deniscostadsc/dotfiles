@@ -4,6 +4,12 @@
 # Import of bash function
 . ~/.functions.sh
 
+# Import of aliases
+. ~/.aliases.sh
+
+# Import sensitive things
+. ~/.sensitive.sh
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -36,9 +42,6 @@ if is_mac; then
 else
     . /etc/bash_completion
 fi
-
-# Import of aliases
-. ~/.aliases.sh
 
 # Checking for colors support
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
