@@ -67,8 +67,18 @@ colorscheme slate
 set guifont=Ubuntu\ Mono\ 10
 set number
 syntax on
+set tw=79
 set colorcolumn=80
 highlight ColorColumn guibg=OrangeRed4
+
+"
+" Editing settings
+"
+vnoremap < <gv
+vnoremap > >gv
+vnoremap <Leader>s :sort<CR>
+vmap Q gq
+nmap Q gqap
 
 
 "
