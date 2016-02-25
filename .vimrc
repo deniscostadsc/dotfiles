@@ -59,6 +59,9 @@ set list
 map <tab> <c-w><c-w>  " alternating between windows with tab
 set listchars=tab:▸\ ,eol:¬,trail:•
 map <leader>l :set list!<cr>  " toggle show invisible characters
+set nobackup
+set nowritebackup
+set noswapfile
 
 
 "
