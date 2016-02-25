@@ -89,6 +89,7 @@ nmap Q gqap
 "
 map <leader>n :NERDTreeToggle<cr>
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
+au Filetype nerdtree setlocal nolist
 
 
 "
