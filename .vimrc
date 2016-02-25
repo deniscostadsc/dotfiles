@@ -48,6 +48,7 @@ set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 set smartindent
+set tw=79
 
 
 "
@@ -67,7 +68,6 @@ colorscheme slate
 set guifont=Ubuntu\ Mono\ 10
 set number
 syntax on
-set tw=79
 set colorcolumn=80
 highlight ColorColumn guibg=OrangeRed4
 
