@@ -57,11 +57,14 @@ set tw=79
 set encoding=utf-8
 set list
 map <tab> <c-w><c-w>  " alternating between windows with tab
-set listchars=tab:▸\ ,eol:¬,trail:•
+set listchars=tab:▸\ ,eol:¬,trail:•,extends:❱,precedes:❰,nbsp:░
+set wrap
+set showbreak=↪\ 
 map <leader>l :set list!<cr>  " toggle show invisible characters
 set nobackup
 set nowritebackup
 set noswapfile
+set clipboard=unnamed
 
 
 "
@@ -73,6 +76,7 @@ set number
 syntax on
 set colorcolumn=80
 highlight ColorColumn guibg=OrangeRed4
+
 
 "
 " Editing settings
