@@ -28,9 +28,10 @@ call vundle#begin()
 Plugin 'gmarik/vundle'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
-Plugin 'nvie/vim-flake8'
+Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'scrooloose/nerdcommenter'
 
 if is_vundle_installed == 0
     echo "Installing bundles...\n"
@@ -54,9 +55,9 @@ set tw=79
 "
 " General settings
 "
+filetype plugin on
 set encoding=utf-8
-set list
-map <tab> <c-w><c-w>  " alternating between windows with tab
+map <tab> <c-w><c-w>  " alternating between windows with tab set list
 set listchars=tab:▸\ ,eol:¬,trail:•,extends:❱,precedes:❰,nbsp:░
 set wrap
 set showbreak=↪\ 
