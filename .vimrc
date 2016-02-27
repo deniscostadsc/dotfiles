@@ -58,6 +58,7 @@ set tw=79
 filetype plugin on
 set encoding=utf-8
 map <tab> <c-w><c-w>  " alternating between windows with tab set list
+set list
 set listchars=tab:▸\ ,eol:¬,trail:•,extends:❱,precedes:❰,nbsp:░
 set wrap
 set showbreak=↪\ 
