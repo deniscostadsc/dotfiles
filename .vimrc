@@ -12,7 +12,7 @@ let is_vundle_installed=1
 let vundle_file=expand('~/.vim/bundle/vundle/autoload/vundle.vim')
 if !filereadable(vundle_file)
     echo "Intalling vundle...\n"
-    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle --depth=1
     let is_vundle_installed=0
 endif
 
