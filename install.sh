@@ -12,6 +12,10 @@ function install() {
         --exclude "install.sh" \
         --exclude "prepare_environment.sh" \
         -av . ~
+
+    mkdir ~/.vim 2> /dev/null
+    ln -s ~/.vim ~/.config/nvim 2> /dev/null
+    ln -s ~/.vimrc ~/.config/nvim/init.vim 2> /dev/null
 }
 
 if [[ $1 =~ ^(-f|--force)$ ]]; then
