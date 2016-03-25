@@ -4,7 +4,19 @@ min_word_length=4
 max_word_length=6
 password_word_count=5
 
-while [[ $# > 1 ]]; do
+function show_help {
+    echo
+    echo "diceware"
+    echo
+    echo " --min (-n) sets minimum number of characters in the words"
+    echo " --max (-m) sets maximum number of characters in the words"
+    echo " --count (-c) sets how many word the password will contain"
+    echo " --help (-h) shows help message and exit"
+    echo
+}
+
+
+while [[ $# > 0 ]]; do
     case $1 in
         --min|-n)
             min_word_length=$2
@@ -17,6 +29,10 @@ while [[ $# > 1 ]]; do
         --count|-c)
             password_word_count=$2
             shift
+        ;;
+        --help|-h)
+            show_help
+            exit 0
         ;;
     esac
     shift
