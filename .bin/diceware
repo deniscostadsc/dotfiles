@@ -1,10 +1,30 @@
 #!/bin/bash
 
+#set -vx
+
 min_length=4
-max_lenght=6
+max_length=6
 password_length=5
 
-elegible_words=$(egrep "^[A-Za-z]{${min_length},${max_lenght}}$" /usr/share/dict/words)
+while [[ $# > 1 ]]; do
+    case $1 in
+        --min|-n)
+            min_length=$2
+            shift
+        ;;
+        --max|-m)
+            max_length=$2
+            shift
+        ;;
+        --count|-c)
+            password_length=$2
+            shift
+        ;;
+    esac
+    shift
+done
+
+elegible_words=$(egrep "^[A-Za-z]{${min_length},${max_length}}$" /usr/share/dict/words)
 word_count=$(wc -w <<< $elegible_words)
 
 for ((i = 0; i < $password_length; i++)); do
