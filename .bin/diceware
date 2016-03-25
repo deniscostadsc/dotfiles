@@ -1,31 +1,31 @@
 #!/bin/bash
 
-min_length=4
-max_length=6
-password_length=5
+min_word_length=4
+max_word_length=6
+password_word_count=5
 
 while [[ $# > 1 ]]; do
     case $1 in
         --min|-n)
-            min_length=$2
+            min_word_length=$2
             shift
         ;;
         --max|-m)
-            max_length=$2
+            max_word_length=$2
             shift
         ;;
         --count|-c)
-            password_length=$2
+            password_word_count=$2
             shift
         ;;
     esac
     shift
 done
 
-elegible_words=$(egrep "^[A-Za-z]{${min_length},${max_length}}$" /usr/share/dict/words)
+elegible_words=$(egrep "^[A-Za-z]{${min_word_length},${max_word_length}}$" /usr/share/dict/words)
 word_count=$(wc -w <<< $elegible_words)
 
-for ((i = 0; i < $password_length; i++)); do
+for ((i = 0; i < $password_word_count; i++)); do
     echo -n "$(cut -d ' ' -f $(($RANDOM % $word_count + 1)) <<< $elegible_words | tr [:upper:] [:lower:]) "
 done
 
