@@ -40,6 +40,8 @@
     lg = log --color --graph \
     --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' \
     --abbrev-commit
+    pullify = config --add remote.origin.fetch \
+    '+refs/pull/*/head:refs/remotes/origin/pr/*'
 
 [push]
     default = current
