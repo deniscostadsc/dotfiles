@@ -4,6 +4,9 @@
 # Import of bash function
 . ~/.functions.sh
 
+# Import of git function
+. ~/.git_functions.sh
+
 # Import of aliases
 . ~/.aliases.sh
 
@@ -54,9 +57,9 @@ else
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='\[\033[01;32m\]$(__git_ps1) \[\033[01;35m\]\w\[\033[00m\]\n\$ '
+    PS1='\[\033[01;35m\]\w\[\033[01;32m\]$(__git_ps1) \[\033[31m\]$(__git_arrows) \[\033[00m\]\n\$ '
 else
-    PS1='$(__git_ps1) \w\n\$ '
+    PS1='\w$(__git_ps1) $(__git_arrows)\n\$ '
 fi
 unset color_prompt
 
