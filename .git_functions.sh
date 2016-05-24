@@ -17,3 +17,7 @@ function __git_arrows {
 
     echo $arrows
 }
+
+function __git_branch {
+    echo -n "$(git branch | grep '^*' | sed 's/* //g')"
+}
