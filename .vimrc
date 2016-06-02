@@ -27,6 +27,7 @@ call vundle#begin()
 
 Plugin 'gmarik/vundle'
 Plugin 'kien/ctrlp.vim'
+Plugin 'vim-airline/vim-airline'
 Plugin 'mileszs/ack.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
@@ -67,7 +68,7 @@ set nobackup
 set nowritebackup
 set noswapfile
 set clipboard=unnamed
-
+set laststatus=2
 
 "
 " Visual settings
