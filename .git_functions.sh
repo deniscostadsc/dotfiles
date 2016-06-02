@@ -19,5 +19,5 @@ function __git_arrows {
 }
 
 function __git_branch {
-    echo -n "$(git branch | grep '^*' | sed 's/* //g')"
+    echo -n "$(git branch 2>/dev/null | grep '^*' | sed 's/* //g')"
 }
