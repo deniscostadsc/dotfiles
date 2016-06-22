@@ -1,39 +1,45 @@
 #!/bin/bash
 
-[ "$USER" != root ] && echo "You are not root!" && exit
+. .functions.sh
 
-sudo add-apt-repository ppa:git-core/ppa
+if [ is_linux ]; then
+    [ "$USER" != root ] && echo "You are not root!" && exit
 
-apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade
+    sudo add-apt-repository ppa:git-core/ppa
 
-apt-get install -y ack-grep
-apt-get install -y chromium-browser
-apt-get install -y curl
-apt-get install -y gcolor2
-apt-get install -y gimp
-apt-get install -y git
-apt-get install -y gitg
-apt-get install -y gummi
-apt-get install -y inkscape
-apt-get install -y meld
-apt-get install -y openjdk-7-jdk
-apt-get install -y python-dev
-apt-get install -y python-setuptools
-apt-get install -y ruby2.0
-apt-get install -y sqlitebrowser
-apt-get install -y terminator
-apt-get install -y tree
-apt-get install -y vim-gnome
-apt-get install -y virtualbox
+    apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade
 
-easy_install pip
+    apt-get install -y ack-grep
+    apt-get install -y chromium-browser
+    apt-get install -y curl
+    apt-get install -y gcolor2
+    apt-get install -y gimp
+    apt-get install -y git
+    apt-get install -y gitg
+    apt-get install -y inkscape
+    apt-get install -y meld
+    apt-get install -y openjdk-7-jdk
+    apt-get install -y python-dev
+    apt-get install -y python-setuptools
+    apt-get install -y ruby2.0
+    apt-get install -y sqlitebrowser
+    apt-get install -y terminator
+    apt-get install -y tree
+    apt-get install -y vim-gnome
+    apt-get install -y virtualbox
 
-pip install ipython
-pip install flake8
-pip install virtualenvwrapper
+    easy_install pip
 
-wget https://atom.io/download/deb
-dpkg -i deb
-rm deb
+    pip install ipython
+    pip install flake8
+    pip install virtualenvwrapper
+    pip install pygments
 
-apt-get -y autoclean && apt-get -y autoremove
+    wget https://atom.io/download/deb
+    dpkg -i deb
+    rm deb
+
+    apt-get -y autoclean && apt-get -y autoremove
+else
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
