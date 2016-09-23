@@ -89,6 +89,7 @@ vnoremap > >gv
 vnoremap <Leader>s :sort<CR>
 vmap Q gq
 nmap Q gqap
+vnoremap // y/<C-R>"<CR>
 
 
 "
