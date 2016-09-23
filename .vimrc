@@ -96,7 +96,7 @@ vnoremap // y/<C-R>"<CR>
 " NERDTree settings
 "
 map <leader>n :NERDTreeToggle<cr>
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__', '\.git']
 au Filetype nerdtree setlocal nolist
 
 
