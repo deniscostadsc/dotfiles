@@ -1,2 +1,2 @@
 # to work on OSXhit
-. .bashrc
+. ~/.bashrc
