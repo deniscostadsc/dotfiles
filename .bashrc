@@ -62,5 +62,6 @@ else
     PS1='\w ($(__git_branch) $(__git_arrows))\n\$ '
 fi
 unset color_prompt
+export LC_ALL="en_US.UTF-8"
 
 PATH=$PATH:~/.bin/
