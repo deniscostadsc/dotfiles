@@ -1,6 +1,8 @@
 alias reload_bashrc='. ~/.bashrc'
 
 alias vim='nvim'
+alias tmux="TERM=screen-256color-bce tmux"
+alias my-tmux='tmux attach -t denis || tmux new -s denis'
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
