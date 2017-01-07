@@ -63,9 +63,9 @@ set encoding=utf-8
 map <tab> <c-w><c-w>  " alternating between windows with tab set list
 set list
 set listchars=tab:▸\ ,eol:¬,trail:•,extends:❱,precedes:❰,nbsp:░
+map <leader>l :set list!<cr>  " toggle show invisible characters
 set wrap
 set showbreak=↪\ 
-map <leader>l :set list!<cr>  " toggle show invisible characters
 set nobackup
 set nowritebackup
 set noswapfile
