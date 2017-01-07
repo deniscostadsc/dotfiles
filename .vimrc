@@ -60,7 +60,7 @@ set tw=79
 "
 filetype plugin on
 set encoding=utf-8
-map <tab> <c-w><c-w>  " alternating between windows with tab set list
+map <tab> <c-w><c-w>  " alternating between windows with tab
 set list
 set listchars=tab:▸\ ,eol:¬,trail:•,extends:❱,precedes:❰,nbsp:░
 map <leader>l :set list!<cr>  " toggle show invisible characters
@@ -91,7 +91,7 @@ vnoremap > >gv
 vnoremap <Leader>s :sort<CR>
 vmap Q gq
 nmap Q gqap
-vnoremap // y/<C-R>"<CR>
+vnoremap // y/<C-R>"<CR> " search for selected word
 
 
 "
