@@ -1,7 +1,11 @@
+"
 " no vi-compatibility
+"
 set nocompatible
 
+"
 " Leader settings
+"
 let mapleader = ","
 
 
