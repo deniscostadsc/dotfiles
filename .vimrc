@@ -32,7 +32,9 @@ Plugin 'mileszs/ack.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
+
 
 if is_vundle_installed == 0
     echo "Installing bundles...\n"
