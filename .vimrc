@@ -25,9 +25,9 @@ set rtp+=~/.vim/bundle/vundle/
 "
 call vundle#begin()
 
-Plugin 'gmarik/vundle'
-Plugin 'editorconfig/editorconfig-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'gmarik/vundle'
 Plugin 'mileszs/ack.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
