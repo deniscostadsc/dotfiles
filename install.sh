@@ -14,6 +14,7 @@ function install() {
         --exclude "prepare_environment.sh" \
         -av . ~
 
+i   # to work with neovim
     mkdir ~/.vim 2> /dev/null
     ln -s ~/.vim ~/.config/nvim 2> /dev/null
     ln -s ~/.vimrc ~/.config/nvim/init.vim 2> /dev/null
