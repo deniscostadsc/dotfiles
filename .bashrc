@@ -10,9 +10,6 @@
 # Import of aliases
 . ~/.aliases.sh
 
-# Import sensitive things
-. ~/.sensitive.sh
-
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -64,4 +61,19 @@ fi
 unset color_prompt
 export LC_ALL="en_US.UTF-8"
 
-PATH=$PATH:~/.bin/
+export PATH=~/.bin/:$PATH
+
+# adds virtualenvwrapper
+export WORKON_HOME=~/.envs
+. /usr/local/bin/virtualenvwrapper.sh
+
+# adds pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+pyenv virtualenvwrapper
+
+PROJECT_PATH="$HOME/projects/"
+
+# Import sensitive things
+[ -f ~/.sensitive.sh ] && . ~/.sensitive.sh

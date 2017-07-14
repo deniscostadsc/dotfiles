@@ -7,26 +7,24 @@ if [ is_linux ]; then
 
     sudo add-apt-repository ppa:git-core/ppa
 
-    apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade
+    apt update && apt -y upgrade
 
-    apt-get install -y ack-grep
-    apt-get install -y chromium-browser
-    apt-get install -y curl
-    apt-get install -y gcolor2
-    apt-get install -y gimp
-    apt-get install -y git
-    apt-get install -y gitg
-    apt-get install -y inkscape
-    apt-get install -y meld
-    apt-get install -y openjdk-7-jdk
-    apt-get install -y python-dev
-    apt-get install -y python-setuptools
-    apt-get install -y ruby2.0
-    apt-get install -y sqlitebrowser
-    apt-get install -y terminator
-    apt-get install -y tree
-    apt-get install -y vim-gnome
-    apt-get install -y virtualbox
+    apt-get install -y \
+        ack-grep \
+        chromium-browser \
+        curl \
+        gcolor2 \
+        gimp \
+        git \
+        gitg \
+        inkscape \
+        meld \
+        python-dev \
+        python-setuptools \
+        sqlitebrowser \
+        terminator \
+        tree \
+        virtualbox
 
     easy_install pip
 
@@ -35,9 +33,7 @@ if [ is_linux ]; then
     pip install virtualenvwrapper
     pip install pygments
 
-    wget https://atom.io/download/deb
-    dpkg -i deb
-    rm deb
+    wget https://atom.io/download/deb && dpkg -i deb && rm deb
 
     apt-get -y autoclean && apt-get -y autoremove
 else
