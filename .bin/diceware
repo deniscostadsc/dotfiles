@@ -89,7 +89,7 @@ if [ $(dice2int $dice_number) -gt $word_count ]; then
     echo " we just have $word_count words."
     echo
 
-    exit 0
+    exit 1
 fi
 
 echo "$(cut -d ' ' -f $(dice2int $dice_number) <<< $elegible_words | tr [:upper:] [:lower:])"
