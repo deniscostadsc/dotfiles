@@ -49,6 +49,11 @@ while [[ $# > 0 ]]; do
         ;;
         --max|-m)
             max_word_length=$2
+            if [[ $max_word_length -lt $min_word_length ]]; then
+                echo
+                echo "max should be greater than min"
+                exit 1
+            fi
             shift
         ;;
         --count|-c)
