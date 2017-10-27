@@ -63,7 +63,9 @@ while [[ $# > 0 ]]; do
     shift
 done
 
-elegible_words=$(egrep "^[A-Za-z]{${min_word_length},${max_word_length}}$" /usr/share/dict/words)
+
+elegible_words=$(
+    egrep "^[A-Za-z]{${min_word_length},${max_word_length}}$" /usr/share/dict/words | tr '\n' ' ')
 word_count=$(wc -w <<< $elegible_words)
 
 if [ -z $dice_number ]; then
