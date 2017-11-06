@@ -63,17 +63,7 @@ export LC_ALL="en_US.UTF-8"
 
 export PATH=~/.bin/:$PATH
 
-# adds virtualenvwrapper
-export WORKON_HOME=~/.envs
-. /usr/local/bin/virtualenvwrapper.sh
-
-# adds pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-pyenv virtualenvwrapper
-
 PROJECT_PATH="$HOME/projects/"
 
 # Import sensitive things
-[ -f ~/.sensitive.sh ] && . ~/.sensitive.sh
+[[ -f ~/.sensitive.sh ]] && . ~/.sensitive.sh
