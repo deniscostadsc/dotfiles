@@ -26,7 +26,9 @@ CHECKS = [
 
 def matches_file(file_name, match_files):
     return any(
-        re.compile(match_file).match(file_name) for match_file in match_files)
+        re.compile(match_file).match(file_name)
+        for match_file in match_files
+    )
 
 
 def check_files(files, check):
@@ -75,6 +77,7 @@ def main():
         result = check_files(files, check) or result
 
     sys.exit(result)
+
 
 if __name__ == '__main__':
     main()
