@@ -31,7 +31,7 @@ def matches_file(file_name, match_files):
 
 def check_files(files, check):
     result = 0
-    print check['output']
+    print(check['output'])
     for file_name in files:
         if ('match_files' not in check or
                 matches_file(file_name, check['match_files'])):
@@ -51,9 +51,9 @@ def check_files(files, check):
                         prefix = '\t'
                     output_lines = [
                         '%s%s' % (prefix, line) for line in out.splitlines()]
-                    print '\n'.join(output_lines)
+                    print('\n'.join(output_lines))
                     if err:
-                        print err
+                        print(err)
                     result = 1
     return result
 
