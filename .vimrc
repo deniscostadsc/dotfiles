@@ -30,6 +30,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#begin()
 
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'dracula/vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'gmarik/vundle'
 Plugin 'mileszs/ack.vim'
@@ -79,7 +80,7 @@ set laststatus=2
 "
 " Visual settings
 "
-colorscheme slate
+color dracula
 set guifont=Ubuntu\ Mono\ 10
 set number
 syntax on
@@ -102,7 +103,7 @@ vnoremap // y/<C-R>"<CR> " search for selected word
 " NERDTree settings
 "
 map <leader>n :NERDTreeToggle<cr>
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__', '\.git$']
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
 au Filetype nerdtree setlocal nolist
 
 
@@ -126,6 +127,7 @@ cab Q! q!
 cab W w
 cab W! w!
 cab Wa wa
+cab Wu wa
 cab Wq wq
 cab wQ wq
 cab WQ wq
