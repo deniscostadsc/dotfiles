@@ -15,7 +15,7 @@
   [[default]]
     scrollbar_position = hidden
     palette = "#000000:#ff5555:#50fa7b:#f1fa8c:#bd93f9:#ff79c6:#8be9fd:#bbbbbb:#555555:#ff5555:#50fa7b:#f1fa8c:#bd93f9:#ff79c6:#8be9fd:#ffffff"
-    font = Hack 12
+    font = Ubuntu Mono 10
     background_image = None
     cursor_shape = underline
     use_system_font = False
