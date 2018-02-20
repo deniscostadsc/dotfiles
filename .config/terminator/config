@@ -1,22 +1,45 @@
+
 [global_config]
+  window_state = maximise
+  handle_size = 0
+  title_hide_sizetext = True
+  title_transmit_fg_color = "#bd93f9"
+  title_inactive_fg_color = "#f8f8f2"
+  title_receive_bg_color = "#282a36"
+  title_transmit_bg_color = "#282a36"
+  title_receive_fg_color = "#8be9fd"
+  tab_position = hidden
+  title_inactive_bg_color = "#282a36"
 [keybindings]
 [profiles]
   [[default]]
-    palette = "#2e3436:#cc0000:#8bc058:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#9dcc6f:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
-    login_shell = True
+    scrollbar_position = hidden
+    palette = "#000000:#ff5555:#50fa7b:#f1fa8c:#bd93f9:#ff79c6:#8be9fd:#bbbbbb:#555555:#ff5555:#50fa7b:#f1fa8c:#bd93f9:#ff79c6:#8be9fd:#ffffff"
+    font = Hack 12
     background_image = None
-    background_darkness = 0.76
-    background_type = transparent
+    cursor_shape = underline
     use_system_font = False
-    foreground_color = "#dadada"
-    font = Ubuntu Mono 13
-    background_color = "#282a36"
+    cursor_color = "#bbbbbb"
+    foreground_color = "#f8f8f2"
+    update_records = False
+    login_shell = True
+    copy_on_selection = True
+    background_color = "#1e1f29"
+    cursor_blink = False
     scrollback_infinite = True
+  [[terminator_default]]
+    palette = "#44475a:#ff5555:#50fa7b:#ffb86c:#3465a4:#ff79c6:#f1fa8c:#44475a:#44475a:#ff5555:#50fa7b:#ffb86c:#729fcf:#ad7fa8:#f1fa8c:#44475a"
+    copy_on_selection = True
+    background_color = "#282a36"
+    background_image = None
+    foreground_color = "#f8f8f2"
 [layouts]
   [[default]]
     [[[child1]]]
       type = Terminal
       parent = window0
+      profile = default
+      command = ""
     [[[window0]]]
       type = Window
       parent = ""
