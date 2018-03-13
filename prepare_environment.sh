@@ -32,6 +32,7 @@ if [ is_linux ]; then
     pip install flake8
     pip install virtualenvwrapper
     pip install pygments
+    pip install gitlint
 
     wget https://atom.io/download/deb && dpkg -i deb && rm deb
 
