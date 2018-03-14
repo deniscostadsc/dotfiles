@@ -47,6 +47,7 @@ if is_vundle_installed == 0
 endif
 
 call vundle#end()
+filetype plugin on
 
 
 "
@@ -57,7 +58,6 @@ set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 set smartindent
-set tw=79
 
 
 "
@@ -69,7 +69,6 @@ map <tab> <c-w><c-w>  " alternating between windows with tab
 set list
 set listchars=tab:▸\ ,eol:¬,trail:•,extends:❱,precedes:❰,nbsp:░
 map <leader>l :set list!<cr>  " toggle show invisible characters
-set wrap
 set showbreak=↪\ 
 set nobackup
 set nowritebackup
@@ -94,8 +93,6 @@ highlight ColorColumn guibg=OrangeRed4
 vnoremap < <gv
 vnoremap > >gv
 vnoremap <Leader>s :sort<CR>
-vmap Q gq
-nmap Q gqap
 vnoremap // y/<C-R>"<CR> " search for selected word
 
 
@@ -103,7 +100,6 @@ vnoremap // y/<C-R>"<CR> " search for selected word
 " NERDTree settings
 "
 map <leader>n :NERDTreeToggle<cr>
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
 au Filetype nerdtree setlocal nolist
 
 
@@ -116,6 +112,9 @@ map <leader>b :CtrlPBuffer<cr>
 "
 " Ack settings
 "
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 let g:ack_default_options = " -H --nocolor --nogroup --column"
 
 
@@ -127,7 +126,6 @@ cab Q! q!
 cab W w
 cab W! w!
 cab Wa wa
-cab Wu wa
 cab Wq wq
 cab wQ wq
 cab WQ wq

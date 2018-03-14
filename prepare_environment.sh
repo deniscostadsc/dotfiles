@@ -5,12 +5,16 @@
 if [ is_linux ]; then
     [ "$USER" != root ] && echo "You are not root!" && exit
 
-    sudo add-apt-repository ppa:git-core/ppa
+    apt-get install software-properties-common
+
+    # Add some PPAs
+    add-apt-repository ppa:git-core/ppa
+    add-apt-repository ppa:neovim-ppa/stable
 
     apt update && apt -y upgrade
 
-    apt-get install -y \
-        ack-grep \
+    # Install OS packages
+    apt install -y \
         chromium-browser \
         curl \
         gcolor2 \
@@ -19,24 +23,33 @@ if [ is_linux ]; then
         gitg \
         inkscape \
         meld \
+        neovim \
         python-dev \
         python-setuptools \
-        sqlitebrowser \
+        silversearch-ag \
         terminator \
         tree \
         virtualbox
 
-    easy_install pip
+    apt -y autoclean && apt -y autoremove
 
+    # Install development tools with
+    [ ! -d ~/projects/ ] && mkdir ~/projects
+    [ ! -d ~/projects/pyenv ] && \
+        git clone https://github.com/pyenv/pyenv.git ~/projects/pyenv
+    [ ! -d ~/projects/pyenv/plugins/ ] && mkdir ~/projects/pyenv/plugins/
+    [ ! -d ~/projects/pyenv/plugins/pyenv-virtualenv ] && \
+        git clone https://github.com/pyenv/pyenv-virtualenv.git ~/projects/pyenv/plugins/pyenv-virtualenv
+
+    # Install Python libraries
     pip install ipython
     pip install flake8
-    pip install virtualenvwrapper
     pip install pygments
     pip install gitlint
 
-    wget https://atom.io/download/deb && dpkg -i deb && rm deb
+    # Install atom
+    wget https://atom.io/download/deb && dpkg -i deb; rm deb 2> /dev/null
 
-    apt-get -y autoclean && apt-get -y autoremove
 else
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi

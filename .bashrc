@@ -68,11 +68,18 @@ PROJECT_PATH="$HOME/projects/"
 # Import sensitive things
 [[ -f ~/.sensitive.sh ]] && . ~/.sensitive.sh
 
-# Pyenv stuff
+
+# pyenv stuff
 export PYENV_ROOT="$HOME/projects/pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
 fi
+
+# rbenv stuff
+# TODO: Add rbenv to prepare-environment script
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+if command -v rbenv 1>/dev/null 2>&1; then
+    eval "$(rbenv init -)"
+fi
