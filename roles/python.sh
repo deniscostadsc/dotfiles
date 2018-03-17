@@ -3,6 +3,7 @@ kickstart.context 'Python'
 source recipes/git.sh
 
 kickstart.git.cloneandpull https://github.com/pyenv/pyenv.git ~/.pyenv
+kickstart.git.cloneandpull https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
 
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
 echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc

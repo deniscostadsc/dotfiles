@@ -7,5 +7,17 @@ if ! which kickstart > /dev/null; then
   install_temporarily_kickstart
 fi
 
-kickstart local --sudo bash git python ruby gnupg kickstart neovim terminator
+kickstart local --sudo \
+    bash \
+    git \
+    gnupg \
+    image-edition-tools \
+    kickstart \
+    neovim \
+    os \
+    python \
+    ruby \
+    terminator \
+    tmux
+
 rm -rf compile
