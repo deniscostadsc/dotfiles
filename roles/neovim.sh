@@ -14,4 +14,5 @@ cp files/neovim/after/ftplugin/* ~/.vim/after/ftplugin/
 kickstart.file.link ~/.vim ~/.config/nvim
 kickstart.file.link ~/.vimrc ~/.config/nvim/init.vim
 
-alias vim='nvim' # TODO
+# TODO
+alias vim='nvim'

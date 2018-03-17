@@ -7,5 +7,5 @@ if ! which kickstart > /dev/null; then
   install_temporarily_kickstart
 fi
 
-kickstart local --sudo bash git kickstart neovim terminator
+kickstart local --sudo bash git gnupg kickstart neovim terminator
 rm -rf compile

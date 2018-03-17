@@ -6,6 +6,15 @@ cp files/bash/bash_profile ~/.bash_profile  # to work on OSX
 kickstart.mute mkdir ~/.bin || true
 cp files/bash/bin/* ~/.bin
 
+
+function mkcd {
+    mkdir -p $1 && cd $1
+}
+
+function rmpyc {
+    find . -name "*.pyc" -delete;
+}
+
 #TODO
 alias ll='ls -alhF'
 alias grep='grep --color=auto'
