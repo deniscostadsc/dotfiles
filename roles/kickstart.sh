@@ -1,7 +1,7 @@
 kickstart.context 'Kickstart'
 
 [[ ! -d ~/.kickstart ]] && \
-    git clone https://github.com/bltavares/kickstart.git ~/.kickstart
+    git clone https://github.com/deniscostadsc/kickstart.git ~/.kickstart
 
 cd ~/.kickstart
 git pull origin master
