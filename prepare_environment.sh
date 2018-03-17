@@ -17,7 +17,6 @@ if [ is_linux ]; then
         meld \
         python-dev \
         python-setuptools \
-        terminator \
         tree \
         virtualbox
 
