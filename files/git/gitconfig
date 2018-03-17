@@ -10,7 +10,7 @@
     ui = auto
 
 [init]
-    templatedir = ~/.git_templates/
+    templatedir = ~/.git_template/
 
 [commit]
     gpgsign = true

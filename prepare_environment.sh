@@ -5,11 +5,6 @@
 if [ is_linux ]; then
     [ "$USER" != root ] && echo "You are not root!" && exit
 
-    apt-get install software-properties-common
-
-    # Add some PPAs
-    add-apt-repository ppa:neovim-ppa/stable
-
     apt update && apt -y upgrade
 
     # Install OS packages
@@ -20,10 +15,8 @@ if [ is_linux ]; then
         gimp \
         inkscape \
         meld \
-        neovim \
         python-dev \
         python-setuptools \
-        silversearch-ag \
         terminator \
         tree \
         virtualbox

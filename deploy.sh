@@ -1,3 +1,3 @@
 #!/bin/bash
 
-kickstart local --sudo bash git
+kickstart local --sudo bash neovim git
