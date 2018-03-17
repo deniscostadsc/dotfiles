@@ -1,11 +1,9 @@
+# POrrrraa
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
 # Import of bash function
 . ~/.functions.sh
-
-# Import of git function
-. ~/.git_functions.sh
 
 # Import of aliases
 . ~/.aliases.sh
@@ -78,7 +76,6 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 # rbenv stuff
-# TODO: Add rbenv to prepare-environment script
 export PATH="$HOME/.rbenv/bin:$PATH"
 if command -v rbenv 1>/dev/null 2>&1; then
     eval "$(rbenv init -)"

@@ -8,7 +8,6 @@ if [ is_linux ]; then
     apt-get install software-properties-common
 
     # Add some PPAs
-    add-apt-repository ppa:git-core/ppa
     add-apt-repository ppa:neovim-ppa/stable
 
     apt update && apt -y upgrade
@@ -19,8 +18,6 @@ if [ is_linux ]; then
         curl \
         gcolor2 \
         gimp \
-        git \
-        gitg \
         inkscape \
         meld \
         neovim \
