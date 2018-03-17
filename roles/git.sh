@@ -11,4 +11,8 @@ cp files/git/functions.sh ~/.bashrc_git.sh
 echo '. ~/.bashrc_git.sh' >> ~/.bashrc
 
 kickstart.mute mkdir -p ~/.git_template/hooks || true
-cp files/git/hooks/* ~/.git_template/hooks/ || true
+cp files/git/hooks/* ~/.git_template/hooks/
+
+#TODO
+
+alias git-remove-branchs='git branch -D $(git branch | grep -v "*\|master")'
