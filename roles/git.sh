@@ -4,6 +4,7 @@ kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:git-core/ppa
 
 kickstart.package.install git
 kickstart.package.install gitg
+kickstart.package.install meld
 
 cp files/git/globalignore ~/.config/git/ignore
 cp files/git/gitconfig ~/.gitconfig

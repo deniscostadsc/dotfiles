@@ -14,7 +14,6 @@ if [ is_linux ]; then
         gcolor2 \
         gimp \
         inkscape \
-        meld \
         python-dev \
         python-setuptools \
         tree \
@@ -29,12 +28,6 @@ if [ is_linux ]; then
     [ ! -d ~/projects/pyenv/plugins/ ] && mkdir ~/projects/pyenv/plugins/
     [ ! -d ~/projects/pyenv/plugins/pyenv-virtualenv ] && \
         git clone https://github.com/pyenv/pyenv-virtualenv.git ~/projects/pyenv/plugins/pyenv-virtualenv
-
-    # Install Python libraries
-    pip install ipython
-    pip install flake8
-    pip install pygments
-    pip install gitlint
 
     # Install atom
     wget https://atom.io/download/deb && dpkg -i deb; rm deb 2> /dev/null

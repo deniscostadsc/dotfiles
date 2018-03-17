@@ -1,12 +1,8 @@
 kickstart.context 'Kickstart'
 
-[[ ! -d ~/.kickstart ]] && \
-    git clone https://github.com/deniscostadsc/kickstart.git ~/.kickstart
+source recipes/git.sh
 
-cd ~/.kickstart
-git pull origin master
-git reset --hard origin/master
-cd -
+kickstart.git.cloneandpull https://github.com/bltavares/kickstart.git ~/.kickstart
 
 echo 'eval "$(kickstart autocomplete)"' >> ~/.bashrc
 
