@@ -8,4 +8,4 @@ if ! which kickstart > /dev/null; then
 fi
 
 kickstart local --sudo bash git kickstart neovim
-#rm -rf compile
+rm -rf compile
