@@ -1,7 +1,5 @@
 #!/bin/bash
 
-. .functions.sh
-
 if [ is_linux ]; then
     [ "$USER" != root ] && echo "You are not root!" && exit
 
