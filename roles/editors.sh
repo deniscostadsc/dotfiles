@@ -2,6 +2,8 @@ kickstart.context 'Editors'
 
 kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:neovim-ppa/stable
 
+kickstart.package.install wget
+
 kickstart.package.install neovim
 kickstart.package.install silversearcher-ag
 
@@ -26,4 +28,6 @@ kickstart.command_exists atom || {
 }
 
 kickstart.info "Add aliases to bashrc"
+echo >> ~/.bashrc
+echo "# Editors - added by kickstart" >> ~/.bashrc
 echo "alias vim='nvim'" >> ~/.bashrc

@@ -12,11 +12,12 @@ fi
 kickstart local --sudo \
     bash \
     browsers \
+    dev-tools \
+    editors \
     git \
     gnupg \
     image-edition-tools \
     kickstart \
-    neovim \
     os \
     python \
     ruby \
