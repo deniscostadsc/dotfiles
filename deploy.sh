@@ -21,6 +21,7 @@ kickstart local --sudo \
     python \
     ruby \
     terminator \
+    virtualization \
     tmux
 
 rm -rf compile
