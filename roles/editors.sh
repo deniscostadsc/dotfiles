@@ -18,7 +18,7 @@ kickstart.info "Copy init.vim file"
 cp --preserve=mode,ownership files/editors/config/nvim/init.vim ~/.config/nvim
 
 kickstart.info "Copy ftplugin files"
-cp --preserve=mode,ownership files/editors/after/ftplugin/* ~/.vim/after/ftplugin/
+cp --preserve=mode,ownership files/editors/vim/after/ftplugin/* ~/.vim/after/ftplugin/
 
 kickstart.command_exists atom || {
     kickstart.info "Download Atom deb file"
