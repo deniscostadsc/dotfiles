@@ -2,4 +2,5 @@ kickstart.context 'GnuPG'
 
 kickstart.package.install gnupg2
 
-cp files/gnupg/* ~/.gnupg/
+kickstart.info "Copy GnuPG config files"
+cp --preserve=mode,ownership files/gnupg/* ~/.gnupg/
