@@ -14,4 +14,5 @@ install_temporarily_kickstart() {
     download https://github.com/bltavares/kickstart/archive/master.zip
     unzip master.zip
     export PATH=${PWD}/kickstart-master/bin:$PATH
+    cd -
 }
