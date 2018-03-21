@@ -3,7 +3,7 @@ dotfiles
 
 ### @deniscostadsc's dotfiles
 
-This project configure my personal machine. It uses in
+This project configure my personal machine. It uses
 [kickstart](https://github.com/bltavares/kickstart).
 
 To use it, clone the project:
