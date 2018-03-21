@@ -14,7 +14,7 @@ kickstart.info "Copy hook to git template folder"
 kickstart.mute mkdir -p ~/.git_template/hooks || true
 cp --preserve=mode,ownership files/git/hooks/* ~/.git_template/hooks/
 
-echo  >> ~/.bashrc
+echo >> ~/.bashrc
 echo "# Git - added by kickstart" >> ~/.bashrc
 
 kickstart.info "Add aliases to bashrc"

@@ -9,7 +9,7 @@ kickstart.mute mkdir ~/.bin || true
 kickstart.info "Copy bin files to bin folder"
 cp --preserve=mode,ownership files/bash/bin/* ~/.bin
 
-echo  >> ~/.bashrc
+echo >> ~/.bashrc
 echo "# Bash - added by kickstart" >> ~/.bashrc
 
 kickstart.info "Add aliases to bashrc"
