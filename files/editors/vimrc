@@ -1,17 +1,10 @@
-"
 " no vi-compatibility
-"
 set nocompatible
 
-"
 " Leader settings
-"
 let mapleader = ","
 
-
-"
 " Installing vundle
-"
 let is_vundle_installed=1
 let vundle_file=expand('~/.vim/bundle/vundle/autoload/vundle.vim')
 if !filereadable(vundle_file)
@@ -23,10 +16,7 @@ endif
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 
-
-"
 " Installing plugins
-"
 call vundle#begin()
 
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -49,20 +39,14 @@ endif
 call vundle#end()
 filetype plugin on
 
-
-"
 " Indentation settings
-"
 set expandtab
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 set smartindent
 
-
-"
 " General settings
-"
 filetype plugin on
 set encoding=utf-8
 map <tab> <c-w><c-w>  " alternating between windows with tab
@@ -76,9 +60,7 @@ set noswapfile
 set clipboard=unnamed
 set laststatus=2
 
-"
 " Visual settings
-"
 color dracula
 set guifont=Ubuntu\ Mono\ 10
 set number
@@ -86,41 +68,27 @@ syntax on
 set colorcolumn=80
 highlight ColorColumn guibg=OrangeRed4
 
-
-"
 " Editing settings
-"
 vnoremap < <gv
 vnoremap > >gv
 vnoremap <Leader>s :sort<CR>
 vnoremap // y/<C-R>"<CR> " search for selected word
 
-
-"
 " NERDTree settings
-"
 map <leader>n :NERDTreeToggle<cr>
 au Filetype nerdtree setlocal nolist
 
-
-"
 " CtrlP settings
 "
 map <leader>b :CtrlPBuffer<cr>
 
-
-"
 " Ack settings
-"
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 let g:ack_default_options = " -H --nocolor --nogroup --column"
 
-
-"
 " Aliases settings (no stress)
-"
 cab Q q
 cab Q! q!
 cab W w
