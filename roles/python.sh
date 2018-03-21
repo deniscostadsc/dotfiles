@@ -15,3 +15,9 @@ pip install ipython
 pip install flake8
 pip install pygments
 pip install gitlint
+
+#TODO
+
+function rmpyc {
+    find . -name "*.pyc" -delete;
+}
