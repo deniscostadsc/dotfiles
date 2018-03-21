@@ -3,8 +3,12 @@ kickstart.context 'Tmux'
 kickstart.package.install tmux
 kickstart.package.install tmate
 
-cp files/tmux/tmux.conf ~/.tmux.conf
+kickstart.info "Copy tmux config file"
+cp --preserve=mode,ownership files/tmux/tmux.conf ~/.tmux.conf
 
-#TODO
-alias tmux="TERM=screen-256color-bce tmux"
-alias my-tmux='tmux attach -t denis || tmux new -s denis'
+echo >> ~/.bashrc
+echo "# Git - added by kickstart" >> ~/.bashrc
+
+kickstart.info "Add aliases to bashrc"
+echo "alias tmux='TERM=screen-256color-bce tmux'" >> ~/.bashrc
+echo "alias my-tmux='tmux attach -t denis || tmux new -s denis'" >> ~/.bashrc
