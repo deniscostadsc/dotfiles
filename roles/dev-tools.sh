@@ -1,3 +1,5 @@
+#!/bin/bash
+
 kickstart.context 'Dev Tools'
 
 kickstart.package.install curl

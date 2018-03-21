@@ -1,3 +1,5 @@
+#!/bin/bash
+
 kickstart.context 'Browsers'
 
 kickstart.package.install chromium-browser

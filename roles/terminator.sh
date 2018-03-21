@@ -1,3 +1,5 @@
+#!/bin/bash
+
 kickstart.context 'Terminator'
 
 kickstart.package.install terminator

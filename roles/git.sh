@@ -1,3 +1,5 @@
+#!/bin/bash
+
 kickstart.context 'Git'
 
 kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:git-core/ppa

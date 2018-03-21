@@ -1,3 +1,5 @@
+#!/bin/bash
+
 kickstart.context 'Editors'
 
 kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:neovim-ppa/stable

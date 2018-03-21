@@ -1,3 +1,5 @@
+#!/bin/bash
+
 kickstart.context 'Tmux'
 
 kickstart.package.install tmux

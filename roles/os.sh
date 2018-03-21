@@ -1,3 +1,5 @@
+#!/bin/bash
+
 kickstart.context 'OS'
 
 kickstart.package.update

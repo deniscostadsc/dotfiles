@@ -1,3 +1,5 @@
+#!/bin/bash
+
 kickstart.context 'GnuPG'
 
 kickstart.package.install gnupg2

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 kickstart.context 'Bash'
 
 kickstart.info "Copy rcfiles to home folder"

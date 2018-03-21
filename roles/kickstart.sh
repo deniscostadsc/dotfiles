@@ -1,3 +1,5 @@
+#!/bin/bash
+
 kickstart.context 'Kickstart'
 
 source recipes/git.sh

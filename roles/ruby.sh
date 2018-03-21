@@ -1,3 +1,5 @@
+#!/bin/bash
+
 kickstart.context 'Ruby'
 
 source recipes/git.sh

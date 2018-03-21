@@ -1,3 +1,5 @@
+#!/bin/bash
+
 kickstart.context 'Image edition tools'
 
 kickstart.package.install gpick

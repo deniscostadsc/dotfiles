@@ -1,3 +1,5 @@
+#!/bin/bash
+
 kickstart.context 'Python'
 
 source recipes/git.sh
