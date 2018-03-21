@@ -13,10 +13,10 @@ kickstart.git.cloneandpull https://github.com/pyenv/pyenv-virtualenv.git ~/.pyen
 source ~/.bashrc
 
 kickstart.info "Install python libs"
-pip install ipython
-pip install flake8
-pip install pygments
-pip install gitlint
+kickstart.mute pip install ipython
+kickstart.mute pip install flake8
+kickstart.mute pip install pygments
+kickstart.mute pip install gitlint
 
 echo >> ~/.bashrc
 echo "# Python - added by kickstart" >> ~/.bashrc
