@@ -3,23 +3,24 @@ dotfiles
 
 ### @deniscostadsc's dotfiles
 
-This project is a collection of my personal dotfiles.
+This project configure my personal machine. It uses in
+[kickstart](https://github.com/bltavares/kickstart).
 
-To use it, clone the project
+To use it, clone the project:
 
-```bash
+```
 git clone https://github.com/deniscostadsc/dotfiles.git
 ```
 
 or download it:
 
-```bash
+```
 wget https://github.com/deniscostadsc/dotfiles/zipball/master
 ```
 
-unzip and then install system applications and the dotfiles:
+Unzip it, if necessary, then run:
 
-```bash
+```
 cd *dotfiles*
-sudo ./prepare_environment.sh && ./install.sh -f
+sudo ./deploy.sh
 ```
