@@ -7,8 +7,7 @@ if ! which kickstart > /dev/null; then
   install_temporarily_kickstart
 fi
 
-# bash needs be the first
-# git needs to be the second
+# bash needs be the first role to be played
 kickstart local --sudo \
     bash \
     browsers \
@@ -28,4 +27,4 @@ rm -rf compile
 
 # I run the whole deploy as sudo
 # To fix ownership of files this is needed
-find . -group root | xargs sudo chown -R denis:denis
+# find . -group root | xargs sudo chown -R denis:denis
