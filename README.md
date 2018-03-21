@@ -22,5 +22,5 @@ Unzip it, if necessary, then run:
 
 ```
 cd *dotfiles*
-sudo ./deploy.sh
+./deploy.sh
 ```
