@@ -20,8 +20,8 @@ kickstart local --sudo \
     python \
     ruby \
     terminator \
-    virtualization \
-    tmux
+    tmux \
+    virtualization
 
 rm -rf compile
 
