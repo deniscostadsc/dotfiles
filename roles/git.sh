@@ -18,7 +18,7 @@ echo >> ~/.bashrc
 echo "# Git - added by kickstart" >> ~/.bashrc
 
 kickstart.info "Add aliases to bashrc"
-echo "alias git-remove-branchs='git branch -D $(git branch | grep -v "*\|master")'" >> ~/.bashrc
+echo "alias git-remove-branchs='git branch -D \$(git branch | grep -v \"*\\|master\")'" >> ~/.bashrc
 
 kickstart.info "Add functions to bashrc"
 echo 'function __git_arrows {
@@ -42,5 +42,5 @@ echo 'function __git_arrows {
 }' >> ~/.bashrc
 
 echo 'function __git_branch {
-    echo -n "$(git branch 2>/dev/null | grep '^*' | sed 's/* //g')"
+    echo -n "$(git branch 2>/dev/null | grep "^*" | sed "s/* //g")"
 }' >> ~/.bashrc
