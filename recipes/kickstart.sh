@@ -10,9 +10,9 @@ download() {
 }
 
 install_temporarily_kickstart() {
-    cd $(mktemp -d)
+    cd "$(mktemp -d)" || exit 1
     download https://github.com/bltavares/kickstart/archive/master.zip
     unzip master.zip
     export PATH=${PWD}/kickstart-master/bin:$PATH
-    cd -
+    cd - || exit 1
 }

@@ -11,8 +11,10 @@ kickstart.command_exists git || {
 
 kickstart.git.cloneandpull https://github.com/rbenv/rbenv.git ~/.rbenv
 
-cd ~/.rbenv && src/configure && make -C src
-cd -
+cd ~/.rbenv || exit 1
+src/configure
+make -C src
+cd - || exit 1
 
 echo >> ~/.bashrc
 echo "# Ruby - added by kickstart" >> ~/.bashrc
