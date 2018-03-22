@@ -1,8 +1,9 @@
 #!/bin/bash
 
+source recipes/kickstart.sh
+
 if ! which kickstart > /dev/null; then
   echo "kickstart not found on the PATH. Installing kickstart temporarily..."
-  source recipes/kickstart.sh
   install_temporarily_kickstart
 fi
 
@@ -24,7 +25,3 @@ kickstart local --sudo \
     virtualization
 
 rm -rf compile
-
-# I run the whole deploy as sudo
-# To fix ownership of files this is needed
-# find . -group root | xargs sudo chown -R denis:denis
