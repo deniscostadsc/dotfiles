@@ -1,8 +1,8 @@
 download() {
   if which curl; then
-    curl -LO "$1"
+    curl -sLO "$1"
   elif which wget; then
-    wget "$1"
+    wget -q "$1"
   else
     echo you dont have a tool to donwload files
     exit 1
