@@ -6,6 +6,7 @@ kickstart.info "Copy rcfiles to home folder"
 cp --preserve=mode,ownership files/bash/bashrc ~/.bashrc
 cp --preserve=mode,ownership files/bash/bash_profile ~/.bash_profile
 
+kickstart.info "Create ~/.bin folder if does not exist"
 kickstart.mute mkdir ~/.bin || true
 
 kickstart.info "Copy bin files to bin folder"
