@@ -9,7 +9,7 @@ kickstart.info "Copy tmux config file"
 cp --preserve=mode,ownership files/tmux/tmux.conf ~/.tmux.conf
 
 echo >> ~/.bashrc
-echo "# Git - added by kickstart" >> ~/.bashrc
+echo "# Tmux - added by kickstart" >> ~/.bashrc
 
 kickstart.info "Add aliases to bashrc"
 echo "alias tmux='TERM=screen-256color-bce tmux'" >> ~/.bashrc
