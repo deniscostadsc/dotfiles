@@ -4,6 +4,8 @@ kickstart.context 'Editors'
 
 kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:neovim-ppa/stable
 
+kickstart.package.update
+
 kickstart.package.install wget
 
 kickstart.package.install neovim

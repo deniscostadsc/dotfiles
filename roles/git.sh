@@ -4,6 +4,8 @@ kickstart.context 'Git'
 
 kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:git-core/ppa
 
+kickstart.package.update
+
 kickstart.package.install git
 kickstart.package.install gitg
 kickstart.package.install meld
