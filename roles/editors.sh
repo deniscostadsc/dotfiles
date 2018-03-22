@@ -29,7 +29,7 @@ kickstart.command_exists atom || {
     kickstart.mute wget https://atom.io/download/deb
 
     kickstart.info "Install Aton from deb"
-    kickstart.mute dpkg -i deb
+    kickstart.mute apt install deb
     rm deb
 }
 
