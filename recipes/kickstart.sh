@@ -1,3 +1,5 @@
+#!/bin/bash
+
 download() {
   if which curl; then
     curl -sLO "$1"

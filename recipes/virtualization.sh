@@ -1,3 +1,5 @@
+#!/bin/bash
+
 __get_vagrant_latest_version() {
     curl -s https://releases.hashicorp.com/vagrant/ |\
         sed 's/<[^>]*>\|[[:space:]]//g' |\

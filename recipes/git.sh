@@ -1,3 +1,5 @@
+#!/bin/bash
+
 kickstart.git.cloneandpull() {
     [[ ! -d $2 ]] && {
         kickstart.info "Cloning $1"
