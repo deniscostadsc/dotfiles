@@ -25,6 +25,7 @@ kickstart.info "Add aliases to bashrc"
 echo "alias git-remove-branchs='git branch -D \$(git branch | grep -v \"*\\|master\")'" >> ~/.bashrc
 
 kickstart.info "Add functions to bashrc"
+# shellcheck disable=SC2016
 echo 'function __git_arrows {
     git rev-parse --abbrev-ref @"{u}" &>/dev/null || return
     local branch_status
@@ -45,6 +46,7 @@ echo 'function __git_arrows {
     echo $arrows
 }' >> ~/.bashrc
 
+# shellcheck disable=SC2016
 echo 'function __git_branch {
     echo -n "$(git branch 2>/dev/null | grep "^*" | sed "s/* //g")"
 }' >> ~/.bashrc

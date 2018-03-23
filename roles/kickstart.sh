@@ -15,6 +15,7 @@ echo >> ~/.bashrc
 echo "# Kickstart - added by kickstart" >> ~/.bashrc
 
 kickstart.info "Add code complete to bash"
+# shellcheck disable=SC2016
 echo 'eval "$(kickstart autocomplete)"' >> ~/.bashrc
 
 kickstart.info "Create kickstart bin link"

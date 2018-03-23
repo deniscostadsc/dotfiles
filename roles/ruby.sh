@@ -20,5 +20,7 @@ echo >> ~/.bashrc
 echo "# Ruby - added by kickstart" >> ~/.bashrc
 
 kickstart.info "Add rbenv config to bashrc"
+# shellcheck disable=SC2016
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+# shellcheck disable=SC2016
 echo 'eval "$(rbenv init -)"' >> ~/.bashrc
