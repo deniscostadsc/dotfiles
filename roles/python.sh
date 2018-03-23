@@ -12,6 +12,7 @@ kickstart.command_exists git || {
 kickstart.git.cloneandpull https://github.com/pyenv/pyenv.git ~/.pyenv
 kickstart.git.cloneandpull https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
 
+# shellcheck source=/dev/null
 source ~/.bashrc
 
 kickstart.info "Install python libs"
