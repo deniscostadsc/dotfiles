@@ -15,4 +15,4 @@ kickstart.apt.add_key_from_url https://www.virtualbox.org/download/oracle_vbox.a
 kickstart.package.update
 
 kickstart.package.install virtualbox
-kickstart.package.install_vagrant
+kickstart.command_exists vagrant || kickstart.package.install_vagrant
