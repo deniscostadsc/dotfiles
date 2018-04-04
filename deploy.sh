@@ -11,6 +11,7 @@ fi
 kickstart local --sudo \
     bash \
     browsers \
+    communication/irc \
     dev-tools \
     editors \
     git \
