@@ -13,7 +13,8 @@ kickstart local --sudo \
     browsers \
     communication/irc \
     dev-tools \
-    editors \
+    editors/atom \
+    editors/neovim \
     git \
     gnupg \
     image-edition-tools \
