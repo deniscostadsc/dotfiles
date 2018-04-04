@@ -21,6 +21,7 @@ kickstart local --sudo \
     image-edition-tools \
     kickstart \
     os \
+    password-gorilla \
     python \
     ruby \
     terminator \
