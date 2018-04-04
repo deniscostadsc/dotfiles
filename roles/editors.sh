@@ -24,6 +24,12 @@ cp --preserve=mode,ownership files/editors/config/nvim/init.vim ~/.config/nvim
 kickstart.info "Copy ftplugin files"
 cp --preserve=mode,ownership files/editors/vim/after/ftplugin/* ~/.vim/after/ftplugin/
 
+echo >> ~/.bashrc
+echo "# Editors - added by kickstart" >> ~/.bashrc
+
+kickstart.info "Add aliases to bashrc"
+echo "alias vim='nvim'" >> ~/.bashrc
+
 kickstart.command_exists atom || {
     kickstart.info "Download Atom deb file"
     kickstart.mute wget https://atom.io/download/deb
@@ -33,8 +39,9 @@ kickstart.command_exists atom || {
     rm deb
 }
 
-echo >> ~/.bashrc
-echo "# Editors - added by kickstart" >> ~/.bashrc
+kickstart.info "Install Atom plugins"
+kickstart.mute apm install --packages-file files/editors/atom/packages.txt
+kickstart.mute apm upgrade
 
-kickstart.info "Add aliases to bashrc"
-echo "alias vim='nvim'" >> ~/.bashrc
+kickstart.info "Copy Atom config file"
+cp --preserve=mode,ownership files/editors/atom/config.cson ~/.atom/
