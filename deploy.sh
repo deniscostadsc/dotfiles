@@ -20,6 +20,7 @@ kickstart local --sudo \
     gnupg \
     image-edition-tools \
     kickstart \
+    languages/c \
     languages/python \
     languages/ruby \
     os \
