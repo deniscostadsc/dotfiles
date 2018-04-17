@@ -19,4 +19,3 @@ kickstart.mute apm upgrade
 
 kickstart.info "Copy Atom config file"
 cp --preserve=mode,ownership files/editors/atom/config.cson ~/.atom/
-
