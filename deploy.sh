@@ -20,10 +20,10 @@ kickstart local --sudo \
     gnupg \
     image-edition-tools \
     kickstart \
+    languages/python \
+    languages/ruby \
     os \
     password-gorilla \
-    python \
-    ruby \
     terminator \
     tmux \
     virtualization
