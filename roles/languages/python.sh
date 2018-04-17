@@ -2,6 +2,7 @@
 
 kickstart.context 'Python'
 
+source recipes/bash.sh
 source recipes/git.sh
 
 kickstart.command_exists git || {
@@ -21,22 +22,18 @@ kickstart.mute pip install flake8
 kickstart.mute pip install pygments
 kickstart.mute pip install gitlint
 
-{
-echo
-echo "# Python - added by kickstart"
-} >> ~/.bashrc
+kickstart.file.append_once ~/.bashrc ""
+kickstart.file.append_once ~/.bashrc "# Python - added by kickstart"
 
 kickstart.info "Add pyenv config to bashrc"
-{
 # shellcheck disable=SC2016
-echo 'export PYENV_ROOT="$HOME/.pyenv"'
+kickstart.file.append_once ~/.bashrc 'export PYENV_ROOT="$HOME/.pyenv"'
 # shellcheck disable=SC2016
-echo 'export PATH="$PYENV_ROOT/bin:$PATH"'
+kickstart.file.append_once ~/.bashrc 'export PATH="$PYENV_ROOT/bin:$PATH"'
 # shellcheck disable=SC2016
-echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi'
-} >> ~/.bashrc
+kickstart.file.append_once ~/.bashrc 'eval "$(pyenv init -)"'
 
 kickstart.info "Add functions to bashrc"
-echo 'function rmpyc {
+kickstart.file.append_once ~/.bashrc 'function rmpyc {
     find . -name "*.pyc" -delete;
-}' >> ~/.bashrc
+}'

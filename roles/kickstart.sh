@@ -2,6 +2,7 @@
 
 kickstart.context 'Kickstart'
 
+source recipes/bash.sh
 source recipes/git.sh
 
 kickstart.command_exists git || {
@@ -11,12 +12,12 @@ kickstart.command_exists git || {
 
 kickstart.git.cloneandpull https://github.com/bltavares/kickstart.git ~/.kickstart
 
-echo >> ~/.bashrc
-echo "# Kickstart - added by kickstart" >> ~/.bashrc
+kickstart.file.append_once ~/.bashrc ""
+kickstart.file.append_once ~/.bashrc "# Kickstart - added by kickstart"
 
 kickstart.info "Add code complete to bash"
 # shellcheck disable=SC2016
-echo 'eval "$(kickstart autocomplete)"' >> ~/.bashrc
+kickstart.file.append_once ~/.bashrc 'eval "$(kickstart autocomplete)"'
 
 kickstart.info "Create kickstart bin link"
 kickstart.file.link ~/.kickstart/bin/kickstart ~/.bin/kickstart

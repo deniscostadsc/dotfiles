@@ -2,6 +2,8 @@
 
 kickstart.context 'Git'
 
+source recipes/bash.sh
+
 kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:git-core/ppa
 
 kickstart.package.update
@@ -18,15 +20,15 @@ kickstart.info "Copy hook to git template folder"
 kickstart.mute mkdir -p ~/.git_template/hooks || true
 cp --preserve=mode,ownership files/git/hooks/* ~/.git_template/hooks/
 
-echo >> ~/.bashrc
-echo "# Git - added by kickstart" >> ~/.bashrc
+kickstart.file.append_once ~/.bashrc ""
+kickstart.file.append_once ~/.bashrc "# Git - added by kickstart"
 
 kickstart.info "Add aliases to bashrc"
-echo "alias git-remove-branchs='git branch -D \$(git branch | grep -v \"*\\|master\")'" >> ~/.bashrc
+kickstart.file.append_once ~/.bashrc "alias git-remove-branchs='git branch -D \$(git branch | grep -v \"*\\|master\")'"
 
 kickstart.info "Add functions to bashrc"
 # shellcheck disable=SC2016
-echo 'function __git_arrows {
+kickstart.file.append_once ~/.bashrc 'function __git_arrows {
     git rev-parse --abbrev-ref @"{u}" &>/dev/null || return
     local branch_status
 
@@ -44,9 +46,9 @@ echo 'function __git_arrows {
     [ $right_arrow != 0 ] && arrows="${arrows}⇣"
 
     echo $arrows
-}' >> ~/.bashrc
+}'
 
 # shellcheck disable=SC2016
-echo 'function __git_branch {
+kickstart.file.append_once ~/.bashrc 'function __git_branch {
     echo -n "$(git branch 2>/dev/null | grep "^*" | sed "s/* //g")"
-}' >> ~/.bashrc
+}'

@@ -16,11 +16,11 @@ src/configure
 make -C src
 cd - || exit 1
 
-echo >> ~/.bashrc
-echo "# Ruby - added by kickstart" >> ~/.bashrc
+kickstart.file.append_once ~/.bashrc ""
+kickstart.file.append_once ~/.bashrc "# Ruby - added by kickstart"
 
 kickstart.info "Add rbenv config to bashrc"
 # shellcheck disable=SC2016
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+kickstart.file.append_once ~/.bashrc 'export PATH="$HOME/.rbenv/bin:$PATH"'
 # shellcheck disable=SC2016
-echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+kickstart.file.append_once ~/.bashrc 'eval "$(rbenv init -)"'

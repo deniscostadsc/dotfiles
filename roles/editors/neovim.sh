@@ -2,6 +2,8 @@
 
 kickstart.context 'Editors/Neovim'
 
+source recipes/bash.sh
+
 kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:neovim-ppa/stable
 
 kickstart.package.update
@@ -22,8 +24,8 @@ cp --preserve=mode,ownership files/editors/config/nvim/init.vim ~/.config/nvim
 kickstart.info "Copy ftplugin files"
 cp --preserve=mode,ownership files/editors/vim/after/ftplugin/* ~/.vim/after/ftplugin/
 
-echo >> ~/.bashrc
-echo "# Editors - added by kickstart" >> ~/.bashrc
+kickstart.file.append_once ~/.bashrc ""
+kickstart.file.append_once ~/.bashrc "# Editors - added by kickstart"
 
 kickstart.info "Add aliases to bashrc"
-echo "alias vim='nvim'" >> ~/.bashrc
+kickstart.file.append_once ~/.bashrc "alias vim='nvim'"
