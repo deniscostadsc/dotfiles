@@ -12,7 +12,7 @@ kickstart local --sudo \
     bash \
     browsers \
     communication/coyim \
-    communication/irc \
+    communication/irssi \
     dev-tools \
     editors/atom \
     editors/neovim \
