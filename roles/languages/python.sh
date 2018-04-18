@@ -1,6 +1,6 @@
 #!/bin/bash
 
-kickstart.context 'Python'
+kickstart.context 'Languages/Python'
 
 source recipes/bash.sh
 source recipes/git.sh

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-kickstart.context 'C'
+kickstart.context 'Languages/C'
 
 kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:ubuntu-toolchain-r/test
 

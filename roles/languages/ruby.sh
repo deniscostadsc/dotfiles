@@ -1,6 +1,6 @@
 #!/bin/bash
 
-kickstart.context 'Ruby'
+kickstart.context 'Languages/Ruby'
 
 source recipes/git.sh
 
