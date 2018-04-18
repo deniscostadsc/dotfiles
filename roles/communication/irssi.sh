@@ -11,7 +11,7 @@ read -r -s BOUCER_IRC_PORT
 echo -n "Type your IRC bouncer password: "
 read -r -s BOUCER_IRC_PASSWORD
 
-cp --preserve=mode,ownership files/communication/irc/config ~/.irssi/config
+cp --preserve=mode,ownership files/communication/irssi/config ~/.irssi/config
 sed -i "s/\$BOUCER_IRC_ADRESS/$BOUCER_IRC_ADRESS/" ~/.irssi/config
 sed -i "s/\$BOUCER_IRC_PORT/$BOUCER_IRC_PORT/" ~/.irssi/config
 sed -i "s/\$BOUCER_IRC_PASSWORD/$BOUCER_IRC_PASSWORD/" ~/.irssi/config
