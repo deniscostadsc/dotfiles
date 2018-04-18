@@ -28,7 +28,7 @@ kickstart.file.append_once ~/.bashrc "alias git-remove-branchs='git branch -D \$
 
 kickstart.info "Add functions to bashrc"
 # shellcheck disable=SC2016
-kickstart.file.append_once ~/.bashrc 'function __git_arrows {
+echo 'function __git_arrows {
     git rev-parse --abbrev-ref @"{u}" &>/dev/null || return
     local branch_status
 
@@ -46,9 +46,8 @@ kickstart.file.append_once ~/.bashrc 'function __git_arrows {
     [ $right_arrow != 0 ] && arrows="${arrows}⇣"
 
     echo $arrows
-}'
-
+}' >> ~/.bashrc
 # shellcheck disable=SC2016
-kickstart.file.append_once ~/.bashrc 'function __git_branch {
+echo 'function __git_branch {
     echo -n "$(git branch 2>/dev/null | grep "^*" | sed "s/* //g")"
-}'
+}'>> ~/.bashrc
