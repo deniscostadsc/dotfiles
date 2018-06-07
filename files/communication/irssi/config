@@ -305,5 +305,7 @@ settings = {
     proxy_string_after = "conn %s %d";
   };
   "fe-text" = { actlist_sort = "refnum"; };
-  "fe-common/core" = { beep_msg_level = "MSGS HILIGHT DCCMSGS"; };
+  "fe-common/core" = {
+    beep_msg_level = "MSGS NOTICES DCC DCCMSGS HILIGHT";
+  };
 };
