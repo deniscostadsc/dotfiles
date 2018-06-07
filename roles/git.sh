@@ -21,7 +21,7 @@ kickstart.command_exists pyenv || {
     # shellcheck disable=SC2016
     kickstart.file.append_once ~/.bashrc 'eval "$(pyenv init -)"'
 
-    # shellcheck source=~/.bashrc
+    # shellcheck disable=SC1090
     source ~/.bashrc
 }
 
