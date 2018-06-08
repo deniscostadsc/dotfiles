@@ -1,4 +1,4 @@
 #!/bin/bash
 cd ./$(git rev-parse --show-cdup)
 
-find . -name "*.pyc" -delete
+rmpyc
