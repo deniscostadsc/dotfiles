@@ -20,6 +20,9 @@ or download it:
 wget https://github.com/deniscostadsc/dotfiles/zipball/master
 ```
 
+Probably you need restore `.gnupg` folder before deploying in order to check
+packages signatures.
+
 Unzip it, if necessary, then run:
 
 ```
