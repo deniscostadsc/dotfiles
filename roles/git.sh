@@ -3,6 +3,7 @@
 kickstart.context 'Git'
 
 source recipes/bash.sh
+source recipes/python.sh
 
 kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:git-core/ppa
 
