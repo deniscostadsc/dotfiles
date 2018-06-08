@@ -13,9 +13,9 @@ kickstart.command_exists git || {
 kickstart.package.install_pyenv
 
 kickstart.info "Install python libs"
-kickstart.mute pip install ipython
-kickstart.mute pip install flake8
-kickstart.mute pip install pygments
+kickstart.mute pip install -U ipython
+kickstart.mute pip install -U flake8
+kickstart.mute pip install -U pygments
 
 kickstart.file.append_once ~/.bashrc ""
 kickstart.file.append_once ~/.bashrc "# Python - added by kickstart"
