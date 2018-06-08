@@ -5,10 +5,11 @@ kickstart.context 'Kickstart'
 source recipes/bash.sh
 source recipes/git.sh
 
-kickstart.command_exists git || {
-    echo "This role depends on Git role"
-    exit 1
-}
+kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:git-core/ppa
+
+kickstart.package.update
+
+kickstart.package.install git
 
 kickstart.git.cloneandpull https://github.com/bltavares/kickstart.git ~/.kickstart
 
