@@ -10,11 +10,7 @@ kickstart.command_exists git || {
     exit 1
 }
 
-kickstart.git.cloneandpull https://github.com/pyenv/pyenv.git ~/.pyenv
-kickstart.git.cloneandpull https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
-
-# shellcheck source=/dev/null
-source ~/.bashrc
+kickstart.package.install_pyenv
 
 kickstart.info "Install python libs"
 kickstart.mute pip install ipython

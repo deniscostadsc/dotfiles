@@ -12,20 +12,9 @@ kickstart.package.install git
 kickstart.package.install gitg
 kickstart.package.install meld
 
-kickstart.command_exists pyenv || {
-    kickstart.git.cloneandpull https://github.com/pyenv/pyenv.git ~/.pyenv
-    # shellcheck disable=SC2016
-    kickstart.file.append_once ~/.bashrc 'export PYENV_ROOT="$HOME/.pyenv"'
-    # shellcheck disable=SC2016
-    kickstart.file.append_once ~/.bashrc 'export PATH="$PYENV_ROOT/bin:$PATH"'
-    # shellcheck disable=SC2016
-    kickstart.file.append_once ~/.bashrc 'eval "$(pyenv init -)"'
+kickstart.package.install_pyenv
 
-    # shellcheck disable=SC1090
-    source ~/.bashrc
-}
-
-kickstart.mute pip install gitlint
+kickstart.mute pip install -U gitlint
 
 kickstart.info "Copy git config files"
 cp --preserve=mode,ownership files/git/globalignore ~/.config/git/ignore
