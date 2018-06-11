@@ -20,3 +20,9 @@ cp --preserve=mode,ownership files/communication/irssi/config ~/.irssi/config
 sed -i "s/\$BOUCER_IRC_ADRESS/$BOUCER_IRC_ADRESS/" ~/.irssi/config
 sed -i "s/\$BOUCER_IRC_PORT/$BOUCER_IRC_PORT/" ~/.irssi/config
 sed -i "s/\$BOUCER_IRC_PASSWORD/$BOUCER_IRC_PASSWORD/" ~/.irssi/config
+
+mkdir -p ~/.irssi/scripts/autorun/ || true
+cp --preserve=mode,ownership files/communication/irssi/irssi-notifier.sh ~/.bin/
+cp --preserve=mode,ownership files/communication/irssi/notify-listener.py ~/.bin/notify-listener
+cp --preserve=mode,ownership files/communication/irssi/notify.pl ~/.irssi/scripts/
+kickstart.file.link ~/.irssi/scripts/notify.pl ~/.irssi/scripts/autorun/notify.pl
