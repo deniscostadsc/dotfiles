@@ -1,5 +1,11 @@
 language: c
+
+install:
+    - pip install flake8
+
 script:
     - shellcheck **/*.sh
+    - flake8 .
+
 notifications:
     email: false
