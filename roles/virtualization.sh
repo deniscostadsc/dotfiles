@@ -4,6 +4,7 @@ kickstart.context 'Virtualization'
 
 source recipes/virtualization.sh
 
+kickstart.info "Install gnupg2"
 kickstart.package.install gnupg2
 
 kickstart.apt.add_key_from_url https://www.virtualbox.org/download/oracle_vbox_2016.asc
