@@ -15,7 +15,7 @@ kickstart.command_exists atom || {
 
 kickstart.info "Install Atom plugins"
 kickstart.mute apm install --packages-file files/editors/atom/packages.txt
-kickstart.mute apm upgrade
+kickstart.mute apm upgrade --no-confirm
 
 kickstart.info "Copy Atom config file"
 cp --preserve=mode,ownership files/editors/atom/config.cson ~/.atom/
