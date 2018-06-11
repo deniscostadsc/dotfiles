@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source recipes/git.sh
+
 kickstart.package.install_pyenv() {
     kickstart.command_exists pyenv || {
         kickstart.git.cloneandpull https://github.com/pyenv/pyenv.git ~/.pyenv
