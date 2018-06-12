@@ -24,7 +24,7 @@ kickstart local --sudo \
     languages/python \
     languages/ruby \
     os \
-    password-gorilla \
+    password-managers \
     terminator \
     tmux \
     virtualization
