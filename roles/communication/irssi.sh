@@ -24,12 +24,12 @@ echo -n "Type your IRC bouncer password: "
 read -r -s BOUCER_IRC_PASSWORD
 echo
 
-([[ ! -z $BOUCER_IRC_PORT ]] || \
- [[ ! -z $BOUCER_IRC_ADRESS ]] || \
- [[ ! -z $BOUCER_IRC_PASSWORD ]]) && {
+[[ ! -z $BOUCER_IRC_ADRESS ]] && \
+[[ ! -z $BOUCER_IRC_PORT ]] && \
+[[ ! -z $BOUCER_IRC_PASSWORD ]] && {
     kickstart.info "Copy Irssi config files and replace sensitive data"
     cp --preserve=mode,ownership files/communication/irssi/config ~/.irssi/config
     sed -i "s/\$BOUCER_IRC_ADRESS/$BOUCER_IRC_ADRESS/" ~/.irssi/config
     sed -i "s/\$BOUCER_IRC_PORT/$BOUCER_IRC_PORT/" ~/.irssi/config
     sed -i "s/\$BOUCER_IRC_PASSWORD/$BOUCER_IRC_PASSWORD/" ~/.irssi/config
-}
+} || true
