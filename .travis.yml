@@ -1,6 +1,7 @@
 language: c
 
 install:
+    - pip install -U pip
     - pip install flake8
 
 script:
