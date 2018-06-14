@@ -1,1 +1,1 @@
-set -e
+set -euo pipefail
