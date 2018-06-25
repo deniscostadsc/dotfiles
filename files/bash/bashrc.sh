@@ -53,4 +53,4 @@ PATH=~/.bin/:$PATH
 
 export PROJECT_PATH="$HOME/projects/"
 
-export PASSWORD_STORE_DIR="$PROJECT_PATH/password-store"
+export PASSWORD_STORE_DIR="$PROJECT_PATH/secrets/password-store"

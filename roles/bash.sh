@@ -5,8 +5,8 @@ kickstart.context 'Bash'
 source recipes/bash.sh
 
 kickstart.info "Copy rcfiles to home folder"
-cp --preserve=mode,ownership files/bash/bashrc ~/.bashrc
-cp --preserve=mode,ownership files/bash/bash_profile ~/.bash_profile
+cp --preserve=mode,ownership files/bash/bashrc.sh ~/.bashrc
+cp --preserve=mode,ownership files/bash/bash_profile.sh ~/.bash_profile
 
 kickstart.info "Create ~/.bin folder if does not exist"
 kickstart.mute mkdir ~/.bin || true
