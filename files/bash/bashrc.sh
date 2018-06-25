@@ -51,6 +51,16 @@ LC_ALL="en_US.UTF-8"
 
 PATH=~/.bin/:$PATH
 
+alias ll='ls -alhF'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias ls='ls --color=auto'
+
+function mkcd {
+    mkdir -p "$1" && cd "$1" || return 1
+}
+
 export PROJECT_PATH="$HOME/projects/"
 
 export PASSWORD_STORE_DIR="$PROJECT_PATH/secrets/password-store"
