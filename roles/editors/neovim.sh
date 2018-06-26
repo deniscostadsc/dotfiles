@@ -16,16 +16,12 @@ kickstart.mute mkdir -p ~/.vim/after/ftplugin || true
 kickstart.mute mkdir -p ~/.config/nvim || true
 
 kickstart.info "Copy vimrc file"
-cp --preserve=mode,ownership files/editors/vimrc ~/.vimrc
+cp --preserve=mode,ownership files/editors/neovim/vimrc ~/.vimrc
 
 kickstart.info "Copy init.vim file"
-cp --preserve=mode,ownership files/editors/config/nvim/init.vim ~/.config/nvim
+cp --preserve=mode,ownership files/editors/neovim/config/nvim/init.vim ~/.config/nvim
 
 kickstart.info "Copy ftplugin files"
-cp --preserve=mode,ownership files/editors/vim/after/ftplugin/* ~/.vim/after/ftplugin/
+cp --preserve=mode,ownership files/editors/neovim/vim/after/ftplugin/* ~/.vim/after/ftplugin/
 
-kickstart.file.append_once ~/.bashrc ""
-kickstart.file.append_once ~/.bashrc "# Editors - added by kickstart"
-
-kickstart.info "Add aliases to bashrc"
-kickstart.file.append_once ~/.bashrc "alias vim='nvim'"
+kickstart.file.append_file_once files/neovim/bashrc_neovim.sh ~/.bashrc
