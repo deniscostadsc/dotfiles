@@ -2,7 +2,10 @@
 
 kickstart.context 'Communication/CoyIM'
 
-kickstart.mute add-apt-repository universe
+kickstart.os.is "Ubuntu" && (
+    kickstart.mute add-apt-repository universe
+    kickstart.package.install software-properties-common
+)
 
 kickstart.package.update
 
