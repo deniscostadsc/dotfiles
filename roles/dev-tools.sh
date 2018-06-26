@@ -2,6 +2,8 @@
 
 kickstart.context 'Dev Tools'
 
+kickstart.package.update
+
 kickstart.package.install curl
 kickstart.package.install jq
 kickstart.package.install shellcheck
