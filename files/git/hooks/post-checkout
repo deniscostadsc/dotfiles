@@ -1,4 +1,4 @@
 #!/bin/bash
-cd ./$(git rev-parse --show-cdup)
+cd "$(dirname "$(git rev-parse --absolute-git-dir)")" || exit 1
 
-rmpyc
+find . -name "*.pyc" -delete
