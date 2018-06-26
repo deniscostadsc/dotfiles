@@ -10,6 +10,7 @@ kickstart.package.install g++
 kickstart.package.install gcc
 
 kickstart.package.install autotools-dev
+kickstart.package.install clang
 kickstart.package.install clang-format
 kickstart.package.install doxygen
 kickstart.package.install gdb
