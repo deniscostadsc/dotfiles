@@ -51,11 +51,16 @@ LC_ALL="en_US.UTF-8"
 
 PATH=~/.bin/:$PATH
 
-alias ll='ls -alhF'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias ls='ls --color=auto'
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
+alias ll='ls -alhF'
+if [ "$(uname -s)" = "Darwin" ]; then
+    alias ls='ls --color=auto'
+else
+    alias pbcopy='xsel --clipboard --input'
+    alias pbpaste='xsel --clipboard --output'
+fi
 
 function mkcd {
     mkdir -p "$1" && cd "$1" || return 1
