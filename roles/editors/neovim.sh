@@ -24,4 +24,4 @@ cp --preserve=mode,ownership files/editors/neovim/config/nvim/init.vim ~/.config
 kickstart.info "Copy ftplugin files"
 cp --preserve=mode,ownership files/editors/neovim/vim/after/ftplugin/* ~/.vim/after/ftplugin/
 
-kickstart.file.append_file_once files/neovim/bashrc_neovim.sh ~/.bashrc
+kickstart.file.append_file_once files/editors/neovim/bashrc_neovim.sh ~/.bashrc
