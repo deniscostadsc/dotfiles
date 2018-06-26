@@ -6,7 +6,7 @@ install:
 script:
     - shellcheck **/*.sh
     - flake8 .
-    - ./deploy.sh < <(echo -e 'not\\na\\npassword\\n')
+    - DEBUG=1 ./deploy.sh < <(echo -e 'not\\na\\npassword\\n')
 
 notifications:
     email: false
