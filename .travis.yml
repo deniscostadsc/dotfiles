@@ -5,7 +5,7 @@ services:
 
 before_install:
     - docker pull base/archlinux
-    - docker pull docker.io/fedore
+    - docker pull docker.io/fedora
     - docker pull ubuntu:16.04
     - docker pull ubuntu:18.04
 
