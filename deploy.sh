@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
+cd $(dirname $0) || exit 1
+
 source recipes/kickstart.sh
 
 if ! which kickstart > /dev/null; then
