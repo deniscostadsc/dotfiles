@@ -31,7 +31,7 @@ matrix:
 script:
     - shellcheck **/*.sh
     - flake8 .
-    - if [[ $TRAVIS_OS_NAME == 'osx' ]] then
+    - if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
           DEBUG=1 ./deploy.sh < <(echo -e 'not\\na\\npassword\\n')
       else
           docker build -f Dockerfile-${DIST} .
