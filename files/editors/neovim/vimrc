@@ -47,7 +47,7 @@ set tabstop=4
 set smartindent
 
 " General settings
-filetype plugin on
+filetype plugin indent on
 set encoding=utf-8
 map <tab> <c-w><c-w>  " alternating between windows with tab
 set list
