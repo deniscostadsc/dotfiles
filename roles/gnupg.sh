@@ -7,4 +7,4 @@ kickstart.package.update
 kickstart.package.install gnupg2
 
 kickstart.info "Copy GnuPG config files"
-cp --preserve=mode,ownership files/gnupg/* ~/.gnupg/
+cp --preserve=mode,ownership files/gnupg/* $HOME/.gnupg/

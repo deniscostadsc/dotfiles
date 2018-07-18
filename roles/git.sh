@@ -21,11 +21,11 @@ eval "$(pyenv init -)"
 kickstart.mute pip install -U gitlint
 
 kickstart.info "Copy git config files"
-cp --preserve=mode,ownership files/git/globalignore ~/.config/git/ignore
-cp --preserve=mode,ownership files/git/gitconfig ~/.gitconfig
+cp --preserve=mode,ownership files/git/globalignore $HOME/.config/git/ignore
+cp --preserve=mode,ownership files/git/gitconfig $HOME/.gitconfig
 
 kickstart.info "Copy hook to git template folder"
-kickstart.mute mkdir -p ~/.git_template/hooks || true
-cp --preserve=mode,ownership files/git/hooks/* ~/.git_template/hooks/
+kickstart.mute mkdir -p $HOME/.git_template/hooks || true
+cp --preserve=mode,ownership files/git/hooks/* $HOME/.git_template/hooks/
 
-kickstart.file.append_file_once files/git/bashrc_git.sh ~/.bashrc
+kickstart.file.append_file_once files/git/bashrc_git.sh $HOME/.bashrc

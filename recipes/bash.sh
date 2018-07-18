@@ -24,6 +24,6 @@ kickstart.file.append_all_bashrc_files() {
     bashrc_files=$(find .. -name 'bashrc_*')
 
     for bashrc_file in $bashrc_files; do
-        kickstart.file.append_file_once "$bashrc_file" ~/.bashrc
+        kickstart.file.append_file_once "$bashrc_file" $HOME/.bashrc
     done
 }
