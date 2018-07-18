@@ -2,6 +2,7 @@
 
 kickstart.context 'Virtualization'
 
+# shellcheck disable=SC1091
 source recipes/virtualization.sh
 
 kickstart.info "Install gnupg2"

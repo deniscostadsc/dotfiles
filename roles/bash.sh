@@ -2,6 +2,7 @@
 
 kickstart.context 'Bash'
 
+# shellcheck disable=SC1091
 source recipes/bash.sh
 
 kickstart.info "Copy rcfiles to home folder"

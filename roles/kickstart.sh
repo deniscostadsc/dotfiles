@@ -2,7 +2,9 @@
 
 kickstart.context 'Kickstart'
 
+# shellcheck disable=SC1091
 source recipes/bash.sh
+# shellcheck disable=SC1091
 source recipes/git.sh
 
 
