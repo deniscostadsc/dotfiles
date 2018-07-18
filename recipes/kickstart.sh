@@ -1,9 +1,9 @@
 #!/bin/bash
 
 download() {
-  if which curl; then
+  if which curl > /dev/null 2>&1; then
     curl -sLO "$1"
-  elif which wget; then
+  elif which wget > /dev/null 2>&1; then
     wget -q "$1"
   else
     echo "You dont have a tool to donwload files"
