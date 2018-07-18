@@ -1,4 +1,9 @@
-language: python
+language: c
+
+addons:
+    apt:
+        packages:
+            - flake8
 
 services:
     - docker
@@ -8,9 +13,6 @@ before_install:
     - docker pull docker.io/fedora
     - docker pull ubuntu:16.04
     - docker pull ubuntu:18.04
-
-install:
-    - pip install flake8
 
 matrix:
     include:
@@ -29,12 +31,14 @@ matrix:
           env: DIST=archlinux
 
 script:
-    - shellcheck **/*.sh
-    - flake8 .
+    - if [[ ! $TRAVIS_OS_NAME == 'osx' ]]; then
+          flake8 . ;
+          shellcheck **/*.sh ;
+      fi
     - if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
-          DEBUG=1 ./deploy.sh < <(echo -e 'not\\na\\npassword\\n');
+          DEBUG=1 ./deploy.sh < <(echo -e 'not\\na\\npassword\\n') ;
       else
-          docker build -f Dockerfile-${DIST} .;
+          docker build -f Dockerfile-${DIST} . ;
       fi
 
 notifications:
