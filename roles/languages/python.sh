@@ -12,6 +12,9 @@ kickstart.package.update
 kickstart.package.install git
 
 kickstart.package.install_pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 kickstart.info "Install python libs"
 kickstart.mute pip install -U ipython

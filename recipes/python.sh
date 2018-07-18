@@ -14,9 +14,5 @@ kickstart.package.install_pyenv() {
         kickstart.file.append_once ~/.bashrc 'export PATH="$PYENV_ROOT/bin:$PATH"'
         # shellcheck disable=SC2016
         kickstart.file.append_once ~/.bashrc 'eval "$(pyenv init -)"'
-
-        export PYENV_ROOT="$HOME/.pyenv"
-        export PATH="$PYENV_ROOT/bin:$PATH"
-        eval "$(pyenv init -)"
     }
 }

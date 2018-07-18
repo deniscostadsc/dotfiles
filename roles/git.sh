@@ -14,6 +14,9 @@ kickstart.package.install gitg
 kickstart.package.install meld
 
 kickstart.package.install_pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 kickstart.mute pip install -U gitlint
 
