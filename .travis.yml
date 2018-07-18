@@ -1,26 +1,7 @@
 language: c
 
-addons:
-    apt:
-        packages:
-            - flake8
-
 services:
     - docker
-
-before_install:
-    - if [[ ! $TRAVIS_OS_NAME == 'osx' ]]; then
-          docker pull base/archlinux;
-      fi
-    - if [[ ! $TRAVIS_OS_NAME == 'osx' ]]; then
-          docker pull docker.io/fedora;
-      fi
-    - if [[ ! $TRAVIS_OS_NAME == 'osx' ]]; then
-          docker pull ubuntu:16.04;
-      fi
-    - if [[ ! $TRAVIS_OS_NAME == 'osx' ]]; then
-          docker pull ubuntu:18.04;
-      fi
 
 matrix:
     include:
@@ -38,9 +19,22 @@ matrix:
           dist: trusty
           env: DIST=archlinux
 
+before_install:
+    - if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
+          docker pull base/archlinux;
+      fi
+    - if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
+          docker pull docker.io/fedora;
+      fi
+    - if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
+          docker pull ubuntu:16.04;
+      fi
+    - if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
+          docker pull ubuntu:18.04;
+      fi
+
 script:
-    - if [[ ! $TRAVIS_OS_NAME == 'osx' ]]; then
-          flake8 . ;
+    - if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
           shellcheck **/*.sh ;
       fi
     - if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
