@@ -6,11 +6,11 @@ download() {
   elif which wget; then
     wget -q "$1"
   else
-    echo you dont have a tool to donwload files
-    apt update
-    apt install -y curl wget sudo
+    echo "You dont have a tool to donwload files"
+    echo "Installing wget and curl"
+    generic_update
+    generic_install curl wget
     download "$*"
-    #exit 1
   fi
 }
 
