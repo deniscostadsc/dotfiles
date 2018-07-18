@@ -1,10 +1,11 @@
 FROM ubuntu:18.04
 MAINTAINER Denis Costa
 
+RUN apt update
+RUN apt install sudo
+
 RUN mkdir -p /src/
-
 WORKDIR /src/
-
 COPY . /src/
 
 RUN bash -c "DEBUG=1 /src/deploy.sh < <(echo -e 'not\na\npassword\n')"
