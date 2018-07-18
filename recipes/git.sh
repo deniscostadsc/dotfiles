@@ -4,7 +4,7 @@ kickstart.git.cloneandpull() {
     [[ ! -d $2 ]] && {
         kickstart.info "Cloning $1"
         kickstart.mute git clone "$1" "$2"
-        chown "$USER:$USER" -R "$2"
+        chown "$MYUSER:$MYUSER" -R "$2"
     }
 
     kickstart.mute cd "$2" || exit 1

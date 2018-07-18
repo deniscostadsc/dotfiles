@@ -5,11 +5,11 @@ kickstart.context 'Communication/Irssi'
 kickstart.package.install irssi
 
 kickstart.info "Add notification plugin"
-kickstart.file.mkdir_and_chwon $HOME/.irssi/scripts/autorun/
-cp --preserve=mode,ownership files/communication/irssi/irssi-notifier.sh $HOME/.bin/
-cp --preserve=mode,ownership files/communication/irssi/notify-listener.py $HOME/.bin/notify-listener
-cp --preserve=mode,ownership files/communication/irssi/notify.pl $HOME/.irssi/scripts/
-kickstart.file.link $HOME/.irssi/scripts/notify.pl $HOME/.irssi/scripts/autorun/notify.pl
+kickstart.file.mkdir_and_chown $MYHOME/.irssi/scripts/autorun/
+cp --preserve=mode,ownership files/communication/irssi/irssi-notifier.sh $MYHOME/.bin/
+cp --preserve=mode,ownership files/communication/irssi/notify-listener.py $MYHOME/.bin/notify-listener
+cp --preserve=mode,ownership files/communication/irssi/notify.pl $MYHOME/.irssi/scripts/
+kickstart.file.link $MYHOME/.irssi/scripts/notify.pl $MYHOME/.irssi/scripts/autorun/notify.pl
 
 kickstart.info "Ask for sensitive data about bouncer"
 echo -n "Type your IRC bouncer adress: "
@@ -28,8 +28,8 @@ echo
 [[ ! -z $BOUCER_IRC_PORT ]] && \
 [[ ! -z $BOUCER_IRC_PASSWORD ]] && {
     kickstart.info "Copy Irssi config files and replace sensitive data"
-    cp --preserve=mode,ownership files/communication/irssi/config $HOME/.irssi/config
-    sed -i "s/\$BOUCER_IRC_ADRESS/$BOUCER_IRC_ADRESS/" $HOME/.irssi/config
-    sed -i "s/\$BOUCER_IRC_PORT/$BOUCER_IRC_PORT/" $HOME/.irssi/config
-    sed -i "s/\$BOUCER_IRC_PASSWORD/$BOUCER_IRC_PASSWORD/" $HOME/.irssi/config
+    cp --preserve=mode,ownership files/communication/irssi/config $MYHOME/.irssi/config
+    sed -i "s/\$BOUCER_IRC_ADRESS/$BOUCER_IRC_ADRESS/" $MYHOME/.irssi/config
+    sed -i "s/\$BOUCER_IRC_PORT/$BOUCER_IRC_PORT/" $MYHOME/.irssi/config
+    sed -i "s/\$BOUCER_IRC_PASSWORD/$BOUCER_IRC_PASSWORD/" $MYHOME/.irssi/config
 } || true

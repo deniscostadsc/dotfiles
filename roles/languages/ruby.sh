@@ -9,11 +9,11 @@ kickstart.command_exists git || {
     exit 1
 }
 
-kickstart.git.cloneandpull https://github.com/rbenv/rbenv.git $HOME/.rbenv
+kickstart.git.cloneandpull https://github.com/rbenv/rbenv.git $MYHOME/.rbenv
 
-cd $HOME/.rbenv || exit 1
+cd $MYHOME/.rbenv || exit 1
 src/configure
 make -C src
 cd - || exit 1
 
-kickstart.file.append_file_once files/languages/ruby/bashrc_ruby.sh $HOME/.bashrc
+kickstart.file.append_file_once files/languages/ruby/bashrc_ruby.sh $MYHOME/.bashrc

@@ -16,18 +16,18 @@ kickstart.package.install gitg
 kickstart.package.install meld
 
 kickstart.package.install_pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+#export PYENV_ROOT="$MYHOME/.pyenv"
+#export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init -)"
 
-kickstart.mute pip install -U gitlint
+#kickstart.mute pip install -U gitlint
 
 kickstart.info "Copy git config files"
-cp --preserve=mode,ownership files/git/globalignore $HOME/.config/git/ignore
-cp --preserve=mode,ownership files/git/gitconfig $HOME/.gitconfig
+cp --preserve=mode,ownership files/git/globalignore $MYHOME/.config/git/ignore
+cp --preserve=mode,ownership files/git/gitconfig $MYHOME/.gitconfig
 
 kickstart.info "Copy hook to git template folder"
-kickstart.file.mkdir_and_chown $HOME/.git_template/hooks
-cp --preserve=mode,ownership files/git/hooks/* $HOME/.git_template/hooks/
+kickstart.file.mkdir_and_chown $MYHOME/.git_template/hooks
+cp --preserve=mode,ownership files/git/hooks/* $MYHOME/.git_template/hooks/
 
-kickstart.file.append_file_once files/git/bashrc_git.sh $HOME/.bashrc
+kickstart.file.append_file_once files/git/bashrc_git.sh $MYHOME/.bashrc
