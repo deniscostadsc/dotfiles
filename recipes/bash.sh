@@ -27,3 +27,8 @@ kickstart.file.append_all_bashrc_files() {
         kickstart.file.append_file_once "$bashrc_file" $HOME/.bashrc
     done
 }
+
+kickstart.file.mkdir_and_chown() {
+    kickstart.mute mkdir -p "$1" || true
+    kickstart.mute chown "$USER:$USER" -R "$2"
+}

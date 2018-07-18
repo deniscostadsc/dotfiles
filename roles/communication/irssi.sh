@@ -5,7 +5,7 @@ kickstart.context 'Communication/Irssi'
 kickstart.package.install irssi
 
 kickstart.info "Add notification plugin"
-mkdir -p $HOME/.irssi/scripts/autorun/ || true
+kickstart.file.mkdir_and_chwon $HOME/.irssi/scripts/autorun/
 cp --preserve=mode,ownership files/communication/irssi/irssi-notifier.sh $HOME/.bin/
 cp --preserve=mode,ownership files/communication/irssi/notify-listener.py $HOME/.bin/notify-listener
 cp --preserve=mode,ownership files/communication/irssi/notify.pl $HOME/.irssi/scripts/

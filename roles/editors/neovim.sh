@@ -12,8 +12,8 @@ kickstart.package.install neovim
 kickstart.package.install silversearcher-ag
 
 kickstart.info "Create folders fro nvim"
-kickstart.mute mkdir -p $HOME/.vim/after/ftplugin || true
-kickstart.mute mkdir -p $HOME/.config/nvim || true
+kickstart.file.mkdir_and_chown $HOME/.vim/after/ftplugin
+kickstart.file.mkdir_and_chown $HOME/.config/nvim
 
 kickstart.info "Copy vimrc file"
 cp --preserve=mode,ownership files/editors/neovim/vimrc $HOME/.vimrc

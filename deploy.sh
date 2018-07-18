@@ -11,7 +11,7 @@ if ! which kickstart > /dev/null; then
 fi
 
 # bash needs be the first role to be played
-HOME=$HOME kickstart local --sudo \
+USER=$USER HOME=$HOME kickstart local --sudo \
     bash \
     browsers \
     communication/coyim \

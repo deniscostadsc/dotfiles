@@ -25,7 +25,7 @@ cp --preserve=mode,ownership files/git/globalignore $HOME/.config/git/ignore
 cp --preserve=mode,ownership files/git/gitconfig $HOME/.gitconfig
 
 kickstart.info "Copy hook to git template folder"
-kickstart.mute mkdir -p $HOME/.git_template/hooks || true
+kickstart.file.mkdir_and_chown $HOME/.git_template/hooks
 cp --preserve=mode,ownership files/git/hooks/* $HOME/.git_template/hooks/
 
 kickstart.file.append_file_once files/git/bashrc_git.sh $HOME/.bashrc

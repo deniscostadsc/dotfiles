@@ -11,5 +11,5 @@ kickstart.package.update
 
 kickstart.package.install coyim
 
-mkdir -p $HOME/.config/coyim || true
+kickstart.file.mkdir_nad_chown $HOME/.config/coyim
 cp --preserve=mode,ownership files/communication/coyim/accounts.json.enc $HOME/.config/coyim

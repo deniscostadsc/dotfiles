@@ -11,7 +11,7 @@ cp --preserve=mode,ownership files/bash/bash_profile.sh $HOME/.bash_profile
 kickstart.file.append_all_bashrc_files
 
 kickstart.info "Create $HOME/.bin folder if does not exist"
-kickstart.mute mkdir $HOME/.bin || true
+kickstart.file.mkdir_and_chown $HOME/.bin
 
 kickstart.info "Copy bin files to bin folder"
 cp --preserve=mode,ownership files/bash/bin/beep.sh $HOME/.bin/beep
