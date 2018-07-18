@@ -11,12 +11,12 @@ kickstart.file.append_file_once() {
     destiny_file=$2
 
     if ! kickstart.file.contains "$destiny_file" "$file_to_append"; then
-        (
+        {
             echo
             echo "# $file_to_append - appended by kickstart"
             echo
             cat "$file_to_append"
-        ) >> "$destiny_file"
+        } >> "$destiny_file"
     fi
 }
 
