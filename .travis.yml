@@ -47,11 +47,11 @@ script:
     - if [[ $TYPE == 'lint' ]]; then
           shellcheck **/*.sh ;
       fi
-    - if [[ $TYPE = 'build' && $TRAVIS_OS_NAME == 'osx' ]]; then
+    - if [[ $TYPE == 'build' && $TRAVIS_OS_NAME == 'osx' ]]; then
           export MYHOME=~
           export MYUSER=$(whoami)
           DEBUG=1  ./deploy.sh < <(echo -e 'not\\na\\npassword\\n') ;
       fi
-    - if [[ $TYPE = 'build' && $TRAVIS_OS_NAME == 'linux' ]]; then
+    - if [[ $TYPE == 'build' && $TRAVIS_OS_NAME == 'linux' ]]; then
           docker build -f Dockerfile-${DIST} . ;
       fi
