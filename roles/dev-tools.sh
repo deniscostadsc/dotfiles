@@ -11,6 +11,7 @@ kickstart.package.install jq
 kickstart.package.install shellcheck
 kickstart.package.install tree
 kickstart.package.install wget
+kickstart.package.install zeal;
 
 kickstart.mute groupadd docker || true
 kickstart.mute sudo usermod -aG docker "$MYUSER" || true
