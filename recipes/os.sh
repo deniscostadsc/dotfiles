@@ -1,3 +1,5 @@
+#!/bin/bash
+
 generic_install() {
     # shellcheck disable=SC2048
     # shellcheck disable=SC2086

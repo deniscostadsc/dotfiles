@@ -6,4 +6,4 @@ kickstart.package.update
 
 kickstart.package.install terminator
 
-cp --preserve=mode,ownership files/terminator/config $MYHOME/.config/terminator/config
+cp --preserve=mode,ownership files/terminator/config "$MYHOME/.config/terminator/config"
