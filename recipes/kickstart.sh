@@ -1,6 +1,8 @@
 #!/bin/bash
 
 download() {
+  generic_update
+  generic_install which
   if which curl > /dev/null 2>&1; then
     curl -sLO "$1"
   elif which wget > /dev/null 2>&1; then
@@ -8,7 +10,6 @@ download() {
   else
     echo "You dont have a tool to donwload files"
     echo "Installing wget and curl"
-    generic_update
     generic_install curl wget
     download "$*"
   fi
