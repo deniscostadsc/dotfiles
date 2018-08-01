@@ -1,5 +1,8 @@
 language: c
 
+notifications:
+    email: false
+
 services:
     - docker
 
@@ -8,40 +11,46 @@ matrix:
         - os: osx
         - os: linux
           dist: trusty
-          env: DIST=ubuntu1804
+          env:
+              - DIST=ubuntu1804
+              - TYPE=build
         - os: linux
           dist: trusty
-          env: DIST=ubuntu1604
+          env:
+              - DIST=ubuntu1604
+              - TYPE=build
         - os: linux
           dist: trusty
-          env: DIST=fedora
+          env:
+              - DIST=fedora
+              - TYPE=build
         - os: linux
           dist: trusty
-          env: DIST=archlinux
+          env:
+              - DIST=archlinux
+              - TYPE=build
+        - os: linux
+          dist: trusty
+          env:
+              - TYPE=lint
 
 before_install:
     - if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
           docker pull base/archlinux;
-      fi
-    - if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
           docker pull docker.io/fedora;
-      fi
-    - if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
           docker pull ubuntu:16.04;
-      fi
-    - if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
           docker pull ubuntu:18.04;
       fi
 
 script:
-    - if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
+    - if [[ $TYPE == 'lint' ]]; then
           shellcheck **/*.sh ;
       fi
-    - if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
-          DEBUG=1 USER=$(whoami) MYHOME=~ ./deploy.sh < <(echo -e 'not\\na\\npassword\\n') ;
-      else
+    - if [[ $TYPE = 'build' && $TRAVIS_OS_NAME == 'osx' ]]; then
+          export MYHOME=~
+          export MYUSER=$(whoami)
+          DEBUG=1  ./deploy.sh < <(echo -e 'not\\na\\npassword\\n') ;
+      fi
+    - if [[ $TYPE = 'build' && $TRAVIS_OS_NAME == 'linux' ]]; then
           docker build -f Dockerfile-${DIST} . ;
       fi
-
-notifications:
-    email: false
