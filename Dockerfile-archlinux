@@ -1,7 +1,7 @@
 FROM base/archlinux
 MAINTAINER Denis Costa
 
-RUN yum update -y
+RUN pacman -Sy --noconfirm
 RUN pacman -S --noconfirm sudo
 
 RUN mkdir -p /src/
