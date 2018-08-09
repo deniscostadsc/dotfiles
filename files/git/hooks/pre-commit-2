@@ -6,7 +6,7 @@ which clang-format > /dev/null 2>&1 || \
 IFS='
 '
 exitstatus=0
-for file in $(git diff --cached --name-only --diff-filter=ACM | grep '\.h\|\.c'); do
+for file in $(git diff --cached --name-only --diff-filter=ACM | grep '\.h$\|\.c$'); do
     tmp=$(mktemp)
     git cat-file -p :"$file" | clang-format -style=file > "$tmp"
 
