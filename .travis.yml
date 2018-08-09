@@ -53,5 +53,5 @@ script:
           DEBUG=1  ./deploy.sh < <(echo -e 'not\\na\\npassword\\n');
       fi
     - if [[ $TYPE == 'build' && $TRAVIS_OS_NAME == 'linux' ]]; then
-          docker build -f Dockerfile-${DIST} .;
+          docker build -f .ci/Dockerfile-${DIST} .;
       fi
