@@ -50,6 +50,7 @@ script:
           shellcheck **/*.sh ;
       fi
     - if [[ "$TYPE" == "build" && "$TRAVIS_OS_NAME" == "osx" ]]; then
+          set    -vx;
           export MYHOME=~;
           export MYUSER=$(whoami);
           DEBUG=1  ./deploy.sh < <(echo -e 'not\\na\\npassword\\n');
