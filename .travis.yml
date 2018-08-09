@@ -44,6 +44,7 @@ before_install:
       fi
 
 script:
+    - echo $TRAVIS_OS_NAME $TYPE
     - if [[ $TYPE == 'lint' ]]; then
           shellcheck **/*.sh ;
       fi
