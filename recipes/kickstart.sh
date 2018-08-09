@@ -2,15 +2,17 @@
 
 download() {
   generic_update
-  generic_install which
-  if which curl > /dev/null 2>&1; then
-    curl -sLO "$1"
-  elif which wget > /dev/null 2>&1; then
-    wget -q "$1"
-  else
+  if ! command -v curl > /dev/null 2>&2 && ! command -v wget > /dev/null 2>&1; then
     echo "You dont have a tool to donwload files"
     echo "Installing wget and curl"
-    generic_install curl wget
+    generic_install curl
+    generic_install wget
+  fi
+  if command -v curl > /dev/null 2>&1; then
+    curl -sLO "$1"
+  elif command -v wget > /dev/null 2>&1; then
+    wget -q "$1"
+  else
     download "$1"
   fi
 }

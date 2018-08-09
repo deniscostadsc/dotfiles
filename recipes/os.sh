@@ -1,17 +1,49 @@
 #!/bin/bash
 
 generic_install() {
-    # shellcheck disable=SC2048
-    # shellcheck disable=SC2086
-    brew install -y "$*" > /dev/null 2>&1 || \
-    apt install -y "$*" > /dev/null 2>&1 || \
-    yum install -y "$*" > /dev/null 2>&1 || \
-    pacman -S --noconfirm "$*" > /dev/null 2>&1
+    if command -v brew > /dev/null 2>&1; then
+        # shellcheck disable=SC2048
+        # shellcheck disable=SC2086
+        brew install -y $*
+        return 0;
+    fi
+    if command -v apt > /dev/null 2>&1; then
+        # shellcheck disable=SC2048
+        # shellcheck disable=SC2086
+        apt install -y $*
+        return 0;
+    fi
+    if command -v yum > /dev/null 2>&1; then
+        # shellcheck disable=SC2048
+        # shellcheck disable=SC2086
+        yum install -y $*
+        return 0;
+    fi
+    if command -v pacman > /dev/null 2>&1; then
+        # shellcheck disable=SC2048
+        # shellcheck disable=SC2086
+        pacman -S --noconfirm $*
+        return 0;
+    fi
+    return 1;
 }
 
 generic_update() {
-    brew update -y > /dev/null 2>&1 || \
-    apt update > /dev/null 2>&1 || \
-    yum update -y > /dev/null 2>&1 || \
-    pacman -Sy --noconfirm > /dev/null 2>&1
+    if command -v brew > /dev/null 2>&1; then
+        brew update -y
+        return 0;
+    fi
+    if command -v apt > /dev/null 2>&1; then
+        apt update
+        return 0;
+    fi
+    if command -v yum > /dev/null 2>&1; then
+        yum update -y
+        return 0;
+    fi
+    if command -v pacman > /dev/null 2>&1; then
+        pacman -Sy --noconfirm
+        return 0;
+    fi
+    return 1;
 }

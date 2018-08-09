@@ -8,7 +8,8 @@ source recipes/kickstart.sh
 # shellcheck disable=SC1091
 source recipes/os.sh
 
-if ! which kickstart > /dev/null; then
+[ -f /etc/redhat-release ] && generic_install which
+if ! command -v kickstart > /dev/null; then
   echo "kickstart not found on the PATH. Installing kickstart temporarily..."
   install_temporarily_kickstart
 fi

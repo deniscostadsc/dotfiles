@@ -23,6 +23,7 @@ kickstart.package.install_pyenv
 #kickstart.mute pip install -U gitlint
 
 kickstart.info "Copy git config files"
+kickstart.file.mkdir_and_chown "$MYHOME/.config/git/"
 cp --preserve=mode,ownership files/git/globalignore "$MYHOME/.config/git/ignore"
 cp --preserve=mode,ownership files/git/commit_message_template "$MYHOME/.config/git/commit_message_template"
 cp --preserve=mode,ownership files/git/gitconfig "$MYHOME/.gitconfig"

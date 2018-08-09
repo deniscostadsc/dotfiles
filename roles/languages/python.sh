@@ -21,4 +21,4 @@ kickstart.info "Install python libs"
 #kickstart.mute pip install -U flake8
 #kickstart.mute pip install -U pygments
 
-kickstart.file.append_file_once files/languages/python/bashrc_python.sh $MYHOME/.bashrc
+kickstart.file.append_file_once files/languages/python/bashrc_python.sh "$MYHOME/.bashrc"

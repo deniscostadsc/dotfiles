@@ -6,4 +6,6 @@ kickstart.package.update
 
 kickstart.package.install terminator
 
-cp --preserve=mode,ownership files/terminator/config "$MYHOME/.config/terminator/config"
+kickstart.info "Copy Terminator config file"
+kickstart.file.mkdir_and_chown "$MYHOME/.config/terminator/"
+cp --preserve=mode,ownership files/terminator/config "$MYHOME/.config/terminator/"

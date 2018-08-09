@@ -5,6 +5,9 @@ kickstart.context 'Bash'
 # shellcheck disable=SC1091
 source recipes/bash.sh
 
+kickstart.info "Install find and which for Fedora"
+kickstart.os.is "RHEL" && kickstart.package.install which
+
 kickstart.info "Copy rcfiles to home folder"
 cp --preserve=mode,ownership files/bash/bashrc.sh "$MYHOME/.bashrc"
 cp --preserve=mode,ownership files/bash/bash_profile.sh "$MYHOME/.bash_profile"
