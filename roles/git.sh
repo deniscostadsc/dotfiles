@@ -24,6 +24,7 @@ kickstart.package.install_pyenv
 
 kickstart.info "Copy git config files"
 cp --preserve=mode,ownership files/git/globalignore "$MYHOME/.config/git/ignore"
+cp --preserve=mode,ownership files/git/commit_message_template "$MYHOME/.config/git/commit_message_template"
 cp --preserve=mode,ownership files/git/gitconfig "$MYHOME/.gitconfig"
 
 kickstart.info "Copy hook to git template folder"
