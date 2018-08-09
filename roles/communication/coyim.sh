@@ -9,7 +9,6 @@ kickstart.os.is "Ubuntu" && (
 
 kickstart.package.update
 
-kickstart.package.install coyim
-
-kickstart.file.mkdir_and_chown $MYHOME/.config/coyim
-cp --preserve=mode,ownership files/communication/coyim/accounts.json.enc $MYHOME/.config/coyim
+#kickstart.package.install coyim
+kickstart.file.mkdir_and_chown "$MYHOME/.config/coyim"
+cp --preserve=mode,ownership files/communication/coyim/accounts.json.enc "$MYHOME/.config/coyim"
