@@ -10,6 +10,8 @@ matrix:
     fast-finish: true
     include:
         - os: osx
+          env:
+              - TYPE=build
         - os: linux
           dist: trusty
           env:
@@ -44,15 +46,14 @@ before_install:
       fi
 
 script:
-    - echo $TRAVIS_OS_NAME $TYPE
-    - if [[ $TYPE == 'lint' ]]; then
+    - if [[ "$TYPE" == "lint" ]]; then
           shellcheck **/*.sh ;
       fi
-    - if [[ $TYPE == 'build' && $TRAVIS_OS_NAME == 'osx' ]]; then
+    - if [[ "$TYPE" == "build" && "$TRAVIS_OS_NAME" == "osx" ]]; then
           export MYHOME=~;
           export MYUSER=$(whoami);
           DEBUG=1  ./deploy.sh < <(echo -e 'not\\na\\npassword\\n');
       fi
-    - if [[ $TYPE == 'build' && $TRAVIS_OS_NAME == 'linux' ]]; then
+    - if [[ "$TYPE" == "build" && "$TRAVIS_OS_NAME" == "linux" ]]; then
           docker build -f .ci/Dockerfile-${DIST} .;
       fi
