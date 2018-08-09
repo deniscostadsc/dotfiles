@@ -12,12 +12,13 @@ if ! which kickstart > /dev/null; then
   echo "kickstart not found on the PATH. Installing kickstart temporarily..."
   install_temporarily_kickstart
 fi
-#archlinux
-generic_update
-generic_install sudo
 
 # bash needs be the first role to be played
-MYUSER=$USER MYHOME=$HOME kickstart local --sudo \
+cp pre_install.sh install.sh
+echo "export MYUSER=$USER" >> install.sh
+echo "export MYHOME=$HOME" >> install.sh
+
+kickstart local --sudo \
     bash \
     browsers \
     communication/coyim \
@@ -39,3 +40,4 @@ MYUSER=$USER MYHOME=$HOME kickstart local --sudo \
     virtualization
 
 rm -rf compile
+rm -rf install.sh

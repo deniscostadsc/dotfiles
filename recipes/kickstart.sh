@@ -11,7 +11,7 @@ download() {
     echo "You dont have a tool to donwload files"
     echo "Installing wget and curl"
     generic_install curl wget
-    download "$*"
+    download "$1"
   fi
 }
 
