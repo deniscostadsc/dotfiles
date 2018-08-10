@@ -16,7 +16,8 @@ kickstart.package.install_vagrant() {
         wget -q "https://releases.hashicorp.com/vagrant/$version/${package}_SHA256SUMS"
         wget -q "https://releases.hashicorp.com/vagrant/$version/${package}_SHA256SUMS.sig"
 
-        gpg --verify "${package}_SHA256SUMS.sig" "${package}_SHA256SUMS"
+        # On new machines this will fails becasue they dont have hashcorp gpg key
+        # gpg --verify "${package}_SHA256SUMS.sig" "${package}_SHA256SUMS"
         sha256sum -c <(grep "64.deb" "${package}_SHA256SUMS")
 
         apt install "./${package}_x86_64.deb"

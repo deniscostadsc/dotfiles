@@ -7,7 +7,7 @@ kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:ubuntu-toolchain-r/test
 kickstart.package.update
 
 kickstart.package.install clang
-kickstart.package.install g++
+! kickstart.os.is "Arch" && kickstart.package.install g++
 kickstart.package.install gcc
 
 kickstart.package.install autotools-dev
