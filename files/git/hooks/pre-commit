@@ -1,8 +1,8 @@
 #!/bin/bash
 
-path=$(git rev-parse --show-toplevel)
+git_root_dir=$(git rev-parse --show-toplevel)
 
-for hook in "$path"/.git/hooks/pre-commit-*; do
+for hook in "$git_root_dir"/.git/hooks/pre-commit-*; do
     if ! "$hook"; then
         exit 1
     fi
