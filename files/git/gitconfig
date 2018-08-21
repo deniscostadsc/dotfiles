@@ -14,7 +14,7 @@
 
 [commit]
     gpgsign = true
-    template = ~/config/git/commit_message_template
+    template = ~/.config/git/commit_message_template
 
 [core]
     editor = vim
@@ -26,11 +26,11 @@
 [alias]
     a = add
     alias = config --get-regexp alias
-    contributors = !git log --no-merges | grep '^Author:' | sed 's/[^<]*<\\|>[^>]*$//g' | sort | uniq -c | sort -nr
-    authors = contributors
+    authors = !git log --no-merges | grep '^Author:' | sed 's/[^<]*<\\|>[^>]*$//g' | sort | uniq -c | sort -nr
     b = branch
     c = commit -m
     ca = commit -am
+    cached = diff --cached
     ck = checkout
     cl = clone
     d = diff

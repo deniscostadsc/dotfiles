@@ -8,6 +8,7 @@ kickstart.package.install curl
 ! kickstart.os.is "Arch" && kickstart.package.install docker.io
 kickstart.package.install htop
 kickstart.package.install jq
+kickstart.package.install meld
 kickstart.package.install shellcheck
 kickstart.package.install tree
 kickstart.package.install wget

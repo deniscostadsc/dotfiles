@@ -30,6 +30,7 @@ cp --preserve=mode,ownership files/git/gitconfig "$MYHOME/.gitconfig"
 
 kickstart.info "Copy hook to git template folder"
 kickstart.file.mkdir_and_chown "$MYHOME/.git_template/hooks"
+rm -rf "$MYHOME"/.git_template/hooks/*
 cp --preserve=mode,ownership files/git/hooks/* "$MYHOME/.git_template/hooks/"
 
 kickstart.file.append_file_once files/git/bashrc_git.sh "$MYHOME/.bashrc"

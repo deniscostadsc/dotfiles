@@ -1,4 +1,13 @@
 #!/bin/bash
-cd "$(dirname "$(git rev-parse --absolute-git-dir)")" || exit 1
 
-find . -name "*.pyc" -delete
+path=$(git rev-parse --show-toplevel)
+
+"$path"/.git/hooks/ctags > /dev/null 2>&1 &
+
+for hook in "$path"/.git/hooks/post-checkout-*; do
+    if ! "$hook"; then
+        exit 1
+    fi
+done
+
+exit 0

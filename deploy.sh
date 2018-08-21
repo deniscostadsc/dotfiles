@@ -14,11 +14,11 @@ if ! command -v kickstart > /dev/null; then
   install_temporarily_kickstart
 fi
 
-# bash needs be the first role to be played
-cp pre_install.sh install.sh
+cp _install.sh install.sh
 echo "export MYUSER=$USER" >> install.sh
 echo "export MYHOME=$HOME" >> install.sh
 
+# bash needs be the first role to be played
 kickstart local --sudo \
     bash \
     browsers \

@@ -7,7 +7,6 @@ source recipes/bash.sh
 # shellcheck disable=SC1091
 source recipes/git.sh
 
-
 kickstart.info "Install git"
 kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:git-core/ppa
 kickstart.package.update
