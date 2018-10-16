@@ -17,13 +17,16 @@ fi
 cp _install.sh install.sh
 echo "export MYUSER=$USER" >> install.sh
 echo "export MYHOME=$HOME" >> install.sh
+if [ -n ${NO_GPG_VERIFY:-} ]; then
+    echo "export NO_GPG_VERIFY=1" >> install.sh
+else
+    echo "export NO_GPG_VERIFY=0" >> install.sh
+fi
 
 # bash needs be the first role to be played
 kickstart local --sudo \
     bash \
     browsers \
-    communication/coyim \
-    communication/irssi \
     dev-tools \
     editors/atom \
     editors/neovim \
@@ -31,7 +34,6 @@ kickstart local --sudo \
     gnupg \
     image-edition-tools \
     kickstart \
-    languages/c \
     languages/python \
     languages/ruby \
     os \
@@ -39,6 +41,9 @@ kickstart local --sudo \
     terminator \
     tmux \
     virtualization
+    # communication/coyim # old stuff
+    # communication/irssi # old stuff
+    # languages/c # old stuff
 
 rm -rf compile
 rm -rf install.sh

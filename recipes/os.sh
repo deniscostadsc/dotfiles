@@ -10,7 +10,7 @@ generic_install() {
     if command -v apt > /dev/null 2>&1; then
         # shellcheck disable=SC2048
         # shellcheck disable=SC2086
-        apt install -y $*
+        sudo apt install -y $*
         return 0;
     fi
     if command -v yum > /dev/null 2>&1; then
@@ -34,7 +34,7 @@ generic_update() {
         return 0;
     fi
     if command -v apt > /dev/null 2>&1; then
-        apt update
+        sudo apt update
         return 0;
     fi
     if command -v yum > /dev/null 2>&1; then
