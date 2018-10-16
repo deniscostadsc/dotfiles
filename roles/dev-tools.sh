@@ -12,6 +12,7 @@ kickstart.package.install meld
 kickstart.package.install shellcheck
 kickstart.package.install tree
 kickstart.package.install wget
+kickstart.package.install whois
 kickstart.package.install zeal
 
 kickstart.mute groupadd docker || true

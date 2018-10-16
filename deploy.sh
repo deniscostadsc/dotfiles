@@ -17,10 +17,10 @@ fi
 cp _install.sh install.sh
 echo "export MYUSER=$USER" >> install.sh
 echo "export MYHOME=$HOME" >> install.sh
-if [ -n ${NO_GPG_VERIFY:-} ]; then
-    echo "export NO_GPG_VERIFY=1" >> install.sh
-else
+if [ -z ${NO_GPG_VERIFY:-} ]; then
     echo "export NO_GPG_VERIFY=0" >> install.sh
+else
+    echo "export NO_GPG_VERIFY=${NO_GPG_VERIFY}" >> install.sh
 fi
 
 # bash needs be the first role to be played

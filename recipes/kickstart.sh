@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# shellcheck disable=SC1091
+source recipes/os.sh
+
 download() {
   generic_update
   if ! command -v curl > /dev/null 2>&2 && ! command -v wget > /dev/null 2>&1; then

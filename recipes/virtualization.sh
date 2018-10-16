@@ -1,5 +1,11 @@
 #!/bin/bash
 
+kickstart.package.update
+
+kickstart.package.install curl
+kickstart.package.install wget
+kickstart.package.install gnupg2
+
 __get_vagrant_latest_version() {
     curl -s https://releases.hashicorp.com/vagrant/ |\
         sed 's/<[^>]*>\|[[:space:]]//g' |\
@@ -16,11 +22,10 @@ kickstart.package.install_vagrant() {
         wget -q "https://releases.hashicorp.com/vagrant/$version/${package}_SHA256SUMS"
         wget -q "https://releases.hashicorp.com/vagrant/$version/${package}_SHA256SUMS.sig"
 
-        # On new machines this will fails becasue they dont have hashcorp gpg key
         kickstart.gpg_verify "${package}_SHA256SUMS.sig" "${package}_SHA256SUMS"
         sha256sum -c <(grep "64.deb" "${package}_SHA256SUMS")
 
-        apt install "./${package}_x86_64.deb"
+        dpkg -i "./${package}_x86_64.deb"
 
         rm -rf vagrant*
     }

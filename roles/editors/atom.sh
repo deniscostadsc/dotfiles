@@ -10,7 +10,10 @@ kickstart.package.install wget
 
     kickstart.info "Install Aton from deb"
     kickstart.mute dpkg -i deb || apt-get -f install -y && dpkg -i deb
+
+    kickstart.info "Remove atom file"
     rm deb
+
     kickstart.info "Install Atom plugins"
     kickstart.mute apm install --packages-file files/editors/atom/packages.txt
     kickstart.mute apm upgrade --no-confirm
