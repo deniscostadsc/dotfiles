@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# shellcheck source=recipes/gnupg2.sh
+source recipes/gnupg2.sh
+
 kickstart.package.update
 
 kickstart.package.install curl
