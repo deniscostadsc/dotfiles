@@ -10,6 +10,7 @@ kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:git-core/ppa
 kickstart.package.update
 kickstart.package.install git
 kickstart.package.install gcc
+kickstart.package.install make
 
 kickstart.git.cloneandpull https://github.com/rbenv/rbenv.git "$MYHOME/.rbenv"
 
