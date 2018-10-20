@@ -5,7 +5,6 @@ kickstart.context 'Dev Tools'
 kickstart.package.update
 
 kickstart.package.install curl
-kickstart.package.install exuberant-ctags
 kickstart.package.install htop
 kickstart.package.install jq
 kickstart.package.install meld
@@ -14,6 +13,9 @@ kickstart.package.install tree
 kickstart.package.install wget
 kickstart.package.install whois
 kickstart.package.install zeal
+
+! kickstart.os.is "Arch" && kickstart.package.install exuberant-ctags
+kickstart.os.is "Arch" && kickstart.package.install ctags
 
 kickstart.mute groupadd docker || true
 kickstart.mute sudo usermod -aG docker "$MYUSER" || true
