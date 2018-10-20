@@ -2,13 +2,14 @@
 
 kickstart.context 'Languages/Ruby'
 
-# shellcheck disable=SC1091
+# shellcheck source=recipes/git.sh
 source recipes/git.sh
 
-kickstart.command_exists git || {
-    echo "This role depends on Git role"
-    exit 1
-}
+kickstart.info "Install dependencies"
+kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:git-core/ppa
+kickstart.package.update
+kickstart.package.install git
+kickstart.package.install gcc
 
 kickstart.git.cloneandpull https://github.com/rbenv/rbenv.git "$MYHOME/.rbenv"
 
