@@ -47,7 +47,7 @@ before_install:
 
 script:
     - if [[ "$TYPE" == "lint" ]]; then
-          shellcheck $(find . -name '*.sh');
+          shellcheck -x $(find . -name '*.sh');
       fi
     - if [[ "$TYPE" == "build" && "$TRAVIS_OS_NAME" == "osx" ]]; then
           set    -vx;

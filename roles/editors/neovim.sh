@@ -2,6 +2,7 @@
 
 kickstart.context 'Editors/Neovim'
 
+#shellcheck source=recipes/bash.sh
 source recipes/bash.sh
 
 kickstart.os.is "Ubuntu" && {
