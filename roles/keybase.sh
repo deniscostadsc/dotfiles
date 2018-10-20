@@ -6,6 +6,7 @@ source recipes/gnupg2.sh
 kickstart.context 'Keybase'
 
 kickstart.package.install wget
+kickstart.package.install gnupg2
 
 ! kickstart.command_exists run_keybase && kickstart.os.is "Ubuntu" && {
     kickstart.info "Download Keybase deb file and signature"
