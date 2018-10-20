@@ -12,11 +12,11 @@ matrix:
         - os: osx
           env:
               - TYPE=build
-        - os: linux
-          dist: trusty
-          env:
-              - DIST=ubuntu1804
-              - TYPE=build
+        #- os: linux
+          #dist: trusty
+          #env:
+              #- DIST=ubuntu1804
+              #- TYPE=build
         - os: linux
           dist: trusty
           env:
