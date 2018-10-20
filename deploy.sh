@@ -17,7 +17,7 @@ fi
 cp _install.sh install.sh
 echo "export MYUSER=$USER" >> install.sh
 echo "export MYHOME=$HOME" >> install.sh
-if [ -z ${NO_GPG_VERIFY:-} ]; then
+if [ -z "${NO_GPG_VERIFY:-}" ]; then
     echo "export NO_GPG_VERIFY=0" >> install.sh
 else
     echo "export NO_GPG_VERIFY=${NO_GPG_VERIFY}" >> install.sh

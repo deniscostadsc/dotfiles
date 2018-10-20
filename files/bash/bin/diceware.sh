@@ -11,10 +11,10 @@ function dice2int {
     i=0
     number=0
 
-    for current_dice_digit in $(fold -w1 <<< $(echo $1 | rev)); do
+    for current_dice_digit in $(fold -w1 <<< "$(echo "$1" | rev)"); do
         current_dice_digit_index=$((current_dice_digit - 1))
-        number=$(($number + $current_dice_digit_index * $dice_base ** $i))
-        i=$(($i+1))
+        number=$(("$number" + "$current_dice_digit_index" * "$dice_base" ** "$i"))
+        i=$(("$i"+1))
     done
 
     echo $number
@@ -33,7 +33,7 @@ function show_help {
 }
 
 
-while [[ $# > 0 ]]; do
+while [[ $# -gt 0 ]]; do
     case $1 in
         --dice|-d)
             dice_number=$2
@@ -70,26 +70,27 @@ done
 
 
 elegible_words=$(
-    egrep "^[A-Za-z]{${min_word_length},${max_word_length}}$" /usr/share/dict/words | tr '\n' ' ')
-word_count=$(wc -w <<< $elegible_words)
+    grep -E "^[A-Za-z]{${min_word_length},${max_word_length}}$" /usr/share/dict/words | tr '\n' ' ')
+word_count=$(wc -w <<< "$elegible_words")
 
 
 if [[ -z $dice_number ]]; then
-    for ((i = 0; i < $password_word_count; i++)); do
-        echo -n "$(cut -d ' ' -f $(($RANDOM % $word_count + 1)) <<< $elegible_words | tr [:upper:] [:lower:]) "
+    for ((i = 0; i < "$password_word_count"; i++)); do
+        echo -n "$(cut -d ' ' -f $(("$RANDOM" % "$word_count" + 1)) <<< "$elegible_words" | tr '[:upper:]' '[:lower:]') "
     done
 
     echo
     exit 0
 fi
 
-if [ $(dice2int $dice_number) -gt $word_count ]; then
+if [ "$(dice2int "$dice_number")" -gt "$word_count" ]; then
+
     echo
-    echo -n "$dice_number represents the $(dice2int $dice_number)th word, but"
+    echo -n "$dice_number represents the $(dice2int "$dice_number")th word, but"
     echo " we just have $word_count words."
     echo
 
     exit 1
 fi
 
-echo "$(cut -d ' ' -f $(dice2int $dice_number) <<< $elegible_words | tr [:upper:] [:lower:])"
+cut -d ' ' -f "$(dice2int "$dice_number")" <<< "$elegible_words" | tr '[:upper:]' '[:lower:]'
