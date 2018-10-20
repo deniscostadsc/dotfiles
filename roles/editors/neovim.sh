@@ -4,7 +4,10 @@ kickstart.context 'Editors/Neovim'
 
 source recipes/bash.sh
 
-kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:neovim-ppa/stable
+kickstart.os.is "Ubuntu" && {
+    kickstart.package.install software-properties-common
+    kickstart.apt.ppa ppa:neovim-ppa/stable
+}
 
 kickstart.package.update
 
