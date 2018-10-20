@@ -2,11 +2,14 @@
 
 kickstart.context 'Languages/Python'
 
+# shellcheck source=recipes/bash.sh
 source recipes/bash.sh
+# shellcheck source=recipes/git.sh
 source recipes/git.sh
+# shellcheck source=recipes/python.sh
 source recipes/python.sh
 
-kickstart.info "Install git"
+kickstart.info "Install dependencies"
 kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:git-core/ppa
 kickstart.package.update
 kickstart.package.install git
