@@ -20,8 +20,6 @@ kickstart.package.install_pyenv
 #export PATH="$PYENV_ROOT/bin:$PATH"
 #eval "$(pyenv init -)"
 
-#kickstart.mute pip install -U gitlint
-
 kickstart.info "Copy git config files"
 kickstart.file.mkdir_and_chown "$MYHOME/.config/git/"
 cp --preserve=mode,ownership files/git/globalignore "$MYHOME/.config/git/ignore"
