@@ -4,12 +4,12 @@
 source recipes/os.sh
 
 download() {
-  generic_update
+  _generic_update
   if ! command -v curl > /dev/null 2>&2 && ! command -v wget > /dev/null 2>&1; then
     echo "You dont have a tool to donwload files"
     echo "Installing wget and curl"
-    generic_install curl
-    generic_install wget
+    _generic_install curl
+    _generic_install wget
   fi
   if command -v curl > /dev/null 2>&1; then
     curl -sLO "$1"

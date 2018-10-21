@@ -1,6 +1,6 @@
 #!/bin/bash
 
-generic_install() {
+_generic_install() {
     if command -v brew > /dev/null 2>&1; then
         # shellcheck disable=SC2048
         # shellcheck disable=SC2086
@@ -28,7 +28,7 @@ generic_install() {
     return 1;
 }
 
-generic_update() {
+_generic_update() {
     if command -v brew > /dev/null 2>&1; then
         brew update -y
         return 0;
