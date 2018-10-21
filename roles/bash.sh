@@ -2,7 +2,7 @@
 
 kickstart.context 'Bash'
 
-# shellcheck disable=SC1091
+# shellcheck source=recipes/bash.sh
 source recipes/bash.sh
 
 kickstart.info "Install find and which for Fedora"

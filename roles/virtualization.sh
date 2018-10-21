@@ -2,7 +2,7 @@
 
 kickstart.context 'Virtualization'
 
-# shellcheck disable=SC1091
+# shellcheck source=recipes/virtualization.sh
 source recipes/virtualization.sh
 
 kickstart.package.update

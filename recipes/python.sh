@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# shellcheck disable=SC1091
+# shellcheck source=recipes/git.sh
 source recipes/git.sh
+# shellcheck source=recipes/bash.sh
 source recipes/bash.sh
 
 kickstart.package.install_pyenv() {

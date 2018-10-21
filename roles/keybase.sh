@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# shellcheck disable=SC1091
+# shellcheck source=recipes/gnupg2.sh
 source recipes/gnupg2.sh
 
 kickstart.context 'Keybase'

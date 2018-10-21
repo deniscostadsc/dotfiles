@@ -2,9 +2,9 @@
 
 kickstart.context 'Kickstart'
 
-# shellcheck disable=SC1091
+# shellcheck source=recipes/bash.sh
 source recipes/bash.sh
-# shellcheck disable=SC1091
+# shellcheck source=recipes/git.sh
 source recipes/git.sh
 
 kickstart.info "Install git"

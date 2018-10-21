@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# shellcheck disable=SC1091
+# shellcheck source=recipes/os.sh
 source recipes/os.sh
 
 download() {

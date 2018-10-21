@@ -2,9 +2,9 @@
 
 kickstart.context 'Git'
 
-# shellcheck disable=SC1091
+# shellcheck source=recipes/bash.sh
 source recipes/bash.sh
-# shellcheck disable=SC1091
+# shellcheck source=recipes/python.sh
 source recipes/python.sh
 
 kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:git-core/ppa

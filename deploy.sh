@@ -3,9 +3,9 @@ set -euo pipefail
 
 cd "$(dirname "$0")" || exit 1
 
-# shellcheck disable=SC1091
+# shellcheck source=recipes/kickstart.sh
 source recipes/kickstart.sh
-# shellcheck disable=SC1091
+# shellcheck source=recipes/os.sh
 source recipes/os.sh
 
 [ -f /etc/redhat-release ] && generic_install which
