@@ -17,9 +17,6 @@ kickstart.package.install zeal
 ! kickstart.os.is "Arch" && kickstart.package.install exuberant-ctags
 kickstart.os.is "Arch" && kickstart.package.install ctags
 
-kickstart.mute groupadd docker || true
-kickstart.mute sudo usermod -aG docker "$MYUSER" || true
-
 kickstart.info "Copy dev-tools rc file"
 kickstart.file.append_file_once files/dev-tools/bashrc_dev-tools.sh "$MYHOME/.bashrc"
 

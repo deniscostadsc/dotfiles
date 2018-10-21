@@ -27,3 +27,6 @@ kickstart.os.is "Ubuntu" && {
             -o /etc/bash_completion.d/docker-compose
     }
 }
+
+kickstart.mute groupadd docker || true
+kickstart.mute sudo usermod -aG docker "$MYUSER" || true
