@@ -2,6 +2,9 @@
 
 kickstart.context 'Dev Tools'
 
+# shellcheck source=recipes/os.sh
+source recipes/os.sh
+
 kickstart.package.update
 
 kickstart.package.install curl
@@ -22,4 +25,4 @@ kickstart.file.append_file_once files/dev-tools/bashrc_dev-tools.sh "$MYHOME/.ba
 
 kickstart.info "Copy zeal config file"
 kickstart.file.mkdir_and_chown "$MYHOME/.config/Zeal/"
-cp --preserve=mode,ownership files/dev-tools/zeal/* "$MYHOME/.config/Zeal/"
+kickstart.file.copy files/dev-tools/zeal/* "$MYHOME/.config/Zeal/"

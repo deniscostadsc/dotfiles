@@ -47,3 +47,11 @@ generic_update() {
     fi
     return 1;
 }
+
+kickstart.file.copy() {
+    if kickstart.os.is "Mac"; then
+        cp -p "$*"
+    else
+        cp --preserve=mode,ownership "$*"
+    fi
+}

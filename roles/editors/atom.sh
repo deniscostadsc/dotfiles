@@ -2,6 +2,9 @@
 
 kickstart.context 'Editors/Atom'
 
+# shellcheck source=recipes/os.sh
+source recipes/os.sh
+
 kickstart.package.install wget
 
 ! kickstart.command_exists atom && kickstart.os.is "Ubuntu" && {
@@ -21,4 +24,4 @@ kickstart.package.install wget
 
 kickstart.info "Copy Atom config file"
 kickstart.file.mkdir_and_chown "$MYHOME/.atom/"
-cp --preserve=mode,ownership files/editors/atom/config.cson "$MYHOME/.atom/"
+kickstart.file.copy files/editors/atom/config.cson "$MYHOME/.atom/"
