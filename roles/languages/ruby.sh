@@ -11,6 +11,10 @@ kickstart.package.install gcc
 kickstart.package.install make
 
 kickstart.git.cloneandpull https://github.com/rbenv/rbenv.git "$MYHOME/.rbenv"
+# the hooks on this repo are not that important and
+# the manupulation on background by ctags was break the build because
+# when chown was running, some files were already deleted.
+rm -rf "$MYHOME"/.rbenv/.git/hooks/*
 
 cd "$MYHOME/.rbenv" || exit 1
 src/configure

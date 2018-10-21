@@ -14,4 +14,9 @@ kickstart.package.install_pyenv() {
             https://github.com/pyenv/pyenv-virtualenv.git \
             "$MYHOME/.pyenv/plugins/pyenv-virtualenv"
     }
+    # the hooks on this repo are not that important and
+    # the manupulation on background by ctags was break the build because
+    # when chown was running, some files were already deleted.
+    rm -rf "$MYHOME"/.pyenv/.git/hooks/*
+    rm -rf "$MYHOME"/.pyenv/plugins/pyenv-virtualenv/.git/hooks/*
 }
