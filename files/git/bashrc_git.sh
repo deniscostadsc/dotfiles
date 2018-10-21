@@ -12,8 +12,10 @@ function __git_arrows {
     local left_arrow
     local right_arrow
 
-    left_arrow=$(echo "$branch_status" | cut -f 1 -d " ")
-    right_arrow=$(echo "$branch_status" | cut -f 2 -d " ")
+    # shellcheck disable=SC2086
+    left_arrow=$(echo $branch_status | cut -f 1 -d " ")
+    # shellcheck disable=SC2086
+    right_arrow=$(echo $branch_status | cut -f 2 -d " ")
 
     local arrows
     [ "$left_arrow" != 0 ] && arrows="⇡"
