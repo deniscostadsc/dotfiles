@@ -50,8 +50,8 @@ generic_update() {
 
 kickstart.file.copy() {
     if kickstart.os.is "Mac"; then
-        cp -p "$*"
+        cp -p "$@"
     else
-        cp --preserve=mode,ownership "$*"
+        cp --preserve=mode,ownership "$@"
     fi
 }
