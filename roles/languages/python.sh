@@ -10,9 +10,7 @@ source recipes/git.sh
 source recipes/python.sh
 
 kickstart.info "Install Python dependencies"
-kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:git-core/ppa
-kickstart.package.update
-kickstart.package.install git
+kickstart.package.install_git
 
 kickstart.package.install_pyenv
 

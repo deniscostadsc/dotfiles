@@ -3,9 +3,7 @@
 kickstart.context 'Languages/Javascript'
 
 kickstart.info "Install Javascript dependencies"
-kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:git-core/ppa
-kickstart.package.update
-kickstart.package.install git
+kickstart.package.install_git
 
 kickstart.command_exists pyenv || {
     kickstart.git.cloneandpull \

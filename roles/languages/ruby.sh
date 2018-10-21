@@ -6,9 +6,7 @@ kickstart.context 'Languages/Ruby'
 source recipes/git.sh
 
 kickstart.info "Install dependencies"
-kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:git-core/ppa
-kickstart.package.update
-kickstart.package.install git
+kickstart.package.install_git
 kickstart.package.install gcc
 kickstart.package.install make
 

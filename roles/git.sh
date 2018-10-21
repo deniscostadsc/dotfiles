@@ -7,11 +7,8 @@ source recipes/bash.sh
 # shellcheck source=recipes/python.sh
 source recipes/python.sh
 
-kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:git-core/ppa
-
-kickstart.package.update
-
-kickstart.package.install git
+kickstart.info "Install git and git tools"
+kickstart.package.install_git
 kickstart.package.install gitg
 kickstart.package.install meld
 
