@@ -11,7 +11,7 @@ kickstart.package.install wget
     kickstart.info "Install Aton from deb"
     kickstart.mute dpkg -i deb || apt-get -f install -y && dpkg -i deb
 
-    kickstart.info "Remove atom file"
+    kickstart.info "Remove Atom file"
     rm deb
 
     kickstart.info "Install Atom plugins"
