@@ -8,7 +8,7 @@ source recipes/bash.sh
 kickstart.package.update
 
 kickstart.package.install tmux
-kickstart.package.install tmate
+! kickstart.os.is "Arch" && kickstart.package.install tmate
 
 kickstart.info "Copy tmux config file"
 cp --preserve=mode,ownership files/tmux/tmux.conf "$MYHOME/.tmux.conf"
