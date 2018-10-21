@@ -2,27 +2,19 @@
 
 _generic_install() {
     if command -v brew > /dev/null 2>&1; then
-        # shellcheck disable=SC2048
-        # shellcheck disable=SC2086
-        brew install -y $*
+        brew install -y "$@"
         return 0;
     fi
     if command -v apt > /dev/null 2>&1; then
-        # shellcheck disable=SC2048
-        # shellcheck disable=SC2086
-        sudo apt install -y $*
+        sudo apt install -y "$@"
         return 0;
     fi
     if command -v yum > /dev/null 2>&1; then
-        # shellcheck disable=SC2048
-        # shellcheck disable=SC2086
-        yum install -y $*
+        yum install -y "$@"
         return 0;
     fi
     if command -v pacman > /dev/null 2>&1; then
-        # shellcheck disable=SC2048
-        # shellcheck disable=SC2086
-        pacman -S --noconfirm $*
+        pacman -S --noconfirm "$@"
         return 0;
     fi
     return 1;
