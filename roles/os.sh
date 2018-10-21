@@ -4,6 +4,7 @@ kickstart.context 'OS'
 
 kickstart.info "Update OS"
 kickstart.package.update
+echo "DEBUG"
 kickstart.package.upgrade
 
 #kickstart.info "Install find and which for Fedora"
