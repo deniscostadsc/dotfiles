@@ -14,4 +14,6 @@ kickstart.package.install_git
 
 kickstart.package.install_pyenv
 
-kickstart.file.append_file_once files/languages/python/bashrc_python.sh "$MYHOME/.bashrc"
+kickstart.file.append_file_once \
+    files/languages/python/bashrc_python.sh \
+    "$MYHOME/.bashrc"
