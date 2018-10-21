@@ -23,3 +23,5 @@ kickstart.package.install gnupg2
     kickstart.info "Remove keybase files"
     rm keybase_amd64.deb*
 }
+
+:

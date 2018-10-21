@@ -42,8 +42,8 @@ kickstart local --sudo \
     terminator \
     tmux \
     video \
-    virtualization
-    # keybase # https://github.com/keybase/client/issues/6996#issuecomment-430355029
+    virtualization \
+    keybase # https://github.com/keybase/client/issues/6996#issuecomment-430355029
     # communication/coyim # old stuff
     # communication/irssi # old stuff
     # languages/c # old stuff
