@@ -12,11 +12,6 @@ kickstart.package.install_git
 kickstart.package.install gitg
 kickstart.package.install meld
 
-kickstart.package.install_pyenv
-#export PYENV_ROOT="$MYHOME/.pyenv"
-#export PATH="$PYENV_ROOT/bin:$PATH"
-#eval "$(pyenv init -)"
-
 kickstart.info "Copy git config files"
 kickstart.file.mkdir_and_chown "$MYHOME/.config/git/"
 cp --preserve=mode,ownership files/git/globalignore "$MYHOME/.config/git/ignore"
