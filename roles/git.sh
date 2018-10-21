@@ -8,9 +8,10 @@ source recipes/bash.sh
 source recipes/python.sh
 
 kickstart.info "Install git and git tools"
-kickstart.package.install_git
 kickstart.package.install gitg
 kickstart.package.install meld
+kickstart.package.install tig
+kickstart.package.install_git
 
 kickstart.info "Copy git config files"
 kickstart.file.mkdir_and_chown "$MYHOME/.config/git/"
