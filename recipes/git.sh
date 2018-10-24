@@ -14,7 +14,7 @@ kickstart.git.cloneandpull() {
 
     kickstart.mute cd "$2" || exit 1
     kickstart.info "Fetching $1"
-    kickstart.mute git fetch --all
+    kickstart.mute git fetch --tags --all
     kickstart.mute git reset --hard origin/master
     kickstart.mute cd - || exit 1
 }
