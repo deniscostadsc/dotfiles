@@ -9,7 +9,11 @@ kickstart.git.cloneandpull() {
     [[ ! -d $2 ]] && {
         kickstart.info "Cloning $1"
         kickstart.mute git clone "$1" "$2"
-        chown "$MYUSER:$MYUSER" -R "$2"
+        if kickstart.os.is "Mac"; then
+            kickstart.mute chown "$MYUSER" -R "$2"
+        else
+            kickstart.mute chown "$MYUSER:$MYUSER" -R "$2"
+        fi
     }
 
     kickstart.mute cd "$2" || exit 1
