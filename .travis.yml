@@ -7,7 +7,6 @@ services:
     - docker
 
 matrix:
-    fast-finish: true
     include:
         - os: linux
           dist: trusty
