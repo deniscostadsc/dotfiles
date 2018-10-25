@@ -8,6 +8,9 @@ services:
 
 matrix:
     include:
+        - os: osx
+          env:
+              - TYPE=build
         - os: linux
           dist: trusty
           env:
@@ -16,7 +19,17 @@ matrix:
         - os: linux
           dist: trusty
           env:
+              - DIST=ubuntu1804
+              - TYPE=build
+        - os: linux
+          dist: trusty
+          env:
               - DIST=archlinux
+              - TYPE=build
+        - os: linux
+          dist: trusty
+          env:
+              - DIST=fedora
               - TYPE=build
         - os: linux
           dist: trusty
