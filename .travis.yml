@@ -9,24 +9,11 @@ services:
 matrix:
     fast-finish: true
     include:
-        - os: osx
-          env:
-              - TYPE=build
-        #- os: linux
-          #dist: trusty
-          #env:
-              #- DIST=ubuntu1804
-              #- TYPE=build
         - os: linux
           dist: trusty
           env:
               - DIST=ubuntu1604
               - TYPE=build
-        #- os: linux
-          #dist: trusty
-          #env:
-              #- DIST=fedora
-              #- TYPE=build
         - os: linux
           dist: trusty
           env:
@@ -36,6 +23,20 @@ matrix:
           dist: trusty
           env:
               - TYPE=lint
+    allow_failures:
+        - os: osx
+          env:
+              - TYPE=build
+        - os: linux
+          dist: trusty
+          env:
+              - DIST=ubuntu1804
+              - TYPE=build
+        - os: linux
+          dist: trusty
+          env:
+              - DIST=fedora
+              - TYPE=build
 
 before_install:
     - if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
