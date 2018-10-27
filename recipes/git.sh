@@ -1,10 +1,13 @@
 #!/bin/bash
 
 kickstart.package.install_git() {
-    kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:git-core/ppa
+    kickstart.os.is "Ubuntu" && \
+        kickstart.package.install software-properties-common && \
+        kickstart.apt.ppa ppa:git-core/ppa
     kickstart.package.update
     kickstart.package.install git
 }
+
 kickstart.git.cloneandpull() {
     [[ ! -d $2 ]] && {
         kickstart.info "Cloning $1"

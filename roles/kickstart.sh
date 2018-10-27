@@ -8,9 +8,7 @@ source recipes/bash.sh
 source recipes/git.sh
 
 kickstart.info "Install git"
-kickstart.os.is "Ubuntu" && kickstart.apt.ppa ppa:git-core/ppa
-kickstart.package.update
-kickstart.package.install git
+kickstart.package.install_git
 
 kickstart.git.cloneandpull https://github.com/bltavares/kickstart.git "$MYHOME/.kickstart"
 
