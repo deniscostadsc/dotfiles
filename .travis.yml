@@ -34,6 +34,10 @@ matrix:
         - os: linux
           dist: trusty
           env:
+              - TYPE=separateroles
+        - os: linux
+          dist: trusty
+          env:
               - TYPE=lint
     allow_failures:
         - os: osx
@@ -70,4 +74,12 @@ script:
       fi
     - if [[ "$TYPE" == "build" && "$TRAVIS_OS_NAME" == "linux" ]]; then
           docker build -f .ci/Dockerfile-${DIST} .;
+      fi
+    - if [[ "$TYPE" == "separateroles" ]]; then
+          for role in $(find roles -name '*.sh'); do
+              role=$(sed 's/\.sh$//' <<< $role)
+              sed -i "s/###/$role/g" .ci/Dockerfile-separateroles
+              docker build -f .ci/Dockerfile-separateroles .;
+              git ck .
+          done
       fi

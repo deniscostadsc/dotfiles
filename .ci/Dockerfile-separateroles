@@ -1,0 +1,14 @@
+FROM ubuntu:16.04
+MAINTAINER Denis Costa
+
+RUN apt update
+RUN apt install sudo wget unzip
+
+RUN mkdir -p /src/
+WORKDIR /src/
+COPY . /src/
+
+RUN wget -q https://github.com/bltavares/kickstart/archive/master.zip
+RUN unzip master.zip
+ENV PATH="${PWD}/kickstart-master/bin:${PATH}"
+RUN DEBUG=1 kickstart local --sudo ###
