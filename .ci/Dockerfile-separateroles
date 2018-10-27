@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 MAINTAINER Denis Costa
 
 RUN apt update
-RUN apt install sudo wget unzip
+RUN apt install -y sudo wget unzip
 
 RUN mkdir -p /src/
 WORKDIR /src/
