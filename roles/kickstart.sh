@@ -13,6 +13,3 @@ kickstart.package.install_git
 kickstart.git.cloneandpull https://github.com/bltavares/kickstart.git "$MYHOME/.kickstart"
 
 kickstart.file.append_file_once files/kickstart/bashrc_kickstart.sh "$MYHOME/.bashrc"
-
-kickstart.info "Create kickstart bin link"
-kickstart.file.link "$MYHOME/.kickstart/bin/kickstart" "$MYHOME/.bin/kickstart"
