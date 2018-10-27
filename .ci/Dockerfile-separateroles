@@ -10,5 +10,4 @@ COPY . /src/
 
 RUN wget -q https://github.com/bltavares/kickstart/archive/master.zip
 RUN unzip master.zip
-ENV PATH="${PWD}/kickstart-master/bin:${PATH}"
-RUN DEBUG=1 kickstart local --sudo ###
+RUN PATH="${PWD}/kickstart-master/bin:${PATH}" DEBUG=1 kickstart local --sudo ###
