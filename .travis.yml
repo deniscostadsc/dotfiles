@@ -53,6 +53,10 @@ matrix:
           env:
               - DIST=fedora
               - TYPE=build
+        - os: linux
+          dist: trusty
+          env:
+              - TYPE=separateroles
 
 before_install:
     - if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
