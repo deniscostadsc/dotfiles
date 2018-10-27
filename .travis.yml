@@ -80,6 +80,6 @@ script:
               role=$(sed 's/\.sh$//' <<< $role);
               sed -i "s/###/$role/g" .ci/Dockerfile-separateroles;
               docker build -f .ci/Dockerfile-separateroles .;
-              git ck .;
+              git checkout .;
           done
       fi
