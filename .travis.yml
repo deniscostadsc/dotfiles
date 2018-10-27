@@ -77,9 +77,9 @@ script:
       fi
     - if [[ "$TYPE" == "separateroles" ]]; then
           for role in $(find roles -name '*.sh'); do
-              role=$(sed 's/\.sh$//' <<< $role)
-              sed -i "s/###/$role/g" .ci/Dockerfile-separateroles
+              role=$(sed 's/\.sh$//' <<< $role);
+              sed -i "s/###/$role/g" .ci/Dockerfile-separateroles;
               docker build -f .ci/Dockerfile-separateroles .;
-              git ck .
+              git ck .;
           done
       fi
