@@ -10,7 +10,15 @@ source recipes/git.sh
 source recipes/python.sh
 
 kickstart.info "Install dependencies"
-kickstart.package.install libbz2-dev
+
+kickstart.os.is "Ubuntu" && {
+    kickstart.package.install libbz2-dev
+}
+
+kickstart.os.is "Arch" && {
+    kickstart.package.install bzip2
+}
+
 kickstart.package.install libreadline-dev
 kickstart.package.install libsqlite3-dev
 kickstart.package.install libssl-dev
