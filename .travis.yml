@@ -83,7 +83,7 @@ script:
           for role in $(find roles -name '*.sh'); do
               role=$(sed 's/\.sh$//' <<< $role);
               echo $role;
-              sed -i "s/###/$role/g" .ci/Dockerfile-separateroles;
+              sed -i "s|###|$role|g" .ci/Dockerfile-separateroles;
               cat .ci/Dockerfile-separateroles;
               exit 0;
               docker build -f .ci/Dockerfile-separateroles .;
