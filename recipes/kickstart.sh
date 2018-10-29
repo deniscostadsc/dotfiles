@@ -3,7 +3,7 @@
 # shellcheck source=recipes/os.sh
 source recipes/os.sh
 
-download() {
+_download() {
   _generic_update
   if ! command -v curl > /dev/null 2>&2 && ! command -v wget > /dev/null 2>&1; then
     echo "You dont have a tool to donwload files"
@@ -22,7 +22,7 @@ download() {
 
 install_temporarily_kickstart() {
     cd "$(mktemp -d)" || exit 1
-    download https://github.com/bltavares/kickstart/archive/master.zip
+    _download https://github.com/bltavares/kickstart/archive/master.zip
     _generic_install unzip
     unzip master.zip
     export PATH=${PWD}/kickstart-master/bin:$PATH
