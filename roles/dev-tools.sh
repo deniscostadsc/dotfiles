@@ -2,6 +2,8 @@
 
 kickstart.context 'Dev Tools'
 
+# shellcheck source=recipes/bash.sh
+source recipes/bash.sh
 # shellcheck source=recipes/os.sh
 source recipes/os.sh
 
