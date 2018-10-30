@@ -47,3 +47,12 @@ kickstart.file.copy() {
         cp --preserve=mode,ownership "$@"
     fi
 }
+
+kickstart.file.mkdir_and_chown() {
+    kickstart.mute mkdir -p "$1" || true
+    if kickstart.os.is "Mac"; then
+        kickstart.mute chown -R "$MYUSER" "$1"
+    else
+        kickstart.mute chown "$MYUSER:$MYUSER" -R "$1"
+    fi
+}

@@ -2,10 +2,10 @@
 
 kickstart.context 'Git'
 
-# shellcheck source=recipes/os.sh
-source recipes/os.sh
 # shellcheck source=recipes/bash.sh
 source recipes/bash.sh
+# shellcheck source=recipes/os.sh
+source recipes/os.sh
 # shellcheck source=recipes/python.sh
 source recipes/python.sh
 
