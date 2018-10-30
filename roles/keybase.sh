@@ -16,9 +16,10 @@ kickstart.package.install gnupg2
     kickstart.info "Verify deb file signature"
     kickstart.gpg_verify keybase_amd64.deb.sig keybase_amd64.deb
 
-    kickstart.info "Install keybase"
-    kickstart.mute dpkg -i keybase_amd64.deb
-    kickstart.mute apt-get install -f
+    kickstart.info "Install keybase from deb"
+    kickstart.mute dpkg -i keybase_amd64.deb || \
+        kickstart.mute apt-get install -f && \
+        kickstart.mute dpkg -i keybase_amd64.deb
 
     kickstart.info "Remove keybase files"
     rm keybase_amd64.deb*
