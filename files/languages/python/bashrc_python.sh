@@ -6,3 +6,5 @@ eval "$(pyenv init -)"
 function rmpyc {
     find . -name "*.pyc" -delete
 }
+
+eval "$(pyenv virtualenv-init -)"
