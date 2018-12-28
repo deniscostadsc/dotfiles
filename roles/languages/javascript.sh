@@ -5,7 +5,7 @@ kickstart.context 'Languages/Javascript'
 kickstart.info "Install Javascript dependencies"
 kickstart.package.install_git
 
-kickstart.command_exists pyenv || {
+kickstart.command_exists nvm || {
     kickstart.git.cloneandpull \
         https://github.com/creationix/nvm.git \
         "$MYHOME/.nvm"
