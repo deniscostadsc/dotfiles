@@ -22,6 +22,7 @@ kickstart.file.copy files/git/commit_message_template "$MYHOME/.config/git/commi
 kickstart.file.copy files/git/gitconfig "$MYHOME/.gitconfig"
 
 kickstart.info "Copy hook to git template folder"
+kickstart.file.mkdir_and_chown "$MYHOME/.git_template"
 kickstart.file.mkdir_and_chown "$MYHOME/.git_template/hooks"
 rm -rf "$MYHOME"/.git_template/hooks/*
 kickstart.file.copy files/git/hooks/* "$MYHOME/.git_template/hooks/"
