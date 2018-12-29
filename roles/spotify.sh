@@ -10,6 +10,3 @@ kickstart.package.install_flatpak
 
 kickstart.info "Install spotify"
 flatpak install -y flathub com.spotify.Client
-
-kickstart.info "Install spotify desktop file"
-kickstart.file.copy files/spotify/spotify.desktop "/usr/share/applications/"
