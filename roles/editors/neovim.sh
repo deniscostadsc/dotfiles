@@ -19,7 +19,10 @@ kickstart.package.install neovim
 ! kickstart.os.is "Arch" && kickstart.package.install silversearcher-ag
 
 kickstart.info "Create folders fro nvim"
+kickstart.file.mkdir_and_chown "$MYHOME/.vim/"
+kickstart.file.mkdir_and_chown "$MYHOME/.vim/after/"
 kickstart.file.mkdir_and_chown "$MYHOME/.vim/after/ftplugin"
+kickstart.file.mkdir_and_chown "$MYHOME/.config/"
 kickstart.file.mkdir_and_chown "$MYHOME/.config/nvim"
 
 kickstart.info "Copy vimrc file"
