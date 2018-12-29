@@ -35,7 +35,6 @@ kickstart local --sudo \
     editors/atom \
     editors/neovim \
     git \
-    spotify \
     gnupg \
     image-edition-tools \
     kickstart \
@@ -44,6 +43,7 @@ kickstart local --sudo \
     languages/ruby \
     os \
     password-managers \
+    spotify \
     terminator \
     tmux \
     video \
