@@ -19,6 +19,10 @@ echo "export MYUSER=$USER" >> install.sh
 echo "export MYHOME=$HOME" >> install.sh
 if [ -z "${NO_GPG_VERIFY:-}" ]; then
     echo "export NO_GPG_VERIFY=0" >> install.sh
+    if [[ ! -d ~/.gnupg ]]; then
+        echo "You need to restore ~/.gnupg folder in order to verify GPG signatures"
+        exit 1
+    fi
 else
     echo "export NO_GPG_VERIFY=${NO_GPG_VERIFY}" >> install.sh
 fi
