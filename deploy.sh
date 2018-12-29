@@ -49,6 +49,7 @@ kickstart local --sudo \
     video \
     virtualization \
     keybase # https://github.com/keybase/client/issues/6996#issuecomment-430355029
+    # dropbox # not yet
     # communication/coyim # old stuff
     # communication/irssi # old stuff
     # languages/c # old stuff
