@@ -21,4 +21,6 @@ kickstart.os.is "Ubuntu" && {
     kickstart.mute apt -y autoclean
     kickstart.mute apt -y autoremove
 }
-:
+
+
+kickstart.file.mkdir_and_chown "$MYHOME/projects"
