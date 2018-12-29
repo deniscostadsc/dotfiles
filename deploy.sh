@@ -35,6 +35,7 @@ kickstart local --sudo \
     editors/atom \
     editors/neovim \
     git \
+    spotify \
     gnupg \
     image-edition-tools \
     kickstart \

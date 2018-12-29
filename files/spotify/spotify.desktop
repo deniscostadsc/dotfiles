@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Spotify
+GenericName=Spotify
+Comment=Music for everyone
+Exec=flatpak run com.spotify.Client
+Terminal=false
+Type=Application
+Icon=com.spotify.Client
+StartupNotify=false
