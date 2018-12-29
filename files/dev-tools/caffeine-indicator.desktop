@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Caffeine-Indicator
+GenericName=Caffeine-Indicator
+Comment=Toggle desktop idleness inhibition
+Exec=caffeine-indicator
+Terminal=false
+Type=Application
+StartupNotify=false
