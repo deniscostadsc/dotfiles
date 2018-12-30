@@ -19,11 +19,10 @@ kickstart.package.install wget
 kickstart.package.install whois
 kickstart.package.install zeal
 
+! kickstart.os.is "Arch" && kickstart.package.install caffeine
+
 ! kickstart.os.is "Arch" && kickstart.package.install exuberant-ctags
 kickstart.os.is "Arch" && kickstart.package.install ctags
-
-! kickstart.os.is "Arch" && kickstart.package.install caffeine
-kickstart.os.is "Arch" && kickstart.package.install caffeine-ng
 
 kickstart.info "Copy caffeine config file"
 kickstart.file.mkdir_and_chown "$MYHOME/.config/autostart/"
