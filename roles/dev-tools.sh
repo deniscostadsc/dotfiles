@@ -26,6 +26,7 @@ kickstart.os.is "Arch" && kickstart.package.install ctags
 kickstart.os.is "Arch" && kickstart.package.install caffeine-ng
 
 kickstart.info "Copy caffeine config file"
+kickstart.file.mkdir_and_chown "$MYHOME/.config/autostart/"
 kickstart.file.copy files/dev-tools/caffeine-indicator.desktop "$MYHOME/.config/autostart/"
 
 kickstart.info "Copy dev-tools rc file"
