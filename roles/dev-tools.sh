@@ -9,7 +9,6 @@ source recipes/os.sh
 
 kickstart.package.update
 
-kickstart.package.install caffeine
 kickstart.package.install curl
 kickstart.package.install htop
 kickstart.package.install jq
@@ -22,6 +21,9 @@ kickstart.package.install zeal
 
 ! kickstart.os.is "Arch" && kickstart.package.install exuberant-ctags
 kickstart.os.is "Arch" && kickstart.package.install ctags
+
+! kickstart.os.is "Arch" && kickstart.package.install caffeine
+kickstart.os.is "Arch" && kickstart.package.install caffeine-ng
 
 kickstart.info "Copy caffeine config file"
 kickstart.file.copy files/dev-tools/caffeine-indicator.desktop "$MYHOME/.config/autostart/"
