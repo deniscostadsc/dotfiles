@@ -43,6 +43,7 @@ kickstart local --sudo \
     languages/ruby \
     os \
     password-managers \
+    slack \
     spotify \
     terminator \
     tmux \
