@@ -34,6 +34,7 @@ kickstart local --sudo \
     dev-tools \
     editors/atom \
     editors/neovim \
+    editors/vscode \
     git \
     gnupg \
     image-edition-tools \
