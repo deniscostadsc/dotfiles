@@ -6,6 +6,12 @@ kickstart.context 'Dev Tools'
 source recipes/bash.sh
 # shellcheck source=recipes/os.sh
 source recipes/os.sh
+# shellcheck source=recipes/flatpak.sh
+source recipes/flatpak.sh
+
+kickstart.info "Install flatpak"
+kickstart.package.install_flatpak
+
 
 kickstart.package.update
 
@@ -18,6 +24,7 @@ kickstart.package.install tree
 kickstart.package.install wget
 kickstart.package.install whois
 kickstart.package.install zeal
+flatpak install -y flathub io.dbeaver.DBeaverCommunity
 
 ! kickstart.os.is "Arch" && kickstart.package.install caffeine
 
