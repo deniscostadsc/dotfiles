@@ -31,6 +31,7 @@ fi
 kickstart local --sudo \
     bash \
     browsers \
+    communication/slack \
     dev-tools \
     editors/atom \
     editors/neovim \
@@ -44,7 +45,6 @@ kickstart local --sudo \
     languages/ruby \
     os \
     password-managers \
-    slack \
     spotify \
     terminator \
     tmux \
