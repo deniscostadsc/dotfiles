@@ -1,5 +1,5 @@
 # shellcheck disable=SC2148
-alias git-remove-branchs='git branch -D \$(git branch | grep -v \"*\\|master\")'
+alias git-remove-branchs='git branch -D $(git branch | grep -v "*\|master")'
 
 function __git_arrows {
     git rev-parse --abbrev-ref @"{u}" &>/dev/null || return
