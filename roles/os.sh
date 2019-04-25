@@ -11,7 +11,7 @@ kickstart.package.install_flatpak
 kickstart.info "Update OS"
 kickstart.package.update
 kickstart.package.upgrade
-flatpak update -y
+kickstart.mute flatpak update -y
 
 #kickstart.info "Install find and which for Fedora"
 #kickstart.os.is "RHEL" && kickstart.package.install which

@@ -14,11 +14,11 @@ kickstart.git.cloneandpull https://github.com/rbenv/rbenv.git "$MYHOME/.rbenv"
 # the hooks on this repo are not that important and
 # the manupulation on background by ctags was break the build because
 # when chown was running, some files were already deleted.
-rm -rf "$MYHOME"/.rbenv/.git/hooks/*
+kickstart.mute rm -rf "$MYHOME"/.rbenv/.git/hooks/*
 
-cd "$MYHOME/.rbenv" || exit 1
-src/configure
-make -C src
-cd - || exit 1
+kickstart.mute cd "$MYHOME/.rbenv" || exit 1
+kickstart.mute src/configure
+kickstart.mute make -C src
+kickstart.mute cd - || exit 1
 
 kickstart.file.append_file_once files/languages/ruby/bashrc_ruby.sh "$MYHOME/.bashrc"
