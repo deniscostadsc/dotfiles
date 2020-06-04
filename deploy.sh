@@ -33,6 +33,7 @@ kickstart local --sudo \
     browsers \
     communication/slack \
     dev-tools \
+    docker \
     editors/atom \
     editors/neovim \
     editors/vscode \
