@@ -1,0 +1,29 @@
+---
+- name: install neovim
+  package:
+    name: neovim
+    state: present
+  become: "{{ become_root }}"
+
+- name: install silversearch when in OSX
+  when: ansible_distribution == 'MacOSX'
+  package:
+    name: the_silver_searcher
+    state: present
+
+- name: copy vimrc when in OSX
+  when: ansible_distribution == 'MacOSX'
+  copy:
+    src: files/.vimrc
+    dest: /Users/denis.costa/
+
+- name: copy neovim config when in OSX
+  when: ansible_distribution == 'MacOSX'
+  copy:
+    src: files/nvim
+    dest: /Users/denis.costa/.config/
+
+- name: append neovim to .bashrc
+  ansible.builtin.lineinfile:
+    path: /Users/denis.costa/.bashrc
+    line: alias vim='nvim'

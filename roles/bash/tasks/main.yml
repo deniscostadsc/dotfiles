@@ -1,0 +1,6 @@
+---
+- name: change user shell to bash
+  become: true
+  user:
+    name: denis.costa
+    shell: /bin/bash
