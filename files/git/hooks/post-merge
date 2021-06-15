@@ -1,5 +1,0 @@
-#!/bin/bash
-
-git_root_dir=$(git rev-parse --show-toplevel)
-
-"$git_root_dir"/.git/hooks/ctags > /dev/null 2>&1 &

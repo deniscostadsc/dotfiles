@@ -1,3 +1,0 @@
-dracula-syntax@2.0.6
-markdown-toc@0.4.2
-
