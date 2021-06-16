@@ -11,19 +11,17 @@
     name: the_silver_searcher
     state: present
 
-- name: copy vimrc when in OSX
-  when: ansible_distribution == 'MacOSX'
+- name: copy vimrc
   copy:
     src: files/.vimrc
-    dest: /Users/denis.costa/
+    dest: "{{ home_folder }}/"
 
-- name: copy neovim config when in OSX
-  when: ansible_distribution == 'MacOSX'
+- name: copy neovim config
   copy:
     src: files/nvim
-    dest: /Users/denis.costa/.config/
+    dest: "{{ home_folder }}/.config/"
 
 - name: append neovim to .bashrc
   ansible.builtin.lineinfile:
-    path: /Users/denis.costa/.bashrc
+    path: "{{ home_folder }}/.bashrc"
     line: alias vim='nvim'

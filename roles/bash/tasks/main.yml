@@ -2,5 +2,25 @@
 - name: change user shell to bash
   become: true
   user:
-    name: denis.costa
+    name: "{{ current_user }}"
     shell: /bin/bash
+
+- name: copy .bash_profile to home folder
+  copy:
+    src: files/.bash_profile
+    dest: "{{ home_folder }}"
+
+- name: copy .bashrc to home folder
+  copy:
+    src: files/.bashrc
+    dest: "{{ home_folder }}"
+
+- name: copy colors to ~/.bin
+  copy:
+    src: files/colors
+    dest: "{{ home_folder }}/.bin/"
+
+- name: copy diceware to ~/.bin
+  copy:
+    src: files/diceware
+    dest: "{{ home_folder }}/.bin/"
