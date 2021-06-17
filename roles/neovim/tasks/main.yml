@@ -11,7 +11,7 @@
     name: the_silver_searcher
     state: present
 
-- name: copy vimrc
+- name: copy vim config
   copy:
     src: files/.vimrc
     dest: "{{ home_folder }}/"
@@ -21,7 +21,8 @@
     src: files/nvim
     dest: "{{ home_folder }}/.config/"
 
-- name: append neovim to .bashrc
+- name: add neovim alias
   ansible.builtin.lineinfile:
     path: "{{ home_folder }}/.bashrc"
+    insertafter: '^# aliases$'
     line: alias vim='nvim'

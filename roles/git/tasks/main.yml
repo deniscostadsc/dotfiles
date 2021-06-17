@@ -1,0 +1,29 @@
+---
+- name: install git
+  package:
+    name:
+      - git
+      - tig
+    state: present
+  become: "{{ become_root }}"
+
+# TODO: work-personal config
+# - name: copy git config
+#   copy:
+#     src: files/.gitconfig
+#     dest: "{{ home_folder }}/.gitconfig"
+
+- name: ansible create directory example
+  file:
+    path: "{{ home_folder }}/.config/git/"
+    state: directory
+
+- name: copy global gitignore
+  copy:
+    src: files/ignore
+    dest: "{{ home_folder }}/.config/git/ignore"
+
+- name: copy git commit message template
+  copy:
+    src: files/commit_message_template
+    dest: "{{ home_folder }}/.config/git/commit_message_template"

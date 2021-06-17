@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+cd "$(dirname "$(git rev-parse --absolute-git-dir)")" || exit 1
+
+find . -name "*.pyc" -delete

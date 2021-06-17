@@ -15,6 +15,34 @@
     src: files/.bashrc
     dest: "{{ home_folder }}"
 
+- name: add colorized ls alias when on OSX
+  when: ansible_distribution == 'MacOSX'
+  ansible.builtin.lineinfile:
+    path: "{{ home_folder }}/.bashrc"
+    insertafter: '^# aliases$'
+    line: alias ls='ls -G'
+
+- name: add colorized ls alias
+  when: ansible_distribution != 'MacOSX'
+  ansible.builtin.lineinfile:
+    path: "{{ home_folder }}/.bashrc"
+    insertafter: '^# aliases$'
+    line: alias ls='ls --color=auto'
+
+- name: add pbcoby alias
+  when: ansible_distribution != 'MacOSX'
+  ansible.builtin.lineinfile:
+    path: "{{ home_folder }}/.bashrc"
+    insertafter: '^# aliases$'
+    line: alias pbcopy='xsel --clipboard --input'
+
+- name: add pbpaste alias
+  when: ansible_distribution != 'MacOSX'
+  ansible.builtin.lineinfile:
+    path: "{{ home_folder }}/.bashrc"
+    insertafter: '^# aliases$'
+    line: alias pbpaste='xsel --clipboard --output'
+
 - name: copy colors to ~/.bin
   copy:
     src: files/colors
