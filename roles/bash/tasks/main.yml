@@ -43,17 +43,13 @@
     insertafter: '^# aliases$'
     line: alias pbpaste='xsel --clipboard --output'
 
-- name: copy colors to ~/.bin
+- name: copy scripts to ~/.bin
   copy:
-    src: files/colors
+    src:  "{{ item }}"
     dest: "{{ home_folder }}/.bin/"
     mode: a+x
-
-- name: copy diceware to ~/.bin
-  copy:
-    src: files/diceware
-    dest: "{{ home_folder }}/.bin/"
-    mode: a+x
+  with_fileglob:
+    - "files/bin/*"
 
 - name: add bash function to ~/.bashrc
   blockinfile:
