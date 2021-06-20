@@ -1,8 +1,8 @@
-[user]
-    name = Denis Costa
-    email = deniscostadsc@gmail.com
-    signingkey = ABA7770C38A84DE7
-    login = deniscostadsc
+[includeIf "gitdir:~/dev/"]
+    path = ~/.gitconfig-work
+
+[includeIf "gitdir:~/projects/"]
+    path = ~/.gitconfig-personal
 
 [color]
     diff = auto
@@ -11,7 +11,7 @@
     ui = auto
 
 [init]
-    templatedir = ~/.git_template/
+    templatedir = ~/.config/git/git_repo_template/
 
 [commit]
     gpgsign = true
@@ -27,18 +27,20 @@
 [alias]
     a = add
     alias = config --get-regexp alias
+    b = branch
+    c = commit
+    ca = commit -am
+    cached = diff --cached
+    ck = checkout
+    cl = clone
+    # cleanup-branchs = !git branch -D $(git branch | grep -v "*\|master\|main")
+    cm = commit -m
     contributors = !git log --no-merges |\
         grep '^Author:' |\
         sed 's/[^<]*<\\|>[^>]*$//g' |\
         sort |\
         uniq -c |\
         sort -nr
-    b = branch
-    c = commit -m
-    ca = commit -am
-    cached = diff --cached
-    ck = checkout
-    cl = clone
     d = diff
     f = fetch
     g = grep

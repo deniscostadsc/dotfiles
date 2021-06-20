@@ -7,16 +7,24 @@
     state: present
   become: "{{ become_root }}"
 
-# TODO: work-personal config
-# - name: copy git config
-#   copy:
-#     src: files/.gitconfig
-#     dest: "{{ home_folder }}/.gitconfig"
+- name: copy git config
+  copy:
+    src: "{{ item }}"
+    dest: "{{ home_folder }}"
+  with_fileglob:
+    - "files/.gitconfig*"
 
-- name: ansible create directory example
+- name: create git config folders
   file:
-    path: "{{ home_folder }}/.config/git/"
+    path: "{{ home_folder }}/.config/git/git_repo_template/hooks/"
     state: directory
+
+- name: copy global gitignore
+  copy:
+    src: "{{ item }}"
+    dest: "{{ home_folder }}/.config/git/git_repo_template/hooks/"
+  with_fileglob:
+    - "files/hooks/*"
 
 - name: copy global gitignore
   copy:
@@ -27,3 +35,9 @@
   copy:
     src: files/commit_message_template
     dest: "{{ home_folder }}/.config/git/commit_message_template"
+
+- name: add clean alias
+  ansible.builtin.lineinfile:
+    path: "{{ home_folder }}/.bashrc"
+    insertafter: '^# aliases$'
+    line: alias vim='nvim'
