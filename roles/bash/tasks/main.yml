@@ -47,11 +47,13 @@
   copy:
     src: files/colors
     dest: "{{ home_folder }}/.bin/"
+    mode: a+x
 
 - name: copy diceware to ~/.bin
   copy:
     src: files/diceware
     dest: "{{ home_folder }}/.bin/"
+    mode: a+x
 
 - name: add bash function to ~/.bashrc
   blockinfile:
