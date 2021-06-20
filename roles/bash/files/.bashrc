@@ -41,17 +41,19 @@ else
     color_prompt=
 fi
 
-# if [ "$color_prompt" = yes ]; then
-#     PS1='\[\033[01;35m\]\w \[\033[01;32m\]$(__git_branch) \[\033[31m\]$(__git_arrows) \[\033[00m\]\n\$ '
-# else
-#     PS1='\w ($(__git_branch) $(__git_arrows))\n\$ '
-# fi
-PS1='\[\033[01;35m\]\w\[\033[00m\]\n\$ '
+if [ "$color_prompt" = yes ]; then
+    PS1='\[\033[01;35m\]\w \[\033[01;32m\]$(__git_branch) \[\033[31m\]$(__git_arrows) \[\033[00m\]\n\$ '
+else
+    PS1='\w ($(__git_branch) $(__git_arrows))\n\$ '
+fi
+
 unset color_prompt
 
 LC_ALL="en_US.UTF-8"
 
 PATH=~/.bin/:$PATH
+
+export PROJECT_PATH="$HOME/projects/"
 
 # aliases
 alias egrep='egrep --color=auto'
@@ -60,8 +62,3 @@ alias grep='grep --color=auto'
 alias ll='ls -alhF'
 
 # functions
-function mkcd {
-    mkdir -p "$1" && cd "$1" || return 1
-}
-
-export PROJECT_PATH="$HOME/projects/"

@@ -41,3 +41,10 @@
     path: "{{ home_folder }}/.bashrc"
     insertafter: '^# aliases$'
     line: alias vim='nvim'
+
+- name: add git function to ~/.bashrc
+  blockinfile:
+    path: "{{ home_folder }}/.bashrc"
+    insertafter: '^# functions$'
+    marker: "# {mark} git_functions.sh"
+    block: "{{ lookup('file', 'files/git_functions.sh') }}"

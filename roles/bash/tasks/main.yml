@@ -52,3 +52,10 @@
   copy:
     src: files/diceware
     dest: "{{ home_folder }}/.bin/"
+
+- name: add bash function to ~/.bashrc
+  blockinfile:
+    path: "{{ home_folder }}/.bashrc"
+    insertafter: '^# functions$'
+    marker: "# {mark} bash_functions.sh"
+    block: "{{ lookup('file', 'files/bash_functions.sh') }}"
