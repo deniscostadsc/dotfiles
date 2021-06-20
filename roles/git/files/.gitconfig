@@ -28,12 +28,14 @@
     a = add
     alias = config --get-regexp alias
     b = branch
+    br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+    branches = br
     c = commit
     ca = commit -am
     cached = diff --cached
     ck = checkout
     cl = clone
-    # cleanup-branchs = !git branch -D $(git branch | grep -v "*\|master\|main")
+    cleanup-branchs = ! git branch -d `git branch --merged | grep -v '^*\\|main\\|master'`
     cm = commit -m
     contributors = !git log --no-merges |\
         grep '^Author:' |\

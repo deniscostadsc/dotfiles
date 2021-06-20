@@ -1,5 +1,3 @@
-
-
 function __git_arrows {
     git rev-parse --abbrev-ref @"{u}" &>/dev/null || return
     local branch_status
