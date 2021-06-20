@@ -53,7 +53,8 @@
     m = merge
     pl = pull
     plr = pull --rebase
-    ps = push
+    ps = push -u
+    push = push -u
     r = remote
     rb = rebase
     s = status
