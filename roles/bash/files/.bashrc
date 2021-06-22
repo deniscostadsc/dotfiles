@@ -55,6 +55,8 @@ PATH=~/.bin/:$PATH
 
 export PROJECT_PATH="$HOME/projects/"
 
+[ -f ~/.zshrc ] && . ~/.zshrc  # I know, some weird things from work, who assumes zsh as default shell
+
 # aliases
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
