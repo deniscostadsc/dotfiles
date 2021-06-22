@@ -1,0 +1,6 @@
+---
+- name: Include emacs
+  include: emacs.yml
+
+- name: Include neovim
+  include: neovim.yml

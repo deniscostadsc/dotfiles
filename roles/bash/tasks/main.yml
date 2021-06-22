@@ -51,7 +51,7 @@
   with_fileglob:
     - "files/bin/*"
 
-- name: add bash function to ~/.bashrc
+- name: add bash functions to ~/.bashrc
   blockinfile:
     path: "{{ home_folder }}/.bashrc"
     insertafter: '^# functions$'

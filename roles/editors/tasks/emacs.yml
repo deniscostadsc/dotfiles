@@ -1,0 +1,6 @@
+---
+- name: install emacs
+  package:
+    name: emacs
+    state: present
+  become: "{{ become_root }}"

@@ -13,7 +13,7 @@
 
 - name: copy vim config
   copy:
-    src: files/.vimrc
+    src: files/neovim/.vimrc
     dest: "{{ home_folder }}/"
 
 - name: create neovim config folders
@@ -23,7 +23,7 @@
 
 - name: copy neovim config
   copy:
-    src: files/init.vim
+    src: files/neovim/init.vim
     dest: "{{ home_folder }}/.config/nvim/"
 
 - name: add neovim alias
