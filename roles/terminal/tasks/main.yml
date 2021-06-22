@@ -1,0 +1,16 @@
+---
+- name: install terminator
+  when: ansible_distribution != 'MacOSX'
+  package:
+    name:
+      - terminator
+    state: present
+  become: "{{ become_root }}"
+
+- name: install iterm2
+  when: ansible_distribution == 'MacOSX'
+  package:
+    name:
+      - iterm2
+    state: present
+  become: "{{ become_root }}"
