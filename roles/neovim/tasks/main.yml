@@ -16,13 +16,19 @@
     src: files/.vimrc
     dest: "{{ home_folder }}/"
 
+- name: create neovim config folders
+  file:
+    path: "{{ home_folder }}/.config/nvim/"
+    state: directory
+
 - name: copy neovim config
   copy:
-    src: files/nvim
-    dest: "{{ home_folder }}/.config/"
+    src: files/init.vim
+    dest: "{{ home_folder }}/.config/nvim/"
 
 - name: add neovim alias
   ansible.builtin.lineinfile:
     path: "{{ home_folder }}/.bashrc"
     insertafter: '^# aliases$'
     line: alias vim='nvim'
+
