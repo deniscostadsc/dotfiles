@@ -1,0 +1,15 @@
+---
+- name: install docker and docker related stuff
+  package:
+    name:
+      - docker
+      - docker-compose
+    state: present
+  become: "{{ become_root }}"
+
+- name: add docker functions to ~/.bashrc
+  blockinfile:
+    path: "{{ home_folder }}/.bashrc"
+    insertafter: '^# functions$'
+    marker: "# {mark} docker_functions.sh"
+    block: "{{ lookup('file', 'files/docker_functions.sh') }}"

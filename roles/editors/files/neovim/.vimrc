@@ -19,6 +19,7 @@ set rtp+=~/.vim/bundle/vundle/
 " Installing plugins
 call vundle#begin()
 
+Plugin 'Olical/conjure'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'dracula/vim'
 Plugin 'editorconfig/editorconfig-vim'
@@ -29,7 +30,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
-
 
 if is_vundle_installed == 0
     echo "Installing bundles...\n"

@@ -1,0 +1,12 @@
+---
+- name: install apps from brew-cask
+  when: ansible_distribution == 'MacOSX'
+  homebrew_cask:
+    name:
+      - firefox
+      - google-chrome
+      - password-gorilla
+      - slack
+      - spotify
+    state: present
+

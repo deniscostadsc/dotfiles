@@ -1,4 +1,15 @@
 ---
+- name: install tools
+  package:
+    name:
+      - bat
+      - fzf
+      - jq
+      - ripgrep
+      - tree
+    state: present
+  become: "{{ become_root }}"
+
 - name: change user shell to bash
   become: true
   user:

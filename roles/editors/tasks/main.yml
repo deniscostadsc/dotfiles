@@ -4,3 +4,6 @@
 
 - name: Include neovim
   include: neovim.yml
+
+- name: Include neovim
+  include: vscode.yml

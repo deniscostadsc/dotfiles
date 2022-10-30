@@ -55,7 +55,12 @@ PATH=~/.bin/:$PATH
 
 export PROJECT_PATH="$HOME/projects/"
 
-[ -f ~/.zshrc ] && . ~/.zshrc  # I know, some weird things from work, who assumes zsh as default shell
+# I know, some weird things from work,
+# who assumes zsh as default shell
+[ -f ~/.zshrc ] && . ~/.zshrc
+
+# no zsh here!
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # aliases
 alias egrep='egrep --color=auto'

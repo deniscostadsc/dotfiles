@@ -23,6 +23,7 @@
   copy:
     src: "{{ item }}"
     dest: "{{ home_folder }}/.config/git/git_repo_template/hooks/"
+    mode: a+x
   with_fileglob:
     - "files/hooks/*"
 

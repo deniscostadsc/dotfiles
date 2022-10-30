@@ -2,6 +2,8 @@
 - hosts: localhost
   roles:
     - bash
+    - docker
     - editors
     - git
+    - osx
     - terminal

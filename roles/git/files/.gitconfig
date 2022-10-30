@@ -64,3 +64,6 @@
 
 [pull]
     default = current
+
+[gpg]
+    program = gpg2

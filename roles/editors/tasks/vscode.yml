@@ -1,0 +1,7 @@
+---
+- name: install vscode
+  when: ansible_distribution == 'MacOSX'
+  homebrew_cask:
+    name:
+      - visual-studio
+    state: present
