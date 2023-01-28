@@ -1,8 +1,8 @@
-[includeIf "gitdir:~/dev/"]
-    path = ~/.gitconfig-work
+[include]
+    path = ~/.gitconfig-default
 
-[includeIf "gitdir:~/projects/"]
-    path = ~/.gitconfig-personal
+[includeIf "gitdir:~/projects/work/"]
+    path = ~/.gitconfig-work
 
 [color]
     diff = auto
@@ -14,7 +14,6 @@
     templatedir = ~/.config/git/git_repo_template/
 
 [commit]
-    gpgsign = true
     template = ~/.config/git/commit_message_template
 
 [core]
@@ -64,6 +63,3 @@
 
 [pull]
     default = current
-
-[gpg]
-    program = gpg2
