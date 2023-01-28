@@ -1,5 +1,17 @@
 # dotfiles
 
+## Instalation
+
+```
+make run
+```
+
+## Manual steps
+
+### On Macs
+
+- Iterm2 theme need to be imported manually. [Reference here](https://draculatheme.com/iterm).
+
 ## Troubleshooting
 
 In a new installation of Ansible the problem related to `python3-apt` can
