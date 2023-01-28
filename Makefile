@@ -5,5 +5,5 @@ run:
 		--connection=local \
 		--ask-become-pass \
 		--extra-vars "current_user=$$USER home_folder=$$HOME" \
-		-vvvv \
+		-vv \
 		provisioning.yml -i hosts
