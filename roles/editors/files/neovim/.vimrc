@@ -19,7 +19,6 @@ set rtp+=~/.vim/bundle/vundle/
 " Installing plugins
 call vundle#begin()
 
-Plugin 'Olical/conjure'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'dracula/vim'
 Plugin 'editorconfig/editorconfig-vim'
