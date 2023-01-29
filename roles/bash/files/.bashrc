@@ -63,9 +63,5 @@ export PROJECT_PATH="$HOME/projects/"
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # aliases
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias grep='grep --color=auto'
-alias ll='ls -alhF'
 
 # functions
