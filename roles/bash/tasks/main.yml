@@ -28,7 +28,7 @@
 
 - name: add colorized ls alias when on OSX
   when: ansible_distribution == 'MacOSX'
-  ansible.builtin.lineinfile:
+  blockinfile:
     path: "{{ home_folder }}/.bashrc"
     insertafter: '^# aliases$'
     marker: "# {mark} bash_aliases.sh"
