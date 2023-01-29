@@ -31,28 +31,15 @@
   ansible.builtin.lineinfile:
     path: "{{ home_folder }}/.bashrc"
     insertafter: '^# aliases$'
-    line: alias ls='ls -G'
+    marker: "# {mark} bash_aliases.sh"
+    block: "{{ lookup('file', 'files/bash_aliases.sh') }}"
 
-- name: add colorized ls alias
-  when: ansible_distribution != 'MacOSX'
-  ansible.builtin.lineinfile:
+- name: add bash functions to ~/.bashrc
+  blockinfile:
     path: "{{ home_folder }}/.bashrc"
-    insertafter: '^# aliases$'
-    line: alias ls='ls --color=auto'
-
-- name: add pbcoby alias
-  when: ansible_distribution != 'MacOSX'
-  ansible.builtin.lineinfile:
-    path: "{{ home_folder }}/.bashrc"
-    insertafter: '^# aliases$'
-    line: alias pbcopy='xsel --clipboard --input'
-
-- name: add pbpaste alias
-  when: ansible_distribution != 'MacOSX'
-  ansible.builtin.lineinfile:
-    path: "{{ home_folder }}/.bashrc"
-    insertafter: '^# aliases$'
-    line: alias pbpaste='xsel --clipboard --output'
+    insertafter: '^# functions$'
+    marker: "# {mark} bash_functions.sh"
+    block: "{{ lookup('file', 'files/bash_functions.sh') }}"
 
 - name: copy scripts to ~/.bin
   copy:
@@ -61,10 +48,3 @@
     mode: a+x
   with_fileglob:
     - "files/bin/*"
-
-- name: add bash functions to ~/.bashrc
-  blockinfile:
-    path: "{{ home_folder }}/.bashrc"
-    insertafter: '^# functions$'
-    marker: "# {mark} bash_functions.sh"
-    block: "{{ lookup('file', 'files/bash_functions.sh') }}"
