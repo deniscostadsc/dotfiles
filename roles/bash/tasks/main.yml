@@ -11,10 +11,10 @@
   become: "{{ become_root }}"
 
 - name: change user shell to bash
-  become: true
   user:
     name: "{{ current_user }}"
     shell: /bin/bash
+  become: true
 
 - name: copy .bash_profile to home folder
   copy:
