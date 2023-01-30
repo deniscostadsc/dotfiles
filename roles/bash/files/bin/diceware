@@ -84,7 +84,6 @@ if [[ -z $dice_number ]]; then
 fi
 
 if [ "$(dice2int "$dice_number")" -gt "$word_count" ]; then
-
     echo
     echo -n "$dice_number represents the $(dice2int "$dice_number")th word, but"
     echo " we just have $word_count words."
