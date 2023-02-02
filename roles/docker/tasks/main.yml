@@ -7,6 +7,17 @@
     state: present
   become: "{{ become_root }}"
 
+- name: create docker user group
+  ansible.builtin.group:
+    name: docker
+    state: present
+
+- name: add the user to docker group
+  ansible.builtin.user:
+    name: "{{ current_user }}"
+    group: docker
+  become: true
+
 - name: add docker functions to ~/.bashrc
   blockinfile:
     path: "{{ home_folder }}/.bashrc"
