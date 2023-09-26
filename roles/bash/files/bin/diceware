@@ -64,6 +64,11 @@ while [[ $# -gt 0 ]]; do
             show_help
             exit 0
         ;;
+        *)
+            echo
+            echo "option not valid"
+            exit 1
+        ;;
     esac
     shift
 done
