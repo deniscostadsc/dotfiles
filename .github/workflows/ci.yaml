@@ -1,0 +1,33 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clear up some space on runner
+        run: |
+          dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n | tail -n 100
+          df -h
+          sudo apt-get remove -y '^dotnet-.*'
+          sudo apt-get remove -y '^libclang.*'
+          sudo apt-get remove -y '^llvm-.*'
+          sudo apt-get remove -y '^mongodb-.*'
+          sudo apt-get remove -y '^mysql-.*'
+          sudo apt-get remove -y '^postgresql-.*'
+          sudo apt-get remove -y 'php.*'
+          sudo apt-get remove -y azure-cli google-cloud-sdk google-chrome-stable firefox powershell mono-devel
+          sudo apt-get autoremove -y
+          sudo apt-get clean
+          rm -rf /usr/share/dotnet/
+          df -h
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: run lint
+        run: |
+          make lint
