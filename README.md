@@ -8,7 +8,7 @@ make run
 
 ## Manual steps
 
-### On Macs
+### On MacOS
 
 - Iterm2 theme need to be imported manually. [Reference here](https://draculatheme.com/iterm).
 

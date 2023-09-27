@@ -33,7 +33,7 @@
     marker: "# {mark} bash_aliases.sh"
     block: "{{ lookup('file', 'files/bash_aliases.sh') }}"
 
-- name: add pbcopy/pbpaste alias when on Linux
+- name: add pbcopy/pbpaste aliases for Linux
   when: ansible_distribution != 'MacOSX'
   blockinfile:
     path: "{{ home_folder }}/.bashrc"

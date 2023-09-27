@@ -8,15 +8,17 @@
   become: "{{ become_root }}"
 
 - name: create docker user group
+  when: ansible_distribution != 'MacOSX'
   ansible.builtin.group:
     name: docker
     state: present
 
 - name: add the user to docker group
+  when: ansible_distribution != 'MacOSX'
   ansible.builtin.user:
     name: "{{ current_user }}"
     group: docker
-  become: true
+  become: "{{ become_root }}"
 
 - name: add docker functions to ~/.bashrc
   blockinfile:
