@@ -26,13 +26,20 @@
     src: files/.bashrc
     dest: "{{ home_folder }}"
 
-- name: add colorized ls alias when on OSX
-  when: ansible_distribution == 'MacOSX'
+- name: add colorized alias
   blockinfile:
     path: "{{ home_folder }}/.bashrc"
     insertafter: '^# aliases$'
     marker: "# {mark} bash_aliases.sh"
     block: "{{ lookup('file', 'files/bash_aliases.sh') }}"
+
+- name: add pbcopy/pbpaste alias when on Linux
+  when: ansible_distribution != 'MacOSX'
+  blockinfile:
+    path: "{{ home_folder }}/.bashrc"
+    insertafter: '^# aliases$'
+    marker: "# {mark} bash_aliases_linux.sh"
+    block: "{{ lookup('file', 'files/bash_aliases_linux.sh') }}"
 
 - name: add bash functions to ~/.bashrc
   blockinfile:
