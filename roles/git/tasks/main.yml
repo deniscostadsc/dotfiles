@@ -1,50 +1,54 @@
 ---
-- name: install git
-  package:
+- name: Install git
+  ansible.builtin.package:
     name:
       - git
       - tig
     state: present
   become: "{{ become_root }}"
 
-- name: copy git config
-  copy:
+- name: Copy git config
+  ansible.builtin.copy:
     src: "{{ item }}"
     dest: "{{ home_folder }}"
+    mode: preserve
   with_fileglob:
     - "files/.gitconfig*"
 
-- name: create git config folders
-  file:
+- name: Create git config folders
+  ansible.builtin.file:
     path: "{{ home_folder }}/.config/git/git_repo_template/hooks/"
     state: directory
+    mode: '755'
 
-- name: copy global gitignore
-  copy:
+- name: Copy global gitignore
+  ansible.builtin.copy:
     src: "{{ item }}"
     dest: "{{ home_folder }}/.config/git/git_repo_template/hooks/"
-    mode: a+x
+    mode: preserve
   with_fileglob:
     - "files/hooks/*"
 
-- name: copy global gitignore
-  copy:
+- name: Copy global gitignore
+  ansible.builtin.copy:
     src: files/ignore
     dest: "{{ home_folder }}/.config/git/ignore"
+    mode: preserve
 
-- name: copy git commit message template
-  copy:
+- name: Copy git commit message template
+  ansible.builtin.copy:
     src: files/commit_message_template
     dest: "{{ home_folder }}/.config/git/commit_message_template"
+    mode: preserve
 
-- name: add clean alias
+- name: Add clean alias
   ansible.builtin.lineinfile:
     path: "{{ home_folder }}/.bashrc"
     insertafter: '^# aliases$'
     line: alias vim='nvim'
 
-- name: add git function to ~/.bashrc
-  blockinfile:
+- name: Add git function to ~/.bashrc
+  ansible.builtin.blockinfile:
     path: "{{ home_folder }}/.bashrc"
     insertafter: '^# functions$'
     marker: "# {mark} git_functions.sh"

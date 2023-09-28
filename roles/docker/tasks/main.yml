@@ -1,27 +1,27 @@
 ---
-- name: install docker and docker related stuff
-  package:
+- name: Install docker and docker related stuff
+  ansible.builtin.package:
     name:
       - docker
       - docker-compose
     state: present
   become: "{{ become_root }}"
 
-- name: create docker user group
+- name: Create docker user group
   when: ansible_distribution != 'MacOSX'
   ansible.builtin.group:
     name: docker
     state: present
 
-- name: add the user to docker group
+- name: Add the user to docker group
   when: ansible_distribution != 'MacOSX'
   ansible.builtin.user:
     name: "{{ current_user }}"
     group: docker
   become: "{{ become_root }}"
 
-- name: add docker functions to ~/.bashrc
-  blockinfile:
+- name: Add docker functions to ~/.bashrc
+  ansible.builtin.blockinfile:
     path: "{{ home_folder }}/.bashrc"
     insertafter: '^# functions$'
     marker: "# {mark} docker_functions.sh"

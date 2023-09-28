@@ -1,34 +1,36 @@
 ---
-- name: install neovim
-  package:
+- name: Install neovim
+  ansible.builtin.package:
     name: neovim
     state: present
   become: "{{ become_root }}"
 
-- name: install silversearch when in OSX
+- name: Install silversearch when in OSX
   when: ansible_distribution == 'MacOSX'
-  package:
+  ansible.builtin.package:
     name: the_silver_searcher
     state: present
 
-- name: copy vim config
-  copy:
+- name: Copy vim config
+  ansible.builtin.copy:
     src: files/neovim/.vimrc
     dest: "{{ home_folder }}/"
+    mode: preserve
 
-- name: create neovim config folders
-  file:
+- name: Create neovim config folders
+  ansible.builtin.file:
     path: "{{ home_folder }}/.config/nvim/"
     state: directory
+    mode: '755'
 
-- name: copy neovim config
-  copy:
+- name: Copy neovim config
+  ansible.builtin.copy:
     src: files/neovim/init.vim
     dest: "{{ home_folder }}/.config/nvim/"
+    mode: preserve
 
-- name: add neovim alias
+- name: Add neovim alias
   ansible.builtin.lineinfile:
     path: "{{ home_folder }}/.bashrc"
     insertafter: '^# aliases$'
     line: alias vim='nvim'
-

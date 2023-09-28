@@ -1,6 +1,8 @@
 ---
 - name: Include neovim
-  include: neovim.yml
+  ansible.builtin.include_tasks:
+    file: neovim.yml
 
 - name: Include neovim
-  include: vscode.yml
+  ansible.builtin.include_tasks:
+    file: vscode.yml

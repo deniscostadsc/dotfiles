@@ -1,6 +1,6 @@
 ---
-- name: install tools
-  package:
+- name: Install tools
+  ansible.builtin.package:
     name:
       - bat
       - fzf
@@ -10,47 +10,49 @@
     state: present
   become: "{{ become_root }}"
 
-- name: change user shell to bash
-  user:
+- name: Change user shell to bash
+  ansible.builtin.user:
     name: "{{ current_user }}"
     shell: /bin/bash
   become: true
 
-- name: copy .bash_profile to home folder
-  copy:
+- name: Copy .bash_profile to home folder
+  ansible.builtin.copy:
     src: files/.bash_profile
     dest: "{{ home_folder }}"
+    mode: preserve
 
-- name: copy .bashrc to home folder
-  copy:
+- name: Copy .bashrc to home folder
+  ansible.builtin.copy:
     src: files/.bashrc
     dest: "{{ home_folder }}"
+    mode: preserve
 
-- name: add colorized alias
-  blockinfile:
+- name: Add colorized alias
+  ansible.builtin.blockinfile:
     path: "{{ home_folder }}/.bashrc"
     insertafter: '^# aliases$'
     marker: "# {mark} bash_aliases.sh"
     block: "{{ lookup('file', 'files/bash_aliases.sh') }}"
 
-- name: add pbcopy/pbpaste aliases for Linux
+- name: Add pbcopy/pbpaste aliases for Linux
   when: ansible_distribution != 'MacOSX'
-  blockinfile:
+  ansible.builtin.blockinfile:
     path: "{{ home_folder }}/.bashrc"
     insertafter: '^# aliases$'
     marker: "# {mark} bash_aliases_linux.sh"
     block: "{{ lookup('file', 'files/bash_aliases_linux.sh') }}"
 
-- name: add bash functions to ~/.bashrc
-  blockinfile:
+- name: Add bash functions to ~/.bashrc
+  ansible.builtin.blockinfile:
     path: "{{ home_folder }}/.bashrc"
     insertafter: '^# functions$'
     marker: "# {mark} bash_functions.sh"
     block: "{{ lookup('file', 'files/bash_functions.sh') }}"
 
-- name: copy scripts to ~/.bin
-  copy:
-    src:  "{{ item }}"
+- name: Copy scripts to ~/.bin
+  ansible.builtin.copy:
+    src: "{{ item }}"
     dest: "{{ home_folder }}/.bin/"
     mode: a+x
   with_fileglob:
