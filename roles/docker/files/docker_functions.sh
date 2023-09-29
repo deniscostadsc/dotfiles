@@ -1,12 +1,24 @@
-function stop_all_docker_containers {
-    running_docker_count=$(docker ps -q | wc -l)
+# shellcheck disable=SC2148
+function __docker_containers_ids {
+    docker ps -q
+}
 
-    if [ $running_docker_count -ne 0 ]; then
-        docker stop $(docker ps -q)
+function __docker_are_there_containers_running {
+    running_containers="$(__docker_containers_ids)"
+
+    if [[ -n "${running_containers}" ]]; then
+        return 0
+    fi
+    return 1
+}
+
+function __docker_stop_containers {
+    if __docker_are_there_containers_running; then
+        docker stop "$(__docker_containers_ids)"
     fi
 }
 
-function docker_clean_up {
-    stop_all_docker_containers
+function docker-full-clean {
+    __docker_stop_containers
     docker system prune --volumes -a -f
 }
