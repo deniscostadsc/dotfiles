@@ -2,3 +2,6 @@ collections:
   - name: community.general
     version: 7.4.0
     source: https://galaxy.ansible.com
+  - name: community.crypto
+    version: 2.15.1
+    source: https://galaxy.ansible.com
