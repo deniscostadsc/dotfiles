@@ -7,7 +7,6 @@ To do that run the following commands
 
 ```
 pip3 install ansible-core
-ansible-galaxy collection install community.general
 ```
 
 After that, you can run the playbooks:
