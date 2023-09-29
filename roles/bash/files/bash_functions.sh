@@ -4,5 +4,5 @@ function mkcd {
 }
 
 function __now {
-    echo -n $(date +%H:%M:%S)
+    date +%H:%M:%S
 }
