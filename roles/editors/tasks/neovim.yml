@@ -1,13 +1,34 @@
 ---
-- name: Install neovim
+- name: Install iterm2
+  when: ansible_distribution == 'MacOSX'
+  community.general.homebrew_cask:
+    name:
+      - iterm2
+    state: present
+
+- name: Install neovim on Linux
+  when: ansible_distribution != 'MacOSX'
   ansible.builtin.package:
     name: neovim
     state: present
   become: "{{ become_root }}"
 
-- name: Install silversearch when in OSX
+- name: Install neovim on MacOS
   when: ansible_distribution == 'MacOSX'
+  community.general.homebrew:
+    name: neovim
+    state: present
+  become: "{{ become_root }}"
+
+- name: Install silversearch on Linux
+  when: ansible_distribution != 'MacOSX'
   ansible.builtin.package:
+    name: the_silver_searcher
+    state: present
+
+- name: Install silversearch on OSX
+  when: ansible_distribution == 'MacOSX'
+  community.general.homebrew:
     name: the_silver_searcher
     state: present
 

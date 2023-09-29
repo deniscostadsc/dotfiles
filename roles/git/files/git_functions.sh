@@ -3,7 +3,7 @@ function __git_arrows {
     git rev-parse --abbrev-ref @"{u}" &>/dev/null || return
     local branch_status
 
-    git rev-list --left-right --count HEAD...@"{u}" 2>/dev/null || return
+    git rev-list --left-right --count HEAD...@"{u}" 2>&1 1> /dev/null || return
     local left_arrow
     local right_arrow
 

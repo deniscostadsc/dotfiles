@@ -1,5 +1,6 @@
 ---
-- name: Install docker and docker related stuff
+- name: Install docker and docker-compose stuff
+  when: ansible_distribution != 'MacOSX'
   ansible.builtin.package:
     name:
       - docker
@@ -7,13 +8,13 @@
     state: present
   become: "{{ become_root }}"
 
-- name: Create docker user group
+- name: Create docker user group on Linux
   when: ansible_distribution != 'MacOSX'
   ansible.builtin.group:
     name: docker
     state: present
 
-- name: Add the user to docker group
+- name: Add the user to docker group on Linux
   when: ansible_distribution != 'MacOSX'
   ansible.builtin.user:
     name: "{{ current_user }}"
