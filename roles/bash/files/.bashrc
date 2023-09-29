@@ -29,6 +29,7 @@ shopt -s checkwinsize
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
+# shellcheck disable=SC1091
 [ -f /etc/bash_completion ] && . /etc/bash_completion
 
 # Checking for colors support
@@ -54,10 +55,6 @@ LC_ALL="en_US.UTF-8"
 PATH=~/.bin/:$PATH
 
 export PROJECT_PATH="$HOME/projects/"
-
-# I know, some weird things from work,
-# who assumes zsh as default shell
-[ -f ~/.zshrc ] && . ~/.zshrc
 
 # no zsh here!
 export BASH_SILENCE_DEPRECATION_WARNING=1
