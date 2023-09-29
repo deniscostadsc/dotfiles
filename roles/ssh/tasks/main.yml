@@ -1,0 +1,22 @@
+---
+- name: Create ssh home folders
+  ansible.builtin.file:
+    path: "{{ home_folder }}/.ssh/"
+    state: directory
+    mode: '700'
+
+- name: Generate an OpenSSH keypair for professional projects
+  community.crypto.openssh_keypair:
+    path: ~/.ssh/id_ed25519_work
+    type: ed25519
+
+- name: Generate an OpenSSH keypair for personal projects
+  community.crypto.openssh_keypair:
+    path: ~/.ssh/id_ed25519_personal
+    type: ed25519
+
+- name: Copy ssh config
+  ansible.builtin.copy:
+    src: files/config
+    dest: "{{ home_folder }}/.ssh/"
+    mode: preserve
