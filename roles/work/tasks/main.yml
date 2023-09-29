@@ -1,3 +1,4 @@
+---
 - name: Add cedar imports
   when: ansible_distribution == 'MacOSX'
   ansible.builtin.blockinfile:

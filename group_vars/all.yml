@@ -1,3 +1,4 @@
+---
 become_root: "{{ false if ansible_distribution == 'MacOSX' else true }}"
 current_user: "{{ current_user }}"
 home_folder: "{{ home_folder }}"

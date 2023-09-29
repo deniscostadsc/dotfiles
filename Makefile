@@ -1,4 +1,4 @@
-.PHONY: lint run
+.PHONY: lint run test
 
 run:
 	ansible-playbook \
@@ -13,3 +13,7 @@ lint:
 	@docker run -v $$(pwd):/code lint-ansible
 	@docker build -q -f .docker/lint-sh.Dockerfile -t lint-sh .
 	@docker run -v $$(pwd):/code lint-sh
+
+
+test:
+	./scripts/run-tests.sh
