@@ -5,6 +5,13 @@
   args:
       creates: /opt/homebrew/bin/brew
 
+- name: Install recent bash
+  when: ansible_distribution == 'MacOSX'
+  community.general.homebrew:
+      name:
+          - bash
+      state: present
+
 - name: Add homebrew import
   when: ansible_distribution == 'MacOSX'
   ansible.builtin.blockinfile:
