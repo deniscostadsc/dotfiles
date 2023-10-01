@@ -24,6 +24,7 @@
   ansible.builtin.include_tasks:
       file: install_apps.yml
   loop:
+      - {package: "dropbox", folder: "/Applications/Dropbox.app"}
       - {package: "firefox", folder: "/Applications/Firefox.app"}
       - {package: "google-chrome", folder: "/Applications/Google Chrome.app/"}
       - {package: "password-gorilla", folder: "/Applications/Password Gorilla.app/"}
