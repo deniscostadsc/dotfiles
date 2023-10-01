@@ -20,13 +20,12 @@
       marker: "# {mark} homebrew.sh"
       block: "{{ lookup('file', 'files/homebrew.sh') }}"
 
-# - name: Install apps from brew-cask
-#   when: ansible_distribution == 'MacOSX'
-#   community.general.homebrew_cask:
-#     name:
-#       - firefox
-#       - google-chrome
-#       - password-gorilla
-#       - slack
-#       - spotify
-#     state: present
+- name: Include install apps task
+  ansible.builtin.include_tasks:
+      file: install_apps.yml
+  loop:
+      - {package: "firefox", folder: "/Applications/"}
+      - {package: "google-chrome", folder: "/Applications/Google Chrome.app/"}
+      - {package: "password-gorilla", folder: "/Applications/Password Gorilla.app/"}
+      - {package: "slack", folder: "/Applications/Slack.app/"}
+      - {package: "spotify", folder: "/Applications/Spotify.app/"}
