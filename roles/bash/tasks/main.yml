@@ -4,6 +4,7 @@
     name:
       - bat
       - fzf
+      - htop
       - jq
       - ripgrep
       - tree
