@@ -30,3 +30,4 @@
       - {package: "password-gorilla", folder: "/Applications/Password Gorilla.app/"}
       - {package: "slack", folder: "/Applications/Slack.app/"}
       - {package: "spotify", folder: "/Applications/Spotify.app/"}
+      - {package: "vlc", folder: "/Applications/VLC.app/"}
