@@ -1,0 +1,13 @@
+---
+- name: Install asdf
+  ansible.builtin.package:
+    name:
+      - asdf
+    state: present
+
+- name: Add asdf imports
+  ansible.builtin.blockinfile:
+    path: "{{ home_folder }}/.bashrc"
+    insertafter: '^# imports$'
+    marker: "# {mark} asdf.sh"
+    block: "{{ lookup('file', 'files/asdf.sh') }}"

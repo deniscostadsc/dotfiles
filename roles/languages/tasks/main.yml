@@ -1,0 +1,8 @@
+---
+- name: Include asdf
+  ansible.builtin.include_tasks:
+    file: asdf.yml
+
+- name: Include sql
+  ansible.builtin.include_tasks:
+    file: sql.yml

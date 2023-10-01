@@ -1,0 +1,6 @@
+---
+- name: Install dbeaver
+  ansible.builtin.package:
+    name:
+      - dbeaver-community
+    state: present
