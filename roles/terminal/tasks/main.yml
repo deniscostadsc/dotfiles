@@ -13,3 +13,10 @@
     name:
       - iterm2
     state: present
+
+- name: Install tmux
+  ansible.builtin.package:
+    name:
+      - tmux
+    state: present
+  become: "{{ become_root }}"
