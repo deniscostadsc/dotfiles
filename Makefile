@@ -6,7 +6,8 @@ run:
 		--ask-become-pass \
 		--extra-vars "current_user=$$USER home_folder=$$HOME" \
 		-vv \
-		provisioning.yml -i hosts
+		-i inventory.ini \
+		playbook.yml
 
 lint:
 	@docker build -q -f .docker/lint-ansible.Dockerfile -t lint-ansible .
