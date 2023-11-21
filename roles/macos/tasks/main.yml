@@ -19,10 +19,11 @@
       marker: "# {mark} homebrew.sh"
       block: "{{ lookup('file', 'files/homebrew.sh') }}"
 
-- name: Install apps
+- name: Install homebrew cask apps
   ansible.builtin.include_tasks:
       file: shared/homebrew_cask_install.yml
   loop:
+      - {package: "caffeine", folder: "/Applications/Caffeine.app/"}
       - {package: "dropbox", folder: "/Applications/Dropbox.app"}
       - {package: "firefox", folder: "/Applications/Firefox.app"}
       - {package: "google-chrome", folder: "/Applications/Google Chrome.app/"}
