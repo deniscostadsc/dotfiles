@@ -4,3 +4,10 @@
     name:
       - dbeaver-community
     state: present
+  failed_when: false
+
+- name: Verify DBeaver is alredy installed
+  register: installation_info
+  ansible.builtin.stat:
+    path: "/Applications/DBeaver.app/"
+  failed_when: not installation_info.stat.exists
