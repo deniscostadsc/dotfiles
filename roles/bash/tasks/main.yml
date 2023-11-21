@@ -23,16 +23,22 @@
     dest: "{{ home_folder }}"
     mode: preserve
 
+- name: Check if .bashrc is already update
+  shell: grep -F "$(cat roles/bash/files/.bashrc | tr '\n' '\01')" <<< "$(cat ~/.bashrc | tr '\n' '\01')"
+  register: bashrc_updated
+  failed_when: false
+  changed_when: false
+
 - name: Copy .bashrc to home folder
   ansible.builtin.copy:
     src: files/.bashrc
     dest: "{{ home_folder }}"
     mode: preserve
+  when: bashrc_updated.rc != 0
 
 - name: Add colorized alias
   ansible.builtin.blockinfile:
     path: "{{ home_folder }}/.bashrc"
-    insertafter: '^# aliases$'
     marker: "# {mark} bash_aliases.sh"
     block: "{{ lookup('file', 'files/bash_aliases.sh') }}"
 
@@ -40,14 +46,12 @@
   when: ansible_distribution != 'MacOSX'
   ansible.builtin.blockinfile:
     path: "{{ home_folder }}/.bashrc"
-    insertafter: '^# aliases$'
     marker: "# {mark} bash_aliases_linux.sh"
     block: "{{ lookup('file', 'files/bash_aliases_linux.sh') }}"
 
 - name: Add bash functions to ~/.bashrc
   ansible.builtin.blockinfile:
     path: "{{ home_folder }}/.bashrc"
-    insertafter: '^# functions$'
     marker: "# {mark} bash_functions.sh"
     block: "{{ lookup('file', 'files/bash_functions.sh') }}"
 

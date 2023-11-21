@@ -58,9 +58,3 @@ export PROJECT_PATH="$HOME/projects/"
 
 # no zsh here!
 export BASH_SILENCE_DEPRECATION_WARNING=1
-
-# aliases
-
-# functions
-
-# imports

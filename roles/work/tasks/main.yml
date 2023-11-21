@@ -3,6 +3,5 @@
   when: ansible_distribution == 'MacOSX'
   ansible.builtin.blockinfile:
     path: "{{ home_folder }}/.bashrc"
-    insertafter: '^# imports$'
     marker: "# {mark} cedar.sh"
     block: "{{ lookup('file', 'files/cedar.sh') }}"
