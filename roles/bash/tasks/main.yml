@@ -26,7 +26,7 @@
 - name: Check if .bashrc is already update
   ansible.builtin.shell: |
     set -o pipefail
-    grep -F "$(cat roles/bash/files/.bashrc | tr '\n' '\01')" <<< "$(cat {{ home_folder }}/.bashrc | tr '\n' '\01')"
+    grep -qF "$(cat roles/bash/files/.bashrc | tr '\n' '\01')" <<< "$(cat {{ home_folder }}/.bashrc | tr '\n' '\01')"
   register: bashrc_updated
   failed_when: false
   changed_when: false
