@@ -1,6 +1,6 @@
 ---
 - name: Install DBeaver
   ansible.builtin.include_tasks:
-    file: shared/install_apps.yml
+    file: shared/homebrew_cask_install.yml
   loop:
     - {package: "dbeaver-community", folder: "/Applications/DBeaver.app/"}

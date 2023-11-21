@@ -8,11 +8,10 @@
   become: "{{ become_root }}"
 
 - name: Install iterm2
-  when: ansible_distribution == 'MacOSX'
-  community.general.homebrew_cask:
-    name:
-      - iterm2
-    state: present
+  ansible.builtin.include_tasks:
+    file: shared/homebrew_cask_install.yml
+  loop:
+    - {package: "iterm2", folder: "/Applications/iTerm.app"}
 
 - name: Install tmux
   ansible.builtin.package:

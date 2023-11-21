@@ -1,11 +1,4 @@
 ---
-- name: Install iterm2
-  when: ansible_distribution == 'MacOSX'
-  community.general.homebrew_cask:
-    name:
-      - iterm2
-    state: present
-
 - name: Install neovim on Linux
   when: ansible_distribution != 'MacOSX'
   ansible.builtin.package:
