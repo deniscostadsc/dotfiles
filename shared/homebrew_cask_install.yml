@@ -1,5 +1,5 @@
 ---
-- name: Verify apps are alredy installed
+- name: Register app info
   ansible.builtin.stat:
       path: "{{ item.folder }}"
   register: installation_info
