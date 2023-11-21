@@ -6,7 +6,7 @@
     mode: '700'
 
 - name: Register work ssh
-  stat:
+  ansible.builtin.stat:
     path: ~/.ssh/id_ed25519_work
   register: work_ssh
 
@@ -17,7 +17,7 @@
     type: ed25519
 
 - name: Register personal ssh
-  stat:
+  ansible.builtin.stat:
     path: ~/.ssh/id_ed25519_personal
   register: personal_ssh
 
