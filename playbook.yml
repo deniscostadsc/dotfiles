@@ -3,12 +3,12 @@
   hosts: localhost
   roles:
     - bash
+    - macos  # should run before tasks that require homebrew
     - docker
     - editors
     - git
     - gnupg
     - languages
-    - macos
     - ssh
     - terminal
     - video
