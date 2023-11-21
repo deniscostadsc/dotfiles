@@ -5,12 +5,24 @@
     state: directory
     mode: '700'
 
+- name: Register work ssh
+  stat:
+    path: ~/.ssh/id_ed25519_work
+  register: work_ssh
+
 - name: Generate an OpenSSH keypair for professional projects
+  when: "not work_ssh.stat.exists"
   community.crypto.openssh_keypair:
     path: ~/.ssh/id_ed25519_work
     type: ed25519
 
+- name: Register personal ssh
+  stat:
+    path: ~/.ssh/id_ed25519_personal
+  register: personal_ssh
+
 - name: Generate an OpenSSH keypair for personal projects
+  when: "not personal_ssh.stat.exists"
   community.crypto.openssh_keypair:
     path: ~/.ssh/id_ed25519_personal
     type: ed25519
