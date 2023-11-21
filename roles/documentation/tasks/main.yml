@@ -1,0 +1,15 @@
+---
+- name: Install cask apps
+  when: ansible_distribution == 'MacOSX'
+  ansible.builtin.include_tasks:
+      file: shared/homebrew_cask_install.yml
+  loop:
+      - {package: "dash", folder: "/Applications/Caffeine.app/"}
+
+- name: Install Zeal
+  when: ansible_distribution != 'MacOSX'
+  ansible.builtin.package:
+      name:
+          - zeal
+      state: present
+  become: "{{ become_root }}"

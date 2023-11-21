@@ -4,6 +4,7 @@
   roles:
     - bash
     - docker
+    - documentation
     - editors
     - git
     - gnupg
