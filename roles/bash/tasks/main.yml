@@ -23,11 +23,11 @@
     dest: "{{ home_folder }}"
     mode: preserve
 
-- name: Check if .bashrc is already update
+- name: Register .bashrc content
   ansible.builtin.shell: |
     set -o pipefail
     grep -qF "$(cat {{ lookup('file', 'files/.bashrc') }} | tr '\n' '\01')" <<< "$(cat {{ home_folder }}/.bashrc | tr '\n' '\01')"
-  register: bashrc_updated
+  register: bashrc_check
   failed_when: false
   changed_when: false
 
@@ -36,7 +36,7 @@
     src: files/.bashrc
     dest: "{{ home_folder }}"
     mode: preserve
-  when: bashrc_updated.rc != 0
+  when: bashrc_check.rc != 0
 
 - name: Add colorized alias
   ansible.builtin.blockinfile:
