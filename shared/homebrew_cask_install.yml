@@ -1,12 +1,12 @@
 ---
-- name: Install apps from brew-cask
-  community.general.homebrew_cask:
-      name: "{{ item.package }}"
-      state: present
-  failed_when: false
-
 - name: Verify apps are alredy installed
   ansible.builtin.stat:
       path: "{{ item.folder }}"
   register: installation_info
-  failed_when: not installation_info.stat.exists
+
+- name: Install apps from brew-cask
+  when: not installation_info.stat.exists
+  community.general.homebrew_cask:
+      name: "{{ item.package }}"
+      state: present
+  failed_when: false
