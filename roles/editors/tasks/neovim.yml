@@ -8,7 +8,7 @@
 
 - name: Install neovim on MacOS
   when: ansible_distribution == 'MacOSX'
-  community.general.homebrew:
+  ansible.builtin.package:
     name: neovim
     state: present
   become: "{{ become_root }}"
@@ -21,7 +21,7 @@
 
 - name: Install silversearch on OSX
   when: ansible_distribution == 'MacOSX'
-  community.general.homebrew:
+  ansible.builtin.package:
     name: the_silver_searcher
     state: present
 

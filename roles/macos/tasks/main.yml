@@ -7,7 +7,7 @@
 
 - name: Install recent bash
   when: ansible_distribution == 'MacOSX'
-  community.general.homebrew:
+  ansible.builtin.package:
       name:
           - bash
       state: present
