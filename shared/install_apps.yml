@@ -6,7 +6,7 @@
   failed_when: false
 
 - name: Verify apps are alredy installed
-  register: installation_info
   ansible.builtin.stat:
       path: "{{ item.folder }}"
+  register: installation_info
   failed_when: not installation_info.stat.exists
