@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 min_word_length=4
 max_word_length=6
 password_word_count=5
@@ -81,7 +83,7 @@ word_count=$(wc -w <<< "$elegible_words")
 
 if [[ -z $dice_number ]]; then
     for ((i = 0; i < "$password_word_count"; i++)); do
-        echo -n "$(cut -d ' ' -f "$(($RANDOM % $word_count + 1))" <<< "$elegible_words" | tr '[:upper:]' '[:lower:]') "
+        echo -n "$(cut -d ' ' -f "$((RANDOM % word_count + 1))" <<< "$elegible_words" | tr '[:upper:]' '[:lower:]') "
     done
 
     echo

@@ -60,8 +60,9 @@
 
 - name: Copy scripts to ~/.bin
   ansible.builtin.copy:
-    src: "{{ item }}"
-    dest: "{{ home_folder }}/.bin/"
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
     mode: a+x
-  with_fileglob:
-    - "files/bin/*"
+  loop:
+    - {src: files/bin/colors.sh, dest: "{{ home_folder }}/.bin/colors"}
+    - {src: files/bin/diceware.sh, dest: "{{ home_folder }}/.bin/diceware"}

@@ -8,6 +8,8 @@
 #   colors (default + 8 escapes).
 #
 
+set -euo pipefail
+
 TEXT='gYw'
 
 echo -e "\n                 40m     41m     42m     43m\
