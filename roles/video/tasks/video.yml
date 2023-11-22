@@ -1,6 +1,0 @@
----
-- name: Install ffmpeg
-  ansible.builtin.package:
-    name:
-      - ffmpeg
-    state: present
