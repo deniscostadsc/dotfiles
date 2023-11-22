@@ -12,7 +12,7 @@ shopt -s histappend
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=100000
 HISTFILESIZE=100000
-HISTIGNORE='ls:clear:[bf]g:pwd'
+HISTIGNORE='ll:ls:clear:[bf]g:pwd'
 HISTTIMEFORMAT="%d/%m/%y - %H:%M:%S "
 
 # check the window size after each command and, if necessary,
