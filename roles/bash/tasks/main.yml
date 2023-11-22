@@ -33,11 +33,11 @@
   changed_when: false
 
 - name: Copy .bashrc to home folder
+  when: bashrc_check.rc != 0  # only copy if bash bashrc is different
   ansible.builtin.copy:
     src: files/.bashrc
     dest: "{{ home_folder }}"
     mode: preserve
-  when: bashrc_check.rc != 0
 
 - name: Add bash alias
   ansible.builtin.blockinfile:
