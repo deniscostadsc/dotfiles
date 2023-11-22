@@ -14,7 +14,8 @@ function __docker_are_there_containers_running {
 
 function __docker_stop_containers {
     if __docker_are_there_containers_running; then
-        docker stop "$(__docker_containers_ids)"
+        container_ids=$(__docker_containers_ids)
+        docker stop "${container_ids}"
     fi
 }
 

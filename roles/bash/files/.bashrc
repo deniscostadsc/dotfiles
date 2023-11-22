@@ -24,16 +24,17 @@ shopt -s checkwinsize
 #shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+# shellcheck disable=SC2312
+[[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 # shellcheck disable=SC1091
-[ -f /etc/bash_completion ] && source /etc/bash_completion
+[[ -f /etc/bash_completion ]] && source /etc/bash_completion
 
 # Checking for colors support
-if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+if [[ -x /usr/bin/tput ]] && tput setaf 1 >&/dev/null; then
     # We have color support; assume it's compliant with Ecma-48
     # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
     # a case would tend to support setf rather than setaf.)
@@ -42,7 +43,7 @@ else
     color_prompt=
 fi
 
-if [ "$color_prompt" = yes ]; then
+if [[ "${color_prompt}" = yes ]]; then
     PS1='\[\033[01;35m\]\w \[\033[01;36m\]$(__now) \[\033[01;32m\]$(__git_branch) \[\033[31m\]$(__git_arrows) \[\033[00m\]\n\$ '
 else
     PS1='\w $(__now) $(__git_branch) $(__git_arrows)\n\$ '
@@ -52,9 +53,9 @@ unset color_prompt
 
 LC_ALL="en_US.UTF-8"
 
-PATH=~/.bin/:$PATH
+PATH=~/.bin/:${PATH}
 
-export PROJECT_PATH="$HOME/projects/"
+export PROJECT_PATH="${HOME}/projects/"
 
 # no zsh here!
 export BASH_SILENCE_DEPRECATION_WARNING=1
