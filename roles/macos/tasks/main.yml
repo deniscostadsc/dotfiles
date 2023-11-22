@@ -20,6 +20,7 @@
       block: "{{ lookup('file', 'files/homebrew.sh') }}"
 
 - name: Install homebrew cask apps
+  when: ansible_distribution == 'MacOSX'
   ansible.builtin.include_tasks:
       file: shared/homebrew_cask_install.yml
   loop:
