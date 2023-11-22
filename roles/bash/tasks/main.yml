@@ -39,13 +39,13 @@
     mode: preserve
   when: bashrc_check.rc != 0
 
-- name: Add colorized alias
+- name: Add bash alias
   ansible.builtin.blockinfile:
     path: "{{ home_folder }}/.bashrc"
     marker: "# {mark} bash_aliases.sh"
     block: "{{ lookup('file', 'files/bash_aliases.sh') }}"
 
-- name: Add pbcopy/pbpaste aliases for Linux
+- name: Add linux aliases
   when: ansible_distribution != 'MacOSX'
   ansible.builtin.blockinfile:
     path: "{{ home_folder }}/.bashrc"
