@@ -59,4 +59,4 @@
   loop:
     - {src: files/bin/clipboard.sh, dest: "{{ home_folder }}/.bin/clipboard"}
     - {src: files/bin/colors.sh, dest: "{{ home_folder }}/.bin/colors"}
-    - {src: files/bin/diceware.sh, dest: "{{ home_folder }}/.bin/diceware"}
+    - {src: files/bin/passphrase.sh, dest: "{{ home_folder }}/.bin/passphrase"}
