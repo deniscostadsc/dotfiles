@@ -19,7 +19,7 @@ status](https://github.com/deniscostadsc/dotfiles/actions/workflows/ci.yml/badge
       - [Terminal history](#terminal-history)
     - [Code Editors](#code-editors)
     - [Docker](#docker)
-      - [Neovim](#neovim)
+    - [Neovim](#neovim)
     - [Git](#git)
     - [SSH](#ssh)
   - [Troubleshooting](#troubleshooting)
@@ -156,7 +156,7 @@ is required to avoid use of `sudo` for every docker command you run.
 Add also the command `docker-full-clean` that remove everything related to
 Docker. Like images, containers, cache, volumes, etc..
 
-#### Neovim
+### Neovim
 
 Creates copy all Neovim configs and created a alias to open Neovim by typing
 `vim`. It also install [Ag (The Silver
