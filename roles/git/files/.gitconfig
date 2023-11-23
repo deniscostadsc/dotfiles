@@ -26,19 +26,17 @@
 [alias]
     a = add
     alias = config --get-regexp alias
+    append = commit --amend --no-edit
     b = branch
     br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
     branches = br
     c = commit
-    ca = commit -am
-    cached = diff --cached
-    ck = checkout
     cl = clone
-    cleanup-branchs = ! git branch -d `git branch --merged | grep -v '^*\\|main\\|master'`
+    cleanup-branches = ! git branch -D $(git branch | grep -v '^*\\|main\\|master')
     cm = commit -m
     contributors = !git log --no-merges |\
         grep '^Author:' |\
-        sed 's/[^<]*<\\|>[^>]*$//g' |\
+        sed 's/^Author:.//g' |\
         sort |\
         uniq -c |\
         sort -nr
@@ -51,7 +49,6 @@
         --abbrev-commit
     m = merge
     pl = pull
-    plr = pull --rebase
     ps = push -u
     push = push -u
     r = remote

@@ -21,13 +21,15 @@
     state: directory
     mode: '755'
 
-- name: Copy global gitignore
+- name: Copy Git hooks
   ansible.builtin.copy:
-    src: "{{ item }}"
-    dest: "{{ home_folder }}/.config/git/git_repo_template/hooks/"
-    mode: preserve
-  with_fileglob:
-    - "files/hooks/*"
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: a+x
+  loop:
+    - {src: files/hooks/post-checkout-remove-pyc.sh, dest: "{{ home_folder }}/.config/git/git_repo_template/hooks/post-checkout-remove-pyc"}
+    - {src: files/hooks/post-checkout.sh, dest: "{{ home_folder }}/.config/git/git_repo_template/hooks/post-checkout"}
+    - {src: files/hooks/pre-commit.sh, dest: "{{ home_folder }}/.config/git/git_repo_template/hooks/pre-commit"}
 
 - name: Copy global gitignore
   ansible.builtin.copy:

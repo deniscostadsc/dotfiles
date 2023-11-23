@@ -2,8 +2,8 @@
 
 git_root_dir=$(git rev-parse --show-toplevel)
 
-for hook in "$git_root_dir"/.git/hooks/post-checkout-*; do
-    if ! "$hook"; then
+for hook in "${git_root_dir}"/.git/hooks/post-checkout-*; do
+    if ! "${hook}"; then
         exit 1
     fi
 done
