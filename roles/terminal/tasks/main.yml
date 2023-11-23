@@ -8,6 +8,7 @@
   become: "{{ become_root }}"
 
 - name: Install iterm2
+  when: ansible_distribution == 'MacOSX'
   ansible.builtin.include_tasks:
     file: shared/homebrew_cask_install.yml
   loop:
