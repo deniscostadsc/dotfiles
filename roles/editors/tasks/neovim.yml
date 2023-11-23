@@ -1,26 +1,11 @@
 ---
-- name: Install neovim on Linux
-  when: ansible_distribution != 'MacOSX'
+- name: Install neovim
   ansible.builtin.package:
     name: neovim
     state: present
   become: "{{ become_root }}"
 
-- name: Install neovim on MacOS
-  when: ansible_distribution == 'MacOSX'
-  ansible.builtin.package:
-    name: neovim
-    state: present
-  become: "{{ become_root }}"
-
-- name: Install silversearch on Linux
-  when: ansible_distribution != 'MacOSX'
-  ansible.builtin.package:
-    name: the_silver_searcher
-    state: present
-
-- name: Install silversearch on OSX
-  when: ansible_distribution == 'MacOSX'
+- name: Install silversearch
   ansible.builtin.package:
     name: the_silver_searcher
     state: present
