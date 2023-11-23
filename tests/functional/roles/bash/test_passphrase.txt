@@ -1,0 +1,56 @@
+$ ./roles/bash/files/bin/passphrase.sh -h
+
+passphrase
+
+ --min (-n) sets minimum number of characters in the words
+ --max (-m) sets maximum number of characters in the words
+ --count (-c) sets how many word the passphrase will contain
+ --help (-h) shows help message and exit
+
+$ ./roles/bash/files/bin/passphrase.sh --help
+
+passphrase
+
+ --min (-n) sets minimum number of characters in the words
+ --max (-m) sets maximum number of characters in the words
+ --count (-c) sets how many word the passphrase will contain
+ --help (-h) shows help message and exit
+
+$ echo "test" > /usr/share/dict/words
+$ ./roles/bash/files/bin/passphrase.sh
+test test test test test
+$ ./roles/bash/files/bin/passphrase.sh | wc -w  # default word count
+5
+$ ./roles/bash/files/bin/passphrase.sh -c 10 | wc -w
+10
+$ ./roles/bash/files/bin/passphrase.sh --count 10 | wc -w
+10
+$ echo "fruit" >> /usr/share/dict/words
+$ cat /usr/share/dict/words
+test
+fruit
+$ ./roles/bash/files/bin/passphrase.sh -c 20 | grep "test" > /dev/null && echo "got test"
+got test
+$ ./roles/bash/files/bin/passphrase.sh -c 20 | grep "fruit" > /dev/null && echo "got fruit"
+got fruit
+$ ./roles/bash/files/bin/passphrase.sh -n 5
+fruit fruit fruit fruit fruit
+$ ./roles/bash/files/bin/passphrase.sh --min 5
+fruit fruit fruit fruit fruit
+$ ./roles/bash/files/bin/passphrase.sh --max 4
+test test test test test
+$ echo "bananas" >> /usr/share/dict/words
+$ cat /usr/share/dict/words
+test
+fruit
+bananas
+$ ./roles/bash/files/bin/passphrase.sh --min 5 --max 6
+fruit fruit fruit fruit fruit
+$ ./roles/bash/files/bin/passphrase.sh --min 9
+There are no available words with this size
+$ ./roles/bash/files/bin/passphrase.sh --min 7 --max 5
+Max should be greater than min
+$ ./roles/bash/files/bin/passphrase.sh --non-existing
+Invalid option
+$ ./roles/bash/files/bin/passphrase.sh --x
+Invalid option

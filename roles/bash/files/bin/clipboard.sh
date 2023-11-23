@@ -20,10 +20,7 @@ function macos_paste {
 }
 
 function stdin_is_pipe_or_redirection {
-    if [[ -p /dev/stdin ]] && [[ ! -t 0 ]]; then
-        return 0
-    fi
-    return 1
+    [[ -p /dev/stdin ]] && [[ ! -t 0 ]]
 }
 
 function prevent_prompt_from_being_on_the_same_line {
@@ -50,7 +47,9 @@ function detect_os {
 
 function main {
     os="$(detect_os)"
-    if stdin_is_pipe_or_redirection; then
+
+    stdin_is_pipe_or_redirection
+    if $?; then
         "${os}_copy"
     else
         "${os}_paste"
