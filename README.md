@@ -3,6 +3,9 @@
 **DISCLAIMER: This project is intentended to be a personal project, to setup my
 personal computers.**
 
+![ci workflow
+status](https://github.com/deniscostadsc/dotfiles/actions/workflows/ci.yml/badge.svg)
+
 - [dotfiles](#dotfiles)
   - [Running the playbooks](#running-the-playbooks)
   - [Manual steps](#manual-steps)
@@ -49,6 +52,7 @@ make run
 
 ### Packages installed
 
+- [Ag (The Silver Searcher)](https://github.com/ggreer/the_silver_searcher)
 - [asdf](https://github.com/asdf-vm/asdf)
 - [bat](https://github.com/sharkdp/bat)
 - [Caffeine](https://www.caffeine-app.net/) (MaCOS)
@@ -155,9 +159,9 @@ Docker. Like images, containers, cache, volumes, etc..
 #### Neovim
 
 Creates copy all Neovim configs and created a alias to open Neovim by typing
-`vim`. It also install
-[silversearch](https://github.com/ggreer/the_silver_searcher) which is used by
-the [ack.vim](https://github.com/mileszs/ack.vim) plugin Ack.
+`vim`. It also install [Ag (The Silver
+Searcher)](https://github.com/ggreer/the_silver_searcher) which is used by the
+[ack.vim](https://github.com/mileszs/ack.vim) plugin Ack.
 
 ### Git
 
