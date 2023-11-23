@@ -1,5 +1,28 @@
 # dotfiles
 
+**DISCLAIMER: This project is intentended to be a personal project, to setup my
+personal computers.**
+
+- [dotfiles](#dotfiles)
+  - [Running the playbooks](#running-the-playbooks)
+  - [Manual steps](#manual-steps)
+    - [On MacOS](#on-macos)
+  - [What this project does](#what-this-project-does)
+    - [Packages installed](#packages-installed)
+    - [Bash](#bash)
+      - [Commands](#commands)
+      - [Commands with color](#commands-with-color)
+      - [Terminal prompt](#terminal-prompt)
+      - [Terminal history](#terminal-history)
+    - [Docker](#docker)
+    - [Code Editors](#code-editors)
+      - [Neovim](#neovim)
+    - [Git](#git)
+    - [SSH](#ssh)
+  - [Troubleshooting](#troubleshooting)
+    - [Pop!\_os](#pop_os)
+      - [Could not import python modules: apt, apt\_pkg. Please install python3-apt package.](#could-not-import-python-modules-apt-apt_pkg-please-install-python3-apt-package)
+
 ## Running the playbooks
 
 To execute playbook, you need to install ansible and its dependencies locally.
@@ -19,7 +42,8 @@ make run
 
 ### On MacOS
 
-- [Iterm2 theme](roles/terminal/files/Dracula.itermcolors) need to be imported manually. [Reference here](https://draculatheme.com/iterm).
+- [Iterm2 theme](roles/terminal/files/Dracula.itermcolors) need to be imported
+  manually. [Reference here](https://draculatheme.com/iterm).
 
 ## What this project does
 
@@ -62,7 +86,8 @@ make run
 
 Installs the following commands:
 
-- [clipboard](roles/bash/files/bin/clipboard.sh) (you can copy/paste using shell redirections and pipes)
+- [clipboard](roles/bash/files/bin/clipboard.sh) (you can copy/paste using shell
+  redirections and pipes)
 - [colors](roles/bash/files/bin/colors.sh) (cheatsheet for colors on terminal)
 - [ll](roles/bash/files/bash_aliases.sh) (alias for `ls -alhF`)
 - [mkcd](roles/bash/files/bash_functions.sh) (create and got into a directory)
@@ -79,7 +104,8 @@ Adds color by default to the following command:
 
 #### Terminal prompt
 
-Costomizes PS1 variable, which is responsible for the prompt on terminals, like bellow:
+Costomizes PS1 variable, which is responsible for the prompt on terminals, like
+bellow:
 
 ```
 ~/projects/personal/dotfiles 13:55:25 master ⇡
@@ -95,7 +121,8 @@ It shows:
 
 #### Terminal history
 
-Sets the history to 100000 commands, while avoid logging in history the following commands:
+Sets the history limit size to 100000 commands, while avoid logging in history
+the following commands:
 
 - bg
 - clear
@@ -115,6 +142,32 @@ $ history
 11376  22/11/20 - 13:56:05 history
 ```
 
+### Docker
+
+Creates a Docker user group and adds the current user to it on Linux. This step
+is required to avoid use of `sudo` for every docker command you run.
+
+Add also the command `docker-full-clean` that remove everything related to
+Docker. Like images, containers, cache, volumes, etc..
+
+### Code Editors
+
+#### Neovim
+
+Creates copy all Neovim configs and created a alias to open Neovim by typing
+`vim`. It also install
+[silversearch](https://github.com/ggreer/the_silver_searcher) which is used by
+the [ack.vim](https://github.com/mileszs/ack.vim) plugin Ack.
+
+### Git
+
+TODO
+
+### SSH
+
+Creates to SSH keys, one for work and one for personal purposes. Because of that
+I need to set all remotes of work repositories as `work.github.com`.
+
 ## Troubleshooting
 
 ### Pop!_os
@@ -129,9 +182,9 @@ In a new installation of Ansible a problem related to `python3-apt` can occour.
 ...
 ```
 
-There are many sugestions listed on the internet, but the
-[creation symlinks](https://stackoverflow.com/a/69107017) to the lib `*.so`
-solved the problem on Pop!_os.
+There are many sugestions listed on the internet, but the [creation
+symlinks](https://stackoverflow.com/a/69107017) to the lib `*.so` solved the
+problem on Pop!_os.
 
 ```
 cd /usr/lib/python3/dist-packages
