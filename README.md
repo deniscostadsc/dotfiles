@@ -14,8 +14,8 @@ personal computers.**
       - [Commands with color](#commands-with-color)
       - [Terminal prompt](#terminal-prompt)
       - [Terminal history](#terminal-history)
-    - [Docker](#docker)
     - [Code Editors](#code-editors)
+    - [Docker](#docker)
       - [Neovim](#neovim)
     - [Git](#git)
     - [SSH](#ssh)
@@ -142,6 +142,8 @@ $ history
 11376  22/11/20 - 13:56:05 history
 ```
 
+### Code Editors
+
 ### Docker
 
 Creates a Docker user group and adds the current user to it on Linux. This step
@@ -149,8 +151,6 @@ is required to avoid use of `sudo` for every docker command you run.
 
 Add also the command `docker-full-clean` that remove everything related to
 Docker. Like images, containers, cache, volumes, etc..
-
-### Code Editors
 
 #### Neovim
 

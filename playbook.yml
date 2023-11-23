@@ -3,9 +3,9 @@
   hosts: localhost
   roles:
     - bash
+    - code_editors
     - docker
     - documentation
-    - editors
     - git
     - gnupg
     - languages
