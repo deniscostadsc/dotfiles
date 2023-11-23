@@ -27,9 +27,18 @@
     dest: "{{ item.dest }}"
     mode: a+x
   loop:
-    - {src: files/hooks/post-checkout-remove-pyc.sh, dest: "{{ home_folder }}/.config/git/git_repo_template/hooks/post-checkout-remove-pyc"}
-    - {src: files/hooks/post-checkout.sh, dest: "{{ home_folder }}/.config/git/git_repo_template/hooks/post-checkout"}
-    - {src: files/hooks/pre-commit.sh, dest: "{{ home_folder }}/.config/git/git_repo_template/hooks/pre-commit"}
+    - {
+      src: files/hooks/post-checkout-remove-pyc.sh,
+      dest: "{{ home_folder }}/.config/git/git_repo_template/hooks/post-checkout-remove-pyc"  # yamllint disable-line rule:line-length
+    }
+    - {
+      src: files/hooks/post-checkout.sh,
+      dest: "{{ home_folder }}/.config/git/git_repo_template/hooks/post-checkout"  # yamllint disable-line rule:line-length
+    }
+    - {
+      src: files/hooks/pre-commit.sh,
+      dest: "{{ home_folder }}/.config/git/git_repo_template/hooks/pre-commit"  # yamllint disable-line rule:line-length
+    }
 
 - name: Copy global gitignore
   ansible.builtin.copy:

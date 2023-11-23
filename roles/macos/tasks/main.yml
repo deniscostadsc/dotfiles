@@ -1,33 +1,38 @@
 ---
 - name: Install homebrew
   when: ansible_distribution == 'MacOSX'
-  ansible.builtin.command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  ansible.builtin.command:
+    /bin/bash -c "$(curl -fsSL \
+    https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   args:
-      creates: /opt/homebrew/bin/brew
+    creates: /opt/homebrew/bin/brew
 
 - name: Install recent bash
   when: ansible_distribution == 'MacOSX'
   ansible.builtin.package:
-      name:
-          - bash
-      state: present
+    name:
+      - bash
+    state: present
 
 - name: Add homebrew import
   when: ansible_distribution == 'MacOSX'
   ansible.builtin.blockinfile:
-      path: "{{ home_folder }}/.bashrc"
-      marker: "# {mark} homebrew.sh"
-      block: "{{ lookup('file', 'files/homebrew.sh') }}"
+    path: "{{ home_folder }}/.bashrc"
+    marker: "# {mark} homebrew.sh"
+    block: "{{ lookup('file', 'files/homebrew.sh') }}"
 
 - name: Install homebrew cask apps
   when: ansible_distribution == 'MacOSX'
   ansible.builtin.include_tasks:
-      file: shared/homebrew_cask_install.yml
+    file: shared/homebrew_cask_install.yml
   loop:
-      - {package: "caffeine", folder: "/Applications/Caffeine.app/"}
-      - {package: "dropbox", folder: "/Applications/Dropbox.app"}
-      - {package: "firefox", folder: "/Applications/Firefox.app"}
-      - {package: "google-chrome", folder: "/Applications/Google Chrome.app/"}
-      - {package: "password-gorilla", folder: "/Applications/Password Gorilla.app/"}
-      - {package: "slack", folder: "/Applications/Slack.app/"}
-      - {package: "spotify", folder: "/Applications/Spotify.app/"}
+    - {package: "caffeine", folder: "/Applications/Caffeine.app/"}
+    - {package: "dropbox", folder: "/Applications/Dropbox.app"}
+    - {package: "firefox", folder: "/Applications/Firefox.app"}
+    - {package: "google-chrome", folder: "/Applications/Google Chrome.app/"}
+    - {
+      package: "password-gorilla",
+      folder: "/Applications/Password Gorilla.app/"
+    }
+    - {package: "slack", folder: "/Applications/Slack.app/"}
+    - {package: "spotify", folder: "/Applications/Spotify.app/"}

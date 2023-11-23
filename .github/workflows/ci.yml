@@ -1,7 +1,9 @@
+---
 name: CI
 
-on: [push]
+on: [push]  # yamllint disable-line rule:truthy
 
+# yamllint disable rule:indentation
 jobs:
   build:
 
@@ -10,7 +12,9 @@ jobs:
     steps:
       - name: Clear up some space on runner
         run: |
-          dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n | tail -n 100
+          dpkg-query -Wf '${Installed-Size}\t${Package}\n' |\
+            sort -n |\
+            tail -n 100
           df -h
           sudo apt-get remove -y '^dotnet-.*'
           sudo apt-get remove -y '^libclang.*'
@@ -19,7 +23,12 @@ jobs:
           sudo apt-get remove -y '^mysql-.*'
           sudo apt-get remove -y '^postgresql-.*'
           sudo apt-get remove -y 'php*'
-          sudo apt-get remove -y azure-cli google-chrome-stable firefox powershell mono-devel
+          sudo apt-get remove -y \
+            azure-cli \
+            google-chrome-stable \
+            firefox \
+            powershell \
+            mono-devel
           sudo apt-get autoremove -y
           sudo apt-get clean
           rm -rf /usr/share/dotnet/
@@ -31,3 +40,4 @@ jobs:
       - name: Run lint
         run: |
           make lint
+# yamllint enable rule:indentation

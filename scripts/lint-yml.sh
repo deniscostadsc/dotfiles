@@ -18,4 +18,6 @@ for file in **/*.yml; do
     fi
 done
 
+yamllint -c yamllint.yml .
+
 exit "${EXIT_STATUS}"

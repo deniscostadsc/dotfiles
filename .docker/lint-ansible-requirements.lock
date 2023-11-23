@@ -605,4 +605,6 @@ wcmatch==8.5 \
 yamllint==1.33.0 \
     --hash=sha256:28a19f5d68d28d8fec538a1db21bb2d84c7dc2e2ea36266da8d4d1c5a683814d \
     --hash=sha256:2dceab9ef2d99518a2fcf4ffc964d44250ac4459be1ba3ca315118e4a1a81f7d
-    # via ansible-lint
+    # via
+    #   -r .docker/lint-ansible-requirements.txt
+    #   ansible-lint
