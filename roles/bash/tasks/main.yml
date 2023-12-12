@@ -25,7 +25,7 @@
 
 - name: Check ~/.bashrc exists
   ansible.builtin.stat:
-    path: "{{ home_folder }}/.bashrc"
+    path: "~/.bashrc"
   register: bashrc_exists
 
 # yamllint disable rule:indentation
