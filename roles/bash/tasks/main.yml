@@ -24,7 +24,7 @@
     mode: preserve
 
 - name: Check ~/.bashrc exists
-  ansible.builtin.:
+  ansible.builtin.stat:
     path: "{{ home_folder }}/.bashrc"
   register: bashrc_exists
 
