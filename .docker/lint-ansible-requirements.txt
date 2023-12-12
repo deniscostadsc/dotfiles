@@ -1,3 +1,3 @@
-ansible
+-r requirements.txt
 ansible-lint
 yamllint

@@ -10,6 +10,6 @@ RUN pip install -r lint-ansible-requirements.lock
 
 RUN ansible-galaxy collection install community.general
 
-CMD ./scripts/lint-ansible-requirements-update.sh 2> /dev/null && \
+CMD ./scripts/update-requirements.sh .docker/lint-ansible-requirements.txt 2> /dev/null && \
     ./scripts/lint-yml.sh && \
     ansible-lint

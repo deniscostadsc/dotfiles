@@ -2,10 +2,12 @@
 
 set -euo pipefail
 
+requirements_file=$1
+
 pip-compile \
     --upgrade \
     --build-isolation \
     --generate-hashes \
     --strip-extras \
     --cache-dir ./.cache \
-    --output-file .docker/lint-ansible-requirements.lock .docker/lint-ansible-requirements.txt
+    --output-file "${requirements_file%.txt}.lock" "${requirements_file}"
