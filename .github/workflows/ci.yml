@@ -30,7 +30,7 @@ jobs:
           rm -rf /usr/share/dotnet/
           df -h
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Run lint
         run: |
           make lint
