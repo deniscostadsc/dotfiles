@@ -7,24 +7,24 @@
 
 - name: Register work ssh
   ansible.builtin.stat:
-    path: ~/.ssh/id_ed25519_work
+    path: "{{ home_folder }}/.ssh/id_ed25519_work"
   register: work_ssh_check
 
 - name: Generate an OpenSSH keypair for professional projects
   when: not work_ssh_check.stat.exists
   community.crypto.openssh_keypair:
-    path: ~/.ssh/id_ed25519_work
+    path: "{{ home_folder }}/.ssh/id_ed25519_work"
     type: ed25519
 
 - name: Register personal ssh
   ansible.builtin.stat:
-    path: ~/.ssh/id_ed25519_personal
+    path: "{{ home_folder }}/.ssh/id_ed25519_personal"
   register: personal_ssh_check
 
 - name: Generate an OpenSSH keypair for personal projects
   when: not personal_ssh_check.stat.exists
   community.crypto.openssh_keypair:
-    path: ~/.ssh/id_ed25519_personal
+    path: "{{ home_folder }}/.ssh/id_ed25519_personal"
     type: ed25519
 
 - name: Copy ssh config
