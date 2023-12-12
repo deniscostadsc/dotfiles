@@ -23,19 +23,25 @@
     dest: "{{ home_folder }}"
     mode: preserve
 
+- name: Check ~/.bashrc exists
+  ansible.builtin.:
+    path: "{{ home_folder }}/.bashrc"
+  register: bashrc_exists
+
 # yamllint disable rule:indentation
 - name: Register .bashrc content
+  when: bashrc_exists.stat.exists
   ansible.builtin.shell: |
     set -o pipefail
     grep -qF "$(cat {{ lookup('file', 'files/.bashrc') }} | tr '\n' '\01')" \
       <<< "$(cat {{ home_folder }}/.bashrc | tr '\n' '\01')"
-  register: bashrc_check
+  register: bashrc_content_check
   failed_when: false
   changed_when: false
 # yamllint enable rule:indentation
 
 - name: Copy .bashrc to home folder
-  when: bashrc_check.rc != 0  # only copy if bash bashrc is different
+  when: not bashrc_exists.stat.exists or bashrc_content_check.rc != 0
   ansible.builtin.copy:
     src: files/.bashrc
     dest: "{{ home_folder }}"
