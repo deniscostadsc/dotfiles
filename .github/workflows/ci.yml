@@ -36,5 +36,8 @@ jobs:
           make lint
       - name: Run playbook
         run: |
-          ansible-playbook --connection=local --extra-vars "current_user=$$USER home_folder=$$HOME" -vv playbook.yml  # yamllint disable-line rule:line-length
+          ansible-playbook \
+            --connection=local \
+            --extra-vars "current_user=$$USER home_folder=$$HOME" \
+            -vv playbook.yml
 # yamllint enable rule:indentation
