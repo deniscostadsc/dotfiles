@@ -16,5 +16,5 @@ lint:
 	@docker run --rm --name dotfiles-lint-sh -v $$(pwd):/code lint-sh
 
 test:
-	@docker build -q -f .docker/tests.Dockerfile -t test .
-	@docker run --rm --name test -v $$(pwd):/code test
+	@docker build -q -f .docker/tests.Dockerfile -t tests .
+	@docker run --rm --name tests -v $$(pwd):/code tests
