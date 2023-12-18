@@ -55,7 +55,5 @@ LC_ALL="en_US.UTF-8"
 
 PATH=~/.bin/:${PATH}
 
-export PROJECT_PATH="${HOME}/projects/"
-
 # no zsh here!
 export BASH_SILENCE_DEPRECATION_WARNING=1
