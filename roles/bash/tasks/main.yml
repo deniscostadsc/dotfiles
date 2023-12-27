@@ -43,7 +43,7 @@
 # yamllint enable rule:indentation
 
 - name: Copy .bashrc to home folder
-  when: bashrc_exists.stat.exists is not defined or (bashrc_content_check.rc is defined and bashrc_content_check.rc != 0)
+  when: bashrc_exists.stat.exists is not defined or bashrc_content_check.rc is not defined or bashrc_content_check.rc != 0
   ansible.builtin.copy:
     src: files/.bashrc
     dest: "{{ home_folder }}"
