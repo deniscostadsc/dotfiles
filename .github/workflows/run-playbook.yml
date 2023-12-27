@@ -4,7 +4,7 @@ on: [push]  # yamllint disable-line rule:truthy
 # yamllint disable rule:indentation
 jobs:
   run-playbook:
-    runs-on: macos-13
+    runs-on: ubuntu-latest
     steps:
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v2
