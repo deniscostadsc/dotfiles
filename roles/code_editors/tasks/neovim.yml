@@ -6,8 +6,15 @@
   become: "{{ become_root }}"
 
 - name: Install silversearch
+  when: ansible_distribution != 'MacOSX'
   ansible.builtin.package:
-    name: the_silver_searcher
+    name: silversearcher-ag
+    state: present
+
+- name: Install silversearch
+  when: ansible_distribution == 'MacOSX'
+  ansible.builtin.package:
+    name: the_silver_search
     state: present
 
 - name: Copy vim config
