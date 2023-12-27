@@ -27,6 +27,8 @@
   ansible.builtin.stat:
     path: "{{ home_folder }}/.bashrc"
   register: bashrc_exists
+  failed_when: false
+  changed_when: false
 
 # yamllint disable rule:indentation
 - name: Register .bashrc content

@@ -3,7 +3,7 @@
   on: [push]  # yamllint disable-line rule:truthy
   # yamllint disable rule:indentation
   jobs:
-    build:
+    running-on-mac:
       runs-on: macos-13
       steps:
         - name: Checkout code
