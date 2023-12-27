@@ -17,7 +17,7 @@ jobs:
         run: |
           ansible-playbook \
             --connection=local \
-            --extra-vars "current_user=$$USER home_folder=$$HOME" \
+            --extra-vars "current_user=$$USER home_folder=/tmp" \
             -vv \
             -i inventory.ini \
             playbook.yml
