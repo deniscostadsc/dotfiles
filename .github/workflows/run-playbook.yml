@@ -26,12 +26,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Install ansible on MacOS
+      - name: Install ansible on Ubuntu
         run: |
           pip3 install ansible-core
           ansible-galaxy \
             collection install --requirements-file roles/requirements.yml
-      - name: Run playbook on MacOS
+      - name: Run playbook on Ubuntu
         run: |
           ansible-playbook \
             --connection=local \
