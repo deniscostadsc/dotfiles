@@ -10,8 +10,8 @@ jobs:
         uses: dawidd6/action-ansible-playbook@v2
         with:
           playbook: playbook.yml
-          directory: .
-          requirements: roles/requirements.yml
+          directory: ./
+          requirements: ./roles/requirements.yml
           options: |
             --connection=local
             -i inventory.ini
