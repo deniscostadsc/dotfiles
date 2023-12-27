@@ -11,7 +11,7 @@ jobs:
         with:
           playbook: playbook.yml
           directory: ./
-          requirements: ./roles/requirements.yml
+          requirements: requirements.yml
           options: |
             --connection=local
             -i inventory.ini
