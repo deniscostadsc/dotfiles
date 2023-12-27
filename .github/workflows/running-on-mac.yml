@@ -9,7 +9,9 @@
         - name: Checkout code
           uses: actions/checkout@v4
         - name: Install ansible
-          run: pip3 install ansible-core
+          run: |
+            pip3 install ansible-core
+            ansible-galaxy collection install --requirements-file roles/requirements.yml
         - name: Run playbook on MacOS
           run: |
             ansible-playbook \
