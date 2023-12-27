@@ -1,9 +1,7 @@
 ---
 - name: Install homebrew
   when: ansible_distribution == 'MacOSX'
-  ansible.builtin.command:
-    /bin/bash -c "$(curl -fsSL \
-    https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  ansible.builtin.command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   args:
     creates: /opt/homebrew/bin/brew
 
