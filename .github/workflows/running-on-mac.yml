@@ -1,23 +1,24 @@
 ---
-  name: CI
-  on: [push]  # yamllint disable-line rule:truthy
-  # yamllint disable rule:indentation
-  jobs:
-    running-on-mac:
-      runs-on: macos-13
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v4
-        - name: Install ansible
-          run: |
-            pip3 install ansible-core
-            ansible-galaxy collection install --requirements-file roles/requirements.yml
-        - name: Run playbook on MacOS
-          run: |
-            ansible-playbook \
-              --connection=local \
-              --extra-vars "current_user=$$USER home_folder=$$HOME" \
-              -vv \
-              -i inventory.ini \
-              playbook.yml
+name: CI
+on: [push]  # yamllint disable-line rule:truthy
+# yamllint disable rule:indentation
+jobs:
+  running-on-mac:
+    runs-on: macos-13
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install ansible
+        run: |
+          pip3 install ansible-core
+          ansible-galaxy \
+            collection install --requirements-file roles/requirements.yml
+      - name: Run playbook on MacOS
+        run: |
+          ansible-playbook \
+            --connection=local \
+            --extra-vars "current_user=$$USER home_folder=$$HOME" \
+            -vv \
+            -i inventory.ini \
+            playbook.yml
   # yamllint enable rule:indentation
