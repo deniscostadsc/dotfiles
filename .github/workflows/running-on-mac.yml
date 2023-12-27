@@ -8,6 +8,8 @@
       steps:
         - name: Checkout code
           uses: actions/checkout@v4
+        - name: Install ansible
+          run: pip3 install ansible-core
         - name: Run playbook on MacOS
           run: |
             ansible-playbook \
