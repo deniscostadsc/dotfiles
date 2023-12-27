@@ -32,7 +32,7 @@
 
 # yamllint disable rule:indentation
 - name: Register .bashrc content
-  when: bashrc_exists.stat.exists
+  when: bashrc_exists.stat.exists is defined and bashrc_exists.stat.exists
   ansible.builtin.shell: |
     set -o pipefail
     grep -qF "$(cat {{ lookup('file', 'files/.bashrc') }} | tr '\n' '\01')" \
