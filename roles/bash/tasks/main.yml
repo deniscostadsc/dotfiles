@@ -61,6 +61,12 @@
     marker: "# {mark} bash_functions.sh"
     block: "{{ lookup('file', 'files/bash_functions.sh') }}"
 
+- name: Create ~/.bin/ folder
+  ansible.builtin.file:
+    path: "{{ home_folder }}/.bin/"
+    state: directory
+    mode: '755'
+
 - name: Copy scripts to ~/.bin
   ansible.builtin.copy:
     src: "{{ item.src }}"
