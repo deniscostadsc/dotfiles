@@ -14,7 +14,7 @@
 - name: Install silversearch
   when: ansible_distribution == 'MacOSX'
   ansible.builtin.package:
-    name: the_silver_search
+    name: the_silver_searcher
     state: present
 
 - name: Copy vim config
