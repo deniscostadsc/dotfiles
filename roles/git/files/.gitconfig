@@ -27,6 +27,7 @@
     a = add
     alias = config --get-regexp alias
     append = commit --amend --no-edit
+    authors = contributors
     b = branch
     br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
     branches = br
