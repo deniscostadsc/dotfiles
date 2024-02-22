@@ -19,9 +19,11 @@
 [core]
     editor = vim
     autocrlf = input
+    pager = delta
 
 [merge]
     tool = meld
+    conflictstyle = diff3
 
 [alias]
     a = add
@@ -61,3 +63,18 @@
 
 [pull]
     default = current
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    # https://dandavison.github.io/delta/configuration.html
+    navigate = true
+    light = false
+    side-by-side = true
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default

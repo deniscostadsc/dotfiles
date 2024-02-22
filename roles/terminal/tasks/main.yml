@@ -20,6 +20,7 @@
       - bat
       - eza
       - fzf
+      - git-delta
       - htop
       - jq
       - ripgrep
