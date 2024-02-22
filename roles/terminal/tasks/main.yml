@@ -18,6 +18,7 @@
   ansible.builtin.package:
     name:
       - bat
+      - eza
       - fzf
       - htop
       - jq
