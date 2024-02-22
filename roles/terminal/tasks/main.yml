@@ -34,3 +34,30 @@
     path: "{{ home_folder }}/.bashrc"
     marker: "# {mark} terminal_functions.sh"
     block: "{{ lookup('file', 'files/terminal_functions.sh') }}"
+
+
+- name: Create ~/.local/share/z/ folder
+  ansible.builtin.file:
+    path: "{{ home_folder }}/.local/share/z/"
+    state: directory
+    mode: '755'
+
+- name: Copy z.sh to shared folder
+  ansible.builtin.copy:
+    src: files/z.sh
+    dest: "{{ home_folder }}/.local/shared/z/"
+    mode: preserve
+
+# - name: Install z man page
+#   ansible.builtin.copy:
+#     src: files/z.1
+#     dest: "/usr/share/man/man1/"
+#     mode: preserve
+#   become: "{{ become_root }}"
+
+- name: Add z
+  when: ansible_distribution == 'MacOSX'
+  ansible.builtin.blockinfile:
+    path: "{{ home_folder }}/.bashrc"
+    marker: "# {mark} terminal_z.sh"
+    block: "{{ lookup('file', 'files/terminal_z.sh') }}"
