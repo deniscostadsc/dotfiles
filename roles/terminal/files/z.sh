@@ -1,3 +1,4 @@
+# shellcheck disable=all
 # Copyright (c) 2009 rupa deadwyler. Licensed under the WTFPL license, Version 2
 
 # maintains a jump-list of the directories you actually use
