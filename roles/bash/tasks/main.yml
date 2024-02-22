@@ -1,16 +1,4 @@
 ---
-- name: Install tools
-  ansible.builtin.package:
-    name:
-      - bat
-      - fzf
-      - htop
-      - jq
-      - ripgrep
-      - tree
-    state: present
-  become: "{{ become_root }}"
-
 - name: Change user shell to bash
   ansible.builtin.user:
     name: "{{ current_user }}"

@@ -14,9 +14,15 @@
   loop:
     - {package: "iterm2", folder: "/Applications/iTerm.app"}
 
-- name: Install tmux
+- name: Install tools
   ansible.builtin.package:
     name:
+      - bat
+      - fzf
+      - htop
+      - jq
+      - ripgrep
       - tmux
+      - tree
     state: present
   become: "{{ become_root }}"
