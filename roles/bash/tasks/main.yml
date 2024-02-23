@@ -64,3 +64,9 @@
     - {src: files/bin/clipboard.sh, dest: "{{ home_folder }}/.bin/clipboard"}
     - {src: files/bin/colors.sh, dest: "{{ home_folder }}/.bin/colors"}
     - {src: files/bin/passphrase.sh, dest: "{{ home_folder }}/.bin/passphrase"}
+
+- name: Create ~/.man/ folder
+  ansible.builtin.file:
+    path: "{{ home_folder }}/.man/man1/"
+    state: directory
+    mode: '755'

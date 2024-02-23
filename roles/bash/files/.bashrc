@@ -54,6 +54,7 @@ unset color_prompt
 LC_ALL="en_US.UTF-8"
 
 PATH=~/.bin/:${PATH}
+MANPATH=~/.man/:${MANPATH}
 
 # no zsh here!
 export BASH_SILENCE_DEPRECATION_WARNING=1
