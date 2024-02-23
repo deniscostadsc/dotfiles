@@ -2,7 +2,7 @@
 extends: default
 rules:
   line-length:
-    max: 100
+    max: 80
     allow-non-breakable-words: true
     allow-non-breakable-inline-mappings: true
   indentation:
