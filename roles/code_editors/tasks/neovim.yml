@@ -34,9 +34,3 @@
     src: files/neovim/init.vim
     dest: "{{ home_folder }}/.config/nvim/"
     mode: preserve
-
-- name: Add neovim alias
-  ansible.builtin.blockinfile:
-    path: "{{ home_folder }}/.bashrc"
-    marker: "# {mark} neovim/aliases.sh"
-    block: "{{ lookup('file', 'files/neovim/aliases.sh') }}"

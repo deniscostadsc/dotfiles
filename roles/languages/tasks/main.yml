@@ -6,3 +6,9 @@
 - name: Include sql
   ansible.builtin.include_tasks:
     file: sql.yml
+
+- name: Add languages includes to ~/.bashrc
+  ansible.builtin.blockinfile:
+    path: "{{ home_folder }}/.bashrc"
+    marker: "# {mark} languages/files/includes.sh"
+    block: "{{ lookup('file', 'files/includes.sh') }}"

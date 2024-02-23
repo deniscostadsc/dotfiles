@@ -6,3 +6,9 @@
 - name: Include neovim
   ansible.builtin.include_tasks:
     file: vscode.yml
+
+- name: Add code_editors alias to ~/.bashrc
+  ansible.builtin.blockinfile:
+    path: "{{ home_folder }}/.bashrc"
+    marker: "# {mark} code_editors/files/aliases.sh"
+    block: "{{ lookup('file', 'files/aliases.sh') }}"

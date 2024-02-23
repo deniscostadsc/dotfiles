@@ -4,9 +4,3 @@
     name:
       - asdf
     state: present
-
-- name: Add asdf imports
-  ansible.builtin.blockinfile:
-    path: "{{ home_folder }}/.bashrc"
-    marker: "# {mark} asdf.sh"
-    block: "{{ lookup('file', 'files/asdf.sh') }}"

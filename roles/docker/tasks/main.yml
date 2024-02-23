@@ -24,5 +24,5 @@
 - name: Add docker functions to ~/.bashrc
   ansible.builtin.blockinfile:
     path: "{{ home_folder }}/.bashrc"
-    marker: "# {mark} docker_functions.sh"
-    block: "{{ lookup('file', 'files/docker_functions.sh') }}"
+    marker: "# {mark} docker/files/functions.sh"
+    block: "{{ lookup('file', 'files/functions.sh') }}"

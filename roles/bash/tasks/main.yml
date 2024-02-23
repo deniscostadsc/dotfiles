@@ -37,17 +37,17 @@
     dest: "{{ home_folder }}"
     mode: preserve
 
-- name: Add bash alias
+- name: Add bash aliases to ~/.bashrc
   ansible.builtin.blockinfile:
     path: "{{ home_folder }}/.bashrc"
-    marker: "# {mark} bash_aliases.sh"
-    block: "{{ lookup('file', 'files/bash_aliases.sh') }}"
+    marker: "# {mark} bash/files/aliases.sh"
+    block: "{{ lookup('file', 'files/aliases.sh') }}"
 
 - name: Add bash functions to ~/.bashrc
   ansible.builtin.blockinfile:
     path: "{{ home_folder }}/.bashrc"
-    marker: "# {mark} bash_functions.sh"
-    block: "{{ lookup('file', 'files/bash_functions.sh') }}"
+    marker: "# {mark} bash/files/functions.sh"
+    block: "{{ lookup('file', 'files/functions.sh') }}"
 
 - name: Create ~/.bin/ folder
   ansible.builtin.file:

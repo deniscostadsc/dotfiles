@@ -32,8 +32,8 @@
 - name: Add bash functions to ~/.bashrc
   ansible.builtin.blockinfile:
     path: "{{ home_folder }}/.bashrc"
-    marker: "# {mark} terminal_functions.sh"
-    block: "{{ lookup('file', 'files/terminal_functions.sh') }}"
+    marker: "# {mark} terminal/files/functions.sh"
+    block: "{{ lookup('file', 'files/functions.sh') }}"
 
 
 - name: Create ~/.local/share/z/ folder

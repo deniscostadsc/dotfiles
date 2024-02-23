@@ -1,7 +1,7 @@
 ---
-- name: Add cedar imports
+- name: Add work includes to ~/.bashrc
   when: ansible_distribution == 'MacOSX'
   ansible.builtin.blockinfile:
     path: "{{ home_folder }}/.bashrc"
-    marker: "# {mark} cedar.sh"
-    block: "{{ lookup('file', 'files/cedar.sh') }}"
+    marker: "# {mark} work/files/includes.sh"
+    block: "{{ lookup('file', 'files/includes.sh') }}"
