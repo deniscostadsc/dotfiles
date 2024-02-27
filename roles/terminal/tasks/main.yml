@@ -7,6 +7,19 @@
     state: present
   become: "{{ become_root }}"
 
+- name: Create ~/.config/terminator folder
+  ansible.builtin.file:
+    path: "{{ home_folder }}/.config/terminator"
+    state: directory
+    mode: '755'
+
+- name: Copy terminator config file
+  when: ansible_distribution != 'MacOSX'
+  ansible.builtin.copy:
+    src: files/terminator/config
+    dest: "{{ home_folder }}/.config/terminator/"
+    mode: preserve
+
 - name: Install iterm2
   when: ansible_distribution == 'MacOSX'
   ansible.builtin.include_tasks:
