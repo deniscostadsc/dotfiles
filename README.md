@@ -18,8 +18,9 @@ status](https://github.com/deniscostadsc/dotfiles/actions/workflows/ci.yml/badge
       - [Terminal prompt](#terminal-prompt)
       - [Terminal history](#terminal-history)
     - [Code Editors](#code-editors)
+      - [Neovim](#neovim)
+      - [Visual Studio Code](#visual-studio-code)
     - [Docker](#docker)
-    - [Neovim](#neovim)
     - [Git](#git)
     - [SSH](#ssh)
   - [Troubleshooting](#troubleshooting)
@@ -33,6 +34,7 @@ To do that run the following commands
 
 ```
 pip3 install ansible-core
+ansible-galaxy collection install --requirements-file roles/requirements.yml --upgrade
 ```
 
 After that, you can run the playbooks:
@@ -151,6 +153,17 @@ $ history
 
 ### Code Editors
 
+#### Neovim
+
+Creates copy all Neovim configs and created a alias to open Neovim by typing
+`vim`. It also install [Ag (The Silver
+Searcher)](https://github.com/ggreer/the_silver_searcher) which is used by the
+[ack.vim](https://github.com/mileszs/ack.vim) plugin Ack.
+
+#### Visual Studio Code
+
+TODO
+
 ### Docker
 
 Creates a Docker user group and adds the current user to it on Linux. This step
@@ -158,13 +171,6 @@ is required to avoid use of `sudo` for every docker command you run.
 
 Add also the command `docker-full-clean` that remove everything related to
 Docker. Like images, containers, cache, volumes, etc..
-
-### Neovim
-
-Creates copy all Neovim configs and created a alias to open Neovim by typing
-`vim`. It also install [Ag (The Silver
-Searcher)](https://github.com/ggreer/the_silver_searcher) which is used by the
-[ack.vim](https://github.com/mileszs/ack.vim) plugin Ack.
 
 ### Git
 
