@@ -13,7 +13,7 @@
     dest: "{{ home_folder }}"
     mode: preserve
   with_fileglob:
-    - "files/.gitconfig*"
+    - "files/git/.gitconfig*"
 
 - name: Create git config folders
   ansible.builtin.file:
@@ -28,27 +28,27 @@
     mode: a+x
   loop:
     - {
-      src: files/hooks/post-checkout-remove-pyc.sh,
+      src: files/git/hooks/post-checkout-remove-pyc.sh,
       dest: "{{ home_folder }}/.config/git/git_repo_template/hooks/post-checkout-remove-pyc"  # yamllint disable-line rule:line-length
     }
     - {
-      src: files/hooks/post-checkout.sh,
+      src: files/git/hooks/post-checkout.sh,
       dest: "{{ home_folder }}/.config/git/git_repo_template/hooks/post-checkout"  # yamllint disable-line rule:line-length
     }
     - {
-      src: files/hooks/pre-commit.sh,
+      src: files/git/hooks/pre-commit.sh,
       dest: "{{ home_folder }}/.config/git/git_repo_template/hooks/pre-commit"  # yamllint disable-line rule:line-length
     }
 
 - name: Copy global gitignore
   ansible.builtin.copy:
-    src: files/ignore
+    src: files/git/ignore_global
     dest: "{{ home_folder }}/.config/git/ignore"
     mode: preserve
 
 - name: Copy git commit message template
   ansible.builtin.copy:
-    src: files/commit_message_template
+    src: files/git/commit_message_template
     dest: "{{ home_folder }}/.config/git/commit_message_template"
     mode: preserve
 
