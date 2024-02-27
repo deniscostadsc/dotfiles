@@ -7,7 +7,7 @@
 
 - name: Copy .bash_profile to home folder
   ansible.builtin.copy:
-    src: files/.bash_profile
+    src: files/bash/.bash_profile
     dest: "{{ home_folder }}"
     mode: preserve
 
@@ -19,21 +19,23 @@
   changed_when: false
 
 # yamllint disable rule:indentation
+# yamllint disable rule:line-length
 - name: Register .bashrc content
   when: bashrc_exists.stat.exists is defined and bashrc_exists.stat.exists
   ansible.builtin.shell: |
     set -o pipefail
-    grep -qF "$(cat {{ lookup('file', 'files/.bashrc') }} | tr '\n' '\01')" \
+    grep -qF "$(cat {{ lookup('file', 'files/bash/.bashrc') }} | tr '\n' '\01')" \
       <<< "$(cat {{ home_folder }}/.bashrc | tr '\n' '\01')"
   register: bashrc_content_check
   failed_when: false
   changed_when: false
 # yamllint enable rule:indentation
+# yamllint enable rule:line-length
 
 - name: Copy .bashrc to home folder
   when: bashrc_exists.stat.exists is not defined or bashrc_content_check.rc is not defined or bashrc_content_check.rc != 0  # yamllint disable-line rule:line-length
   ansible.builtin.copy:
-    src: files/.bashrc
+    src: files/bash/.bashrc
     dest: "{{ home_folder }}"
     mode: preserve
 

@@ -29,6 +29,6 @@
 
 - name: Copy ssh config
   ansible.builtin.copy:
-    src: files/config
+    src: files/ssh/config
     dest: "{{ home_folder }}/.ssh/"
     mode: preserve
