@@ -18,8 +18,6 @@ status](https://github.com/deniscostadsc/dotfiles/actions/workflows/ci.yml/badge
       - [Terminal prompt](#terminal-prompt)
       - [Terminal history](#terminal-history)
     - [Code Editors](#code-editors)
-      - [Neovim](#neovim)
-      - [Visual Studio Code](#visual-studio-code)
     - [Docker](#docker)
     - [Git](#git)
     - [SSH](#ssh)
@@ -153,16 +151,9 @@ $ history
 
 ### Code Editors
 
-#### Neovim
+Look at [code editors README](roles/code_editors/README.md)
 
-Creates copy all Neovim configs and created a alias to open Neovim by typing
-`vim`. It also install [Ag (The Silver
-Searcher)](https://github.com/ggreer/the_silver_searcher) which is used by the
-[ack.vim](https://github.com/mileszs/ack.vim) plugin Ack.
 
-#### Visual Studio Code
-
-TODO
 
 ### Docker
 
@@ -174,12 +165,11 @@ Docker. Like images, containers, cache, volumes, etc..
 
 ### Git
 
-TODO
+Look at [git role README](roles/git/README.md)
 
 ### SSH
 
-Creates to SSH keys, one for work and one for personal purposes. Because of that
-I need to set all remotes of work repositories as `work.github.com`.
+To enable the coexistance of two SSH keys, one for work and one for personal purposes, I set the work SSH key to impact only the domain `work.github.com`. For that reason, after I clone the repositories from work I need to change the remote URL to add the suffix `work.`.
 
 ## Troubleshooting
 
