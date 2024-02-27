@@ -42,6 +42,12 @@
     state: present
   become: "{{ become_root }}"
 
+- name: Copy tmux config file
+  ansible.builtin.copy:
+    src: files/tmux/tmux.conf
+    dest: "{{ home_folder }}/.tmux.conf"
+    mode: preserve
+
 - name: Create ~/.local/share/z/ folder
   ansible.builtin.file:
     path: "{{ home_folder }}/.local/share/z/"
@@ -59,6 +65,12 @@
     src: files/z/z.1
     dest: "{{ home_folder }}/.man/man1"
     mode: preserve
+
+- name: Add terminal aliases to ~/.bashrc
+  ansible.builtin.blockinfile:
+    path: "{{ home_folder }}/.bashrc"
+    marker: "# {mark} terminal/files/aliases.sh"
+    block: "{{ lookup('file', 'files/aliases.sh') }}"
 
 - name: Add terminal functions to ~/.bashrc
   ansible.builtin.blockinfile:
