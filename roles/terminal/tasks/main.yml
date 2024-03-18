@@ -8,6 +8,7 @@
   become: "{{ become_root }}"
 
 - name: Create ~/.config/terminator folder
+  when: ansible_distribution != 'MacOSX'
   ansible.builtin.file:
     path: "{{ home_folder }}/.config/terminator"
     state: directory
