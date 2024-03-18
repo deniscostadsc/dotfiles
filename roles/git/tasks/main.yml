@@ -57,3 +57,15 @@
     path: "{{ home_folder }}/.bashrc"
     marker: "# {mark} git/files/functions.sh"
     block: "{{ lookup('file', 'files/functions.sh') }}"
+
+- name: Create ~/.bin/ folder
+  ansible.builtin.file:
+    path: "{{ home_folder }}/.bin/"
+    state: directory
+    mode: '755'
+
+- name: Copy scripts to ~/.bin
+  ansible.builtin.copy:
+    src: files/bin/workfy-repo.sh
+    dest: "{{ home_folder }}/.bin/workfy-repo"
+    mode: a+x
