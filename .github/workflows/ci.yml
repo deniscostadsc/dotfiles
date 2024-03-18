@@ -8,6 +8,8 @@ jobs:
     steps:
       - name: Clear up some space on runner
         run: |
+          sudo apt-get update
+          sudo apt-get --fix-missing
           dpkg-query -Wf '${Installed-Size}\t${Package}\n' |\
             sort -rn |\
             head -n 20
