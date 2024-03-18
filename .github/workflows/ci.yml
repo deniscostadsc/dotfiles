@@ -8,7 +8,6 @@ jobs:
     steps:
       - name: Clear up some space on runner
         run: |
-          apt-get update
           dpkg-query -Wf '${Installed-Size}\t${Package}\n' |\
             sort -rn |\
             head -n 20
