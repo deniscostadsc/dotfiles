@@ -1,4 +1,30 @@
-.PHONY: lint run test
+.PHONY: \
+	__build_lint_ansible \
+	__build_lint_sh \
+	__build_lint_tests \
+	lint \
+	lint-fix \
+	run \
+	test
+
+DOCKER_RUN := docker run --rm -v $$(pwd):/code --name
+DOCKER_BUILD := docker build -q -f
+
+__build_lint_sh:
+	@$(DOCKER_BUILD) .docker/lint-sh.Dockerfile -t lint-sh .
+
+__build_lint_ansible:
+	$(DOCKER_BUILD) .docker/lint-ansible.Dockerfile -t lint-ansible .
+
+__build_lint_tests:
+	@$(DOCKER_BUILD) .docker/tests.Dockerfile -t tests .
+
+lint: __build_lint_ansible __build_lint_sh
+	$(DOCKER_RUN) dotfiles-lint-ansible lint-ansible
+	$(DOCKER_RUN) dotfiles-lint-sh lint-sh ./scripts/lint-sh.sh
+
+lint-fix: __build_lint_sh
+	@$(DOCKER_RUN) dotfiles-lint-sh lint-sh shfmt -l -w .
 
 run:
 	ansible-playbook \
@@ -9,16 +35,5 @@ run:
 		-i inventory.ini \
 		playbook.yml
 
-lint:
-	@docker build -q -f .docker/lint-ansible.Dockerfile -t lint-ansible .
-	@docker build -q -f .docker/lint-sh.Dockerfile -t lint-sh .
-	@docker run --rm --name dotfiles-lint-ansible -v $$(pwd):/code lint-ansible
-	@docker run --rm --name dotfiles-lint-sh -v $$(pwd):/code lint-sh ./scripts/lint-sh.sh
-
-lint-fix:
-	@docker build -q -f .docker/lint-sh.Dockerfile -t lint-sh .
-	@docker run --rm --name dotfiles-lint-sh -v $$(pwd):/code lint-sh shfmt -l -w .
-
-test:
-	@docker build -q -f .docker/tests.Dockerfile -t tests .
-	@docker run --rm --name tests -v $$(pwd):/code tests
+test: __build_lint_tests
+	@$(DOCKER_RUN) dotfiles-tests tests

@@ -21,6 +21,8 @@ status](https://github.com/deniscostadsc/dotfiles/actions/workflows/ci.yml/badge
     - [Docker](#docker)
     - [Git](#git)
     - [SSH](#ssh)
+  - [Development](#development)
+    - [Running the tests](#running-the-tests)
   - [Troubleshooting](#troubleshooting)
     - [Pop!\_os](#pop_os)
       - [Could not import python modules: apt, apt\_pkg. Please install python3-apt package.](#could-not-import-python-modules-apt-apt_pkg-please-install-python3-apt-package)
@@ -170,6 +172,18 @@ Look at [git role README](roles/git/README.md)
 ### SSH
 
 To enable the coexistance of two SSH keys, one for work and one for personal purposes, I set the work SSH key to impact only the domain `work.github.com`. For that reason, after I clone the repositories from work I need to change the remote URL to add the suffix `work.`.
+
+## Development
+
+### Running the tests
+
+There are make tasks to run lint and tests
+
+```
+make lint
+make lint-fix
+make test
+```
 
 ## Troubleshooting
 
