@@ -10,4 +10,8 @@ for script in ${SH_SCRIPTS}; do
     EXIT_STATUS=1
 done
 
+if ! shfmt -d .; then
+    EXIT_STATUS=1
+fi
+
 exit "${EXIT_STATUS}"

@@ -1,10 +1,10 @@
 # shellcheck disable=SC2148
 function __git_arrows {
     git rev-parse --abbrev-ref @"{u}" &>/dev/null || return
-    git rev-list --left-right --count HEAD...@"{u}" &> /dev/null || return
+    git rev-list --left-right --count HEAD...@"{u}" &>/dev/null || return
 
     local branch_status
-    branch_status=$(git rev-list --left-right --count HEAD...@"{u}" 2> /dev/null)
+    branch_status=$(git rev-list --left-right --count HEAD...@"{u}" 2>/dev/null)
 
     local left_arrow
     local right_arrow

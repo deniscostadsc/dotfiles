@@ -32,15 +32,15 @@ function prevent_prompt_from_being_on_the_same_line {
 
 function detect_os {
     case "$(uname -s)" in
-        Linux*)
-            printf "linux"
+    Linux*)
+        printf "linux"
         ;;
-        Darwin*)
-            printf "macos"
+    Darwin*)
+        printf "macos"
         ;;
-        *)
-            echo "Clipboard only supports Linux and MacOS."
-            exit 1
+    *)
+        echo "Clipboard only supports Linux and MacOS."
+        exit 1
         ;;
     esac
 }

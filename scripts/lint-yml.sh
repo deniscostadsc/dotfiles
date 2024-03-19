@@ -12,7 +12,7 @@ for file in **/*.yaml; do
 done
 
 for file in **/*.yml; do
-    if ! grep '^---$' "${file}" &> /dev/null; then
+    if ! grep '^---$' "${file}" &>/dev/null; then
         echo "The file ${file} does not has a '---' at the beggining."
         EXIT_STATUS=1
     fi

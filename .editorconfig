@@ -17,3 +17,6 @@ indent_style = tab
 
 [*.txt]
 trim_trailing_whitespace = false
+
+[roles/terminal/files/z/**]
+ignore = true

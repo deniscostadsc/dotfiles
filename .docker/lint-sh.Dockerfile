@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk -U upgrade && apk add shellcheck bash
+RUN apk -U upgrade && apk add bash shellcheck shfmt
 
 RUN mkdir /code
 WORKDIR /code
