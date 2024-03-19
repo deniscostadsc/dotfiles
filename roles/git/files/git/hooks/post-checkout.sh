@@ -2,7 +2,7 @@
 
 git_root_dir=$(git rev-parse --show-toplevel)
 
-if ! compgen -G "${git_root_dir}"/.git/hooks/post-checkout-* > /dev/null; then
+if ! compgen -G "${git_root_dir}"/.git/hooks/post-checkout-* >/dev/null; then
     exit 0
 fi
 
