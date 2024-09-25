@@ -155,8 +155,6 @@ $ history
 
 Look at [code editors README](roles/code_editors/README.md)
 
-
-
 ### Docker
 
 Creates a Docker user group and adds the current user to it on Linux. This step
