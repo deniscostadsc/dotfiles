@@ -14,14 +14,14 @@ __build_lint_sh:
 	@$(DOCKER_BUILD) .docker/lint-sh.Dockerfile -t lint-sh .
 
 __build_lint_ansible:
-	$(DOCKER_BUILD) .docker/lint-ansible.Dockerfile -t lint-ansible .
+	@$(DOCKER_BUILD) .docker/lint-ansible.Dockerfile -t lint-ansible .
 
 __build_lint_tests:
 	@$(DOCKER_BUILD) .docker/tests.Dockerfile -t tests .
 
 lint: __build_lint_ansible __build_lint_sh
-	$(DOCKER_RUN) dotfiles-lint-ansible lint-ansible
-	$(DOCKER_RUN) dotfiles-lint-sh lint-sh ./scripts/lint-sh.sh
+	@$(DOCKER_RUN) dotfiles-lint-ansible lint-ansible
+	@$(DOCKER_RUN) dotfiles-lint-sh lint-sh ./scripts/lint-sh.sh
 
 lint-fix: __build_lint_sh
 	@$(DOCKER_RUN) dotfiles-lint-sh lint-sh shfmt -l -w .
