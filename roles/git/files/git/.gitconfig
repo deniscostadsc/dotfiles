@@ -26,37 +26,23 @@
     conflictstyle = diff3
 
 [alias]
-    a = add
     alias = config --get-regexp alias
     append = commit --amend --no-edit
     authors = contributors
-    b = branch
-    br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
-    branches = br
-    c = commit
-    cl = clone
+    branches = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
     cleanup-branches = ! git branch -D $(git branch | grep -v '^*\\|main\\|master')
-    cm = commit -m
     contributors = !git log --no-merges |\
         grep '^Author:' |\
         sed 's/^Author:.//g' |\
         sort |\
         uniq -c |\
         sort -nr
-    d = diff
-    f = fetch
-    g = grep
-    l = log
     lg = log --color --graph \
         --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' \
         --abbrev-commit
-    m = merge
-    pl = pull
-    ps = push -u
     push = push -u
-    r = remote
-    rb = rebase
     s = status
+    wip = commit --no-verify -am WIP
 
 [push]
     default = current
