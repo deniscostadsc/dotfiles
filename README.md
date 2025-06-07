@@ -1,6 +1,6 @@
 # dotfiles
 
-**DISCLAIMER: This project is intentended to be a personal project, to setup my
+**DISCLAIMER: This project is intentended to be a personal project to setup my
 personal computers.**
 
 ![ci workflow
