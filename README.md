@@ -125,7 +125,7 @@ It shows:
 
 - Current folder name
 - Time when the promt was shown on screen
-- Git branch name (if current directory is in a Git repository)
+- Git branch name (if current directory is a Git repository)
 - Arrows that indicates you are ahead/behind remote branch
 
 #### Terminal history
