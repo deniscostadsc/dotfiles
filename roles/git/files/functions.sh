@@ -15,10 +15,10 @@ function __git_arrows {
     right_arrow=$(echo $branch_status | cut -f 2 -d " ")
 
     local arrows
-    [ "$left_arrow" != 0 ] && arrows="⇡"
-    [ "$right_arrow" != 0 ] && arrows="${arrows}⇣"
+    [[ "$left_arrow" != 0 ]] && arrows="⇡"
+    [[ "$right_arrow" != 0 ]] && arrows="${arrows}⇣"
 
-    echo $arrows
+    echo "${arrows}"
 }
 
 function __git_branch {

@@ -84,18 +84,18 @@ function detect_os {
         printf wsl
     else
         case "$(uname -s)" in
-            Linux*)
-                printf linux
+        Linux*)
+            printf linux
             ;;
-            Darwin*)
-                printf macos
+        Darwin*)
+            printf macos
             ;;
-            cygwin*)
-                printf cygwin
+        cygwin*)
+            printf cygwin
             ;;
-            *)
-                echo "Clipboard only supports Linux and MacOS."
-                exit 1
+        *)
+            echo "Clipboard only supports Linux and MacOS."
+            exit 1
             ;;
         esac
     fi
