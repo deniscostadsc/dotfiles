@@ -1,2 +1,3 @@
-ansible
-pip-tools
+ansible==11.6.0
+ansible-lint==25.5.0
+yamllint==1.37.1
