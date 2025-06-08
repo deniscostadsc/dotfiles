@@ -1,8 +1,8 @@
 ---
 collections:
   - name: community.general
-    version: 8.4.0
+    version: 10.7.0
     source: https://galaxy.ansible.com
   - name: community.crypto
-    version: 2.18.0
+    version: 2.26.1
     source: https://galaxy.ansible.com
