@@ -5,24 +5,24 @@
     state: directory
     mode: '700'
 
-- name: Register work ssh
+- name: Register work ssh key
   ansible.builtin.stat:
     path: "{{ home_folder }}/.ssh/id_ed25519_work"
-  register: work_ssh_check
+  register: work_ssh_key_check
 
 - name: Generate an OpenSSH keypair for professional projects
-  when: not work_ssh_check.stat.exists
+  when: not work_ssh_key_check.stat.exists
   community.crypto.openssh_keypair:
     path: "{{ home_folder }}/.ssh/id_ed25519_work"
     type: ed25519
 
-- name: Register personal ssh
+- name: Register personal ssh key
   ansible.builtin.stat:
     path: "{{ home_folder }}/.ssh/id_ed25519_personal"
-  register: personal_ssh_check
+  register: personal_ssh_key_check
 
 - name: Generate an OpenSSH keypair for personal projects
-  when: not personal_ssh_check.stat.exists
+  when: not personal_ssh_key_check.stat.exists
   community.crypto.openssh_keypair:
     path: "{{ home_folder }}/.ssh/id_ed25519_personal"
     type: ed25519
