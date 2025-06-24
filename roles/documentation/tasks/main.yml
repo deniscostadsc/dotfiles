@@ -4,7 +4,7 @@
   ansible.builtin.include_tasks:
     file: shared/homebrew_cask_install.yml
   loop:
-    - {package: "dash", folder: "/Applications/Caffeine.app/"}
+    - {package: "dash", folder: "/Applications/Dash.app/"}
 
 - name: Install Zeal
   when: ansible_distribution != 'MacOSX'
