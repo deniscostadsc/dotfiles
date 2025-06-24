@@ -61,6 +61,12 @@
     dest: "{{ home_folder }}/.local/shared/z/"
     mode: preserve
 
+- name: Copy bat config file
+  ansible.builtin.copy:
+    src: files/bat/config
+    dest: "{{ home_folder }}/.config/bat/config"
+    mode: preserve
+
 - name: Install z man page
   ansible.builtin.copy:
     src: files/z/z.1
