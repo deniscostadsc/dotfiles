@@ -56,8 +56,7 @@
 [delta]
     # https://dandavison.github.io/delta/configuration.html
     navigate = true
-    light = false
-    side-by-side = true
+    side-by-side = false
 
 [merge]
     conflictstyle = diff3
