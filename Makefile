@@ -2,6 +2,8 @@
 	__build_lint_ansible \
 	__build_lint_sh \
 	__build_lint_tests \
+	decrypt-secrets \
+	encrypt-secrets \
 	lint \
 	lint-fix \
 	run \
@@ -19,6 +21,12 @@ __build_lint_ansible:
 __build_lint_tests:
 	@$(DOCKER_BUILD) .docker/tests.Dockerfile -t tests .
 
+decrypt-secrets:
+	ansible-vault decrypt secrets.enc
+
+encrypt-secrets:
+	ansible-vault encrypt secrets.enc
+
 lint: __build_lint_ansible __build_lint_sh
 	@$(DOCKER_RUN) dotfiles-lint-ansible lint-ansible
 	@$(DOCKER_RUN) dotfiles-lint-sh lint-sh ./scripts/lint-sh.sh
@@ -33,6 +41,7 @@ run:
 		--extra-vars "current_user=$$USER home_folder=$$HOME" \
 		-vv \
 		-i inventory.ini \
+		-e @secrets.enc --ask-vault-pass \
 		playbook.yml
 
 test: __build_lint_tests

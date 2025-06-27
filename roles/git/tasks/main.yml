@@ -7,13 +7,31 @@
     state: present
   become: "{{ become_root }}"
 
-- name: Copy git config
+- name: Copy main gitconfig file
+  ansible.builtin.copy:
+    src: files/git/.gitconfig
+    dest: "{{ home_folder }}"
+    mode: preserve
+
+- name: Prepare default gitconfig file
+  ansible.builtin.template:
+    src: "files/git/.gitconfig-default.j2"
+    dest: "/tmp/.gitconfig-default"
+    mode: preserve
+
+- name: Prepare work gitconfig file
+  ansible.builtin.template:
+    src: "files/git/.gitconfig-work.j2"
+    dest: "/tmp/.gitconfig-work"
+    mode: preserve
+
+- name: Copy aux git config files
   ansible.builtin.copy:
     src: "{{ item }}"
     dest: "{{ home_folder }}"
     mode: preserve
   with_fileglob:
-    - "files/git/.gitconfig*"
+    - "/tmp/.gitconfig-*"
 
 - name: Create git config folders
   ansible.builtin.file:
