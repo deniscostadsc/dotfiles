@@ -47,7 +47,7 @@ make run
 
 ### On MacOS
 
-- [Iterm2 theme](roles/terminal/files/Dracula.itermcolors) need to be imported
+- [Iterm2 theme](/roles/terminal/files/Dracula.itermcolors) need to be imported
   manually. [Reference here](https://draculatheme.com/iterm).
 
 ## What this project does
@@ -96,12 +96,12 @@ make run
 
 Installs the following commands:
 
-- [clipboard](roles/bash/files/bin/clipboard.sh) (you can copy/paste using shell
+- [clipboard](/roles/bash/files/bin/clipboard.sh) (you can copy/paste using shell
   redirections and pipes)
-- [colors](roles/bash/files/bin/colors.sh) (cheatsheet for colors on terminal)
-- [ll](roles/bash/files/bash_aliases.sh) (alias for `ls -alhF`)
-- [mkcd](roles/bash/files/bash_functions.sh) (create and got into a directory)
-- [passphrase](roles/bash/files/bin/passphrase.sh) (generates passphrases)
+- [colors](/roles/bash/files/bin/colors.sh) (cheatsheet for colors on terminal)
+- [ll](/roles/bash/files/bash_aliases.sh) (alias for `ls -alhF`)
+- [mkcd](/roles/bash/files/bash_functions.sh) (create and got into a directory)
+- [passphrase](/roles/bash/files/bin/passphrase.sh) (generates passphrases)
 
 #### Commands with color
 
@@ -154,7 +154,7 @@ $ history
 
 ### Code Editors
 
-Look at [code editors README](roles/code_editors/README.md)
+Look at [code editors README](/roles/code_editors/README.md)
 
 ### Docker
 
@@ -166,11 +166,11 @@ Docker. Like images, containers, cache, volumes, etc..
 
 ### Git
 
-Look at [Git role README](roles/git/README.md)
+Look at [Git role README](/roles/git/README.md)
 
 ### SSH
 
-Look at [SSH role README](roles/ssh/README.md)
+Look at [SSH role README](/roles/ssh/README.md)
 
 ## Development
 
