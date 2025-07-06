@@ -166,14 +166,11 @@ Docker. Like images, containers, cache, volumes, etc..
 
 ### Git
 
-Look at [git role README](roles/git/README.md)
+Look at [Git role README](roles/git/README.md)
 
 ### SSH
 
-To enable the coexistance of two SSH keys, one for work and one for personal
-purposes, I set the work SSH key to impact only the domain `work.github.com`.
-For that reason, after I clone the repositories from work I need to change the
-remote URL to add the suffix `work.`. The command `workfy-repo` does the job.
+Look at [SSH role README](roles/ssh/README.md)
 
 ## Development
 
