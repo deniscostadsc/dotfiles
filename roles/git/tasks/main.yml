@@ -84,6 +84,15 @@
 
 - name: Copy scripts to ~/.bin
   ansible.builtin.copy:
-    src: files/bin/workfy-repo.sh
-    dest: "{{ home_folder }}/.bin/workfy-repo"
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
     mode: a+x
+  loop:
+    - {
+      src: files/bin/workfy-repo.sh,
+      dest: "{{ home_folder }}/.bin/workfy-repo"
+    }
+    - {
+      src: files/bin/git-aliases.sh,
+      dest: "{{ home_folder }}/.bin/git-aliases"
+    }

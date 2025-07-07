@@ -25,23 +25,38 @@
     tool = meld
     conflictstyle = diff3
 
+# To enable the description for git alias command follow this syntax on alias
+# section:
+#
+#  # comment describing the alias
+#  alias = ...
 [alias]
-    alias = config --get-regexp alias
+    # Show all custom aliases
+    alias = ! git-aliases
+    # Add staged changes to previous commit
     append = commit --amend --no-edit
+    # Show unique commit authors sorter by numbre of commits
     authors = contributors
+    # Show all branches with better format
     branches = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+    # Remove all branches except branches named as main or master, and the current branch
     cleanup-branches = ! git branch -D $(git branch | grep -v '^*\\|main\\|master')
-    contributors = !git log --no-merges |\
+    # Same as authors
+    contributors = ! git log --no-merges |\
         grep '^Author:' |\
         sed 's/^Author:.//g' |\
         sort |\
         uniq -c |\
         sort -nr
+    # Show log with better format
     lg = log --color --graph \
         --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' \
         --abbrev-commit
+    # Add -u by default to push
     push = push -u
+    # Same as status
     s = status
+    # Skip git hook and commit all changed code with WIP as massage
     wip = commit --no-verify -am WIP
 
 [push]
