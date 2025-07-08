@@ -5,8 +5,8 @@ set -euo pipefail
 config_file="${HOME}/.gitconfig"
 
 git config --get-regexp '^alias\.' | while read -r full_alias _; do
-    alias_name="${full_alias//#alias./}"
-    alias_line_number=$(grep -n "^[[:space:]]*${alias_name}[[:space:]]*=" "${config_file}" | cut -d: -f1 | head -n1)
+    alias_name="${full_alias//alias./}"
+    alias_line_number=$(grep -n "^[[:space:]]*${alias_name}[[:space:]]*=" "${config_file}" | cut -d: -f1)
 
     if [[ -n "${alias_line_number}" ]]; then
         alias_description=""

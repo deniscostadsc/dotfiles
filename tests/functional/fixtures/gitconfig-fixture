@@ -1,0 +1,10 @@
+[alias]
+    # Show all custom aliases
+    alias = ! git-aliases
+    append = commit --amend --no-edit
+    # Show log with better format
+    lg = log --color --graph \
+        --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' \
+        --abbrev-commit
+    # Add -u by default to push
+    push = push -u
