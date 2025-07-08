@@ -16,6 +16,7 @@ passphrase
  --count (-c) sets how many word the passphrase will contain
  --help (-h) shows help message and exit
 
+$ mkdir -p /usr/share/dict/
 $ echo "test" > /usr/share/dict/words
 $ ./roles/bash/files/bin/passphrase.sh
 test test test test test

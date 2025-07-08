@@ -1,4 +1,6 @@
-FROM python:3.14-rc-bullseye
+FROM alpine:latest
+
+RUN apk -U upgrade && apk add bash git
 
 RUN mkdir /code
 WORKDIR /code
