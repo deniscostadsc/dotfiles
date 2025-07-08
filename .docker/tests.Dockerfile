@@ -5,7 +5,8 @@ RUN apk -U upgrade && apk add bash git
 RUN mkdir /code
 WORKDIR /code
 
-RUN wget https://raw.githubusercontent.com/aureliojargas/clitest/master/clitest
+# Add latest released version of clitest
+RUN wget https://raw.githubusercontent.com/aureliojargas/clitest/8bdaae2f56e524f8824307d5c443e6353fe0dbd9/clitest
 RUN chmod +x clitest
 RUN mv clitest /usr/bin
 
