@@ -30,7 +30,19 @@ status](https://github.com/deniscostadsc/dotfiles/actions/workflows/ci.yml/badge
 ## Running the playbooks
 
 To execute playbook, you need to install ansible and its dependencies locally.
-To do that run the following commands
+To do that run the following commands:
+
+
+### On Pop!_os
+
+```
+sudo apt update && sudo apt upgrade -y
+sudo apt install software-properties-common
+sudo add-apt-repository --yes --update ppa:ansible/ansible
+sudo apt install ansible -y
+```
+
+### On MacOS
 
 ```
 pip3 install ansible-core
@@ -206,4 +218,11 @@ problem on Pop!_os.
 cd /usr/lib/python3/dist-packages
 sudo ln -s apt_pkg.cpython*.so apt_pkg.so
 sudo ln -s apt_inst.cpython*.so apt_inst.so
+```
+
+#### ERROR! ansible-galaxy requires resolvelib<1.1.0,>=0.5.3
+
+```
+pip uninstall resolvelib
+pip install resolvelib==1.0.1
 ```
