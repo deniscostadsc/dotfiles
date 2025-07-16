@@ -1,5 +1,6 @@
 ---
 - name: Install asdf
+  when: ansible_distribution == 'MacOSX'
   ansible.builtin.package:
     name:
       - asdf

@@ -10,6 +10,7 @@
   ansible.builtin.package:
     name: silversearcher-ag
     state: present
+  become: "{{ become_root }}"
 
 - name: Install silversearch
   when: ansible_distribution == 'MacOSX'

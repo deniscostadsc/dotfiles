@@ -4,6 +4,7 @@
     name:
       - ffmpeg
     state: present
+  become: "{{ become_root }}"
 
 - name: Install VLC
   when: ansible_distribution == 'MacOSX'

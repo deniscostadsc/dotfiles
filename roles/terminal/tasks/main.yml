@@ -61,6 +61,12 @@
     dest: "{{ home_folder }}/.local/shared/z/"
     mode: preserve
 
+- name: Create ~/.config/bat/ folder
+  ansible.builtin.file:
+    path: "{{ home_folder }}/.config/bat/"
+    state: directory
+    mode: '755'
+
 - name: Copy bat config file
   ansible.builtin.copy:
     src: files/bat/config
