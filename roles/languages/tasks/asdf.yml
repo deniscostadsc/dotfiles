@@ -1,7 +1,15 @@
 ---
-- name: Install asdf
+- name: Install asdf on Mac
   when: ansible_distribution == 'MacOSX'
   ansible.builtin.package:
     name:
       - asdf
     state: present
+
+- name: Install asdf on Linux
+  when: ansible_distribution != 'MacOSX'
+  git:
+    repo: "https://github.com/asdf-vm/asdf.git"
+    dest: "{{ home_folder }}/.asdf/"
+    version: "v0.8.0"
+  become_user: "{{ current_user }}"
