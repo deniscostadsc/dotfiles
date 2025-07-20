@@ -75,8 +75,7 @@ validate_range "${min_word_length}" 1 100 "Min word length"
 validate_range "${max_word_length}" 1 100 "Max word length"
 validate_range "${passphrase_word_count}" 0 1000 "Word count"
 
-
-
+# Temporarily disable exit on error to handle grep failures gracefully
 set +e
 if [[ ${max_word_length} -lt ${min_word_length} ]]; then
     elegible_words=""
@@ -97,7 +96,7 @@ word_count=$(wc -w <<<"${elegible_words}")
 for ((i = 0; i < "${passphrase_word_count}"; i++)); do
     random_bytes=$(head -c 4 /dev/urandom | od -An -tu4 | tr -d ' ')
     word_index="$((random_bytes % word_count + 1))"
-    word="$(cut -d ' ' -f "${word_index}" <<<"${elegible_words}" | tr '[:upper:]' '[:lower:]')"
+    word="$(cut -d ' ' -f "${word_index}" <<< "${elegible_words}" | tr '[:upper:]' '[:lower:]')"
 
     if [[ $i -lt $((passphrase_word_count - 1)) ]]; then
         echo -n "${word} "
