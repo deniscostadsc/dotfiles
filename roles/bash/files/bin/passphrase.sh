@@ -70,7 +70,7 @@ elif [[ ${have_min_word_arg} -eq 1 ]]; then
     )
 else
     elegible_words=$(
-        grep -E "^[A-Za-z]{,${max_word_length}}$" /usr/share/dict/words | tr '\n' ' '
+        grep -E "^[A-Za-z]{0,${max_word_length}}$" /usr/share/dict/words | tr '\n' ' '
     )
 fi
 set -e
@@ -83,7 +83,7 @@ fi
 word_count=$(wc -w <<<"${elegible_words}")
 
 for ((i = 0; i < "${passphrase_word_count}"; i++)); do
-    random_number=$RANDOM
+    random_number=${RANDOM}
     while [[ ${random_number} -lt ${word_count} ]]; do
         random_number=$((random_number * RANDOM))
     done
