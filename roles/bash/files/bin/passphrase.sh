@@ -40,7 +40,7 @@ while read -r path; do
         DICTIONARY_PATH="$path"
         break
     fi
-done << 'EOF'
+done <<'EOF'
 /usr/share/dict/words
 /usr/dict/words
 /usr/share/dict/american-english
