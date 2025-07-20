@@ -7,16 +7,14 @@
   ansible.builtin.include_tasks:
     file: sql.yml
 
-- name: Add languages includes to ~/.bashrc
-  when: ansible_distribution == 'MacOSX'
-  ansible.builtin.blockinfile:
-    path: "{{ home_folder }}/.bashrc"
-    marker: "# {mark} languages/files/includes-mac.sh"
-    block: "{{ lookup('file', 'files/includes-mac.sh') }}"
+- name: Prepare work gitconfig file
+  ansible.builtin.template:
+    src: files/includes.sh.j2
+    dest: /tmp/languages-includes.sh
+    mode: preserve
 
 - name: Add languages includes to ~/.bashrc
-  when: ansible_distribution != 'MacOSX'
   ansible.builtin.blockinfile:
     path: "{{ home_folder }}/.bashrc"
-    marker: "# {mark} languages/files/includes-linux.sh"
-    block: "{{ lookup('file', 'files/includes-linux.sh') }}"
+    marker: "# {mark} languages/files/includes.sh"
+    block: "{{ lookup('file', '/tmp/languages-includes.sh') }}"

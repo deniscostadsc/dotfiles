@@ -1,0 +1,9 @@
+{% if ansible_distribution == 'MacOSX' %}
+# shellcheck disable=SC1091,SC2154
+source "${HOMEBREW_PREFIX}/opt/asdf/libexec/asdf.sh"
+{% else %}
+# shellcheck disable=SC1091
+source "${HOME}/.asdf/asdf.sh"
+{% endif %}
+# shellcheck disable=SC1090,SC2312
+source <(asdf completion bash)

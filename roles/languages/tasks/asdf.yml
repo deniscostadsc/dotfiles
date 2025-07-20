@@ -8,8 +8,7 @@
 
 - name: Install asdf on Linux
   when: ansible_distribution != 'MacOSX'
-  git:
+  ansible.builtin.git:
     repo: "https://github.com/asdf-vm/asdf.git"
     dest: "{{ home_folder }}/.asdf/"
-    version: "v0.8.0"
-  become_user: "{{ current_user }}"
+    version: "v0.18.0"
