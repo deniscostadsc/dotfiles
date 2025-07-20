@@ -15,6 +15,24 @@ if command -v rg >/dev/null 2>&1; then
     search_cmd="rg -N"
 fi
 
+DICTIONARY_PATH=""
+while read -r path; do
+    if [[ -f "$path" && -r "$path" ]]; then
+        DICTIONARY_PATH="$path"
+        break
+    fi
+done << 'EOF'
+/usr/share/dict/words
+/usr/dict/words
+/usr/share/dict/american-english
+/usr/share/dict/british-english
+EOF
+
+if [[ -z "$DICTIONARY_PATH" ]]; then
+    echo "No dictionary file found."
+    exit 1
+fi
+
 validate_range() {
     local value=$1
     local min=$2
@@ -90,7 +108,7 @@ if [[ ${max_word_length} -lt ${min_word_length} ]]; then
     elegible_words=""
 else
     elegible_words=$(
-        $search_cmd "^[A-Za-z]{${min_word_length},${max_word_length}}$" /usr/share/dict/words | tr '\n' ' '
+        $search_cmd "^[a-z]{${min_word_length},${max_word_length}}$" "$DICTIONARY_PATH" | tr '\n' ' '
     )
 fi
 set -e
@@ -100,12 +118,12 @@ if [[ -z ${elegible_words} ]]; then
     exit 1
 fi
 
-word_count=$(wc -w <<< "${elegible_words}")
+word_count=$(wc -w <<<"${elegible_words}")
 
 for ((i = 0; i < "${passphrase_word_count}"; i++)); do
     random_bytes=$(head -c 4 /dev/urandom | od -An -tu4 | tr -d ' ')
     word_index="$((random_bytes % word_count + 1))"
-    word="$(cut -d ' ' -f "${word_index}" <<< "${elegible_words}" | tr '[:upper:]' '[:lower:]')"
+    word="$(cut -d ' ' -f "${word_index}" <<<"${elegible_words}" | tr '[:upper:]' '[:lower:]')"
 
     if [[ $i -lt $((passphrase_word_count - 1)) ]]; then
         echo -n "${word} "
