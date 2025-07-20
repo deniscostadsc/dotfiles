@@ -64,6 +64,22 @@ while [[ $# -gt 0 ]]; do
     shift
 done
 
+validate_range() {
+    local value=$1
+    local min=$2
+    local max=$3
+    local name=$4
+
+    if [[ ${value} -lt ${min} ]] || [[ ${value} -gt ${max} ]]; then
+        echo "${name} must be between ${min} and ${max}"
+        exit 1
+    fi
+}
+
+validate_range "${min_word_length}" 1 100 "Min word length"
+validate_range "${max_word_length}" 1 100 "Max word length"
+validate_range "${passphrase_word_count}" 0 1000 "Word count"
+
 if [[ ${have_min_word_arg} -eq 1 ]] && [[ ${have_max_word_arg} -eq 1 ]]; then
     if [[ ${max_word_length} -lt ${min_word_length} ]]; then
         echo "Max should be greater than min"
