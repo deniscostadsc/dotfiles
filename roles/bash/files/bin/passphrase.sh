@@ -31,9 +31,9 @@ function show_help {
     echo
     echo "passphrase"
     echo
-    echo " --min (-n) sets minimum number of characters in the words"
-    echo " --max (-m) sets maximum number of characters in the words"
-    echo " --count (-c) sets how many word the passphrase will contain"
+    echo " --min (-n) sets minimum number of characters in the words (default: ${DEFAULT_MIN_WORD_LENGTH})"
+    echo " --max (-m) sets maximum number of characters in the words (default: ${DEFAULT_MAX_WORD_LENGTH})"
+    echo " --count (-c) sets how many word the passphrase will contain (default: ${DEFAULT_PASSPHRASE_WORD_COUNT})"
     echo " --help (-h) shows help message and exit"
     echo
 }
@@ -78,6 +78,11 @@ while [[ $# -gt 0 ]]; do
     esac
     shift
 done
+
+if [[ ${max_word_length} -lt ${min_word_length} ]]; then
+    echo "Max should be greater than min (current: min=${min_word_length}, max=${max_word_length})"
+    exit 1
+fi
 
 # Temporarily disable exit on error to handle search failures gracefully
 set +e

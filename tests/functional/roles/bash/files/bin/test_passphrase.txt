@@ -30,9 +30,9 @@ bananas
 $ ./roles/bash/files/bin/passphrase.sh --min 5 --max 6
 fruit fruit fruit fruit fruit
 $ ./roles/bash/files/bin/passphrase.sh --min 9
-There are no available words with this size
+Max should be greater than min (current: min=9, max=6)
 $ ./roles/bash/files/bin/passphrase.sh --min 7 --max 5
-There are no available words with this size
+Max should be greater than min (current: min=7, max=5)
 $ echo "" > /usr/share/dict/words
 $ ./roles/bash/files/bin/passphrase.sh
 There are no available words with this size
@@ -71,21 +71,27 @@ $ ./roles/bash/files/bin/passphrase.sh --count -1
 Word count must be between 0 and 1000
 $ ./roles/bash/files/bin/passphrase.sh --count 1001
 Word count must be between 0 and 1000
+$ ./roles/bash/files/bin/passphrase.sh --min 5 --max 3
+Max should be greater than min (current: min=5, max=3)
+$ ./roles/bash/files/bin/passphrase.sh --min 10 --max 5
+Max should be greater than min (current: min=10, max=5)
+$ ./roles/bash/files/bin/passphrase.sh --min 100 --max 50
+Max should be greater than min (current: min=100, max=50)
 $ ./roles/bash/files/bin/passphrase.sh -h
 
 passphrase
 
- --min (-n) sets minimum number of characters in the words
- --max (-m) sets maximum number of characters in the words
- --count (-c) sets how many word the passphrase will contain
+ --min (-n) sets minimum number of characters in the words (default: 4)
+ --max (-m) sets maximum number of characters in the words (default: 6)
+ --count (-c) sets how many word the passphrase will contain (default: 5)
  --help (-h) shows help message and exit
 
 $ ./roles/bash/files/bin/passphrase.sh --help
 
 passphrase
 
- --min (-n) sets minimum number of characters in the words
- --max (-m) sets maximum number of characters in the words
- --count (-c) sets how many word the passphrase will contain
+ --min (-n) sets minimum number of characters in the words (default: 4)
+ --max (-m) sets maximum number of characters in the words (default: 6)
+ --count (-c) sets how many word the passphrase will contain (default: 5)
  --help (-h) shows help message and exit
 
