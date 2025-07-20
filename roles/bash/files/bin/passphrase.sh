@@ -10,6 +10,23 @@ min_word_length=${DEFAULT_MIN_WORD_LENGTH}
 max_word_length=${DEFAULT_MAX_WORD_LENGTH}
 passphrase_word_count=${DEFAULT_PASSPHRASE_WORD_COUNT}
 
+search_cmd="grep -E"
+if command -v rg >/dev/null 2>&1; then
+    search_cmd="rg -N"
+fi
+
+validate_range() {
+    local value=$1
+    local min=$2
+    local max=$3
+    local name=$4
+
+    if [[ ${value} -lt ${min} ]] || [[ ${value} -gt ${max} ]]; then
+        echo "${name} must be between ${min} and ${max}"
+        exit 1
+    fi
+}
+
 function show_help {
     echo
     echo "passphrase"
@@ -29,6 +46,7 @@ while [[ $# -gt 0 ]]; do
             exit 1
         fi
         min_word_length=$2
+        validate_range "${min_word_length}" 1 100 "Min word length"
         shift
         ;;
     --max | -m)
@@ -37,6 +55,7 @@ while [[ $# -gt 0 ]]; do
             exit 1
         fi
         max_word_length=$2
+        validate_range "${max_word_length}" 1 100 "Max word length"
         shift
         ;;
     --count | -c)
@@ -45,6 +64,7 @@ while [[ $# -gt 0 ]]; do
             exit 1
         fi
         passphrase_word_count=$2
+        validate_range "${passphrase_word_count}" 0 1000 "Word count"
         shift
         ;;
     --help | -h)
@@ -59,29 +79,13 @@ while [[ $# -gt 0 ]]; do
     shift
 done
 
-validate_range() {
-    local value=$1
-    local min=$2
-    local max=$3
-    local name=$4
-
-    if [[ ${value} -lt ${min} ]] || [[ ${value} -gt ${max} ]]; then
-        echo "${name} must be between ${min} and ${max}"
-        exit 1
-    fi
-}
-
-validate_range "${min_word_length}" 1 100 "Min word length"
-validate_range "${max_word_length}" 1 100 "Max word length"
-validate_range "${passphrase_word_count}" 0 1000 "Word count"
-
-# Temporarily disable exit on error to handle grep failures gracefully
+# Temporarily disable exit on error to handle search failures gracefully
 set +e
 if [[ ${max_word_length} -lt ${min_word_length} ]]; then
     elegible_words=""
 else
     elegible_words=$(
-        grep -E "^[A-Za-z]{${min_word_length},${max_word_length}}$" /usr/share/dict/words | tr '\n' ' '
+        $search_cmd "^[A-Za-z]{${min_word_length},${max_word_length}}$" /usr/share/dict/words | tr '\n' ' '
     )
 fi
 set -e
