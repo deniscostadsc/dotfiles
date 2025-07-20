@@ -83,11 +83,7 @@ fi
 word_count=$(wc -w <<<"${elegible_words}")
 
 for ((i = 0; i < "${passphrase_word_count}"; i++)); do
-    random_number=${RANDOM}
-    while [[ ${random_number} -lt ${word_count} ]]; do
-        random_number=$((random_number * RANDOM))
-    done
-    word_index="$((random_number % word_count + 1))"
+    word_index="$((RANDOM % word_count + 1))"
     word="$(cut -d ' ' -f "${word_index}" <<<"${elegible_words}" | tr '[:upper:]' '[:lower:]')"
 
     if [[ $i -lt $((passphrase_word_count - 1)) ]]; then
