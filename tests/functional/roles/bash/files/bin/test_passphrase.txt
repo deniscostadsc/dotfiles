@@ -1,21 +1,3 @@
-$ ./roles/bash/files/bin/passphrase.sh -h
-
-passphrase
-
- --min (-n) sets minimum number of characters in the words
- --max (-m) sets maximum number of characters in the words
- --count (-c) sets how many word the passphrase will contain
- --help (-h) shows help message and exit
-
-$ ./roles/bash/files/bin/passphrase.sh --help
-
-passphrase
-
- --min (-n) sets minimum number of characters in the words
- --max (-m) sets maximum number of characters in the words
- --count (-c) sets how many word the passphrase will contain
- --help (-h) shows help message and exit
-
 $ mkdir -p /usr/share/dict/
 $ echo "test" > /usr/share/dict/words
 $ ./roles/bash/files/bin/passphrase.sh
@@ -55,3 +37,33 @@ $ ./roles/bash/files/bin/passphrase.sh --non-existing
 Invalid option
 $ ./roles/bash/files/bin/passphrase.sh --x
 Invalid option
+$ ./roles/bash/files/bin/passphrase.sh --min
+Invalid option
+$ ./roles/bash/files/bin/passphrase.sh --max
+Invalid option
+$ ./roles/bash/files/bin/passphrase.sh --count
+Invalid option
+$ ./roles/bash/files/bin/passphrase.sh -n
+Invalid option
+$ ./roles/bash/files/bin/passphrase.sh -m
+Invalid option
+$ ./roles/bash/files/bin/passphrase.sh -c
+Invalid option
+$ ./roles/bash/files/bin/passphrase.sh -h
+
+passphrase
+
+ --min (-n) sets minimum number of characters in the words
+ --max (-m) sets maximum number of characters in the words
+ --count (-c) sets how many word the passphrase will contain
+ --help (-h) shows help message and exit
+
+$ ./roles/bash/files/bin/passphrase.sh --help
+
+passphrase
+
+ --min (-n) sets minimum number of characters in the words
+ --max (-m) sets maximum number of characters in the words
+ --count (-c) sets how many word the passphrase will contain
+ --help (-h) shows help message and exit
+

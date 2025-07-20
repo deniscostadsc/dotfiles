@@ -27,16 +27,28 @@ function show_help {
 while [[ $# -gt 0 ]]; do
     case $1 in
     --min | -n)
+        if [[ -z "${2:-}" ]]; then
+            echo "Invalid option"
+            exit 1
+        fi
         min_word_length=$2
         have_min_word_arg=1
         shift
         ;;
     --max | -m)
+        if [[ -z "${2:-}" ]]; then
+            echo "Invalid option"
+            exit 1
+        fi
         max_word_length=$2
         have_max_word_arg=1
         shift
         ;;
     --count | -c)
+        if [[ -z "${2:-}" ]]; then
+            echo "Invalid option"
+            exit 1
+        fi
         passphrase_word_count=$2
         shift
         ;;
