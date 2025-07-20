@@ -83,7 +83,8 @@ fi
 word_count=$(wc -w <<<"${elegible_words}")
 
 for ((i = 0; i < "${passphrase_word_count}"; i++)); do
-    word_index="$((RANDOM % word_count + 1))"
+    random_bytes=$(head -c 4 /dev/urandom | od -An -tu4 | tr -d ' ')
+    word_index="$((random_bytes % word_count + 1))"
     word="$(cut -d ' ' -f "${word_index}" <<<"${elegible_words}" | tr '[:upper:]' '[:lower:]')"
 
     if [[ $i -lt $((passphrase_word_count - 1)) ]]; then
