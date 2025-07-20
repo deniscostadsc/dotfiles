@@ -32,7 +32,7 @@ fruit fruit fruit fruit fruit
 $ ./roles/bash/files/bin/passphrase.sh --min 9
 There are no available words with this size
 $ ./roles/bash/files/bin/passphrase.sh --min 7 --max 5
-Max should be greater than min
+There are no available words with this size
 $ echo "" > /usr/share/dict/words
 $ ./roles/bash/files/bin/passphrase.sh
 There are no available words with this size

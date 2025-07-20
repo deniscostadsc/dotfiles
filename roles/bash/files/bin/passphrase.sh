@@ -10,9 +10,6 @@ min_word_length=${DEFAULT_MIN_WORD_LENGTH}
 max_word_length=${DEFAULT_MAX_WORD_LENGTH}
 passphrase_word_count=${DEFAULT_PASSPHRASE_WORD_COUNT}
 
-have_min_word_arg=0
-have_max_word_arg=0
-
 function show_help {
     echo
     echo "passphrase"
@@ -32,7 +29,6 @@ while [[ $# -gt 0 ]]; do
             exit 1
         fi
         min_word_length=$2
-        have_min_word_arg=1
         shift
         ;;
     --max | -m)
@@ -41,7 +37,6 @@ while [[ $# -gt 0 ]]; do
             exit 1
         fi
         max_word_length=$2
-        have_max_word_arg=1
         shift
         ;;
     --count | -c)
@@ -80,25 +75,14 @@ validate_range "${min_word_length}" 1 100 "Min word length"
 validate_range "${max_word_length}" 1 100 "Max word length"
 validate_range "${passphrase_word_count}" 0 1000 "Word count"
 
-if [[ ${have_min_word_arg} -eq 1 ]] && [[ ${have_max_word_arg} -eq 1 ]]; then
-    if [[ ${max_word_length} -lt ${min_word_length} ]]; then
-        echo "Max should be greater than min"
-        exit 1
-    fi
-fi
+
 
 set +e
-if [[ ${have_min_word_arg} -eq ${have_max_word_arg} ]]; then
-    elegible_words=$(
-        grep -E "^[A-Za-z]{${min_word_length},${max_word_length}}$" /usr/share/dict/words | tr '\n' ' '
-    )
-elif [[ ${have_min_word_arg} -eq 1 ]]; then
-    elegible_words=$(
-        grep -E "^[A-Za-z]{${min_word_length},}$" /usr/share/dict/words | tr '\n' ' '
-    )
+if [[ ${max_word_length} -lt ${min_word_length} ]]; then
+    elegible_words=""
 else
     elegible_words=$(
-        grep -E "^[A-Za-z]{0,${max_word_length}}$" /usr/share/dict/words | tr '\n' ' '
+        grep -E "^[A-Za-z]{${min_word_length},${max_word_length}}$" /usr/share/dict/words | tr '\n' ' '
     )
 fi
 set -e
