@@ -1,10 +1,29 @@
 #!/usr/bin/env bash
 
+# TODO: Add caching for performance optimization
+# - Pre-filter dictionary words by length criteria
+# - Cache filtered words to avoid re-filtering on repeated runs
+# - Use cache directory ~/.cache/passphrase/
+# - Invalidate cache when dictionary file is newer than cache
+
+# TODO: Improve word quality filtering
+# - Filter out articles (a, an, the)
+# - Filter out pronouns (i, he, she, it, they)
+# - Filter out common verbs (is, are, was, be, have, has)
+# - Filter out single letters and very short words
+# - Consider minimum word complexity/entropy
+
+# TODO: Add entropy estimation and strength indicators
+# - Calculate passphrase entropy based on word pool size
+# - Show entropy bits and strength rating (weak/medium/strong)
+# - Provide guidance on minimum secure word count
+# - Option to show entropy calculation details
+
 set -euo pipefail
 
 DEFAULT_MIN_WORD_LENGTH=4
 DEFAULT_MAX_WORD_LENGTH=6
-DEFAULT_PASSPHRASE_WORD_COUNT=5
+DEFAULT_PASSPHRASE_WORD_COUNT=6
 
 min_word_length=${DEFAULT_MIN_WORD_LENGTH}
 max_word_length=${DEFAULT_MAX_WORD_LENGTH}
