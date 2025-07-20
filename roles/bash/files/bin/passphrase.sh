@@ -100,7 +100,7 @@ if [[ -z ${elegible_words} ]]; then
     exit 1
 fi
 
-word_count=$(wc -w <<<"${elegible_words}")
+word_count=$(wc -w <<< "${elegible_words}")
 
 for ((i = 0; i < "${passphrase_word_count}"; i++)); do
     random_bytes=$(head -c 4 /dev/urandom | od -An -tu4 | tr -d ' ')
