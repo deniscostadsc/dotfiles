@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-# TODO: Add caching for performance optimization
-# - Pre-filter dictionary words by length criteria
-# - Cache filtered words to avoid re-filtering on repeated runs
-# - Use cache directory ~/.cache/passphrase/
-# - Invalidate cache when dictionary file is newer than cache
-
 # TODO: Improve word quality filtering
 # - Filter out articles (a, an, the)
 # - Filter out pronouns (i, he, she, it, they)
