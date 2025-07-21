@@ -28,10 +28,10 @@ if command -v rg >/dev/null 2>&1; then
     search_cmd="rg -N"
 fi
 
-DICTIONARY_PATH=""
+dictionary_path=""
 while read -r path; do
     if [[ -f "$path" && -r "$path" ]]; then
-        DICTIONARY_PATH="$path"
+        dictionary_path="$path"
         break
     fi
 done <<'EOF'
@@ -41,7 +41,7 @@ done <<'EOF'
 /usr/share/dict/british-english
 EOF
 
-if [[ -z "$DICTIONARY_PATH" ]]; then
+if [[ -z "$dictionary_path" ]]; then
     echo "No dictionary file found."
     exit 1
 fi
@@ -121,7 +121,7 @@ if [[ ${max_word_length} -lt ${min_word_length} ]]; then
     elegible_words=""
 else
     elegible_words=$(
-        $search_cmd "^[a-z]{${min_word_length},${max_word_length}}$" "$DICTIONARY_PATH" | tr '\n' ' '
+        $search_cmd "^[a-z]{${min_word_length},${max_word_length}}$" "$dictionary_path" | tr '\n' ' '
     )
 fi
 set -e
