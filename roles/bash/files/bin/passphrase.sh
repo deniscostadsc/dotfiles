@@ -117,13 +117,9 @@ fi
 
 # Temporarily disable exit on error to handle search failures gracefully
 set +e
-if [[ ${max_word_length} -lt ${min_word_length} ]]; then
-    elegible_words=""
-else
-    elegible_words=$(
-        $search_cmd "^[a-z]{${min_word_length},${max_word_length}}$" "$dictionary_path" | tr '\n' ' '
-    )
-fi
+elegible_words=$(
+    ${search_cmd} "^[a-z]{${min_word_length},${max_word_length}}$" "${dictionary_path}" | tr '\n' ' '
+)
 set -e
 
 if [[ -z ${elegible_words} ]]; then
