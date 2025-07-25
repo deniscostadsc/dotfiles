@@ -8,8 +8,11 @@ status](https://github.com/deniscostadsc/dotfiles/actions/workflows/ci.yml/badge
 
 - [dotfiles](#dotfiles)
   - [Running the playbooks](#running-the-playbooks)
-  - [Manual steps](#manual-steps)
+    - [On Pop!\_os](#on-pop_os)
     - [On MacOS](#on-macos)
+  - [Manual steps](#manual-steps)
+    - [On Pop!\_os](#on-pop_os-1)
+    - [On MacOS](#on-macos-1)
   - [What this project does](#what-this-project-does)
     - [Packages installed](#packages-installed)
     - [Bash](#bash)
@@ -26,6 +29,7 @@ status](https://github.com/deniscostadsc/dotfiles/actions/workflows/ci.yml/badge
   - [Troubleshooting](#troubleshooting)
     - [Pop!\_os](#pop_os)
       - [Could not import python modules: apt, apt\_pkg. Please install python3-apt package.](#could-not-import-python-modules-apt-apt_pkg-please-install-python3-apt-package)
+      - [ERROR! ansible-galaxy requires resolvelib\<1.1.0,\>=0.5.3](#error-ansible-galaxy-requires-resolvelib110053)
 
 ## Running the playbooks
 
