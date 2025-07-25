@@ -43,8 +43,46 @@ else
     color_prompt=
 fi
 
+# Color variables
+export BLACK='\033[0;30m'
+export RED='\033[0;31m'
+export GREEN='\033[0;32m'
+export YELLOW='\033[0;33m'
+export BLUE='\033[0;34m'
+export PURPLE='\033[0;35m'
+export CYAN='\033[0;36m'
+export WHITE='\033[0;37m'
+
+export BRIGHT_BLACK='\033[1;30m'
+export BRIGHT_RED='\033[1;31m'
+export BRIGHT_GREEN='\033[1;32m'
+export BRIGHT_YELLOW='\033[1;33m'
+export BRIGHT_BLUE='\033[1;34m'
+export BRIGHT_PURPLE='\033[1;35m'
+export BRIGHT_CYAN='\033[1;36m'
+export BRIGHT_WHITE='\033[1;37m'
+export BRIGHT_BLACK='\033[1;30m'
+
+export BG_BLACK='\033[40m'
+export BG_RED='\033[41m'
+export BG_GREEN='\033[42m'
+export BG_YELLOW='\033[43m'
+export BG_BLUE='\033[44m'
+export BG_PURPLE='\033[45m'
+export BG_CYAN='\033[46m'
+export BG_WHITE='\033[47m'
+
+export NC='\033[0m'
+export RESET='\033[0m'
+
+PATH_COLOR="\[$BRIGHT_PURPLE\]"
+TIME_COLOR="\[$BRIGHT_CYAN\]"
+GIT_COLOR="\[$BRIGHT_GREEN\]"
+GIT_STATUS_COLOR="\[$BRIGHT_RED\]"
+TODO_COLOR="\[$BRIGHT_WHITE\]"
+
 if [[ "${color_prompt}" = yes ]]; then
-    PS1='\[\033[01;35m\]\w \[\033[01;36m\]$(__now) \[\033[01;32m\]$(__git_branch) \[\033[31m\]$(__git_arrows)\[\033[1;37m\]$(current_todo_task)\[\033[00m\]\n\$ '
+    PS1="$PATH_COLOR\w $TIME_COLOR\$(__now) $GIT_COLOR\$(__git_branch) $GIT_STATUS_COLOR\$(__git_arrows)$TODO_COLOR\$(current_todo_task)$NC\n\$ "
 else
     PS1='\w $(__now) $(__git_branch) $(__git_arrows)$(current_todo_task)\n\$ '
 fi
