@@ -11,6 +11,6 @@ function current_todo_task {
     local task
     task=$(todo current 2>/dev/null)
     if [[ -n "$task" ]]; then
-        echo -e "\n$task"
+        echo -e "\nCURRENT TODO TASK: $task"
     fi
 }
