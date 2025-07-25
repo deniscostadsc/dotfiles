@@ -14,8 +14,10 @@ mkdir -p "$CACHE_DIR"
 function get_cached_latest {
     local cache_file="$CACHE_DIR/latest"
     if [[ -f "$cache_file" ]]; then
-        local cached_date=$(head -n1 "$cache_file" 2>/dev/null)
-        local today=$(date +%Y-%m-%d)
+        local cached_date
+        cached_date=$(head -n1 "$cache_file" 2>/dev/null)
+        local today
+        today=$(date +%Y-%m-%d)
         if [[ "$cached_date" == "$today" ]]; then
             tail -n1 "$cache_file" 2>/dev/null
         fi
@@ -25,8 +27,8 @@ function get_cached_latest {
 function cache_latest {
     local latest_num=$1
     local cache_file="$CACHE_DIR/latest"
-    echo "$(date +%Y-%m-%d)" > "$cache_file"
-    echo "$latest_num" >> "$cache_file"
+    date +%Y-%m-%d >"$cache_file"
+    echo "$latest_num" >>"$cache_file"
 }
 
 function get_cached_comic {
@@ -41,7 +43,7 @@ function cache_comic {
     local comic_num=$1
     local json_data=$2
     local cache_file="$CACHE_DIR/$comic_num"
-    echo "$json_data" > "$cache_file"
+    echo "$json_data" >"$cache_file"
 }
 
 if command -v viu &>/dev/null; then
@@ -54,7 +56,7 @@ else
 fi
 
 function show_help {
-    cat << EOF
+    cat <<EOF
 Usage: $(basename "$0") [OPTIONS]
 
 View XKCD comics in your terminal, random by default.
@@ -102,35 +104,35 @@ function show_xkcd_comic {
 
 while [[ $# -gt 0 ]]; do
     case ${1} in
-        -l|--latest)
-            if [[ $which_comic_show == "specific" ]]; then
-                echo "Error: -l and -n options cannot be used together."
-                exit 1
-            fi
-            which_comic_show="latest"
-            shift
-        ;;
-        -n|--number)
-            if [[ $which_comic_show == "latest" ]]; then
-                echo "Error: -l and -n options cannot be used together."
-                exit 1
-            fi
-            shift
-            comic_number="${1}"
-            shift
-            which_comic_show="specific"
-        ;;
-        -x|--show-explanation)
-            show_explanation=1
-            shift
-        ;;
-        -h|--help)
-            show_help
-            exit 0
-        ;;
-        *)
-            echo "${1} is an invalid option."
+    -l | --latest)
+        if [[ $which_comic_show == "specific" ]]; then
+            echo "Error: -l and -n options cannot be used together."
             exit 1
+        fi
+        which_comic_show="latest"
+        shift
+        ;;
+    -n | --number)
+        if [[ $which_comic_show == "latest" ]]; then
+            echo "Error: -l and -n options cannot be used together."
+            exit 1
+        fi
+        shift
+        comic_number="${1}"
+        shift
+        which_comic_show="specific"
+        ;;
+    -x | --show-explanation)
+        show_explanation=1
+        shift
+        ;;
+    -h | --help)
+        show_help
+        exit 0
+        ;;
+    *)
+        echo "${1} is an invalid option."
+        exit 1
         ;;
     esac
 done
@@ -148,10 +150,11 @@ fi
 
 if [[ $which_comic_show == "latest" ]]; then
     comic_number=$latest_comic_number
-elif [[ $which_comic_show == "specific" ]];then
-    comic_number=$comic_number
-elif [[ $which_comic_show == "random" ]];then
+elif [[ $which_comic_show == "specific" ]]; then
+    # comic_number is already set from command line argument
+    true
+elif [[ $which_comic_show == "random" ]]; then
     comic_number=$((1 + RANDOM % latest_comic_number))
 fi
 
-show_xkcd_comic $comic_number $show_explanation
+show_xkcd_comic "$comic_number" "$show_explanation"
