@@ -44,9 +44,9 @@ else
 fi
 
 if [[ "${color_prompt}" = yes ]]; then
-    PS1='\[\033[01;35m\]\w \[\033[01;36m\]$(__now) \[\033[01;32m\]$(__git_branch) \[\033[31m\]$(__git_arrows) \[\033[00m\]\n\$ '
+    PS1='\[\033[01;35m\]\w \[\033[01;36m\]$(__now) \[\033[01;32m\]$(__git_branch) \[\033[31m\]$(__git_arrows)\[\033[1;37m\]$(current_todo_task)\[\033[00m\]\n\$ '
 else
-    PS1='\w $(__now) $(__git_branch) $(__git_arrows)\n\$ '
+    PS1='\w $(__now) $(__git_branch) $(__git_arrows)$(current_todo_task)\n\$ '
 fi
 
 unset color_prompt

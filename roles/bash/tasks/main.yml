@@ -67,6 +67,7 @@
     - {src: files/bin/colors.sh, dest: "{{ home_folder }}/.bin/colors"}
     - {src: files/bin/passphrase.sh, dest: "{{ home_folder }}/.bin/passphrase"}
     - {src: files/bin/xkcd.sh, dest: "{{ home_folder }}/.bin/xkcd"}
+    - {src: files/bin/todo.sh, dest: "{{ home_folder }}/.bin/todo"}
 
 - name: Create ~/.man/ folder
   ansible.builtin.file:

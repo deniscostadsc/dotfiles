@@ -6,3 +6,11 @@ function mkcd {
 function __now {
     date +%H:%M:%S
 }
+
+function current_todo_task {
+    local task
+    task=$(todo current 2>/dev/null)
+    if [[ -n "$task" ]]; then
+        echo -e "\n$task"
+    fi
+}
