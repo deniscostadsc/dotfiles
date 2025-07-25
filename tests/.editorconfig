@@ -1,0 +1,5 @@
+# http://editorconfig.org
+
+[*.md]
+indent_style = tab
+trim_trailing_whitespace = false

@@ -62,10 +62,10 @@ function show_help {
     echo
     echo "passphrase"
     echo
-    echo " --min (-n) sets minimum number of characters in the words (default: ${DEFAULT_MIN_WORD_LENGTH})"
-    echo " --max (-m) sets maximum number of characters in the words (default: ${DEFAULT_MAX_WORD_LENGTH})"
-    echo " --count (-c) sets how many word the passphrase will contain (default: ${DEFAULT_PASSPHRASE_WORD_COUNT})"
-    echo " --help (-h) shows help message and exit"
+    echo "--min (-n) sets minimum number of characters in the words (default: ${DEFAULT_MIN_WORD_LENGTH})"
+    echo "--max (-m) sets maximum number of characters in the words (default: ${DEFAULT_MAX_WORD_LENGTH})"
+    echo "--count (-c) sets how many word the passphrase will contain (default: ${DEFAULT_PASSPHRASE_WORD_COUNT})"
+    echo "--help (-h) shows help message and exit"
     echo
 }
 
