@@ -40,6 +40,7 @@
       - ripgrep
       - tmux
       - tree
+      - viu
     state: present
   become: "{{ become_root }}"
 
