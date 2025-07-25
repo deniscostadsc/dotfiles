@@ -1,29 +1,157 @@
 #!/usr/bin/env bash
 
+which_comic_show="random"
+show_explanation=0
+comic_number=0
+
 set -euo pipefail
 
+# Cache directory setup
+CACHE_DIR="$HOME/.cache/xkcd"
+mkdir -p "$CACHE_DIR"
+
+# Cache functions
+function get_cached_latest {
+    local cache_file="$CACHE_DIR/latest"
+    if [[ -f "$cache_file" ]]; then
+        local cached_date=$(head -n1 "$cache_file" 2>/dev/null)
+        local today=$(date +%Y-%m-%d)
+        if [[ "$cached_date" == "$today" ]]; then
+            tail -n1 "$cache_file" 2>/dev/null
+        fi
+    fi
+}
+
+function cache_latest {
+    local latest_num=$1
+    local cache_file="$CACHE_DIR/latest"
+    echo "$(date +%Y-%m-%d)" > "$cache_file"
+    echo "$latest_num" >> "$cache_file"
+}
+
+function get_cached_comic {
+    local comic_num=$1
+    local cache_file="$CACHE_DIR/$comic_num"
+    if [[ -f "$cache_file" ]]; then
+        cat "$cache_file"
+    fi
+}
+
+function cache_comic {
+    local comic_num=$1
+    local json_data=$2
+    local cache_file="$CACHE_DIR/$comic_num"
+    echo "$json_data" > "$cache_file"
+}
+
 if command -v viu &>/dev/null; then
-    render_cmd=(viu -w 0 -h 0 -)
+    render_cmd="viu"
 elif command -v chafa &>/dev/null; then
     render_cmd="chafa"
 else
-    echo "Install 'viu' to display images"
+    echo "Install 'viu' or 'chafa' to display images"
     exit 1
 fi
 
-latest=$(curl -s https://xkcd.com/info.0.json | jq -r '.num')
-rand_num=$((1 + RANDOM % latest))
+function show_help {
+    cat << EOF
+Usage: $(basename "$0") [OPTIONS]
 
-comic_json=$(curl -s "https://xkcd.com/$rand_num/info.0.json")
-title=$(echo "$comic_json" | jq -r '.title')
-alt_text=$(echo "$comic_json" | jq -r '.alt')
-img_url=$(echo "$comic_json" | jq -r '.img')
+View XKCD comics in your terminal, random by default.
 
-echo
-echo "XKCD #$rand_num: $title"
-echo
-curl -s "$img_url" | $render_cmd -
-echo
-echo "Alt Text: $alt_text"
-echo "Comic URL: https://xkcd.com/$rand_num/"
-echo
+OPTIONS:
+    -l, --latest              Show the latest comic (cannot be used with -n)
+    -n, --number <NUMBER>     Show a specific comic (cannot be used with -l)
+    -x, --show-explanation    Include explanation link in output
+    -h, --help                Show this help message
+
+EOF
+}
+
+function show_xkcd_comic {
+    comic_number=$1
+    show_explanation=$2
+
+    # Try to get from cache first
+    comic_json=$(get_cached_comic "$comic_number")
+
+    # If not in cache, fetch from API and cache it
+    if [[ -z "$comic_json" ]]; then
+        comic_json=$(curl -s "https://xkcd.com/$comic_number/info.0.json")
+        if [[ -n "$comic_json" ]]; then
+            cache_comic "$comic_number" "$comic_json"
+        fi
+    fi
+
+    title=$(echo "$comic_json" | jq -r '.title')
+    alt_text=$(echo "$comic_json" | jq -r '.alt')
+    img_url=$(echo "$comic_json" | jq -r '.img')
+
+    echo
+    echo "XKCD #$comic_number: $title"
+    echo
+    curl -s "$img_url" | $render_cmd -
+    echo
+    echo "Alt Text: $alt_text"
+    echo "Comic URL: https://xkcd.com/$comic_number/"
+    if [[ $show_explanation -eq 1 ]]; then
+        echo "Explanation: https://www.explainxkcd.com/wiki/index.php/$comic_number"
+    fi
+    echo
+}
+
+while [[ $# -gt 0 ]]; do
+    case ${1} in
+        -l|--latest)
+            if [[ $which_comic_show == "specific" ]]; then
+                echo "Error: -l and -n options cannot be used together."
+                exit 1
+            fi
+            which_comic_show="latest"
+            shift
+        ;;
+        -n|--number)
+            if [[ $which_comic_show == "latest" ]]; then
+                echo "Error: -l and -n options cannot be used together."
+                exit 1
+            fi
+            shift
+            comic_number="${1}"
+            shift
+            which_comic_show="specific"
+        ;;
+        -x|--show-explanation)
+            show_explanation=1
+            shift
+        ;;
+        -h|--help)
+            show_help
+            exit 0
+        ;;
+        *)
+            echo "${1} is an invalid option."
+            exit 1
+        ;;
+    esac
+done
+
+# Try to get latest comic number from cache first
+latest_comic_number=$(get_cached_latest)
+
+# If not in cache or outdated, fetch from API and cache it
+if [[ -z "$latest_comic_number" ]]; then
+    latest_comic_number=$(curl -s https://xkcd.com/info.0.json | jq -r '.num')
+    if [[ -n "$latest_comic_number" ]]; then
+        cache_latest "$latest_comic_number"
+    fi
+fi
+
+if [[ $which_comic_show == "latest" ]]; then
+    comic_number=$latest_comic_number
+elif [[ $which_comic_show == "specific" ]];then
+    comic_number=$comic_number
+elif [[ $which_comic_show == "random" ]];then
+    comic_number=$((1 + RANDOM % latest_comic_number))
+fi
+
+show_xkcd_comic $comic_number $show_explanation
