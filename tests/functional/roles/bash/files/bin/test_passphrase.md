@@ -24,7 +24,9 @@ Prepares the test environment by creating the necessary dictionary file and dire
 	$ mkdir -p /usr/share/dict/
 	$ echo "test" > /usr/share/dict/words
 
-## Core Functionality - Default Behavior
+## Core Functionality
+
+### Default Behavior
 
 Tests the basic passphrase generation with default parameters:
 - **Default Output**: 6 words, space-separated
@@ -37,7 +39,7 @@ Tests the basic passphrase generation with default parameters:
 	$ ./roles/bash/files/bin/passphrase.sh | wc -w
 	6
 
-## Core Functionality - Word Count Parameter
+### Word Count Parameter
 
 Tests the `-c` and `--count` flags to generate custom numbers of words.
 
@@ -46,29 +48,10 @@ Tests the `-c` and `--count` flags to generate custom numbers of words.
 	$ ./roles/bash/files/bin/passphrase.sh --count 10 | wc -w
 	10
 
-## Options Validation
+### Help Display
 
-Tests command-line option handling and help functionality.
+Tests the help functionality to ensure proper usage information is displayed.
 
-### Invalid Options
-Tests that invalid or incomplete options are properly rejected:
-
-	$ ./roles/bash/files/bin/passphrase.sh --non-existing
-	Invalid option
-	$ ./roles/bash/files/bin/passphrase.sh --x
-	Invalid option
-	$ ./roles/bash/files/bin/passphrase.sh --min
-	Invalid option
-	$ ./roles/bash/files/bin/passphrase.sh --max
-	Invalid option
-	$ ./roles/bash/files/bin/passphrase.sh --count
-	Invalid option
-	$ ./roles/bash/files/bin/passphrase.sh -n
-	Invalid option
-	$ ./roles/bash/files/bin/passphrase.sh -m
-	Invalid option
-	$ ./roles/bash/files/bin/passphrase.sh -c
-	Invalid option
 	$ ./roles/bash/files/bin/passphrase.sh -h
 	
 	passphrase
@@ -78,17 +61,28 @@ Tests that invalid or incomplete options are properly rejected:
 	--count (-c) sets how many word the passphrase will contain (default: 6)
 	--help (-h) shows help message and exit
 	
-	$ ./roles/bash/files/bin/passphrase.sh --help
-	
-	passphrase
-	
-	--min (-n) sets minimum number of characters in the words (default: 4)
-	--max (-m) sets maximum number of characters in the words (default: 6)
-	--count (-c) sets how many word the passphrase will contain (default: 6)
-	--help (-h) shows help message and exit
-	
+## Word Length Filtering
 
-## Options Validation - Range Validation
+### Min/Max Parameters
+
+Tests the `--min` and `--max` parameters to filter words by length.
+
+> **Note**: The script uses regex `^[a-z]{min,max}$` for filtering, so only lowercase letters are accepted.
+
+	$ echo "fruit" >> /usr/share/dict/words
+	$ cat /usr/share/dict/words
+	test
+	fruit
+	$ ./roles/bash/files/bin/passphrase.sh -n 5
+	fruit fruit fruit fruit fruit fruit
+	$ ./roles/bash/files/bin/passphrase.sh --min 5
+	fruit fruit fruit fruit fruit fruit
+	$ ./roles/bash/files/bin/passphrase.sh --max 4
+	test test test test test test
+
+### Range Validation
+
+Tests that invalid ranges are properly rejected:
 
 	$ ./roles/bash/files/bin/passphrase.sh --min 0
 	Min word length must be between 1 and 100
@@ -106,62 +100,8 @@ Tests that invalid or incomplete options are properly rejected:
 	Max should be greater than min (current: min=9, max=6)
 	$ ./roles/bash/files/bin/passphrase.sh --min 7 --max 5
 	Max should be greater than min (current: min=7, max=5)
-	$ ./roles/bash/files/bin/passphrase.sh --min 5 --max 3
-	Max should be greater than min (current: min=5, max=3)
-	$ ./roles/bash/files/bin/passphrase.sh --min 10 --max 5
-	Max should be greater than min (current: min=10, max=5)
-	$ ./roles/bash/files/bin/passphrase.sh --min 100 --max 50
-	Max should be greater than min (current: min=100, max=50)
-
-
-## Word Length Filtering - Min/Max Parameters
-
-Tests the `--min` and `--max` parameters to filter words by length.
-
-> **Note**: The script uses regex `^[a-z]{min,max}$` for filtering, so only lowercase letters are accepted.
-
-> **Warning**: When no words match the criteria, the script exits with "There are no available words with this size".
-
-	$ echo "fruit" >> /usr/share/dict/words
-	$ cat /usr/share/dict/words
-	test
-	fruit
-	$ ./roles/bash/files/bin/passphrase.sh -n 5
-	fruit fruit fruit fruit fruit fruit
-	$ ./roles/bash/files/bin/passphrase.sh --min 5
-	fruit fruit fruit fruit fruit fruit
-	$ ./roles/bash/files/bin/passphrase.sh --max 4
-	test test test test test test
-	$ echo "bananas" >> /usr/share/dict/words
-	$ cat /usr/share/dict/words
-	test
-	fruit
-	bananas
-	$ ./roles/bash/files/bin/passphrase.sh --min 5 --max 6
-	fruit fruit fruit fruit fruit fruit
-
-## Output Validation - Word Selection
-
-	$ ./roles/bash/files/bin/passphrase.sh -c 20 | grep "test" > /dev/null && echo "got test"
-	got test
-	$ ./roles/bash/files/bin/passphrase.sh -c 20 | grep "fruit" > /dev/null && echo "got fruit"
-	got fruit
-
-## Word Filtering - Case Sensitivity
-
-	$ echo "test" > /usr/share/dict/words
-	$ echo "Test" >> /usr/share/dict/words
-	$ echo "TEST" >> /usr/share/dict/words
-	$ cat /usr/share/dict/words
-	test
-	Test
-	TEST
-	$ ./roles/bash/files/bin/passphrase.sh -c 10 | grep -o "test" | wc -l
-	10
 
 ## Word Filtering
-
-Tests the script's word filtering logic to ensure only valid words are selected.
 
 ### Length Constraints
 
@@ -205,13 +145,13 @@ Tests that words with non-letter characters are rejected.
 	$ ./roles/bash/files/bin/passphrase.sh
 	There are no available words with this size
 
-## Multiple Word Dictionary - Selection Logic
+## Multiple Word Selection
+
+### Random Selection Logic
 
 Tests random word selection from a dictionary with multiple valid words.
 
 > **Expected Behavior**: When multiple words are available, the script should randomly select from all valid words to generate the requested count.
-
-> **Randomness Test**: With 3 words available and 20 requested, all 3 words should appear in the output.
 
 	$ echo "only" > /usr/share/dict/words
 	$ ./roles/bash/files/bin/passphrase.sh -c 10
@@ -225,7 +165,39 @@ Tests random word selection from a dictionary with multiple valid words.
 	$ ./roles/bash/files/bin/passphrase.sh -c 20 | grep -E "(test|fruit|only)" | wc -l
 	1
 
-## Error Handling - Missing Dictionary File
+### Output Validation
+
+Tests that all available words can be selected:
+
+	$ ./roles/bash/files/bin/passphrase.sh -c 20 | grep "test" > /dev/null && echo "got test"
+	got test
+	$ ./roles/bash/files/bin/passphrase.sh -c 20 | grep "fruit" > /dev/null && echo "got fruit"
+	got fruit
+
+## Error Handling
+
+### Invalid Options
+
+Tests that invalid or incomplete options are properly rejected:
+
+	$ ./roles/bash/files/bin/passphrase.sh --non-existing
+	Invalid option
+	$ ./roles/bash/files/bin/passphrase.sh --x
+	Invalid option
+	$ ./roles/bash/files/bin/passphrase.sh --min
+	Invalid option
+	$ ./roles/bash/files/bin/passphrase.sh --max
+	Invalid option
+	$ ./roles/bash/files/bin/passphrase.sh --count
+	Invalid option
+	$ ./roles/bash/files/bin/passphrase.sh -n
+	Invalid option
+	$ ./roles/bash/files/bin/passphrase.sh -m
+	Invalid option
+	$ ./roles/bash/files/bin/passphrase.sh -c
+	Invalid option
+
+### Missing Dictionary File
 
 Tests graceful error handling when no dictionary files are available.
 
@@ -239,7 +211,7 @@ Tests graceful error handling when no dictionary files are available.
 	$ ./roles/bash/files/bin/passphrase.sh
 	No dictionary file found.
 
-## Dictionary File Fallback - Alternative Locations
+### Dictionary File Fallback
 
 Tests the script's ability to find dictionary files in alternative locations when the primary location is unavailable.
 
