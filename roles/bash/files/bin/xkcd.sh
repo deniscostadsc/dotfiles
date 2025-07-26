@@ -128,6 +128,13 @@ while [[ $# -gt 0 ]]; do
         show_help
         exit 0
         ;;
+    -c | --clear-cache)
+        read -r -p "Are you sure you want to clear the cache? [y/N] " confirm
+        if [[ "${confirm}" =~ ^[Yy]$ ]]; then
+            rm -rf "${CACHE_DIR:?}"/*
+        fi
+        exit 0
+        ;;
     *)
         echo "${1} is an invalid option."
         exit 1

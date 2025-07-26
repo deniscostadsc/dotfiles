@@ -152,3 +152,21 @@ Tests that displayed comic numbers match requested numbers.
 
 	$ ./roles/bash/files/bin/xkcd.sh -n 500 | grep "XKCD #500:"
 	XKCD #500: Comic #500
+
+## Cache Test
+
+Tests that the script can read from cache after initial fetch.
+
+	$ ./roles/bash/files/bin/xkcd.sh -n 1 | grep "XKCD #1:"
+	XKCD #1: Comic #1
+	$ sed 's/"Comic #1"/"CACHED Comic #1"/' "${HOME}/.cache/xkcd/1" > "${HOME}/.cache/xkcd/1.tmp" && mv "${HOME}/.cache/xkcd/1.tmp" "${HOME}/.cache/xkcd/1"
+	$ ./roles/bash/files/bin/xkcd.sh -n 1 | grep "XKCD #1:"
+	XKCD #1: CACHED Comic #1
+
+Tests that the clear cache functionality works correctly.
+
+	$ ls -la "${HOME}/.cache/xkcd/" | wc -l
+	12
+	$ echo y | ./roles/bash/files/bin/xkcd.sh -c
+	$ ls -la "${HOME}/.cache/xkcd/" | wc -l
+	3
