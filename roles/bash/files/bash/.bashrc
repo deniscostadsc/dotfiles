@@ -43,6 +43,28 @@ else
     color_prompt=
 fi
 
+# Checking for 24-bit true color support
+TRUE_COLOR_SUPPORT=0
+
+if [[ -n "${COLORTERM:-}" ]] && [[ "${COLORTERM}" =~ ^(truecolor|24bit)$ ]]; then
+    # Terminal explicitly supports 24-bit color
+    TRUE_COLOR_SUPPORT=1
+elif [[ -n "${TERM:-}" ]] && [[ "${TERM}" =~ ^(xterm|screen|tmux|iterm2|vscode) ]]; then
+    # Common terminals that support true color
+    TRUE_COLOR_SUPPORT=1
+elif [[ -n "${TERM_PROGRAM:-}" ]] && [[ "${TERM_PROGRAM}" =~ ^(iTerm|Apple_Terminal|vscode)$ ]]; then
+    # macOS terminal programs that support true color
+    TRUE_COLOR_SUPPORT=1
+elif [[ -n "${color_prompt:-}" ]]; then
+    # Test if terminal supports true color by checking if it can display RGB colors
+    printf '\033[48;2;255;0;0m' >/dev/null 2>&1
+    if [[ $? -eq 0 ]]; then
+        TRUE_COLOR_SUPPORT=1
+    fi
+fi
+
+export TRUE_COLOR_SUPPORT
+
 # Color variables
 export BLACK='\033[0;30m'
 export RED='\033[0;31m'
@@ -61,7 +83,6 @@ export BRIGHT_BLUE='\033[1;34m'
 export BRIGHT_PURPLE='\033[1;35m'
 export BRIGHT_CYAN='\033[1;36m'
 export BRIGHT_WHITE='\033[1;37m'
-export BRIGHT_BLACK='\033[1;30m'
 
 export BG_BLACK='\033[40m'
 export BG_RED='\033[41m'
@@ -74,6 +95,15 @@ export BG_WHITE='\033[47m'
 
 export NC='\033[0m'
 export RESET='\033[0m'
+
+if [[ "${TRUE_COLOR_SUPPORT:-}" -eq 1 ]]; then
+    function bg_rgb {
+        local r=$1
+        local g=$2
+        local b=$3
+        printf '\033[48;2;%d;%d;%dm' "$r" "$g" "$b"
+    }
+fi
 
 PATH_COLOR="\[$BRIGHT_PURPLE\]"
 TIME_COLOR="\[$BRIGHT_CYAN\]"

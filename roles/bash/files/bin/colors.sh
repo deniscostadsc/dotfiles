@@ -64,4 +64,27 @@ echo -e "  ${NC}${BG_BLACK}NC${NC} (No Color/Reset)"
 
 echo -e "\n${BRIGHT_WHITE}Usage Example:${NC}"
 echo -e "  echo -e \"\${BRIGHT_GREEN}\${BG_RED}Success!\${NC}\""
+
+# Function to create custom RGB background colors (if supported)
+if [[ -n "${TRUE_COLOR_SUPPORT:-}" ]] && [[ "${TRUE_COLOR_SUPPORT}" -eq 1 ]]; then
+    echo -e "\n${BRIGHT_WHITE}24-bit True Color Support:${NC}"
+    echo -e "  Your terminal supports 24-bit RGB colors!"
+    echo -e "  Use the bg_rgb function to create custom background colors:"
+    echo -e "  bg_rgb <red> <green> <blue>"
+    echo -e "  Example: echo -e \"\$(bg_rgb 255 0 0)Red background\${NC}\""
+
+    # Show some RGB examples
+    echo -e "\n${BRIGHT_WHITE}RGB Color Examples:${NC}"
+    echo -e "  $(printf '\033[48;2;255;0;0m')Pure Red${NC}"
+    echo -e "  $(printf '\033[48;2;0;255;0m')Pure Green${NC}"
+    echo -e "  $(printf '\033[48;2;0;0;255m')Pure Blue${NC}"
+    echo -e "  $(printf '\033[48;2;255;165;0m')Orange${NC}"
+    echo -e "  $(printf '\033[48;2;255;192;203m')Pink${NC}"
+    echo -e "  $(printf '\033[48;2;128;0;128m')Purple${NC}"
+else
+    echo -e "\n${BRIGHT_WHITE}24-bit True Color Support:${NC}"
+    echo -e "  Your terminal does not support 24-bit RGB colors."
+    echo -e "  Using standard ANSI colors only."
+fi
+
 echo
