@@ -107,6 +107,7 @@ Tests the `-l` and `--latest` flags to show the most recent comic.
 	
 	Alt Text: Alt text for comic 3120
 	Comic URL: https://xkcd.com/3120/
+	Explanation: https://www.explainxkcd.com/wiki/index.php/3120
 	
 ### Specific Comic Mode
 
@@ -120,6 +121,7 @@ Tests the `-n` and `--number` flags to show a specific comic by number.
 	
 	Alt Text: Alt text for comic 1
 	Comic URL: https://xkcd.com/1/
+	Explanation: https://www.explainxkcd.com/wiki/index.php/1
 	
 	$ ./roles/bash/files/bin/xkcd.sh --number 100
 	
@@ -129,6 +131,7 @@ Tests the `-n` and `--number` flags to show a specific comic by number.
 	
 	Alt Text: Alt text for comic 100
 	Comic URL: https://xkcd.com/100/
+	Explanation: https://www.explainxkcd.com/wiki/index.php/100
 	
 ### Random Comic Mode (Default)
 
@@ -138,30 +141,6 @@ Tests the default random comic selection behavior.
 	$ ./roles/bash/files/bin/xkcd.sh | grep "Alt Text: [a-zA-Z ]\+" > /dev/null
 	$ ./roles/bash/files/bin/xkcd.sh | grep "Comic URL: https://xkcd.com/[0-9]\+/" > /dev/null
 
-## Explanation Link Feature
-
-Tests the `-x` and `--show-explanation` flags to include explanation links.
-
-	$ ./roles/bash/files/bin/xkcd.sh -x -n 1
-	
-	XKCD #1: Comic #1
-	
-	[Displaying image from https://imgs.xkcd.com/comics/comic1.png]
-	
-	Alt Text: Alt text for comic 1
-	Comic URL: https://xkcd.com/1/
-	Explanation: https://www.explainxkcd.com/wiki/index.php/1
-	
-	$ ./roles/bash/files/bin/xkcd.sh --show-explanation --latest
-	
-	XKCD #3120: Comic #3120
-	
-	[Displaying image from https://imgs.xkcd.com/comics/comic3120.png]
-	
-	Alt Text: Alt text for comic 3120
-	Comic URL: https://xkcd.com/3120/
-	Explanation: https://www.explainxkcd.com/wiki/index.php/3120
-	
 ## Output Validation
 
 ### Comic Number Validation

@@ -92,9 +92,7 @@ function show_xkcd_comic {
     echo
     echo "Alt Text: ${alt_text}"
     echo "Comic URL: https://xkcd.com/${comic_number}/"
-    if [[ ${show_explanation} -eq 1 ]]; then
-        echo "Explanation: https://www.explainxkcd.com/wiki/index.php/${comic_number}"
-    fi
+    echo "Explanation: https://www.explainxkcd.com/wiki/index.php/${comic_number}"
     echo
 }
 
