@@ -57,8 +57,7 @@ elif [[ -n "${TERM_PROGRAM:-}" ]] && [[ "${TERM_PROGRAM}" =~ ^(iTerm|Apple_Termi
     TRUE_COLOR_SUPPORT=1
 elif [[ -n "${color_prompt:-}" ]]; then
     # Test if terminal supports true color by checking if it can display RGB colors
-    printf '\033[48;2;255;0;0m' >/dev/null 2>&1
-    if [[ $? -eq 0 ]]; then
+    if printf '\033[48;2;255;0;0m' >/dev/null 2>&1; then
         TRUE_COLOR_SUPPORT=1
     fi
 fi
