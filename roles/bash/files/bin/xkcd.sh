@@ -6,11 +6,9 @@ comic_number=0
 
 set -euo pipefail
 
-# Cache directory setup
 CACHE_DIR="${HOME}/.cache/xkcd"
 mkdir -p "${CACHE_DIR}"
 
-# Cache functions
 function get_cached_latest {
     local cache_file="${CACHE_DIR}/latest"
     if [[ -f "${cache_file}" ]]; then
@@ -74,10 +72,8 @@ function show_xkcd_comic {
     comic_number=$1
     show_explanation=$2
 
-    # Try to get from cache first
     comic_json=$(get_cached_comic "${comic_number}")
 
-    # If not in cache, fetch from API and cache it
     if [[ -z "${comic_json}" ]]; then
         comic_json=$(curl -s "https://xkcd.com/${comic_number}/info.0.json")
         if [[ -n "${comic_json}" ]]; then
@@ -118,6 +114,10 @@ while [[ $# -gt 0 ]]; do
             exit 1
         fi
         shift
+        if [[ -z ${1:-} ]]; then
+            echo "You must inform the comic number"
+            exit 1
+        fi
         comic_number="${1}"
         shift
         which_comic_show="specific"
@@ -137,10 +137,8 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# Try to get latest comic number from cache first
 latest_comic_number=$(get_cached_latest)
 
-# If not in cache or outdated, fetch from API and cache it
 if [[ -z "${latest_comic_number}" ]]; then
     latest_comic_number=$(curl -s https://xkcd.com/info.0.json | jq -r '.num')
     if [[ -n "${latest_comic_number}" ]]; then
@@ -150,9 +148,6 @@ fi
 
 if [[ ${which_comic_show} == "latest" ]]; then
     comic_number=${latest_comic_number}
-elif [[ ${which_comic_show} == "specific" ]]; then
-    # comic_number is already set from command line argument
-    true
 elif [[ ${which_comic_show} == "random" ]]; then
     comic_number=$((1 + RANDOM % latest_comic_number))
 fi
