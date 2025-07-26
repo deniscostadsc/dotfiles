@@ -2,6 +2,12 @@
 
 set -euo pipefail
 
+if [[ "${OSTYPE}" == "darwin"* ]]; then
+    SED_CMD="sed -i ''"
+else
+    SED_CMD="sed -i"
+fi
+
 TODO_FOLDER="${HOME}/.todo"
 TODO_FILE="${TODO_FOLDER}/todo"
 DONE_FILE="${TODO_FOLDER}/done"
@@ -28,8 +34,8 @@ while [[ $# -gt 0 ]]; do
         echo
         read -r -p "Task number to mark as current: " num
         if [[ -n "${num}" ]]; then
-            sed -i '' "s/^* /- /" "${TODO_FILE}"
-            sed -i '' "${num}s/^- /* /" "${TODO_FILE}"
+            ${SED_CMD} "s/^* /- /" "${TODO_FILE}"
+            ${SED_CMD} "${num}s/^- /* /" "${TODO_FILE}"
             echo
             echo "Task ${num} marked as current!"
         fi
@@ -40,7 +46,7 @@ while [[ $# -gt 0 ]]; do
         exit 0
         ;;
     "stop")
-        sed -i '' "s/^\* /- /" "${TODO_FILE}"
+        ${SED_CMD} "s/^\* /- /" "${TODO_FILE}"
         exit 0
         ;;
     "done")
@@ -52,7 +58,7 @@ while [[ $# -gt 0 ]]; do
             echo "Current task: ${task_line#'* '}"
             read -r -p "Are you sure you want to mark this task as done? [y/N] " confirm
             if [[ "${confirm}" =~ ^[Yy]$ ]]; then
-                sed -i '' "${current_num}d" "${TODO_FILE}"
+                ${SED_CMD} "${current_num}d" "${TODO_FILE}"
                 echo "$(date '+%Y-%m-%d %H:%M:%S') - ${task_line#'* '}" >>"${DONE_FILE}"
                 echo "Task marked as done and moved to done list!"
             else
