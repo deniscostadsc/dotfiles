@@ -20,8 +20,8 @@ fi
 
 dictionary_path=""
 while read -r path; do
-    if [[ -f "$path" && -r "$path" ]]; then
-        dictionary_path="$path"
+    if [[ -f "${path}" && -r "${path}" ]]; then
+        dictionary_path="${path}"
         break
     fi
 done <<'EOF'
@@ -31,7 +31,7 @@ done <<'EOF'
 /usr/share/dict/british-english
 EOF
 
-if [[ -z "$dictionary_path" ]]; then
+if [[ -z "${dictionary_path}" ]]; then
     echo "No dictionary file found."
     exit 1
 fi
@@ -124,7 +124,7 @@ for ((i = 0; i < "${passphrase_word_count}"; i++)); do
     word_index="$((random_bytes % word_count + 1))"
     word="$(cut -d ' ' -f "${word_index}" <<<"${elegible_words}" | tr '[:upper:]' '[:lower:]')"
 
-    if [[ $i -lt $((passphrase_word_count - 1)) ]]; then
+    if [[ ${i} -lt $((passphrase_word_count - 1)) ]]; then
         echo -n "${word} "
     else
         echo "${word}"

@@ -7,43 +7,43 @@ comic_number=0
 set -euo pipefail
 
 # Cache directory setup
-CACHE_DIR="$HOME/.cache/xkcd"
-mkdir -p "$CACHE_DIR"
+CACHE_DIR="${HOME}/.cache/xkcd"
+mkdir -p "${CACHE_DIR}"
 
 # Cache functions
 function get_cached_latest {
-    local cache_file="$CACHE_DIR/latest"
-    if [[ -f "$cache_file" ]]; then
+    local cache_file="${CACHE_DIR}/latest"
+    if [[ -f "${cache_file}" ]]; then
         local cached_date
-        cached_date=$(head -n1 "$cache_file" 2>/dev/null)
+        cached_date=$(head -n1 "${cache_file}" 2>/dev/null)
         local today
         today=$(date +%Y-%m-%d)
-        if [[ "$cached_date" == "$today" ]]; then
-            tail -n1 "$cache_file" 2>/dev/null
+        if [[ "${cached_date}" == "${today}" ]]; then
+            tail -n1 "${cache_file}" 2>/dev/null
         fi
     fi
 }
 
 function cache_latest {
     local latest_num=$1
-    local cache_file="$CACHE_DIR/latest"
-    date +%Y-%m-%d >"$cache_file"
-    echo "$latest_num" >>"$cache_file"
+    local cache_file="${CACHE_DIR}/latest"
+    date +%Y-%m-%d >"${cache_file}"
+    echo "${latest_num}" >>"${cache_file}"
 }
 
 function get_cached_comic {
     local comic_num=$1
-    local cache_file="$CACHE_DIR/$comic_num"
-    if [[ -f "$cache_file" ]]; then
-        cat "$cache_file"
+    local cache_file="${CACHE_DIR}/${comic_num}"
+    if [[ -f "${cache_file}" ]]; then
+        cat "${cache_file}"
     fi
 }
 
 function cache_comic {
     local comic_num=$1
     local json_data=$2
-    local cache_file="$CACHE_DIR/$comic_num"
-    echo "$json_data" >"$cache_file"
+    local cache_file="${CACHE_DIR}/${comic_num}"
+    echo "${json_data}" >"${cache_file}"
 }
 
 if command -v viu &>/dev/null; then
@@ -75,29 +75,29 @@ function show_xkcd_comic {
     show_explanation=$2
 
     # Try to get from cache first
-    comic_json=$(get_cached_comic "$comic_number")
+    comic_json=$(get_cached_comic "${comic_number}")
 
     # If not in cache, fetch from API and cache it
-    if [[ -z "$comic_json" ]]; then
-        comic_json=$(curl -s "https://xkcd.com/$comic_number/info.0.json")
-        if [[ -n "$comic_json" ]]; then
-            cache_comic "$comic_number" "$comic_json"
+    if [[ -z "${comic_json}" ]]; then
+        comic_json=$(curl -s "https://xkcd.com/${comic_number}/info.0.json")
+        if [[ -n "${comic_json}" ]]; then
+            cache_comic "${comic_number}" "${comic_json}"
         fi
     fi
 
-    title=$(echo "$comic_json" | jq -r '.title')
-    alt_text=$(echo "$comic_json" | jq -r '.alt')
-    img_url=$(echo "$comic_json" | jq -r '.img')
+    title=$(echo "${comic_json}" | jq -r '.title')
+    alt_text=$(echo "${comic_json}" | jq -r '.alt')
+    img_url=$(echo "${comic_json}" | jq -r '.img')
 
     echo
-    echo "XKCD #$comic_number: $title"
+    echo "XKCD #${comic_number}: ${title}"
     echo
-    curl -s "$img_url" | $render_cmd -
+    curl -s "${img_url}" | ${render_cmd} -
     echo
-    echo "Alt Text: $alt_text"
-    echo "Comic URL: https://xkcd.com/$comic_number/"
-    if [[ $show_explanation -eq 1 ]]; then
-        echo "Explanation: https://www.explainxkcd.com/wiki/index.php/$comic_number"
+    echo "Alt Text: ${alt_text}"
+    echo "Comic URL: https://xkcd.com/${comic_number}/"
+    if [[ ${show_explanation} -eq 1 ]]; then
+        echo "Explanation: https://www.explainxkcd.com/wiki/index.php/${comic_number}"
     fi
     echo
 }
@@ -105,7 +105,7 @@ function show_xkcd_comic {
 while [[ $# -gt 0 ]]; do
     case ${1} in
     -l | --latest)
-        if [[ $which_comic_show == "specific" ]]; then
+        if [[ ${which_comic_show} == "specific" ]]; then
             echo "Error: -l and -n options cannot be used together."
             exit 1
         fi
@@ -113,7 +113,7 @@ while [[ $# -gt 0 ]]; do
         shift
         ;;
     -n | --number)
-        if [[ $which_comic_show == "latest" ]]; then
+        if [[ ${which_comic_show} == "latest" ]]; then
             echo "Error: -l and -n options cannot be used together."
             exit 1
         fi
@@ -141,20 +141,20 @@ done
 latest_comic_number=$(get_cached_latest)
 
 # If not in cache or outdated, fetch from API and cache it
-if [[ -z "$latest_comic_number" ]]; then
+if [[ -z "${latest_comic_number}" ]]; then
     latest_comic_number=$(curl -s https://xkcd.com/info.0.json | jq -r '.num')
-    if [[ -n "$latest_comic_number" ]]; then
-        cache_latest "$latest_comic_number"
+    if [[ -n "${latest_comic_number}" ]]; then
+        cache_latest "${latest_comic_number}"
     fi
 fi
 
-if [[ $which_comic_show == "latest" ]]; then
-    comic_number=$latest_comic_number
-elif [[ $which_comic_show == "specific" ]]; then
+if [[ ${which_comic_show} == "latest" ]]; then
+    comic_number=${latest_comic_number}
+elif [[ ${which_comic_show} == "specific" ]]; then
     # comic_number is already set from command line argument
     true
-elif [[ $which_comic_show == "random" ]]; then
+elif [[ ${which_comic_show} == "random" ]]; then
     comic_number=$((1 + RANDOM % latest_comic_number))
 fi
 
-show_xkcd_comic "$comic_number" "$show_explanation"
+show_xkcd_comic "${comic_number}" "${show_explanation}"

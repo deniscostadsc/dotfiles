@@ -100,18 +100,18 @@ if [[ "${TRUE_COLOR_SUPPORT:-}" -eq 1 ]]; then
         local r=$1
         local g=$2
         local b=$3
-        printf '\033[48;2;%d;%d;%dm' "$r" "$g" "$b"
+        printf '\033[48;2;%d;%d;%dm' "${r}" "${g}" "${b}"
     }
 fi
 
-PATH_COLOR="\[$BRIGHT_PURPLE\]"
-TIME_COLOR="\[$BRIGHT_CYAN\]"
-GIT_COLOR="\[$BRIGHT_GREEN\]"
-GIT_STATUS_COLOR="\[$BRIGHT_RED\]"
-TODO_COLOR="\[$BRIGHT_WHITE\]"
+PATH_COLOR="\[${BRIGHT_PURPLE}\]"
+TIME_COLOR="\[${BRIGHT_CYAN}\]"
+GIT_COLOR="\[${BRIGHT_GREEN}\]"
+GIT_STATUS_COLOR="\[${BRIGHT_RED}\]"
+TODO_COLOR="\[${BRIGHT_WHITE}\]"
 
 if [[ "${color_prompt}" = yes ]]; then
-    PS1="$PATH_COLOR\w $TIME_COLOR\$(__now) $GIT_COLOR\$(__git_branch) $GIT_STATUS_COLOR\$(__git_arrows)$TODO_COLOR\$(current_todo_task)$NC\n\$ "
+    PS1="${PATH_COLOR}\w ${TIME_COLOR}\$(__now) ${GIT_COLOR}\$(__git_branch) ${GIT_STATUS_COLOR}\$(__git_arrows)${TODO_COLOR}\$(current_todo_task)${NC}\n\$ "
 else
     PS1='\w $(__now) $(__git_branch) $(__git_arrows)$(current_todo_task)\n\$ '
 fi

@@ -10,7 +10,7 @@ function __now {
 function current_todo_task {
     local task
     task=$(todo current 2>/dev/null)
-    if [[ -n "$task" ]]; then
-        echo -e "\nCURRENT TODO TASK: $task"
+    if [[ -n "${task}" ]]; then
+        echo -e "\nCURRENT TODO TASK: ${task}"
     fi
 }
