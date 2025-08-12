@@ -11,6 +11,7 @@ fi
 TODO_FOLDER="${HOME}/.todo"
 TODO_FILE="${TODO_FOLDER}/todo"
 DONE_FILE="${TODO_FOLDER}/done"
+DELETED_FILE="${TODO_FOLDER}/deleted"
 
 function show_help {
     echo "Usage:"
@@ -27,10 +28,10 @@ function list_tasks {
     nl -w2 -s'. ' "${TODO_FILE}"
 }
 
-# Create file if it doesn't exist
 mkdir -p "${TODO_FOLDER}"
 touch "${TODO_FILE}"
 touch "${DONE_FILE}"
+touch "${DELETED_FILE}"
 
 while [[ $# -gt 0 ]]; do
     case "${1}" in
@@ -87,7 +88,9 @@ while [[ $# -gt 0 ]]; do
         echo
         read -r -p "Task number to delete: " num
         if [[ -n "${num}" ]]; then
+            task_line=$(sed -n "${num}p" "${TODO_FILE}")
             ${SED_CMD} "${num}d" "${TODO_FILE}"
+            echo "$(date '+%Y-%m-%d %H:%M:%S') - ${task_line#'- '}" >>"${DELETED_FILE}"
             echo "Task ${num} deleted from todo list."
         fi
         exit 0
