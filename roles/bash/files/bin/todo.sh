@@ -12,6 +12,17 @@ TODO_FOLDER="${HOME}/.todo"
 TODO_FILE="${TODO_FOLDER}/todo"
 DONE_FILE="${TODO_FOLDER}/done"
 
+function show_help {
+    echo "Usage:"
+    echo "  $(basename "$0") add"
+    echo "  $(basename "$0") list"
+    echo "  $(basename "$0") start"
+    echo "  $(basename "$0") current"
+    echo "  $(basename "$0") stop"
+    echo "  $(basename "$0") done"
+    echo "  $(basename "$0") delete"
+}
+
 # Create file if it doesn't exist
 mkdir -p "${TODO_FOLDER}"
 touch "${TODO_FILE}"
@@ -78,19 +89,12 @@ while [[ $# -gt 0 ]]; do
         exit 0
         ;;
     "help")
-        echo "Usage:"
-        echo "  todo.sh add"
-        echo "  todo.sh list"
-        echo "  todo.sh start"
-        echo "  todo.sh current"
-        echo "  todo.sh stop"
-        echo "  todo.sh done"
-        echo "  todo.sh delete"
+        show_help
         exit 0
         ;;
     *)
         echo "Unknown command: $1"
-        echo "Run 'todo.sh help' for usage information."
+        show_help
         exit 1
         ;;
     esac

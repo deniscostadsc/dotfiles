@@ -14,6 +14,13 @@ $ echo $?
 0
 $ ./roles/bash/files/bin/todo.sh invalid
 Unknown command: invalid
-Run 'todo.sh help' for usage information.
+Usage:
+  todo.sh add
+  todo.sh list
+  todo.sh start
+  todo.sh current
+  todo.sh stop
+  todo.sh done
+  todo.sh delete
 $ echo $?
 0

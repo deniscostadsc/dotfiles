@@ -10,3 +10,14 @@ Usage:
   todo.sh stop
   todo.sh done
   todo.sh delete
+$ cp roles/bash/files/bin/todo.sh my-todo
+$ chmod +x my-todo
+$ ./my-todo help
+Usage:
+  my-todo add
+  my-todo list
+  my-todo start
+  my-todo current
+  my-todo stop
+  my-todo done
+  my-todo delete
