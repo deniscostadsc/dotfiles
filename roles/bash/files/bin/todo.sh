@@ -23,6 +23,10 @@ function show_help {
     echo "  $(basename "$0") delete"
 }
 
+function list_tasks {
+    nl -w2 -s'. ' "${TODO_FILE}"
+}
+
 # Create file if it doesn't exist
 mkdir -p "${TODO_FOLDER}"
 touch "${TODO_FILE}"
@@ -37,11 +41,11 @@ while [[ $# -gt 0 ]]; do
         exit 0
         ;;
     "list")
-        nl -w2 -s'. ' "${TODO_FILE}"
+        list_tasks
         exit 0
         ;;
     "start")
-        nl -w2 -s'. ' "${TODO_FILE}"
+        list_tasks
         echo
         read -r -p "Task number to mark as current: " num
         if [[ -n "${num}" ]]; then
@@ -79,7 +83,7 @@ while [[ $# -gt 0 ]]; do
         exit 0
         ;;
     "delete")
-        nl -w2 -s'. ' "${TODO_FILE}"
+        list_tasks
         echo
         read -r -p "Task number to delete: " num
         if [[ -n "${num}" ]]; then
