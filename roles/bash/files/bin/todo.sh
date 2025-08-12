@@ -49,8 +49,8 @@ while [[ $# -gt 0 ]]; do
         echo
         read -r -p "Task number to mark as current: " num
         if [[ -n "${num}" ]]; then
-            ${SED_CMD} "s/^* /- /" "${TODO_FILE}"
-            ${SED_CMD} "${num}s/^- /* /" "${TODO_FILE}"
+            ${SED_CMD} "s/^\* /- /" "${TODO_FILE}"
+            ${SED_CMD} "${num}s/^- /\* /" "${TODO_FILE}"
             echo
             echo "Task ${num} marked as current!"
         fi

@@ -21,3 +21,4 @@ Usage:
   my-todo stop
   my-todo done
   my-todo delete
+$ rm my-todo > /dev/null
