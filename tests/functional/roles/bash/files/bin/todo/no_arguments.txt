@@ -1,0 +1,14 @@
+$ mkdir -p ~/.todo
+$ chmod +x roles/bash/files/bin/todo.sh
+$ rm -f ~/.todo/todo ~/.todo/done
+$ ./roles/bash/files/bin/todo.sh
+Usage:
+  todo.sh add
+  todo.sh list
+  todo.sh start
+  todo.sh current
+  todo.sh stop
+  todo.sh done
+  todo.sh delete
+$ echo $?
+0
