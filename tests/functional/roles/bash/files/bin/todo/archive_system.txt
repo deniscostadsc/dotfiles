@@ -1,0 +1,25 @@
+$ mkdir -p ~/.todo
+$ chmod +x roles/bash/files/bin/todo.sh
+$ rm -rf ~/.todo/todo ~/.todo/done ~/.todo/deleted ~/.todo/archive
+$ echo "Initial task" | ./roles/bash/files/bin/todo.sh add
+Added: 'Initial task'
+$ ls ~/.todo/archive/*.zip | wc -l
+1
+$ echo "Second task" | ./roles/bash/files/bin/todo.sh add
+Added: 'Second task'
+$ ls ~/.todo/archive/*.zip | wc -l
+2
+$ echo "1" | ./roles/bash/files/bin/todo.sh delete
+ 1. - Initial task
+ 2. - Second task
+
+Task 1 deleted from todo list.
+$ ls ~/.todo/archive/*.zip | wc -l
+3
+$ echo "1" | ./roles/bash/files/bin/todo.sh start
+ 1. - Second task
+
+
+Task 1 marked as current!
+$ ls ~/.todo/archive/*.zip | wc -l
+4
