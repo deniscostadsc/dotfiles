@@ -1,0 +1,28 @@
+$ rm -f ~/.todo/todo ~/.todo/done
+$ touch ~/.todo/todo ~/.todo/done
+$ echo "Task A" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task A'
+$ echo "Task B" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task B'
+$ echo "Task C" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task C'
+$ ./roles/bash/files/bin/todo.sh list
+ 1. - Task A
+ 2. - Task B
+ 3. - Task C
+$ echo "2" | ./roles/bash/files/bin/todo.sh start
+ 1. - Task A
+ 2. - Task B
+ 3. - Task C
+
+
+Task 2 marked as current!
+$ ./roles/bash/files/bin/todo.sh current
+Task B
+$ echo "y" | ./roles/bash/files/bin/todo.sh done
+Current task: Task B
+Task marked as done and moved to done list!
+$ ./roles/bash/files/bin/todo.sh list
+ 1. - Task A
+ 2. - Task C
+$ cat ~/.todo/done | grep "Task B" > /dev/null

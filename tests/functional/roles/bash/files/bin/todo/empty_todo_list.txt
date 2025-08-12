@@ -1,0 +1,5 @@
+$ rm ~/.todo/todo
+$ touch ~/.todo/todo
+$ ./roles/bash/files/bin/todo.sh list
+$ ./roles/bash/files/bin/todo.sh current
+$ ./roles/bash/files/bin/todo.sh done

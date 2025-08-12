@@ -1,0 +1,3 @@
+$ ./roles/bash/files/bin/todo.sh stop
+$ ./roles/bash/files/bin/todo.sh done
+$ ./roles/bash/files/bin/todo.sh current

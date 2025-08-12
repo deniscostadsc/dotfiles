@@ -1,0 +1,27 @@
+$ mkdir -p ~/.todo
+$ chmod +x roles/bash/files/bin/todo.sh
+$ rm -f ~/.todo/todo ~/.todo/done
+$ echo "Buy groceries" | ./roles/bash/files/bin/todo.sh add
+Added: 'Buy groceries'
+$ echo "Call mom" | ./roles/bash/files/bin/todo.sh add
+Added: 'Call mom'
+$ echo "Write documentation" | ./roles/bash/files/bin/todo.sh add
+Added: 'Write documentation'
+$ echo "2" | ./roles/bash/files/bin/todo.sh start
+ 1. - Buy groceries
+ 2. - Call mom
+ 3. - Write documentation
+
+
+Task 2 marked as current!
+$ ./roles/bash/files/bin/todo.sh current
+Call mom
+$ ./roles/bash/files/bin/todo.sh list
+ 1. - Buy groceries
+ 2. * Call mom
+ 3. - Write documentation
+$ ./roles/bash/files/bin/todo.sh stop
+$ ./roles/bash/files/bin/todo.sh list
+ 1. - Buy groceries
+ 2. - Call mom
+ 3. - Write documentation

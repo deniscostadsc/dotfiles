@@ -72,7 +72,7 @@ while [[ $# -gt 0 ]]; do
         echo
         read -r -p "Task number to delete: " num
         if [[ -n "${num}" ]]; then
-            sed -i '' "${num}d" "${TODO_FILE}"
+            ${SED_CMD} "${num}d" "${TODO_FILE}"
             echo "Task ${num} deleted from todo list."
         fi
         exit 0

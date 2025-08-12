@@ -10,4 +10,4 @@ RUN wget https://raw.githubusercontent.com/aureliojargas/clitest/8bdaae2f56e524f
 RUN chmod +x clitest
 RUN mv clitest /usr/bin
 
-CMD clitest --prefix tab $(find tests/ -name '*.md')
+CMD clitest $(find tests/ -name '*.txt')

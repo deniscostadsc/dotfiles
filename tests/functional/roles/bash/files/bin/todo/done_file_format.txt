@@ -1,0 +1,8 @@
+$ mkdir -p ~/.todo
+$ chmod +x roles/bash/files/bin/todo.sh
+$ rm -f ~/.todo/todo ~/.todo/done
+$ echo "* Complete this task" > ~/.todo/todo
+$ echo "y" | ./roles/bash/files/bin/todo.sh done
+Current task: Complete this task
+Task marked as done and moved to done list!
+$ cat ~/.todo/done | grep "Complete this task" > /dev/null

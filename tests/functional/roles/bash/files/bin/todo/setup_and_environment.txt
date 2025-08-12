@@ -1,0 +1,3 @@
+$ mkdir -p ~/.todo
+$ chmod +x roles/bash/files/bin/todo.sh
+$ rm -f ~/.todo/todo ~/.todo/done

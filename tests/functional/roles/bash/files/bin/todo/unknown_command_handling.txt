@@ -1,0 +1,8 @@
+$ mkdir -p ~/.todo
+$ chmod +x roles/bash/files/bin/todo.sh
+$ rm -f ~/.todo/todo ~/.todo/done
+$ ./roles/bash/files/bin/todo.sh invalid
+Unknown command: invalid
+Run 'todo.sh help' for usage information.
+$ echo $?
+0

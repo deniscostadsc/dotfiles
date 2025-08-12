@@ -1,0 +1,8 @@
+$ mkdir -p ~/.todo
+$ chmod +x roles/bash/files/bin/todo.sh
+$ rm -f ~/.todo/todo ~/.todo/done
+$ echo "- Persistent task" > ~/.todo/todo
+$ ./roles/bash/files/bin/todo.sh list
+ 1. - Persistent task
+$ ./roles/bash/files/bin/todo.sh list
+ 1. - Persistent task

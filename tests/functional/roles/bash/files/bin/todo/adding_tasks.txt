@@ -1,0 +1,9 @@
+$ mkdir -p ~/.todo
+$ chmod +x roles/bash/files/bin/todo.sh
+$ rm -f ~/.todo/todo ~/.todo/done
+$ echo "Buy groceries" | ./roles/bash/files/bin/todo.sh add
+Added: 'Buy groceries'
+$ echo "Call mom" | ./roles/bash/files/bin/todo.sh add
+Added: 'Call mom'
+$ echo "Write documentation" | ./roles/bash/files/bin/todo.sh add
+Added: 'Write documentation'
