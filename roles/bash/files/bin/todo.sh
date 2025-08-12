@@ -40,6 +40,13 @@ function create_archive {
     local archive_name="${ARCHIVE_FOLDER}/todo_archive_${timestamp}_${counter}.zip"
 
     mkdir -p "${ARCHIVE_FOLDER}"
+
+    local total_archives=$(ls "${ARCHIVE_FOLDER}"/*.zip 2>/dev/null | wc -l)
+    if [[ ${total_archives} -ge 20 ]]; then
+        local oldest_archive=$(ls "${ARCHIVE_FOLDER}"/*.zip | head -1)
+        rm -f "${oldest_archive}"
+    fi
+
     cd "${TODO_FOLDER}" && zip -q "${archive_name}" todo done deleted
 }
 

@@ -1,0 +1,59 @@
+$ mkdir -p ~/.todo
+$ chmod +x roles/bash/files/bin/todo.sh
+$ rm -rf ~/.todo/todo ~/.todo/done ~/.todo/deleted ~/.todo/archive
+$ echo "Task 1" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 1'
+$ ls ~/.todo/archive/*.zip 2>/dev/null | wc -l || echo "0"
+0
+$ echo "Task 2" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 2'
+$ echo "Task 3" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 3'
+$ echo "Task 4" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 4'
+$ echo "Task 5" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 5'
+$ echo "Task 6" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 6'
+$ echo "Task 7" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 7'
+$ echo "Task 8" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 8'
+$ echo "Task 9" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 9'
+$ echo "Task 10" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 10'
+$ echo "Task 11" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 11'
+$ echo "Task 12" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 12'
+$ echo "Task 13" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 13'
+$ echo "Task 14" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 14'
+$ echo "Task 15" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 15'
+$ echo "Task 16" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 16'
+$ echo "Task 17" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 17'
+$ echo "Task 18" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 18'
+$ echo "Task 19" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 19'
+$ echo "Task 20" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 20'
+$ ls ~/.todo/archive/*.zip | wc -l
+19
+$ echo "Task 21" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 21'
+$ ls ~/.todo/archive/*.zip | wc -l
+20
+$ echo "Task 22" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 22'
+$ ls ~/.todo/archive/*.zip | wc -l
+20
+$ ls ~/.todo/archive/*.zip | wc -l
+20
+$ ls ~/.todo/archive/*.zip | head -1 | grep -q "todo_archive_.*_[0-9]*\.zip"
+$ ls ~/.todo/archive/*.zip | tail -1 | grep -q "todo_archive_.*_[0-9]*\.zip"
