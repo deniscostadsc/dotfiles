@@ -3,23 +3,31 @@ $ chmod +x roles/bash/files/bin/todo.sh
 $ rm -rf ~/.todo/todo ~/.todo/done ~/.todo/deleted ~/.todo/archive
 $ echo "Initial task" | ./roles/bash/files/bin/todo.sh add
 Added: 'Initial task'
-$ ls ~/.todo/archive/*.zip | wc -l
-1
+$ ls ~/.todo/archive/*.zip 2>/dev/null | wc -l || echo "0"
+0
 $ echo "Second task" | ./roles/bash/files/bin/todo.sh add
 Added: 'Second task'
 $ ls ~/.todo/archive/*.zip | wc -l
-2
+1
+$ unzip -p $(ls ~/.todo/archive/*.zip | tail -1) todo
+- Initial task
 $ echo "1" | ./roles/bash/files/bin/todo.sh delete
  1. - Initial task
  2. - Second task
 
 Task 1 deleted from todo list.
 $ ls ~/.todo/archive/*.zip | wc -l
-3
+2
+$ unzip -p $(ls ~/.todo/archive/*.zip | tail -1) todo
+- Initial task
+- Second task
+$ unzip -p $(ls ~/.todo/archive/*.zip | tail -1) deleted
 $ echo "1" | ./roles/bash/files/bin/todo.sh start
  1. - Second task
 
 
 Task 1 marked as current!
 $ ls ~/.todo/archive/*.zip | wc -l
-4
+3
+$ unzip -p $(ls ~/.todo/archive/*.zip | tail -1) todo
+- Second task

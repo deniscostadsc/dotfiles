@@ -30,16 +30,17 @@ function list_tasks {
 }
 
 function create_archive {
+    if [[ ! -s "${TODO_FILE}" ]] && [[ ! -s "${DONE_FILE}" ]] && [[ ! -s "${DELETED_FILE}" ]]; then
+        return 0
+    fi
+
     local timestamp=$(date '+%Y%m%d_%H%M%S')
-    local counter=1
+    local existing_count=$(ls "${ARCHIVE_FOLDER}"/todo_archive_${timestamp}*.zip 2>/dev/null | wc -l)
+    local counter=$((existing_count + 1))
     local archive_name="${ARCHIVE_FOLDER}/todo_archive_${timestamp}_${counter}.zip"
 
-    while [[ -f "${archive_name}" ]]; do
-        counter=$((counter + 1))
-        archive_name="${ARCHIVE_FOLDER}/todo_archive_${timestamp}_${counter}.zip"
-    done
-
-    cd "${TODO_FOLDER}" && zip -q "${archive_name}" todo done deleted >/dev/null 2>&1 || true
+    mkdir -p "${ARCHIVE_FOLDER}"
+    cd "${TODO_FOLDER}" && zip -q "${archive_name}" todo done deleted
 }
 
 mkdir -p "${TODO_FOLDER}"
