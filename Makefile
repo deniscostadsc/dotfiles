@@ -46,6 +46,7 @@ lint-fix: __build_lint_sh
 	@$(DOCKER_RUN) dotfiles-lint-sh lint-sh shfmt -l -w .
 
 run:
+	@read -sp "Jira token: " JIRA_TOKEN && \
 	ansible-playbook \
 		--connection=local \
 		--ask-become-pass \
@@ -53,6 +54,7 @@ run:
 		-vv \
 		-i inventory.ini \
 		-e @secrets.enc --ask-vault-pass \
+		-e "work_jira_token=$$JIRA_TOKEN" \
 		playbook.yml
 
 test: __build_lint_tests

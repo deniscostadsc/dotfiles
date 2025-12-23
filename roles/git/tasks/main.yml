@@ -82,6 +82,12 @@
     state: directory
     mode: '755'
 
+- name: Prepare work gitconfig file
+  ansible.builtin.template:
+    src: "files/bin/new-branch.sh.j2"
+    dest: "{{ home_folder }}/.bin/new-branch"
+    mode: a+x
+
 - name: Copy scripts to ~/.bin
   ansible.builtin.copy:
     src: "{{ item.src }}"

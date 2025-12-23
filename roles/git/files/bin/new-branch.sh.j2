@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+JIRA_URL="{{ work_jira_base_url }}"
+JIRA_EMAIL="{{ work_email }}"
+JIRA_TOKEN="{{ work_jira_token }}"
+USERNAME="{{ work_jira_username }}"
+
+[[ $# -ne 1 ]] && {
+    echo "Usage: $0 <ticket-id>";
+    exit 1;
+}
+
+ticket_i=$(echo "$1" | tr '[:lower:]' '[:upper:]')
+
+json=$(curl -s -u "${JIRA_EMAIL}:${JIRA_TOKEN}" \
+  -H "Content-Type: application/json" \
+  "${JIRA_URL}/rest/api/2/issue/${ticket_i}")
+
+
+title=$(echo "${json}" | jq -r '.fields.summary')
+clean_title=$(echo "${title}" | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed 's/^-//;s/-$//')
+
+echo "${USERNAME}/${ticket_i}-${clean_title}"
+
+git checkout master
+git pull --ff-only origin master
+git switch -c "${USERNAME}/${ticket_i}-${clean_title}"

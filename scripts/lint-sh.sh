@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-SH_SCRIPTS="$(find . -name '*.sh' -o -name '.bashrc' -o -name '.bash_profile')"
+SH_SCRIPTS="$(find . -name '*.sh' -o -name '.bashrc' -o -name '.bash_profile' -o -name '*.sh.j2')"
 EXIT_STATUS=0
 
 for script in ${SH_SCRIPTS}; do
