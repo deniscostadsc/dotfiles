@@ -84,6 +84,7 @@ function show_xkcd_comic {
     title=$(echo "${comic_json}" | jq -r '.title')
     alt_text=$(echo "${comic_json}" | jq -r '.alt')
     img_url=$(echo "${comic_json}" | jq -r '.img')
+    link=$(echo "${comic_json}" | jq -r '.link')
 
     echo
     echo "XKCD #${comic_number}: ${title}"
@@ -92,6 +93,9 @@ function show_xkcd_comic {
     echo
     echo "Alt Text: ${alt_text}"
     echo "Comic URL: https://xkcd.com/${comic_number}/"
+    if [[ -n "${link}" ]]; then
+        echo "Link: ${link}"
+    fi
     echo "Explanation: https://www.explainxkcd.com/wiki/index.php/${comic_number}"
     echo
 }

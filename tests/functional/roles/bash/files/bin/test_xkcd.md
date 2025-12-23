@@ -103,6 +103,20 @@ Tests that displayed comic numbers match requested numbers.
 	$ ./roles/bash/files/bin/xkcd.sh -n 500 | grep "XKCD #500:"
 	XKCD #500: Comic #500
 
+### Show link when that is available in json
+
+	$ echo '{"num": 9999, "title": "Comic #9999", "alt": "Alt text for comic 9999", "img": "https://imgs.xkcd.com/comics/9999.png", "link": "https://xkcd.com/9999/large/"}' > ~/.cache/xkcd/9999
+	$ ./roles/bash/files/bin/xkcd.sh -n 9999
+	
+	XKCD #9999: Comic #9999
+	
+	[Displaying image from https://imgs.xkcd.com/comics/9999.png]
+	
+	Alt Text: Alt text for comic 9999
+	Comic URL: https://xkcd.com/9999/
+	Link: https://xkcd.com/9999/large/
+	Explanation: https://www.explainxkcd.com/wiki/index.php/9999
+	
 ## Error Handling
 
 ### Invalid Options
@@ -149,7 +163,7 @@ Tests that the script can read from cache after initial fetch.
 Tests that the clear cache functionality works correctly.
 
 	$ ls -la "${HOME}/.cache/xkcd/" | wc -l
-	11
+	12
 	$ echo y | ./roles/bash/files/bin/xkcd.sh -c
 	$ ls -la "${HOME}/.cache/xkcd/" | wc -l
 	3
