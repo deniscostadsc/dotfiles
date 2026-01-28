@@ -56,8 +56,8 @@
     push = push -u
     # Same as status
     s = status
-    # Skip git hook and commit all changed code with WIP as massage
-    wip = commit --no-verify -am WIP
+    # Skip git hook and commit all changed code with WIP as message
+    wip = ! git add . && git commit --no-verify -m WIP
 
 [push]
     default = current
