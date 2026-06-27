@@ -27,6 +27,9 @@ for arg in "$@"; do
         echo "Stripping test filter, running full file: ${clean_path}"
     fi
 
+    # Remove duplo integrations/ se existir
+    clean_path="${clean_path/#integrations\/integrations\//integrations\/}"
+
     if [[ "$clean_path" == api/* ]]; then
         stripped="${clean_path#api/}"
         [[ ! -f "${REPO_ROOT}/api/${stripped}" ]] && { echo "File not found: api/${stripped}"; exit 1; }
