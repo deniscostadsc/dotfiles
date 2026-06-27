@@ -10,7 +10,6 @@ personal computers.**
     - [On Pop!\_os](#on-pop_os)
     - [On MacOS](#on-macos)
   - [Manual steps](#manual-steps)
-    - [On Pop!\_os](#on-pop_os-1)
     - [On MacOS](#on-macos-1)
   - [What this project does](#what-this-project-does)
     - [Packages installed](#packages-installed)
