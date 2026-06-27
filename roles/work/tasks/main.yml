@@ -7,6 +7,7 @@
     mode: a+x
 
 - name: Prepare work includes file
+  when: ansible_distribution == 'MacOSX'
   ansible.builtin.template:
     src: "files/includes.sh.j2"
     dest: "/tmp/includes.sh"
