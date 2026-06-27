@@ -3,8 +3,7 @@
 **DISCLAIMER: This project is intentended to be a personal project to setup my
 personal computers.**
 
-![ci workflow
-status](https://github.com/deniscostadsc/dotfiles/actions/workflows/ci.yml/badge.svg)
+[![CI workflow status](https://github.com/deniscostadsc/dotfiles/actions/workflows/ci.yml/badge.svg)](https://github.com/deniscostadsc/dotfiles/actions)
 
 - [dotfiles](#dotfiles)
   - [Running the playbooks](#running-the-playbooks)
