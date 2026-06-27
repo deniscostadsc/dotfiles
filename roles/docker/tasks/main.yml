@@ -21,8 +21,8 @@
     group: docker
   become: "{{ become_root }}"
 
-- name: Add docker functions to ~/.bashrc
+- name: Add docker functions to ~/.bash_includes
   ansible.builtin.blockinfile:
-    path: "{{ home_folder }}/.bashrc"
+    path: "{{ home_folder }}/.bash_includes"
     marker: "# {mark} docker/files/functions.sh"
     block: "{{ lookup('file', 'files/functions.sh') }}"

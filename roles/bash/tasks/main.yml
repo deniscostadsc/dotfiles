@@ -11,41 +11,54 @@
     dest: "{{ home_folder }}"
     mode: preserve
 
+- name: Check ~/.bash_includes exists
+  ansible.builtin.stat:
+    path: "{{ home_folder }}/.bash_includes"
+  register: bash_includes_exists
+  failed_when: false
+  changed_when: false
+
 - name: Check ~/.bashrc exists
   ansible.builtin.stat:
     path: "{{ home_folder }}/.bashrc"
-  register: bashrc_exists
+  register: bash_configfile_exists
   failed_when: false
   changed_when: false
 
 # yamllint disable rule:line-length
-- name: Check if .bashrc starts with base content
-  when: bashrc_exists.stat.exists is defined and bashrc_exists.stat.exists
+- name: Check if .bash_includes starts with base content
+  when: bash_includes_exists.stat.exists is defined and bash_includes_exists.stat.exists
   ansible.builtin.shell: |
     set -o pipefail
-    base_lines=$(wc -l < {{ lookup('file', 'files/bash/.bashrc') }})
-    head -n "$base_lines" {{ home_folder }}/.bashrc | diff -q {{ lookup('file', 'files/bash/.bashrc') }} - >/dev/null
-  register: bashrc_content_check
+    base_lines=$(wc -l < {{ lookup('file', 'files/bash/.bash_includes') }})
+    head -n "$base_lines" {{ home_folder }}/.bash_includes | diff -q {{ lookup('file', 'files/bash/.bash_includes') }} - >/dev/null
+  register: bash_includes_base_is_equal
   failed_when: false
   changed_when: false
 # yamllint enable rule:line-length
 
+- name: Copy .bash_includes to home folder
+  when: bash_includes_exists.stat.exists is not defined or bash_includes_base_is_equal.rc is not defined or bash_includes_base_is_equal.rc != 0  # yamllint disable-line rule:line-length
+  ansible.builtin.copy:
+    src: files/bash/.bash_includes
+    dest: "{{ home_folder }}"
+    mode: preserve
+
 - name: Copy .bashrc to home folder
-  when: bashrc_exists.stat.exists is not defined or bashrc_content_check.rc is not defined or bashrc_content_check.rc != 0  # yamllint disable-line rule:line-length
   ansible.builtin.copy:
     src: files/bash/.bashrc
     dest: "{{ home_folder }}"
     mode: preserve
 
-- name: Add bash aliases to ~/.bashrc
+- name: Add bash aliases to ~/.bash_includes
   ansible.builtin.blockinfile:
-    path: "{{ home_folder }}/.bashrc"
+    path: "{{ home_folder }}/.bash_includes"
     marker: "# {mark} bash/files/aliases.sh"
     block: "{{ lookup('file', 'files/aliases.sh') }}"
 
-- name: Add bash functions to ~/.bashrc
+- name: Add bash functions to ~/.bash_includes
   ansible.builtin.blockinfile:
-    path: "{{ home_folder }}/.bashrc"
+    path: "{{ home_folder }}/.bash_includes"
     marker: "# {mark} bash/files/functions.sh"
     block: "{{ lookup('file', 'files/functions.sh') }}"
 

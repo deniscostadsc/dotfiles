@@ -70,9 +70,9 @@
     dest: "{{ home_folder }}/.config/git/commit_message_template"
     mode: preserve
 
-- name: Add git functions to ~/.bashrc
+- name: Add git functions to ~/.bash_includes
   ansible.builtin.blockinfile:
-    path: "{{ home_folder }}/.bashrc"
+    path: "{{ home_folder }}/.bash_includes"
     marker: "# {mark} git/files/functions.sh"
     block: "{{ lookup('file', 'files/functions.sh') }}"
 

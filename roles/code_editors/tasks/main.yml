@@ -7,8 +7,8 @@
   ansible.builtin.include_tasks:
     file: vscode.yml
 
-- name: Add code_editors alias to ~/.bashrc
+- name: Add code_editors alias to ~/.bash_includes
   ansible.builtin.blockinfile:
-    path: "{{ home_folder }}/.bashrc"
+    path: "{{ home_folder }}/.bash_includes"
     marker: "# {mark} code_editors/files/aliases.sh"
     block: "{{ lookup('file', 'files/aliases.sh') }}"

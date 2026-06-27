@@ -5,9 +5,9 @@
     dest: "/tmp/includes.sh"
     mode: preserve
 
-- name: Add work includes to ~/.bashrc
+- name: Add work includes to ~/.bash_includes
   when: ansible_distribution == 'MacOSX'
   ansible.builtin.blockinfile:
-    path: "{{ home_folder }}/.bashrc"
+    path: "{{ home_folder }}/.bash_includes"
     marker: "# {mark} work/files/includes.sh"
     block: "{{ lookup('file', '/tmp/includes.sh') }}"

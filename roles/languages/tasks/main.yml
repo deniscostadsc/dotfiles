@@ -13,8 +13,8 @@
     dest: /tmp/languages-includes.sh
     mode: preserve
 
-- name: Add languages includes to ~/.bashrc
+- name: Add languages includes to ~/.bash_includes
   ansible.builtin.blockinfile:
-    path: "{{ home_folder }}/.bashrc"
+    path: "{{ home_folder }}/.bash_includes"
     marker: "# {mark} languages/files/includes.sh"
     block: "{{ lookup('file', '/tmp/languages-includes.sh') }}"

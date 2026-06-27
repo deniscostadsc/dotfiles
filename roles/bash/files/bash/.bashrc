@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+
+# This source need to be before the check below
+# shellcheck disable=SC1090
+source ~/.bash_includes
+
 # If not running interactively, don't do anything
 [[ -z "${PS1:-}" ]] && return
 
@@ -116,12 +121,11 @@ else
     PS1='\w $(__now) $(__git_branch) $(__git_arrows)$(current_todo_task)\n\$ '
 fi
 
+PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
+
 unset color_prompt
 
 LC_ALL="en_US.UTF-8"
-
-PATH=~/.bin/:${PATH}
-MANPATH=~/.man/:${MANPATH}
 
 # no zsh here!
 export BASH_SILENCE_DEPRECATION_WARNING=1
