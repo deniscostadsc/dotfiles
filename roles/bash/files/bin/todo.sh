@@ -34,8 +34,10 @@ function create_archive {
         return 0
     fi
 
+    # shellcheck disable=SC2155
     local timestamp=$(date '+%Y%m%d_%H%M%S')
-    local existing_count=$(ls "${ARCHIVE_FOLDER}"/todo_archive_${timestamp}*.zip 2>/dev/null | wc -l)
+    # shellcheck disable=SC2155
+    local existing_count=$(ls "${ARCHIVE_FOLDER}"/todo_archive_"${timestamp}"*.zip 2>/dev/null | wc -l)
     local counter=$((existing_count + 1))
     local archive_name="${ARCHIVE_FOLDER}/todo_archive_${timestamp}_${counter}.zip"
 
