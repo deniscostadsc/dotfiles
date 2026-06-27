@@ -13,16 +13,11 @@
     dest: "{{ home_folder }}/.bin/run-tests"
     mode: a+x
 
-- name: Prepare work includes file
-  when: ansible_distribution == 'MacOSX'
-  ansible.builtin.template:
-    src: "files/includes.sh.j2"
-    dest: "/tmp/includes.sh"
-    mode: preserve
-
 - name: Add work includes to ~/.bash_includes
   when: ansible_distribution == 'MacOSX'
+  vars:
+    work_includes_content: "{{ lookup('template', 'files/includes.sh.j2') }}"
   ansible.builtin.blockinfile:
     path: "{{ home_folder }}/.bash_includes"
     marker: "# {mark} work/files/includes.sh"
-    block: "{{ lookup('file', '/tmp/includes.sh') }}"
+    block: "{{ work_includes_content }}"

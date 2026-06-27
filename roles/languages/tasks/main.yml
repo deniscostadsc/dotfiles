@@ -7,14 +7,12 @@
   ansible.builtin.include_tasks:
     file: sql.yml
 
-- name: Prepare work gitconfig file
-  ansible.builtin.template:
-    src: files/includes.sh.j2
-    dest: /tmp/languages-includes.sh
-    mode: preserve
-
+# yamllint disable rule:line-length
 - name: Add languages includes to ~/.bash_includes
+  vars:
+    languages_includes_content: "{{ lookup('template', 'files/includes.sh.j2') }}"
   ansible.builtin.blockinfile:
     path: "{{ home_folder }}/.bash_includes"
     marker: "# {mark} languages/files/includes.sh"
-    block: "{{ lookup('file', '/tmp/languages-includes.sh') }}"
+    block: "{{ languages_includes_content }}"
+# yamllint enable rule:line-length

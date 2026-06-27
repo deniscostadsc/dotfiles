@@ -29,25 +29,25 @@
 - name: Get base content line count
   when: bash_includes_exists.stat.exists is defined and bash_includes_exists.stat.exists
   ansible.builtin.set_fact:
-    base_content: "{{ lookup('file', 'files/bash/.bash_includes') }}"
-    base_lines_count: "{{ lookup('file', 'files/bash/.bash_includes') | split('\n') | length }}"
+    bash_base_content: "{{ lookup('file', 'files/bash/.bash_includes') }}"
+    bash_base_lines_count: "{{ lookup('file', 'files/bash/.bash_includes') | split('\n') | length }}"
 
 - name: Get first lines from existing file
   when:
     - bash_includes_exists.stat.exists is defined and bash_includes_exists.stat.exists
-    - base_lines_count is defined
+    - bash_base_lines_count is defined
   ansible.builtin.shell: |
-    head -n {{ base_lines_count }} {{ home_folder }}/.bash_includes
-  register: existing_first_lines
+    head -n {{ bash_base_lines_count }} {{ home_folder }}/.bash_includes
+  register: bash_existing_first_lines
   changed_when: false
 
 - name: Compare first lines
   when:
     - bash_includes_exists.stat.exists is defined and bash_includes_exists.stat.exists
-    - existing_first_lines.stdout is defined
-    - base_content is defined
+    - bash_existing_first_lines.stdout is defined
+    - bash_base_content is defined
   ansible.builtin.set_fact:
-    bash_includes_base_is_equal: "{{ existing_first_lines.stdout == base_content }}"
+    bash_includes_base_is_equal: "{{ bash_existing_first_lines.stdout == bash_base_content }}"
 
 - name: Copy .bash_includes to home folder
   when: >

@@ -13,25 +13,14 @@
     dest: "{{ home_folder }}"
     mode: preserve
 
-- name: Prepare default gitconfig file
+- name: Prepare and copy gitconfig files
   ansible.builtin.template:
-    src: "files/git/.gitconfig-default.j2"
-    dest: "/tmp/.gitconfig-default"
+    src: "{{ item.src }}"
+    dest: "{{ home_folder }}/{{ item.dest }}"
     mode: preserve
-
-- name: Prepare work gitconfig file
-  ansible.builtin.template:
-    src: "files/git/.gitconfig-work.j2"
-    dest: "/tmp/.gitconfig-work"
-    mode: preserve
-
-- name: Copy aux git config files
-  ansible.builtin.copy:
-    src: "{{ item }}"
-    dest: "{{ home_folder }}"
-    mode: preserve
-  with_fileglob:
-    - "/tmp/.gitconfig-*"
+  with_items:
+    - {src: 'files/git/.gitconfig-default.j2', dest: '.gitconfig-default'}
+    - {src: 'files/git/.gitconfig-work.j2', dest: '.gitconfig-work'}
 
 - name: Create git config folders
   ansible.builtin.file:
