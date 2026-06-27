@@ -11,7 +11,7 @@ USERNAME="{{ work_username }}"
 
 json=$(get-ticket-info.sh "$1" --json)
 
-key=$(echo "$json" | jq -r '.key')
+key=$(echo "${json}" | jq -r '.key')
 summary=$(echo "${json}" | jq -r '.fields.summary')
 clean_summary=$(echo "${summary}" | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed 's/^-//;s/-$//')
 branch="${USERNAME}/${key}-${clean_summary}"
