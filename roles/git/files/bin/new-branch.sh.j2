@@ -2,28 +2,21 @@
 
 set -euo pipefail
 
-JIRA_URL="{{ work_jira_base_url }}"
-JIRA_EMAIL="{{ work_email }}"
-JIRA_TOKEN="{{ work_jira_token }}"
-USERNAME="{{ work_jira_username }}"
+USERNAME="{{ work_username }}"
 
 [[ $# -ne 1 ]] && {
-    echo "Usage: $0 <ticket-id>";
-    exit 1;
+    echo "Usage: $0 <ticket-id>"
+    exit 1
 }
 
-ticket_i=$(echo "$1" | tr '[:lower:]' '[:upper:]')
+json=$(get-ticket-info.sh "$1" --json)
 
-json=$(curl -s -u "${JIRA_EMAIL}:${JIRA_TOKEN}" \
-  -H "Content-Type: application/json" \
-  "${JIRA_URL}/rest/api/2/issue/${ticket_i}")
+key=$(echo "$json" | jq -r '.key')
+summary=$(echo "${json}" | jq -r '.fields.summary')
+clean_summary=$(echo "${summary}" | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed 's/^-//;s/-$//')
+branch="${USERNAME}/${key}-${clean_summary}"
 
-
-title=$(echo "${json}" | jq -r '.fields.summary')
-clean_title=$(echo "${title}" | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed 's/^-//;s/-$//')
-
-echo "${USERNAME}/${ticket_i}-${clean_title}"
-
+echo "Creating branch: ${branch}"
 git checkout master
 git pull --ff-only origin master
-git switch -c "${USERNAME}/${ticket_i}-${clean_title}"
+git switch -c "${branch}"
