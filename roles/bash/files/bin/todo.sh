@@ -34,22 +34,29 @@ function create_archive {
         return 0
     fi
 
+    local timestamp
+    local existing_count
+    local counter
+    local archive_name
+    local total_archives
+    local oldest_archive
+
     # shellcheck disable=SC2155
-    local timestamp=$(date '+%Y%m%d_%H%M%S')
+    timestamp=$(date '+%Y%m%d_%H%M%S')
     # shellcheck disable=SC2155
-    local existing_count=$(ls "${ARCHIVE_FOLDER}"/todo_archive_"${timestamp}"*.zip 2>/dev/null | wc -l)
-    local counter=$((existing_count + 1))
-    local archive_name="${ARCHIVE_FOLDER}/todo_archive_${timestamp}_${counter}.zip"
+    existing_count=$(find "${ARCHIVE_FOLDER}" -maxdepth 1 -name "todo_archive_${timestamp}_*.zip" 2>/dev/null | wc -l)
+    counter=$((existing_count + 1))
+    archive_name="${ARCHIVE_FOLDER}/todo_archive_${timestamp}_${counter}.zip"
 
     mkdir -p "${ARCHIVE_FOLDER}"
 
-    local total_archives=$(ls "${ARCHIVE_FOLDER}"/*.zip 2>/dev/null | wc -l)
+    total_archives=$(find "${ARCHIVE_FOLDER}" -maxdepth 1 -name "*.zip" 2>/dev/null | wc -l)
     if [[ ${total_archives} -ge 20 ]]; then
-        local oldest_archive=$(ls "${ARCHIVE_FOLDER}"/*.zip | head -1)
+        oldest_archive=$(find "${ARCHIVE_FOLDER}" -maxdepth 1 -name "*.zip" -printf "%T@ %p\n" 2>/dev/null | sort -n | head -1 | cut -d' ' -f2-)
         rm -f "${oldest_archive}"
     fi
 
-    cd "${TODO_FOLDER}" && zip -q "${archive_name}" todo done deleted
+    cd "${TODO_FOLDER}" && zip -q "${archive_name}" 'todo' 'done' 'deleted'
 }
 
 mkdir -p "${TODO_FOLDER}"
