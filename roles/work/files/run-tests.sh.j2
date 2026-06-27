@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+set +u
+# the script.sh loaded here has a variable that does not exist in non-interactive shell, so we set +u
+# shellcheck disable=all
+source {{ work_bash_include_path }}
+set -u
+REPO_ROOT="{{ work_repo_root }}"
+
+py_test_paths=()
+integration_paths=()
+extra_flags=()
+any_stripped=0
+
+for arg in "$@"; do
+    if [[ "$arg" == -* ]]; then
+        extra_flags+=("$arg")
+        continue
+    fi
+
+    # Strip ::ClassName::method_name filters
+    clean_path="${arg%%::*}"
+    if [[ "$arg" != "$clean_path" ]]; then
+        any_stripped=1
+        echo "Stripping test filter, running full file: ${clean_path}"
+    fi
+
+    if [[ "$clean_path" == api/* ]]; then
+        stripped="${clean_path#api/}"
+        [[ ! -f "${REPO_ROOT}/api/${stripped}" ]] && { echo "File not found: api/${stripped}"; exit 1; }
+        py_test_paths+=("$stripped")
+    elif [[ "$clean_path" == integrations/* ]]; then
+        stripped="${clean_path#integrations/}"
+        [[ ! -f "${REPO_ROOT}/integrations/${stripped}" ]] && { echo "File not found: integrations/${stripped}"; exit 1; }
+        integration_paths+=("$stripped")
+    else
+        echo "Unknown path prefix: ${clean_path} (expected api/ or integrations/)"
+        exit 1
+    fi
+done
+
+if [[ $any_stripped -ne 0 ]]; then
+    echo "That's how the tests should be run, the whole files."
+fi
+
+# shellcheck disable=all
+{% raw %}
+py_test_count=${#py_test_paths[@]}
+integration_count=${#integration_paths[@]}
+{% endraw %}
+
+if [[ $py_test_count -eq 0 && $integration_count -eq 0 ]]; then
+    echo "Usage: $0 <test-path> [<test-path>...] [--flags]"
+    echo ""
+    echo "Examples:"
+    echo "  $0 path/test_file.py"
+    echo "  $0 path/test_file.py --any-extra-args"
+    echo "  $0 path/test_file.py::TestClass::test_method"
+    exit 1
+fi
+
+if [[ $py_test_count -gt 0 ]]; then
+    CI=false py-test --run-once "${py_test_paths[@]}" "${extra_flags[@]+"${extra_flags[@]}"}"
+fi
+
+if [[ $integration_count -gt 0 ]]; then
+    CI=false py-test-integrations --run-once "${integration_paths[@]}" "${extra_flags[@]+"${extra_flags[@]}"}"
+fi

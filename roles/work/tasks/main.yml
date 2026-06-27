@@ -6,6 +6,13 @@
     dest: "{{ home_folder }}/.bin/ticket-info"
     mode: a+x
 
+- name: Copy work commands
+  when: ansible_distribution == 'MacOSX'
+  ansible.builtin.template:
+    src: "files/run-tests.sh.j2"
+    dest: "{{ home_folder }}/.bin/run-tests"
+    mode: a+x
+
 - name: Prepare work includes file
   when: ansible_distribution == 'MacOSX'
   ansible.builtin.template:
