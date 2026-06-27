@@ -10,4 +10,5 @@ Usage:
   todo.sh stop
   todo.sh done
   todo.sh delete
+  todo.sh restore
 $ ls -la ~/.todo/ > /dev/null

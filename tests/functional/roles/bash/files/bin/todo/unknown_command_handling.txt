@@ -11,5 +11,6 @@ Usage:
   todo.sh stop
   todo.sh done
   todo.sh delete
+  todo.sh restore
 $ echo $?
 0

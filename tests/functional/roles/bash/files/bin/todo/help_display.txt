@@ -10,6 +10,7 @@ Usage:
   todo.sh stop
   todo.sh done
   todo.sh delete
+  todo.sh restore
 $ cp roles/bash/files/bin/todo.sh my-todo
 $ chmod +x my-todo
 $ ./my-todo help
@@ -21,4 +22,5 @@ Usage:
   my-todo stop
   my-todo done
   my-todo delete
+  my-todo restore
 $ rm my-todo > /dev/null

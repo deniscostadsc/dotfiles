@@ -1,0 +1,26 @@
+$ mkdir -p ~/.todo
+$ chmod +x roles/bash/files/bin/todo.sh
+$ rm -rf ~/.todo/todo ~/.todo/done ~/.todo/deleted ~/.todo/archive
+$ echo "Task 1" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 1'
+$ echo "Task 2" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 2'
+$ echo "Task 3" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 3'
+$ ./roles/bash/files/bin/todo.sh list
+ 1. - Task 1
+ 2. - Task 2
+ 3. - Task 3
+$ echo "Task 4" | ./roles/bash/files/bin/todo.sh add
+Added: 'Task 4'
+$ ./roles/bash/files/bin/todo.sh list
+ 1. - Task 1
+ 2. - Task 2
+ 3. - Task 3
+ 4. - Task 4
+$ echo 'y' | ./roles/bash/files/bin/todo.sh restore
+Archive restored
+$ ./roles/bash/files/bin/todo.sh list
+ 1. - Task 1
+ 2. - Task 2
+ 3. - Task 3

@@ -24,6 +24,7 @@ function show_help {
     echo "  $(basename "$0") stop"
     echo "  $(basename "$0") done"
     echo "  $(basename "$0") delete"
+    echo "  $(basename "$0") restore"
 }
 
 function list_tasks {
@@ -59,6 +60,24 @@ function create_archive {
 
     (cd "${TODO_FOLDER}" 2>/dev/null && zip -q "${archive_name}" 'todo' 'done' 'deleted' 2>/dev/null) || true
     return 0
+}
+
+function restore_archive {
+    read -r -p "Are you sure you want to restore the last archive? [y/N] " confirm
+    if [[ ! "${confirm}" =~ ^[Yy]$ ]]; then
+        return 0
+    fi
+
+    local last_archive
+    last_archive=$(find "${ARCHIVE_FOLDER}" -maxdepth 1 -name "*.zip" -type f | sort | tail -1)
+
+    if [[ -z "${last_archive}" ]]; then
+        echo "No archive found to restore."
+        return 1
+    fi
+
+    (cd "${TODO_FOLDER}" && unzip -oq "${last_archive}" 'todo' 'done' 'deleted' 2>/dev/null)
+    echo "Archive restored"
 }
 
 mkdir -p "${TODO_FOLDER}"
@@ -132,6 +151,10 @@ while [[ $# -gt 0 ]]; do
             echo "$(date '+%Y-%m-%d %H:%M:%S') - ${task_line#'- '}" >>"${DELETED_FILE}"
             echo "Task ${num} deleted from todo list."
         fi
+        exit 0
+        ;;
+    "restore")
+        restore_archive
         exit 0
         ;;
     "help")
