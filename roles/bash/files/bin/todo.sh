@@ -52,11 +52,12 @@ function create_archive {
 
     total_archives=$(find "${ARCHIVE_FOLDER}" -maxdepth 1 -name "*.zip" 2>/dev/null | wc -l)
     if [[ ${total_archives} -ge 20 ]]; then
-        oldest_archive=$(find "${ARCHIVE_FOLDER}" -maxdepth 1 -name "*.zip" -printf "%T@ %p\n" 2>/dev/null | sort -n | head -1 | cut -d' ' -f2-)
-        rm -f "${oldest_archive}"
+        oldest_archive=$(find "${ARCHIVE_FOLDER}" -maxdepth 1 -name "*.zip" -type f | sort | head -1)
+        rm -f "${oldest_archive}" 2>/dev/null || true
     fi
 
-    cd "${TODO_FOLDER}" && zip -q "${archive_name}" 'todo' 'done' 'deleted'
+    (cd "${TODO_FOLDER}" 2>/dev/null && zip -q "${archive_name}" 'todo' 'done' 'deleted' 2>/dev/null) || true
+    return 0
 }
 
 mkdir -p "${TODO_FOLDER}"
