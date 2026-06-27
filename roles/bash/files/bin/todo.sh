@@ -13,6 +13,7 @@ TODO_FILE="${TODO_FOLDER}/todo"
 DONE_FILE="${TODO_FOLDER}/done"
 DELETED_FILE="${TODO_FOLDER}/deleted"
 ARCHIVE_FOLDER="${TODO_FOLDER}/archive"
+MAX_ARCHIVE=100
 
 function show_help {
     echo "Usage:"
@@ -51,7 +52,7 @@ function create_archive {
     mkdir -p "${ARCHIVE_FOLDER}"
 
     total_archives=$(find "${ARCHIVE_FOLDER}" -maxdepth 1 -name "*.zip" 2>/dev/null | wc -l)
-    if [[ ${total_archives} -ge 20 ]]; then
+    if [[ ${total_archives} -ge ${MAX_ARCHIVE} ]]; then
         oldest_archive=$(find "${ARCHIVE_FOLDER}" -maxdepth 1 -name "*.zip" -type f | sort | head -1)
         rm -f "${oldest_archive}" 2>/dev/null || true
     fi
