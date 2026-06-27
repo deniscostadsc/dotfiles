@@ -1,4 +1,11 @@
 ---
+- name: Copy ticket-info command
+  when: ansible_distribution == 'MacOSX'
+  ansible.builtin.copy:
+    src: "files/ticket-info.sh"
+    dest: "{{ home_folder }}/.bin/ticket-info"
+    mode: a+x
+
 - name: Prepare work includes file
   ansible.builtin.template:
     src: "files/includes.sh.j2"
