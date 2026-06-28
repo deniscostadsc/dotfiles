@@ -9,7 +9,7 @@ USERNAME="{{ work_username }}"
     exit 1
 }
 
-json=$(get-ticket-info.sh "$1" --json)
+json=$(ticket-info "$1" --json)
 
 key=$(echo "${json}" | jq -r '.key')
 summary=$(echo "${json}" | jq -r '.fields.summary')
