@@ -18,8 +18,24 @@
     dest: "{{ home_folder }}/.config/nvim/"
     mode: preserve
 
-- name: Copy neovim options
+- name: Copy neovim config extras
   ansible.builtin.copy:
-    src: files/neovim/lua/config/options.lua
+    src: "{{ item }}"
     dest: "{{ home_folder }}/.config/nvim/lua/config/"
     mode: preserve
+  with_fileglob:
+    - "files/neovim/lua/config/*"
+
+- name: Create neovim plugins folders
+  ansible.builtin.file:
+    path: "{{ home_folder }}/.config/nvim/lua/plugins"
+    state: directory
+    mode: '755'
+
+- name: Copy neovim config extras
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ home_folder }}/.config/nvim/lua/plugins/"
+    mode: preserve
+  with_fileglob:
+    - "files/neovim/lua/plugins/*"
