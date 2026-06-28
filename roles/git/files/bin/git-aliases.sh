@@ -3,6 +3,19 @@
 set -euo pipefail
 
 config_file="${HOME}/.gitconfig"
+max_length=0
+aliases_list=()
+
+while read -r full_alias _; do
+    alias_name="${full_alias//alias./}"
+    aliases_list+=("${alias_name}")
+    length=${#alias_name}
+    if ((length > max_length)); then
+        max_length=${length}
+    fi
+done < <(git config --get-regexp '^alias\.' || true)
+
+padding=$((max_length))
 
 git config --get-regexp '^alias\.' | while read -r full_alias _; do
     alias_name="${full_alias//alias./}"
@@ -18,6 +31,6 @@ git config --get-regexp '^alias\.' | while read -r full_alias _; do
             alias_description=$(echo "${current_line}" | sed 's/^[[:space:]]*#[[:space:]]*//')
         fi
 
-        printf "%-18s - %s\n" "${alias_name}" "${alias_description:-No description}"
+        printf "%-${padding}s - %s\n" "${alias_name}" "${alias_description:-No description}"
     fi
 done
