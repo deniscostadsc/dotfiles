@@ -1,6 +1,8 @@
 ---
 - name: Install docker and docker-compose stuff
-  when: ansible_distribution != 'MacOSX'
+  when:
+    - ansible_distribution != 'MacOSX'
+    - not skip_root | bool
   ansible.builtin.package:
     name:
       - docker
@@ -15,7 +17,9 @@
     state: present
 
 - name: Add the user to docker group on Linux
-  when: ansible_distribution != 'MacOSX'
+  when:
+    - ansible_distribution != 'MacOSX'
+    - not skip_root | bool
   ansible.builtin.user:
     name: "{{ current_user }}"
     group: docker

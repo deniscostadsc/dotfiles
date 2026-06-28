@@ -7,7 +7,9 @@
     - {package: "dash", folder: "/Applications/Dash.app/"}
 
 - name: Install Zeal
-  when: ansible_distribution != 'MacOSX'
+  when:
+    - ansible_distribution != 'MacOSX'
+    - not skip_root | bool
   ansible.builtin.package:
     name:
       - zeal

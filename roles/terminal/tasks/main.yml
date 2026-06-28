@@ -1,6 +1,8 @@
 ---
 - name: Install terminator
-  when: ansible_distribution != 'MacOSX'
+  when:
+    - ansible_distribution != 'MacOSX'
+    - not skip_root | bool
   ansible.builtin.package:
     name:
       - terminator
@@ -29,6 +31,7 @@
     - {package: "iterm2", folder: "/Applications/iTerm.app"}
 
 - name: Install tools
+  when: not skip_root | bool
   ansible.builtin.package:
     name:
       - bat

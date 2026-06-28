@@ -1,5 +1,6 @@
 ---
 - name: Install ffmpeg
+  when: not skip_root | bool
   ansible.builtin.package:
     name:
       - ffmpeg

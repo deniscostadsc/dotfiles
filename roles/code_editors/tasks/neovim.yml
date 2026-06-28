@@ -1,37 +1,25 @@
 ---
 - name: Install neovim
+  when: not skip_root | bool
   ansible.builtin.package:
     name: neovim
     state: present
   become: "{{ become_root }}"
 
-- name: Install silversearch
-  when: ansible_distribution != 'MacOSX'
-  ansible.builtin.package:
-    name: silversearcher-ag
-    state: present
-  become: "{{ become_root }}"
-
-- name: Install silversearch
-  when: ansible_distribution == 'MacOSX'
-  ansible.builtin.package:
-    name: the_silver_searcher
-    state: present
-
-- name: Copy vim config
-  ansible.builtin.copy:
-    src: files/neovim/.vimrc
-    dest: "{{ home_folder }}/"
-    mode: preserve
-
 - name: Create neovim config folders
   ansible.builtin.file:
-    path: "{{ home_folder }}/.config/nvim/"
+    path: "{{ home_folder }}/.config/nvim/lua/config"
     state: directory
     mode: '755'
 
 - name: Copy neovim config
   ansible.builtin.copy:
-    src: files/neovim/init.vim
+    src: files/neovim/init.lua
     dest: "{{ home_folder }}/.config/nvim/"
+    mode: preserve
+
+- name: Copy neovim options
+  ansible.builtin.copy:
+    src: files/neovim/lua/config/options.lua
+    dest: "{{ home_folder }}/.config/nvim/lua/config/"
     mode: preserve

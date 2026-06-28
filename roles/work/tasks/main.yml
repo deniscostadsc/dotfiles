@@ -7,14 +7,18 @@
     mode: a+x
 
 - name: Copy work commands
-  when: ansible_distribution == 'MacOSX'
+  when:
+    - ansible_distribution == 'MacOSX'
+    - not skip_secrets | bool
   ansible.builtin.template:
     src: "files/run-tests.sh.j2"
     dest: "{{ home_folder }}/.bin/run-tests"
     mode: a+x
 
 - name: Add work includes to ~/.bash_includes
-  when: ansible_distribution == 'MacOSX'
+  when:
+    - ansible_distribution == 'MacOSX'
+    - not skip_secrets | bool
   vars:
     work_includes_content: "{{ lookup('template', 'files/includes.sh.j2') }}"
   ansible.builtin.blockinfile:

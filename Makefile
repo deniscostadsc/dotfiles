@@ -9,10 +9,14 @@
 	lint \
 	lint-fix \
 	run \
+	run-public \
+	run-user \
+	run-simple \
 	test
 
 DOCKER_RUN := docker run --rm -v $$(pwd):/code --name
 DOCKER_BUILD := docker build -q -f
+SKIP_SECRETS ?= false
 
 __build_lint_sh:
 	@$(DOCKER_BUILD) .docker/lint-sh.Dockerfile -t lint-sh .
@@ -49,11 +53,34 @@ run:
 	@ansible-playbook \
 		--connection=local \
 		--ask-become-pass \
-		--extra-vars "current_user=$$USER home_folder=$$HOME" \
+		--extra-vars "current_user=$$USER home_folder=$$HOME skip_secrets=false skip_root=false" \
 		-vv \
 		-i inventory.ini \
 		-e @secrets.enc --ask-vault-pass \
 		playbook.yml
 
-test: __build_lint_tests
-	@$(DOCKER_RUN) dotfiles-tests tests
+run-public:
+		@ansible-playbook \
+		--connection=local \
+		--ask-become-pass \
+		--extra-vars "current_user=$$USER home_folder=$$HOME skip_secrets=true skip_root=false" \
+		-vv \
+		-i inventory.ini \
+		playbook.yml
+
+run-user:
+	@ansible-playbook \
+		--connection=local \
+		--extra-vars "current_user=$$USER home_folder=$$HOME skip_secrets=false skip_root=true" \
+		-vv \
+		-i inventory.ini \
+		-e @secrets.enc --ask-vault-pass \
+		playbook.yml
+
+run-simple:
+	@ansible-playbook \
+		--connection=local \
+		--extra-vars "current_user=$$USER home_folder=$$HOME skip_secrets=true skip_root=true" \
+		-vv \
+		-i inventory.ini \
+		playbook.yml

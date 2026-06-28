@@ -1,5 +1,6 @@
 ---
 - name: Change user shell to bash
+  when: not skip_root | bool
   ansible.builtin.user:
     name: "{{ current_user }}"
     shell: /bin/bash
