@@ -7,7 +7,7 @@ return {
         configs.setup({
             highlight = {enable = true},
             indent = {enable = true},
-            autotage = {enable = true},
+            autotag = {enable = true},
             ensure_installed = {"python", "bash", "yaml"},
             auto_install = false
         })
