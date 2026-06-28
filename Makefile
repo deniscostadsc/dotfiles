@@ -5,13 +5,14 @@
 	__check_pre_commit \
 	decrypt-secrets \
 	encrypt-secrets \
+	help \
 	install-git-hook \
 	lint \
 	lint-fix \
 	run \
 	run-public \
-	run-user \
 	run-simple \
+	run-user \
 	test
 
 DOCKER_RUN := docker run --rm -v $$(pwd):/code --name
@@ -38,6 +39,11 @@ decrypt-secrets: __check_pre_commit
 
 encrypt-secrets:
 	ansible-vault encrypt secrets.enc
+
+help:
+	@echo "Available targets:"
+	@echo ""
+	@grep -E '^[a-zA-Z0-9_-]+:' $(MAKEFILE_LIST) | grep -v '^__' | cut -d: -f1
 
 install-git-hook:
 	@cp ./scripts/pre-commit-check-secrets-file.sh ./.git/hooks/
