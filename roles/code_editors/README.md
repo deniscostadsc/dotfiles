@@ -19,7 +19,7 @@ This role installs and configures Neovim with a modern, plugin-based setup using
 ### Key Mappings
 
 #### General
-- `<leader>` is mapped to space (` `)
+- `<leader>` is mapped to space (" ")
 
 #### Telescope (File Navigation)
 - `<leader>ff` - Find files
