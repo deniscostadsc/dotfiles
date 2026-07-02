@@ -20,3 +20,7 @@ echo "Creating branch: ${branch}"
 git checkout master
 git pull --ff-only origin master
 git switch -c "${branch}"
+
+echo "Creating markdown for description"
+repo_root=$(git rev-parse --show-toplevel)
+cp "${repo_root}/.github/PULL_REQUEST_TEMPLATE.md" "$(current-ticket-pr-decription-file)"
