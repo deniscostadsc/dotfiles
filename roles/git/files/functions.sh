@@ -20,7 +20,3 @@ function __git_arrows {
 
     echo "${arrows}"
 }
-
-function __git_branch {
-    git branch 2>/dev/null | grep "^\*" | sed "s/* //g"
-}

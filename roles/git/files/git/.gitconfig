@@ -48,6 +48,8 @@
         sort |\
         uniq -c |\
         sort -nr
+    # Show current-branch
+    current-branch = ! git branch 2>/dev/null | grep '^\\*' | sed 's/* //g'
     # Show log with better format
     lg = log --color --graph \
         --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' \

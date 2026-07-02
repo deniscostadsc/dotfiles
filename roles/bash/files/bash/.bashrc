@@ -116,9 +116,9 @@ GIT_STATUS_COLOR="\[${BRIGHT_RED}\]"
 TODO_COLOR="\[${BRIGHT_WHITE}\]"
 
 if [[ "${color_prompt}" = yes ]]; then
-    PS1="${PATH_COLOR}\w ${TIME_COLOR}\$(__now) ${GIT_COLOR}\$(__git_branch) ${GIT_STATUS_COLOR}\$(__git_arrows)${TODO_COLOR}\$(current_todo_task)${NC}\n\$ "
+    PS1="${PATH_COLOR}\w ${TIME_COLOR}\$(__now) ${GIT_COLOR}\$(git current-branch) ${GIT_STATUS_COLOR}\$(__git_arrows)${TODO_COLOR}\$(current_todo_task)${NC}\n\$ "
 else
-    PS1='\w $(__now) $(__git_branch) $(__git_arrows)$(current_todo_task)\n\$ '
+    PS1='\w $(__now) $(git current-branch) $(__git_arrows)$(current_todo_task)\n\$ '
 fi
 
 PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
