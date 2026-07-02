@@ -32,11 +32,17 @@ for arg in "$@"; do
 
     if [[ "$clean_path" == api/* ]]; then
         stripped="${clean_path#api/}"
-        [[ ! -f "${REPO_ROOT}/api/${stripped}" ]] && { echo "File not found: api/${stripped}"; exit 1; }
+        if [[ ! -f "${REPO_ROOT}/api/${stripped}" ]] && [[ ! -d "${REPO_ROOT}/api/${stripped}" ]]; then
+            echo "File/folder not found: api/${stripped}"
+            exit 1
+        fi
         py_test_paths+=("$stripped")
     elif [[ "$clean_path" == integrations/* ]]; then
         stripped="${clean_path#integrations/}"
-        [[ ! -f "${REPO_ROOT}/integrations/${stripped}" ]] && { echo "File not found: integrations/${stripped}"; exit 1; }
+        if [[ ! -f "${REPO_ROOT}/integrations/${stripped}" ]] && [[ ! -d "${REPO_ROOT}/integrations/${stripped}" ]]; then
+            echo "File/folder not found: integrations/${stripped}"
+            exit 1
+        fi
         integration_paths+=("$stripped")
     else
         echo "Unknown path prefix: ${clean_path} (expected api/ or integrations/)"
