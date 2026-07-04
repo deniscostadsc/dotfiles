@@ -90,3 +90,6 @@ run-simple:
 		-vv \
 		-i inventory.ini \
 		playbook.yml
+
+test: __build_lint_tests
+	@$(DOCKER_RUN) dotfiles-tests tests
