@@ -6,7 +6,7 @@
     dest: "{{ home_folder }}/.bin/{{ item | basename | regex_replace('\\.sh$', '') }}"  # yamllint disable-line rule:line-length
     mode: a+x
   with_fileglob:
-    - "files/*.sh"
+    - "files/bin/*.sh"
 
 - name: Copy new-branch command
   when: not skip_secrets | bool
