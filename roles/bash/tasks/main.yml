@@ -84,17 +84,9 @@
     state: directory
     mode: '755'
 
-- name: Copy scripts to ~/.bin
-  ansible.builtin.copy:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
-    mode: a+x
-  loop:
-    - {src: files/bin/clipboard.sh, dest: "{{ home_folder }}/.bin/clipboard"}
-    - {src: files/bin/colors.sh, dest: "{{ home_folder }}/.bin/colors"}
-    - {src: files/bin/passphrase.sh, dest: "{{ home_folder }}/.bin/passphrase"}
-    - {src: files/bin/xkcd.sh, dest: "{{ home_folder }}/.bin/xkcd"}
-    - {src: files/bin/todo.sh, dest: "{{ home_folder }}/.bin/todo"}
+- name: Copy bash commands
+  ansible.builtin.include_tasks:
+    file: shared/install_bins.yml
 
 - name: Create ~/.man/ folder
   ansible.builtin.file:
