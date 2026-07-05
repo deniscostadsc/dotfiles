@@ -1,28 +1,15 @@
 ---
 - name: Copy work commands
   when: ansible_distribution == 'MacOSX'
-  ansible.builtin.copy:
-    src: "{{ item }}"
-    dest: "{{ home_folder }}/.bin/{{ item | basename | regex_replace('\\.sh$', '') }}"  # yamllint disable-line rule:line-length
-    mode: a+x
-  with_fileglob:
-    - "files/bin/*.sh"
+  ansible.builtin.include_tasks:
+    file: shared/install_bins.yml
 
-- name: Copy new-branch command
-  when: not skip_secrets | bool
-  ansible.builtin.template:
-    src: "files/new-branch.sh.j2"
-    dest: "{{ home_folder }}/.bin/new-branch"
-    mode: a+x
-
-- name: Copy run-tests command
+- name: Copy work commands that use template
   when:
     - ansible_distribution == 'MacOSX'
     - not skip_secrets | bool
-  ansible.builtin.template:
-    src: "files/run-tests.sh.j2"
-    dest: "{{ home_folder }}/.bin/run-tests"
-    mode: a+x
+  ansible.builtin.include_tasks:
+    file: shared/install_templated_bins.yml
 
 - name: Add work includes to ~/.bash_includes
   when:

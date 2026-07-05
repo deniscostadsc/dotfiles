@@ -1,0 +1,8 @@
+---
+- name: Copy bin commands that use template
+  ansible.builtin.template:
+    src: "{{ item }}"
+    dest: "{{ home_folder }}/.bin/{{ item | basename | regex_replace('\\.sh\\.j2$', '') }}"  # yamllint disable-line rule:line-length
+    mode: a+x
+  with_fileglob:
+    - "files/bin/*.sh.j2"
