@@ -61,8 +61,22 @@ make run
 
 ### On MacOS
 
-- [Iterm2 theme](/roles/terminal/files/Dracula.itermcolors) need to be imported
+- [Iterm profile config](/roles/terminal/files/iterm/Default.json) needs to be imported manually.
+  1. iTerm2 > **Preferences** > **Profiles**;
+  1. Open the **Other Actions...** drop-down in the bottom left corner;
+  1. Select **Import JSON Profiles...** from the list;
+  1. Select the `DenisCosta.json` file;
+  1. Select **DenisCosta** from the Profiles list;
+  1. Set it as default in the same dropdown below.
+
+- [Iterm2 theme](/roles/terminal/files/iterm/Dracula.itermcolors) needs to be imported
   manually. [Reference here](https://draculatheme.com/iterm).
+
+  1. iTerm2 > **Preferences** > **Profiles** > **Colors Tab**;
+  1. Open the **Color Presets...** drop-down in the bottom right corner;
+  1. Select **Import...** from the list;
+  1. Select the `Dracula.itermcolors` file;
+  1. Select **Dracula** from **Color Presets**.
 
 ## What this project does
 
