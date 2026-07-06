@@ -83,14 +83,7 @@
     dest: "{{ home_folder }}/.man/man1"
     mode: preserve
 
-- name: Add terminal aliases to ~/.bash_includes
-  ansible.builtin.blockinfile:
-    path: "{{ home_folder }}/.bash_includes"
-    marker: "# {mark} terminal/files/aliases.sh"
-    block: "{{ lookup('file', 'files/aliases.sh') }}"
-
-- name: Add terminal includes to ~/.bash_includes
-  ansible.builtin.blockinfile:
-    path: "{{ home_folder }}/.bash_includes"
-    marker: "# {mark} terminal/files/includes.sh"
-    block: "{{ lookup('file', 'files/includes.sh') }}"
+- name: Add bash config to ~/.bash_includes
+  when: ansible_distribution == 'MacOSX'
+  ansible.builtin.include_tasks:
+    file: shared/include_bash_config.yml

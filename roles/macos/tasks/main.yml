@@ -27,10 +27,7 @@
     }
     - {package: "slack", folder: "/Applications/Slack.app/"}
 
-
-- name: Add macos includes to ~/.bash_includes
+- name: Add bash config to ~/.bash_includes
   when: ansible_distribution == 'MacOSX'
-  ansible.builtin.blockinfile:
-    path: "{{ home_folder }}/.bash_includes"
-    marker: "# {mark} macos/files/includes.sh"
-    block: "{{ lookup('file', 'files/includes.sh') }}"
+  ansible.builtin.include_tasks:
+    file: shared/include_bash_config.yml

@@ -66,17 +66,9 @@
     dest: "{{ home_folder }}"
     mode: preserve
 
-- name: Add bash aliases to ~/.bash_includes
-  ansible.builtin.blockinfile:
-    path: "{{ home_folder }}/.bash_includes"
-    marker: "# {mark} bash/files/aliases.sh"
-    block: "{{ lookup('file', 'files/aliases.sh') }}"
-
-- name: Add bash functions to ~/.bash_includes
-  ansible.builtin.blockinfile:
-    path: "{{ home_folder }}/.bash_includes"
-    marker: "# {mark} bash/files/functions.sh"
-    block: "{{ lookup('file', 'files/functions.sh') }}"
+- name: Add bash config to ~/.bash_includes
+  ansible.builtin.include_tasks:
+    file: shared/include_bash_config.yml
 
 - name: Create ~/.bin/ folder
   ansible.builtin.file:

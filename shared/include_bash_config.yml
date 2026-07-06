@@ -1,0 +1,8 @@
+---
+- name: Add config to ~/.bash_includes
+  ansible.builtin.blockinfile:
+    path: "{{ home_folder }}/.bash_includes"
+    marker: "# {mark} {{ item }}"
+    block: "{{ lookup('file', item) }}"
+  with_fileglob:
+    - "files/includes/*.sh"
