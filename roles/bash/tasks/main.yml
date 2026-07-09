@@ -70,15 +70,15 @@
   ansible.builtin.include_tasks:
     file: shared/include_bash_config.yml
 
+- name: Copy bash commands
+  ansible.builtin.include_tasks:
+    file: shared/install_bins.yml
+
 - name: Create ~/.bin/ folder
   ansible.builtin.file:
     path: "{{ home_folder }}/.bin/"
     state: directory
     mode: '755'
-
-- name: Copy bash commands
-  ansible.builtin.include_tasks:
-    file: shared/install_bins.yml
 
 - name: Create ~/.man/ folder
   ansible.builtin.file:
