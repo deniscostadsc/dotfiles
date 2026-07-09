@@ -114,7 +114,6 @@ Look at [Terminal role README](/roles/terminal/README.md) for more information.
 - [Spotify](https://www.spotify.com)
 - [Terminator](https://gnome-terminator.org/) (Linux)
 - [tig](https://github.com/jonas/tig#readme)
-- [tmux](https://github.com/tmux/tmux#readme)
 - [tree](https://linux.die.net/man/1/tree)
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [VLC](https://www.videolan.org/vlc/)

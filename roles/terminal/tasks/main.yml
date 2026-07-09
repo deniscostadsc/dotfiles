@@ -41,17 +41,10 @@
       - htop
       - jq
       - ripgrep
-      - tmux
       - tree
       - viu
     state: present
   become: "{{ become_root }}"
-
-- name: Copy tmux config file
-  ansible.builtin.copy:
-    src: files/tmux/tmux.conf
-    dest: "{{ home_folder }}/.tmux.conf"
-    mode: preserve
 
 - name: Create ~/.local/share/z/ folder
   ansible.builtin.file:
