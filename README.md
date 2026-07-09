@@ -1,6 +1,6 @@
 # dotfiles
 
-:bangbang: **DISCLAIMER: This project is intentended to be a personal project to setup my
+:warning: **DISCLAIMER: This project is intentended to be a personal project to setup my
 personal computers.**
 
 [![CI workflow status](https://github.com/deniscostadsc/dotfiles/actions/workflows/ci.yml/badge.svg)](https://github.com/deniscostadsc/dotfiles/actions)
@@ -31,7 +31,6 @@ personal computers.**
 
 To execute playbook, you need to install ansible and its dependencies locally.
 To do that run the following commands:
-
 
 ### On Pop!_os
 
