@@ -22,6 +22,7 @@ personal computers.**
     - [Docker](#docker)
     - [Git](#git)
     - [SSH](#ssh)
+    - [Terminal (emulators)](#terminal-emulators)
   - [Development](#development)
     - [Running the tests](#running-the-tests)
   - [Troubleshooting](#troubleshooting)
@@ -77,6 +78,8 @@ make run
   1. Select **Import...** from the list;
   1. Select the `Dracula.itermcolors` file;
   1. Select **Dracula** from **Color Presets**.
+
+Look at [Terminal role README](/roles/terminal/README.md) for more information.
 
 ## What this project does
 
@@ -199,6 +202,10 @@ Look at [Git role README](/roles/git/README.md)
 ### SSH
 
 Look at [SSH role README](/roles/ssh/README.md)
+
+### Terminal (emulators)
+
+Look at [Terminal role README](/roles/terminal/README.md)
 
 ## Development
 
