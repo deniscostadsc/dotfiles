@@ -54,6 +54,10 @@
     lg = log --color --graph \
         --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' \
         --abbrev-commit
+    # Switch to master branch
+    master = switch master
+    # Switch to main branch
+    main = switch main
     # Add -u by default to push
     push = push -u
     # Same as status
