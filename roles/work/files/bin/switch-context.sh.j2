@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+set -xv
+
+USERNAME="{{ work_username }}"
+CONTEXT_DIR="$HOME/.context"
+CONTEXT_PATTERN="*-CONTEXT-${USERNAME}.md"
+
+show_help() {
+    cat << EOF
+Usage: $(basename "$0") [OPTIONS]
+
+Gerencia arquivos de contexto de tickets.
+
+Options:
+    --create    Cria um novo arquivo de contexto para o ticket atual se não existir
+    --help      Mostra esta mensagem de ajuda
+
+Comportamento padrão (sem opções):
+    - Arquiva contextos que não pertencem ao ticket atual
+    - Desarquiva contexto do ticket atual se existir em ~/.context/
+EOF
+}
+
+# Parse arguments
+CREATE_MODE=false
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --create)
+            CREATE_MODE=true
+            shift
+            ;;
+        --help)
+            show_help
+            exit 0
+            ;;
+        *)
+            echo "Unknown option: $1"
+            show_help
+            exit 1
+            ;;
+    esac
+done
+
+current_ticket=$(current-ticket 2>/dev/null) || true
+
+repo_root=$(git rev-parse --show-toplevel)
+
+cd "${repo_root}" || exit 1
+
+# Archive contexts that don't belong to the new ticket
+# When current_ticket is empty (e.g. master), archive all context files
+contexts_to_archive=""
+for file in ${CONTEXT_PATTERN}; do
+    [[ -f "${file}" ]] || continue
+    if [[ -z "${current_ticket}" ]] || [[ ! "$(basename "${file}")" =~ ^${current_ticket} ]]; then
+        contexts_to_archive="${contexts_to_archive} ${file}"
+    fi
+done
+
+if [[ -n "${contexts_to_archive}" ]]; then
+    mkdir -p "${CONTEXT_DIR}"
+    # shellcheck disable=SC2086
+    mv ${contexts_to_archive} "${CONTEXT_DIR}/"
+fi
+
+new_context_file="${current_ticket}-CONTEXT-${USERNAME}.md"
+
+# Unarchive context for the new ticket if it exists (only when on a ticket branch)
+if [[ -n "${current_ticket}" ]] && [[ -f "${CONTEXT_DIR}/${new_context_file}" ]]; then
+    mv "${CONTEXT_DIR}/${new_context_file}" "${repo_root}/"
+fi
+
+# --create mode: only if file doesn't exist in root (only when on a ticket branch)
+if [[ "${CREATE_MODE}" == true ]] && [[ -n "${current_ticket}" ]] && [[ ! -f "${new_context_file}" ]]; then
+    touch "${new_context_file}"
+fi
+
+exit 0
