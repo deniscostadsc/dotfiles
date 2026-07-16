@@ -11,6 +11,7 @@ REPO_ROOT="{{ work_repo_root }}"
 
 py_test_paths=()
 integration_paths=()
+client_paths=()
 extra_flags=()
 any_stripped=0
 
@@ -27,25 +28,19 @@ for arg in "$@"; do
         echo "Stripping test filter, running full file: ${clean_path}"
     fi
 
-    # Remove duplo integrations/ se existir
-    clean_path="${clean_path/#integrations\/integrations\//integrations\/}"
+    if [[ ! -f "${REPO_ROOT}/${clean_path}" ]] && [[ ! -d "${REPO_ROOT}/${clean_path}" ]]; then
+        echo "File/folder not found: ${clean_path}"
+        exit 1
+    fi
 
     if [[ "$clean_path" == api/* ]]; then
-        stripped="${clean_path#api/}"
-        if [[ ! -f "${REPO_ROOT}/api/${stripped}" ]] && [[ ! -d "${REPO_ROOT}/api/${stripped}" ]]; then
-            echo "File/folder not found: api/${stripped}"
-            exit 1
-        fi
-        py_test_paths+=("$stripped")
+        py_test_paths+=("$clean_path")
     elif [[ "$clean_path" == integrations/* ]]; then
-        stripped="${clean_path#integrations/}"
-        if [[ ! -f "${REPO_ROOT}/integrations/${stripped}" ]] && [[ ! -d "${REPO_ROOT}/integrations/${stripped}" ]]; then
-            echo "File/folder not found: integrations/${stripped}"
-            exit 1
-        fi
-        integration_paths+=("$stripped")
+        integration_paths+=("$clean_path")
+    elif [[ "$clean_path" == client/* ]]; then
+        client_paths+=("$clean_path")
     else
-        echo "Unknown path prefix: ${clean_path} (expected api/ or integrations/)"
+        echo "Unknown path prefix: ${clean_path} (expected api/, integrations/, or client/)"
         exit 1
     fi
 done
@@ -58,22 +53,51 @@ fi
 {% raw %}
 py_test_count=${#py_test_paths[@]}
 integration_count=${#integration_paths[@]}
+client_count=${#client_paths[@]}
 {% endraw %}
 
-if [[ $py_test_count -eq 0 && $integration_count -eq 0 ]]; then
+type_count=0
+[[ $py_test_count -gt 0 ]] && ((type_count++)) || true
+[[ $integration_count -gt 0 ]] && ((type_count++)) || true
+[[ $client_count -gt 0 ]] && ((type_count++)) || true
+
+if [[ $type_count -gt 1 ]]; then
+    echo "Error: cannot mix test types in a single run (api/, integrations/, client/ must be separate)."
+    exit 1
+fi
+
+if [[ $py_test_count -eq 0 && $integration_count -eq 0 && $client_count -eq 0 ]]; then
     echo "Usage: $0 <test-path> [<test-path>...] [--flags]"
     echo ""
     echo "Examples:"
-    echo "  $0 path/test_file.py"
-    echo "  $0 path/test_file.py --any-extra-args"
-    echo "  $0 path/test_file.py::TestClass::test_method"
+    echo "  $0 api/billing/tests/test_foo.py"
+    echo "  $0 integrations/integrations/tests/sync_job_events/unit_test_foo.py"
+    echo "  $0 client/patient_app/__tests__/foo.test.ts"
     exit 1
 fi
 
 if [[ $py_test_count -gt 0 ]]; then
-    CI=false py-test --run-once "${py_test_paths[@]}" "${extra_flags[@]+"${extra_flags[@]}"}"
+    stripped=()
+    for p in "${py_test_paths[@]}"; do stripped+=("${p#api/}"); done
+    CI=false py-test --run-once "${stripped[@]}" "${extra_flags[@]+"${extra_flags[@]}"}"
 fi
 
 if [[ $integration_count -gt 0 ]]; then
-    CI=false py-test-integrations --run-once "${integration_paths[@]}" "${extra_flags[@]+"${extra_flags[@]}"}"
+    stripped=()
+    for p in "${integration_paths[@]}"; do stripped+=("${p#integrations/}"); done
+    CI=false py-test-integrations --run-once "${stripped[@]}" "${extra_flags[@]+"${extra_flags[@]}"}"
+fi
+
+if [[ $client_count -gt 0 ]]; then
+    declare -A client_files_by_app=()
+    for client_path in "${client_paths[@]}"; do
+        app_name="${client_path#client/}"
+        app_name="${app_name%%/*}"
+        file_path="${client_path#client/${app_name}/}"
+        client_files_by_app[$app_name]+=" $file_path"
+    done
+    for app_name in "${!client_files_by_app[@]}"; do
+        docker compose run --rm -w /usr/local/cedar/client/${app_name} node bash -c \
+            "yarn test-only ${client_files_by_app[$app_name]} ${extra_flags[*]+"${extra_flags[*]}"}"
+    done
 fi
