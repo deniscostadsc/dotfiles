@@ -1,0 +1,29 @@
+---
+- name: Add templated config to ~/.bash_includes
+  vars:
+    temp_files: []
+  block:
+    - name: Create temp directory
+      ansible.builtin.tempfile:
+        state: directory
+      register: temp_dir
+
+    - name: Process templates
+      ansible.builtin.template:
+        src: "{{ item }}"
+        dest: "{{ temp_dir.path }}/{{ item | basename | regex_replace('\\.j2$', '') }}"  # yamllint disable-line rule:line-length
+      with_fileglob:
+        - "files/includes/*.sh.j2"
+      register: processed_templates
+
+    - name: Add configs to ~/.bash_includes
+      ansible.builtin.blockinfile:
+        path: "{{ home_folder }}/.bash_includes"
+        marker: "# {mark} {{ item.dest | basename }}"
+        block: "{{ lookup('file', item.dest) }}"
+      loop: "{{ processed_templates.results }}"
+
+    - name: Clean up temp directory
+      ansible.builtin.file:
+        path: "{{ temp_dir.path }}"
+        state: absent

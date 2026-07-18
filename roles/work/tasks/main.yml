@@ -11,13 +11,9 @@
   ansible.builtin.include_tasks:
     file: shared/install_templated_bins.yml
 
-- name: Add work includes to ~/.bash_includes
+- name: Add work templated bash includes
   when:
     - ansible_distribution == 'MacOSX'
     - not skip_secrets | bool
-  vars:
-    work_includes_content: "{{ lookup('template', 'files/includes.sh.j2') }}"
-  ansible.builtin.blockinfile:
-    path: "{{ home_folder }}/.bash_includes"
-    marker: "# {mark} work/files/includes.sh"
-    block: "{{ work_includes_content }}"
+  ansible.builtin.include_tasks:
+    file: shared/include_templated_bash_config.yml
