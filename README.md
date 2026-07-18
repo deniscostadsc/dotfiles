@@ -147,7 +147,6 @@ pip install resolvelib==1.0.1
 - [asdf](https://github.com/asdf-vm/asdf#readme)
 - [bat](https://github.com/sharkdp/bat#readme)
 - [delta](https://github.com/dandavison/delta#readme)
-- [eza](https://github.com/eza-community/eza#readme)
 - [ffmpeg](https://ffmpeg.org/)
 - [fzf](https://github.com/junegunn/fzf#readme)
 - [Git](https://git-scm.com/)

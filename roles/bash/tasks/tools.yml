@@ -4,7 +4,6 @@
   ansible.builtin.package:
     name:
       - bat
-      - eza
       - fzf
       - git-delta
       - htop
