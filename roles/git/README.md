@@ -9,10 +9,12 @@ This task adds the following aliases:
 - append - add staged changes to previous commit
 - authors - show all authors sorted by number of commits
 - branches - show all branches with better format
-- cleanup-branches - remove all branches, except the current branch, main or
-  master
+- cleanup-branches - remove all branches, but current, main and master
 - contributors - same as authors
+- current-branch - Show current-branch
 - lg - same as log with better format
+- main = switch to main branch
+- master - switch to master branch
 - push - add -u to all usages of push
 - s - short for status
 - wip - add all changes to stage and commit this with the message WIP
