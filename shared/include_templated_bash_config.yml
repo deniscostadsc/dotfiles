@@ -7,6 +7,7 @@
       ansible.builtin.tempfile:
         state: directory
       register: temp_dir
+      changed_when: false
 
     - name: Process templates
       ansible.builtin.template:
@@ -15,6 +16,7 @@
       with_fileglob:
         - "files/includes/*.sh.j2"
       register: processed_templates
+      changed_when: false
 
     - name: Add configs to ~/.bash_includes
       ansible.builtin.blockinfile:
@@ -23,7 +25,10 @@
         block: "{{ lookup('file', item.dest) }}"
       loop: "{{ processed_templates.results }}"
 
+  always:
     - name: Clean up temp directory
       ansible.builtin.file:
         path: "{{ temp_dir.path }}"
         state: absent
+      changed_when: false
+      when: temp_dir.path is defined
