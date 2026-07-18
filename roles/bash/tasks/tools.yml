@@ -3,7 +3,6 @@
   when: not skip_root | bool
   ansible.builtin.package:
     name:
-      - bat
       - fzf
       - git-delta
       - htop
@@ -24,18 +23,6 @@
   ansible.builtin.copy:
     src: files/z/z.sh
     dest: "{{ home_folder }}/.local/shared/z/"
-    mode: preserve
-
-- name: Create ~/.config/bat/ folder
-  ansible.builtin.file:
-    path: "{{ home_folder }}/.config/bat/"
-    state: directory
-    mode: '755'
-
-- name: Copy bat config file
-  ansible.builtin.copy:
-    src: files/bat/config
-    dest: "{{ home_folder }}/.config/bat/config"
     mode: preserve
 
 - name: Install z man page

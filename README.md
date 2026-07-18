@@ -145,7 +145,6 @@ pip install resolvelib==1.0.1
 
 - [Ag (The Silver Searcher)](https://github.com/ggreer/the_silver_searcher#readme)
 - [asdf](https://github.com/asdf-vm/asdf#readme)
-- [bat](https://github.com/sharkdp/bat#readme)
 - [delta](https://github.com/dandavison/delta#readme)
 - [ffmpeg](https://ffmpeg.org/)
 - [fzf](https://github.com/junegunn/fzf#readme)
