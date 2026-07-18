@@ -11,6 +11,12 @@
   ansible.builtin.include_tasks:
     file: shared/install_templated_bins.yml
 
+- name: Add work bash includes
+  when:
+    - ansible_distribution == 'MacOSX'
+  ansible.builtin.include_tasks:
+    file: shared/include_bash_config.yml
+
 - name: Add work templated bash includes
   when:
     - ansible_distribution == 'MacOSX'
