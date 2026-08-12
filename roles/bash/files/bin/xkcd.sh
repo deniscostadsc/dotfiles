@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 which_comic_show="random"
-show_explanation=0
 comic_number=0
 
 set -euo pipefail
@@ -62,15 +61,14 @@ View XKCD comics in your terminal, random by default.
 OPTIONS:
     -l, --latest              Show the latest comic (cannot be used with -n)
     -n, --number <NUMBER>     Show a specific comic (cannot be used with -l)
-    -x, --show-explanation    Include explanation link in output
     -h, --help                Show this help message
+    -c, --clear-cache         Clear the cache
 
 EOF
 }
 
 function show_xkcd_comic {
     comic_number=$1
-    show_explanation=$2
 
     comic_json=$(get_cached_comic "${comic_number}")
 
@@ -124,10 +122,6 @@ while [[ $# -gt 0 ]]; do
         shift
         which_comic_show="specific"
         ;;
-    -x | --show-explanation)
-        show_explanation=1
-        shift
-        ;;
     -h | --help)
         show_help
         exit 0
@@ -161,4 +155,4 @@ elif [[ ${which_comic_show} == "random" ]]; then
     comic_number=$((1 + RANDOM % latest_comic_number))
 fi
 
-show_xkcd_comic "${comic_number}" "${show_explanation}"
+show_xkcd_comic "${comic_number}"
