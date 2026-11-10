@@ -4,21 +4,109 @@ set -euo pipefail
 
 USERNAME="{{ work_username }}"
 
-[[ $# -ne 1 ]] && {
-    echo "Usage: $0 <ticket-id>"
+usage() {
+    cat <<EOF
+Usage: ${0} [--base <branch>] [--update] <ticket-id>
+
+Creates a branch for a Jira ticket, named <username>/<KEY>-<summary>,
+based on a base branch (default: master), and copies the PR description
+template to the local description file.
+
+Options:
+  --base <branch>   Base branch for the new branch (default: master).
+                    Use "." for the currently checked-out branch.
+  --update          Pull the base branch before creating (ff-only)
+  -h, --help        Show this help
+
+Examples:
+  ${0} PROD-123
+      Branch from local master, no pull.
+
+  ${0} --update PROD-123
+      Update master from origin, then branch from it.
+
+  ${0} --base dcosta/PROD-100-foo PROD-101
+      Stack: branch from another local branch, as-is (no pull).
+
+  ${0} --base . PROD-101
+      Branch from the current branch, as-is (no pull).
+EOF
+}
+
+BASE_BRANCH="master"
+UPDATE=false
+TICKET_ID=""
+
+# Parse dos argumentos
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        --base)
+            [[ $# -lt 2 ]] && {
+                echo "Error: --base requires a value" >&2
+                echo "" >&2
+                usage >&2
+                exit 1
+            }
+            BASE_BRANCH="$2"
+            shift 2
+            ;;
+        --update)
+            UPDATE=true
+            shift
+            ;;
+        -*)
+            echo "Error: unknown flag: $1" >&2
+            echo "" >&2
+            usage >&2
+            exit 1
+            ;;
+        *)
+            if [[ -n "${TICKET_ID}" ]]; then
+                echo "Error: unexpected argument: $1" >&2
+                echo "" >&2
+                usage >&2
+                exit 1
+            fi
+            TICKET_ID="$1"
+            shift
+            ;;
+    esac
+done
+
+[[ -z "${TICKET_ID}" ]] && {
+    echo "Error: missing <ticket-id>" >&2
+    echo "" >&2
+    usage >&2
     exit 1
 }
 
-json=$(ticket-info "$1" --json)
+if [[ "${BASE_BRANCH}" == "." ]]; then
+    BASE_BRANCH=$(git branch --show-current)
+    [[ -z "${BASE_BRANCH}" ]] && {
+        echo "Error: --base . requires a branch to be checked out (currently in detached HEAD)" >&2
+        exit 1
+    }
+fi
+
+git checkout "${BASE_BRANCH}"
+
+if [[ "${UPDATE}" == true ]]; then
+    echo "Updating ${BASE_BRANCH}..."
+    git pull --ff-only origin "${BASE_BRANCH}"
+fi
+
+json=$(ticket-info "${TICKET_ID}" --json)
 
 key=$(echo "${json}" | jq -r '.key')
 summary=$(echo "${json}" | jq -r '.fields.summary')
 clean_summary=$(echo "${summary}" | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed 's/^-//;s/-$//')
 branch="${USERNAME}/${key}-${clean_summary}"
 
-echo "Creating branch: ${branch}"
-git checkout master
-git pull --ff-only origin master
+echo "Creating branch: ${branch} (base: ${BASE_BRANCH})"
 git switch -c "${branch}"
 
 echo "Creating markdown for description"
