@@ -13,13 +13,9 @@ body=$2
 gh api graphql -f query='
 mutation($threadId: ID!, $body: String!) {
   addPullRequestReviewThreadReply(input: {pullRequestReviewThreadId: $threadId, body: $body}) {
-    thread {
-      comments(last: 1) {
-        nodes {
-          id
-          url
-        }
-      }
+    comment {
+      id
+      url
     }
   }
-}' -f threadId="${thread_id}" -f body="${body}" | jq -r '.data.addPullRequestReviewThreadReply.thread.comments.nodes[-1].url'
+}' -f threadId="${thread_id}" -f body="${body}" | jq -r '.data.addPullRequestReviewThreadReply.comment.url'
